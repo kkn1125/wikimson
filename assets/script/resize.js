@@ -39,7 +39,7 @@
         let target = ev.target;
         if (!target.getAttribute('scroll-to')) return;
         let focus = target.getAttribute('scroll-to');
-        for (let key of [...document.querySelectorAll('.h3')]) {
+        for (let key of [...document.querySelectorAll('.h3, .h6')]) {
             if (key.getAttribute('scroll-focus') == focus) {
                 document.querySelector('[put-type="wiki"]').scrollTo({behavior:'smooth', left: 0, top: key.offsetTop})
             }
@@ -51,7 +51,7 @@
 
         spy.map(s=>s.classList.remove('highlight'));
 
-        for (let key of [...document.querySelectorAll('.h3')]) {
+        for (let key of [...document.querySelectorAll('.h3, .h6')]) {
             let top = document.querySelector('[put-type="wiki"]').scrollTop;
             if (key.offsetTop-16 < top) {
                 let focus = key.getAttribute('scroll-focus');

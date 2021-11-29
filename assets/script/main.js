@@ -110,8 +110,8 @@
                 <div><span class="h3">프로세스와 스레드</span></div>
                 <div>
                     <div>
-                        <span class="h6">정의</span>
                         <div>
+                            <span class="h6">정의</span>
                             th: 구분|설명@
                             tb: !프로세스|프로그램을 구동하여 프로그램 자체와 프로그램의 상태가 메모리 상에서 실
                             행되는 작업 단위를 말합니다. 메모리에 올라와 실행되고 있는 프로그램의
@@ -124,7 +124,24 @@
                             !캐시메모리|CPU의 레지스터와 메모리 사이에서 버퍼역할을 하며, 데이터의 병목현상 완화에 사용됩니다.@
                             :end
                         </div>
-                        
+                    </div>
+
+                    <div>
+                        <div>
+                            <span class="h6">멀티 프로세스와 멀티 스레드</span>
+                            th: 구분|설명@
+                            tb: !멀티 프로세스|<span>멀티프로세스는 하나의 프로그램을 여러개의 프로세스로 구성하여 각 프로세스가 하나의 작업을 처리하는 것 입니다.</span>
+                                <ul>
+                                    <li>하나의 프로세스가 잘못 되어도 프로그램은 동작 합니다.</li>
+                                    <li>context switching 비용이 발생합니다.</li>
+                                </ul>\\
+                                !멀티 스레드|<span>프로그램을 여러 개의 스레드로 구성하고 각 스레드가 작업을 처리하는 것 입니다.</span>
+                                <ul>
+                                    <li>시스템 자원 소모와 처리비용가 감소하고 스레드 간 자원 공유가 가능합니다.</li>
+                                    <li>디버깅이 어렵고 동기화 이슈를 안고 있으며 하나의 스레드 오류로 전체 프로세스에 문제가 발생합니다.</li>
+                                </ul>@
+                                :end
+                        </div>
                     </div>
                 </div>
                 `,
@@ -293,7 +310,7 @@
                     ${list?list.title.replace('-',' '):'wiki'}
                 </div>
                 <ul class="list-group">
-                    ${list?list.generateToc.map(x=>`<li class="list-item" ><span scroll-to="${x.innerText}">${x.innerText}</span></li>`).join(''):Object.keys(wiki).filter(x=>x!='about' && wiki[x].published).map(x=>`<li class="list-item"><a href="#${x}">${x}</a></li>`).join('')}
+                    ${list?list.generateToc.map(x=>x instanceof Array?`<ol>${x.map(y=>`<li><span scroll-to="${y.innerHTML}">${y.innerHTML}</span></li>`).join('')}</ol>`:`<li class="list-item" ><span scroll-to="${x.innerText}">${x.innerText}</span></li>`).join(''):Object.keys(wiki).filter(x=>x!='about' && wiki[x].published).map(x=>`<li class="list-item"><a href="#${x}">${x}</a></li>`).join('')}
                 </ul>`;
             }
         },
@@ -304,7 +321,7 @@
                     let refLink = ref.map(({name, link})=>`<div><a href="${link}" target="_blank" title="${name}">${name}</a></div>`).join('');
 
                     let filteredContent = content.map(c=>{
-                        c = c.replace(/t[hb]:\s?[\S\s]*:end/gm, (match)=>{
+                        c = c.replace(/t[hb]:\s?[\S\s]*?[\s\n]+?:end/gm, (match)=>{
                             match = match.split('@').map(x=>{
                                 if(x.match(':end')) return '';
                                 let sp = x.trim().split(/\:\s?/).map(y=>y.trim());
@@ -344,7 +361,7 @@
                             </li>
                         </ul>
                         ${toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div><ol class="toc">':''}
-                            ${!toc||generateToc.map(x=>`<li><span scroll-to="${x.innerText}">${x.innerHTML}</span></li>`).join('')}
+                            ${!toc||generateToc.map(x=>x instanceof Array?`<ol>${x.map(y=>`<li><span scroll-to="${y.innerHTML}">${y.innerHTML}</span></li>`).join('')}</ol>`:`<li><span scroll-to="${x.innerText}">${x.innerHTML}</span></li>`).join('')}
                         ${toc?'</ol></div>':''}
                         <p>${filteredContent}</p>
                         ${ref.length>0?'<hr>':''}
@@ -473,7 +490,7 @@
         }
 
         this.setScrollPoint = function(){
-            [...document.querySelectorAll('.h3')].forEach(x => x.setAttribute('scroll-focus', x.innerText));
+            [...document.querySelectorAll('.h3, .h6')].forEach(x => x.setAttribute('scroll-focus', x.innerText));
         }
 
         this.changeTitle = function(subTitle){
@@ -502,7 +519,9 @@
         this.generateToc = function(toc){
             let dom = new DOMParser();
             let html = dom.parseFromString(toc.content.join(''), 'text/html').body;
-            return [...html.querySelectorAll('.h3')];
+            let tocs = [...html.querySelectorAll('.h3')].map(x=>[x, [...x.parentNode.nextElementSibling.querySelectorAll('.h6')]])[0];
+
+            return tocs;
         }
 
         this.clearView = function(){
