@@ -329,7 +329,7 @@
                     let refLink = ref.map(({name, link})=>`<div><a href="${link}" target="_blank" title="${name}">${name}</a></div>`).join('');
 
                     let filteredContent = content.map(c=>{
-                        c = c.replace(/t[hb]:\s?[\S\s]*?[\s\n]+?:end/gm, (match)=>{
+                        c = c.replace(/t[hb]:\s?[\S\s]*?[\s\n]*?:end/gm, (match)=>{
                             match = match.split('@').map(x=>{
                                 if(x.match(':end')) return '';
                                 let sp = x.trim().split(/\:\s?/).map(y=>y.trim());
@@ -368,6 +368,7 @@
                                 <time class="tag time text-muted">${new Date(wrote).toLocaleString().slice(0,-3)}</time>
                             </li>
                         </ul>
+
                         ${toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div><ol class="toc">':''}
                         ${!toc||generateToc.map(x=>{
                             return x.map(y=>{
@@ -377,7 +378,7 @@
                                 else return `<li scroll-to="${y.innerText}">${y.innerText}</li>`;
                             }).join('');
                         }).join('')}
-                        ${toc?`</ol>`:``}
+                        ${toc?`</ol></div>`:``}
                         <p>${filteredContent}</p>
                         ${ref.length>0?'<hr>':''}
                         ${refLink?`<div><span class="fw-bold">References</span>${refLink}</div>`:''}
