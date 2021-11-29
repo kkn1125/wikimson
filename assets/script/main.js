@@ -394,14 +394,17 @@
         }
 
         this.covertCurrentPath = function (hash) {
-            let hashPath = hash.split('');
-            currentPage.push(hashPath.shift());
-            currentPage.push(hashPath.join(''));
+            if(currentPage.length==0){
+                let hashPath = hash.split('');
+                currentPage.push(hashPath.shift());
+                currentPage.push(hashPath.join(''));
+            }
         }
 
         this.checkUrl = function (hash) {
-            let now = hash.split('#');
-            if (now.length == 1 && now.pop() == '') {
+            let now = hash.split('#').filter(x=>x!='');
+
+            if (now.length == 0) {
                 currentPage.push('#', 'home');
             }
         }
