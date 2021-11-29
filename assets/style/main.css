@@ -69,16 +69,16 @@ ol:not(.list-group, .w-inline-flex) {
 }
 
 ol.toc li {
-    list-style: decimal;
+    list-style: decimal !important;
 }
 
 ul.toc li {
-    list-style: circle;
+    list-style: circle !important;
 }
 
-ol,
-ul {
-    margin: 0;
+nav ul,
+nav ol{
+    margin: 0 !important;
 }
 
 [put-type="wiki"] {
@@ -93,8 +93,6 @@ a {
 }
 
 [scroll-to] {
-    display: block;
-    padding-left: 1em;
     cursor: pointer;
     transition: display 150ms, color 150ms, background-color 150ms;
     -webkit-transition: display 150ms, color 150ms, background-color 150ms;
@@ -118,4 +116,101 @@ table.table {
 
 a>span {
     pointer-events: none;
+}
+
+/* 
+	dark mode start
+ */
+
+ [data-switch="mode"] {
+    display: none;
+}
+
+label#mtWrap {
+    user-select: none;
+    cursor: pointer;
+    perspective: 200px;
+    /* position: absolute; */
+    top: 15px;
+    right: 8%;
+    z-index: 1020;
+    display: inline-block;
+    width: 4rem;
+    height: 2rem;
+    background-color: rgba(114, 157, 250, 0.5);
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+}
+
+label#mtWrap.on>span {
+    left: 0%;
+}
+
+label#mtWrap.off>span {
+    left: 50%;
+}
+
+label#mtWrap>span {
+    position: absolute;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    width: 2rem;
+    height: 2rem;
+    background-color: rgba(0, 0, 0, .5);
+    color: wheat;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    transition: 0.3s left cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -webkit-transition: 0.3s left cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -moz-transition: 0.3s left cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -ms-transition: 0.3s left cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -o-transition: 0.3s left cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+label#mtWrap>span::before {
+    position: absolute;
+}
+
+body.dark {
+    background-color: #2a2b31;
+    color: white;
+}
+
+body.dark table.table td{
+    color: inherit !important;
+}
+
+body.dark footer {
+    background-color: #1c1d20 !important;
+    color: inherit;
+}
+
+body.dark footer .brand a {
+    color: inherit;
+}
+
+body.dark section {
+    background-color: #1c1d20 !important;
+    color: inherit;
+}
+
+body.dark section button {
+    color: inherit !important;
+}
+
+body.dark aside {
+    background-color: #1c1d20 !important;
+    color: inherit;
+}
+
+body.dark .tag{
+    color: white;
 }

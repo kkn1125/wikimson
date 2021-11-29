@@ -2,8 +2,8 @@
 
 (function () {
     const title = `<span class="text-subpoint">Wiki</span>mson`;
-    const main = `<span class="text-subpoint h1" style="-webkit-text-stroke-width: thick;
-    ">ㄴㅇㄱ</span><span class="fs-3 text-end">나를 위한 기록</span>`;
+    const main = `<span class="text-subpoint h1" style="-webkit-text-stroke-width: medium;
+    ">ㄴㅇㄱ</span><span class="fs-3 text-end ms-5">나를 위한 기록</span>`;
 
     const wiki = {
         '404': {
@@ -220,12 +220,13 @@
                         <a href="#home">${title}</a>
                     </div>
                     <div class="menu-btn me-3">
-                        <button class="btn btn-light text-gray fs-4" data-target="#gnbMenu" style="line-height: 1">
+                        <button class="btn btn-light text-gray fs-4 px-2" data-target="#gnbMenu" style="line-height: 1">
                             <i class="fas fa-bars"></i>
                         </button>
                     </div>
                     <ul id="gnbMenu" class="gnb-menu gx-2 w-flex">
-                        ${Object.keys(wiki).filter(x=>x!='home' && wiki[x].published).map(x=>`<a class="nav-link" href="#${x}">${x.split('-').map(y=>y.charAt(0).toUpperCase()+y.slice(1)).join(' ')}</a>`).join('')}
+                        ${Object.keys(wiki).filter(x=>x!='home' && wiki[x].published).map(x=>`<li><a class="nav-link" href="#${x}">${x.split('-').map(y=>y.charAt(0).toUpperCase()+y.slice(1)).join(' ')}</a></li>`).join('')}
+                        <li id="mode"></li>
                     </ul>
                 </div>`;
                 }
@@ -310,7 +311,14 @@
                     ${list?list.title.replace('-',' '):'wiki'}
                 </div>
                 <ul class="list-group">
-                    ${list?list.generateToc.map(x=>x instanceof Array?`<ol>${x.map(y=>`<li><span scroll-to="${y.innerHTML}">${y.innerHTML}</span></li>`).join('')}</ol>`:`<li class="list-item" ><span scroll-to="${x.innerText}">${x.innerText}</span></li>`).join(''):Object.keys(wiki).filter(x=>x!='about' && wiki[x].published).map(x=>`<li class="list-item"><a href="#${x}">${x}</a></li>`).join('')}
+                    ${list?list.generateToc.map(x=>{
+                        return x.map(y=>{
+                            if(y instanceof Array) return `<ol>${y.map(z=>{
+                                return `<li scroll-to="${z.innerText}">${z.innerText}</li>`
+                            }).join('')}</ol>`;
+                            else return `<li scroll-to="${y.innerText}">${y.innerText}</li>`;
+                        }).join('');
+                    }).join(''):Object.keys(wiki).filter(x=>x!='about' && wiki[x].published).map(x=>`<li class="list-item"><a href="#${x}">${x}</a></li>`).join('')}
                 </ul>`;
             }
         },
@@ -361,8 +369,15 @@
                             </li>
                         </ul>
                         ${toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div><ol class="toc">':''}
-                            ${!toc||generateToc.map(x=>x instanceof Array?`<ol>${x.map(y=>`<li><span scroll-to="${y.innerHTML}">${y.innerHTML}</span></li>`).join('')}</ol>`:`<li><span scroll-to="${x.innerText}">${x.innerHTML}</span></li>`).join('')}
-                        ${toc?'</ol></div>':''}
+                        ${!toc||generateToc.map(x=>{
+                            return x.map(y=>{
+                                if(y instanceof Array) return `<ol>${y.map(z=>{
+                                    return `<li scroll-to="${z.innerText}">${z.innerText}</li>`
+                                }).join('')}</ol>`;
+                                else return `<li scroll-to="${y.innerText}">${y.innerText}</li>`;
+                            }).join('');
+                        }).join('')}
+                        ${toc?`</ol>`:``}
                         <p>${filteredContent}</p>
                         ${ref.length>0?'<hr>':''}
                         ${refLink?`<div><span class="fw-bold">References</span>${refLink}</div>`:''}
@@ -519,8 +534,17 @@
         this.generateToc = function(toc){
             let dom = new DOMParser();
             let html = dom.parseFromString(toc.content.join(''), 'text/html').body;
-            let tocs = [...html.querySelectorAll('.h3')].map(x=>[x, [...x.parentNode.nextElementSibling.querySelectorAll('.h6')]])[0];
-
+            
+            let tocs = [...html.querySelectorAll('.h3')].map(x=>{
+                let save = [];
+                if(x.parentNode.nextElementSibling){
+                    save.push(x);
+                    save.push([...x.parentNode.nextElementSibling.querySelectorAll('.h6')]);
+                } else {
+                    save.push(x);
+                }
+                return save;
+            });
             return tocs;
         }
 
