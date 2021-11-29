@@ -6,6 +6,10 @@
     window.addEventListener('mouseup', cancelResize);
     window.addEventListener('mousemove', moveHandler);
     window.addEventListener('resize', windowHandler);
+    window.addEventListener('click', scrollIntoHandler);
+    document.querySelector('[put-type="wiki"]').addEventListener('scroll', scrollSpy);
+
+    windowHandler();
 
     function doResize(ev) {
         let target = ev.target;
@@ -23,8 +27,6 @@
         leftSideBar.style.flex = `0 0 ${left}px`;
     }
 
-    windowHandler();
-
     function windowHandler(ev) {
         if (window.innerWidth - 17 < 576) {
             resizer.style.display = 'none';
@@ -32,13 +34,6 @@
             resizer.style.display = 'flex';
         }
     }
-
-    (function () {
-        [...document.querySelectorAll('.h3')].forEach(x => x.setAttribute('scroll-focus', x.innerText));
-    })();
-
-    window.addEventListener('click', scrollIntoHandler);
-    document.querySelector('[put-type="wiki"]').addEventListener('scroll', scrollSpy);
 
     function scrollIntoHandler(ev) {
         let target = ev.target;

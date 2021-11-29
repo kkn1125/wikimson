@@ -26,7 +26,7 @@
     -o-border-radius: 50%;
 }
 
-aside.side-bar{
+aside.side-bar {
     transition: width 150ms;
     -webkit-transition: width 150ms;
     -moz-transition: width 150ms;
@@ -34,42 +34,88 @@ aside.side-bar{
     -o-transition: width 150ms;
 }
 
-.highlight{
+.highlight {
     color: coral;
+    background-color: rgb(255, 229, 219);
 }
 
-.overflow-hidden{
+.overflow-hidden {
     overflow: hidden;
 }
-.overflow-visible{
+
+.overflow-visible {
     overflow: visible;
 }
-.overflow-auto{
+
+.overflow-auto {
     overflow: auto;
 }
 
-table td{
+table td {
     vertical-align: middle;
 }
 
-table ul li{
+table ul li {
     list-style: disc;
 }
-table ol li{
+
+table ol li {
     list-style: decimal;
 }
 
-ul:not(.list-group),
-ol:not(.list-group){
+ul:not(.list-group, .w-inline-flex),
+ol:not(.list-group, .w-inline-flex) {
     margin-left: 1.5em;
 }
 
-[put-type="wiki"]{
+ol.toc li {
+    list-style: decimal;
+}
+
+ul.toc li {
+    list-style: circle;
+}
+
+ol,
+ul {
+    margin: 0;
+}
+
+[put-type="wiki"] {
     overflow-y: auto;
     height: calc(100vh - 61px - 51.6px);
 }
 
-img,a{
+img,
+a {
     -webkit-user-drag: none;
     -moz-window-dragging: none;
+}
+
+[scroll-to] {
+    display: block;
+    padding-left: 1em;
+    cursor: pointer;
+    transition: display 150ms, color 150ms, background-color 150ms;
+    -webkit-transition: display 150ms, color 150ms, background-color 150ms;
+    -moz-transition: display 150ms, color 150ms, background-color 150ms;
+    -ms-transition: display 150ms, color 150ms, background-color 150ms;
+    -o-transition: display 150ms, color 150ms, background-color 150ms;
+}
+
+[put-type="wiki"] p {
+    margin-bottom: 1em;
+}
+
+table.table {
+    margin-top: 0;
+}
+
+.main {
+    min-height: 15em;
+    flex-shrink: 1;
+}
+
+a>span {
+    pointer-events: none;
 }

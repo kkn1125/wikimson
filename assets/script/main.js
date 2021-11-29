@@ -6,23 +6,31 @@
     ">ㄴㅇㄱ</span><span class="fs-3 text-end">나를 위한 기록</span>`;
 
     const wiki = {
+        '404': {
+            published: false,
+            title: `Not Found`,
+            code: 404,
+            message: `페이지를 찾을 수 없습니다!`,
+        },
         'garbage-collection': {
+            published: true,
             title: 'garbage-collection',
             tags: ['garbage-collection'],
             categories: ['CS'],
             authors: ['kimson'],
             wrote: '2021-11-28 21:19:21',
             toc: true,
-            content: [
+            content: [ // th: thead, tb: tbody, \\: tr 추가, !: 강조, @: 단락바꿈, |: td 추가
                 `
                 <div><span class="h3">가비지 컬렉션이란</span></div>
                 <div>
                     <div>
                         <span class="h6">정의</span>
                         <p>메모리 관리 기법 중의 하나이며, 프로그램이 동적으로 할당했던 메모리 영역 중 필요 없게 된 영역을 해제하는 기능.</p>
-                        <p>1959년 무렵 LISP 문제를 해결하기 위해 존 매카시가 개발하였다.</p>
+                        <p>정리되지 않은 메모리, 유효하지 않은 메모리 주소인 가비지를 정리해주는 프로그램이며, 1959년 무렵 LISP 문제를 해결하기 위해 존 매카시가 개발하였다.</p>
                         <p>자바, C# 등은 처음부터 GC를 염두에 두고 설계되었다.</p>
-                        <p><span class="fw-bold">장점</span>
+                        <div>
+                            <span class="fw-bold fs-5">장단점</span>
                             th: 구분|텍스트@
                             tb: !장점|<ol>
                                 <li>유효하지 않은 포인터 접근</li>
@@ -35,7 +43,7 @@
                                 <li>할당 메모리가 해제되는 시점을 알 수 없다</li>
                             </ol>@
                             :end
-                        </p>
+                        </div>
                     </div>
                 </div>
                 `,
@@ -46,11 +54,126 @@
                     name:'위키 백과 - CS',
                     link:'https://ko.wikipedia.org/wiki/%EC%93%B0%EB%A0%88%EA%B8%B0_%EC%88%98%EC%A7%91_(%EC%BB%B4%ED%93%A8%ED%84%B0_%EA%B3%BC%ED%95%99)'
                 },
-            ]
+            ],
         },
-        about: {
-            titl: 'qwe'
+        'OSI-7계층': {
+            published: true,
+            title: 'OSI-7계층',
+            tags: ['OSI-7계층', '통신규약'],
+            categories: ['CS'],
+            authors: ['kimson'],
+            wrote: '2021-11-29 18:56:35',
+            toc: true,
+            content: [
+                `
+                <div><span class="h3">OSI 7계층 요약</span></div>
+                <div>
+                    <div>
+                        <span class="h6">정의</span>
+                        <div>
+                            th: 구분|설명@
+                            tb: !물리|전송하는데 필요한 기능을 제공 (통신 케이블, 허브)\\
+                                !데이터링크|송/수신 확인. MAC주소를 가지고 통신함 (브릿지, 스위치)\\
+                                !네트워크|패킷을 네트워크 간의 IP를 통해 데이터 전달 (라우팅)\\
+                                !전송|두 host 시스템으로부터 발생하는 데이터 흐름 제공\\
+                                !세션|통신 시스템 사용자간의 연결을 유지 및 설정함\\
+                                !표현|세션 계층 간의 주고 받는 인터페이스를 일관성 있게 제공\\
+                                !응용|사용자가 네트워크에 접근할 수 있도록 서비스 제공@
+                                :end
+                        </div>
+                        
+                    </div>
+                </div>
+                `,
+                `
+                <div><span class="h3">TCP/IP 프로토콜 스택 4계층</span></div>
+
+                `,
+            ],
+            ref: [
+                // {
+                //     name:'',
+                //     link:''
+                // },
+            ],
         },
+        'Process&Thread': {
+            published: true,
+            title: '프로세스와 스레드',
+            tags: ['프로세스', '스레드'],
+            categories: ['CS'],
+            authors: ['kimson'],
+            wrote: '2021-11-29 20:06:54',
+            toc: true,
+            content: [
+                `
+                <div><span class="h3">프로세스와 스레드</span></div>
+                <div>
+                    <div>
+                        <span class="h6">정의</span>
+                        <div>
+                            th: 구분|설명@
+                            tb: !프로세스|프로그램을 구동하여 프로그램 자체와 프로그램의 상태가 메모리 상에서 실
+                            행되는 작업 단위를 말합니다. 메모리에 올라와 실행되고 있는 프로그램의
+                            인스턴스(독립적 개체)라고 할 수 있고, CPU 자원의 할당을 받을 수 있고,
+                            프로세스에 할당되는 메모리에는 스택, 힙, 데이터, 코드 영역을 포함합니다.\\
+                            !스레드|프로세스 내에서 실행되는 흐름의 단위이고 일반적으로 한 프로그램에 하나의 스레드를 가지지만 프로그램 환경에 따라 둘 이상 스레드를 동시에 실행 가능하며, 이를 멀티스레드하고 합니다. 스레드 간에는 프로세스 주소나 자원을 공유할 수 있습니다. 스레드는 각자 독립적으로 작업을 수행해야 하기 때문에 스레드 기본 데이터를 가집니다.\\
+                            !스레드 기본 데이터|스레드도 프로세스와 마찬가지로 하나의 실행 흐름이며, 관련 데이터가 필요합니다. 일반적으로 스레드는 자신만의 고유 스레드 ID, Program Counter (PC), 레지스터 집합, 스택을 가집니다. 코드, 데이터, 파일 등 기타 자원은 프로세스 내 다른 스레드와 공유합니다.\\
+                            !PC|Program Counter의 줄임말로, 다음에 실행될 명령어의 주소가 들어있는 레지스터이며, 명령어가 인출되면, 자동으로 다음 명령어를 가리키도록 주소값이 증가됩니다.\\
+                            !PCB|Process Control Block의 약자로, 프로세스 제어 블록입니다. 프로세스에 대한 중요한 정보를 저장하고 있고, 운영체제가 프로세스를 표현한 것이라고도 합니다. 프로세스 생성 시 만들어지며, 주 기억장치에 유지됩니다. 문맥전환 등 다른 프로세스를 처리해야 할 때, PCB에 현재 상태를 저장함으로써 나중에 그 작업 상태를 불러와 작업 재개가 가능해집니다. PID, 상태, 다음 명령어 주소 등의 정보가 저장됩니다.\\
+                            !캐시메모리|CPU의 레지스터와 메모리 사이에서 버퍼역할을 하며, 데이터의 병목현상 완화에 사용됩니다.@
+                            :end
+                        </div>
+                        
+                    </div>
+                </div>
+                `,
+            ],
+            ref: [
+                // {
+                //     name:'',
+                //     link:''
+                // },
+            ],
+        },
+        'Http와 Https': {
+            published: true,
+            title: 'Http와 Https',
+            tags: ['https', 'http'],
+            categories: ['CS'],
+            authors: ['kimson'],
+            wrote: '2021-11-29 20:06:54',
+            toc: true,
+            content: [
+                `
+                <div><span class="h3">Http와 Https</span></div>
+                <div>
+                    <div>
+                        <span class="h6">정의</span>
+                        <div>
+                            th: 구분|설명@
+                            tb: !HTTP|TCP -> HTTP\\
+                                !HTTPS|TCP -> SSL -> HTTP
+                            @:end
+
+                            <div>
+                                <span class="fs-5">SSL(Secure Socket Layer)</span>
+                                <p>SSL 프로토콜은 정보를 암호화시키고 이때 공개키와 개인키 두 가지를 이용한다. HTTPS는 인터넷상에서 정보를 암호화하기 위해 SSL 프로토콜을 이용해 데이터를 전송하고 있다는 것을 말함. 즉, 문서 전송시 암호화 처리 유무에 따라 HTTP와 HTTPS로 나누어지는 것이며, 모든 사이트가 HTTPS로 하지 않는 이유는, 암호화 과정으로 인한 속도 저하가 발생하기 때문이다.</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                `,
+            ],
+            ref: [
+                // {
+                //     name:'',
+                //     link:''
+                // },
+            ],
+        },
+        about: {},
     }
 
     const templates = {
@@ -85,7 +208,7 @@
                         </button>
                     </div>
                     <ul id="gnbMenu" class="gnb-menu gx-2 w-flex">
-                        ${Object.keys(wiki).filter(x=>x!='home').map(x=>`<a class="nav-link" href="#${x}">${x.split('-').map(y=>y.charAt(0).toUpperCase()+y.slice(1)).join(' ')}</a>`).join('')}
+                        ${Object.keys(wiki).filter(x=>x!='home' && wiki[x].published).map(x=>`<a class="nav-link" href="#${x}">${x.split('-').map(y=>y.charAt(0).toUpperCase()+y.slice(1)).join(' ')}</a>`).join('')}
                     </ul>
                 </div>`;
                 }
@@ -93,7 +216,7 @@
             'side-bar': {
                 render: function(){
                     return `
-                        <div class="p-5 border flex-basis-100">
+                        <div class="p-5 border flex-basis-100 overflow-auto">
                             <div class="position-static position-sticky-sm" style="top: 111.375px;" put-type="side-bar-item"></div>
                         </div>`;
                 }
@@ -110,7 +233,7 @@
             },
             home: {
                 render: function () {
-                    let wikis = Object.keys(wiki).filter(x=>x!='about');
+                    let wikis = Object.keys(wiki).filter(x=>x!='about' && wiki[x].published);
                     return `<div class="mt-5 p-5 border border-1 border-light rounded-5">
                         <div class="mt-3">
                             <div class="">${main}</div>
@@ -152,6 +275,17 @@
                 }
             },
         },
+        '404': {
+            render: function({title, code, message}){
+                return  `
+                <div class="my-auto w-flex flex-column justify-content-center align-items-center">
+                    <div><span class="h2">${code}</span></div>
+                    <div><span class="h4">${title}</span></div>
+                    <div>${message}</div>
+                </div>
+                `;
+            }
+        },
         'side-bar-item':{
             render: function(list){
                 return `
@@ -159,13 +293,14 @@
                     ${list?list.title.replace('-',' '):'wiki'}
                 </div>
                 <ul class="list-group">
-                    ${list?list.generateToc.map(x=>`<li class="list-item" ><span scroll-to="${x.innerText}">${x.innerText}</span></li>`).join(''):Object.keys(wiki).filter(x=>x!='about').map(x=>`<li class="list-item"><a href="#${x}">${x}</a></li>`).join('')}
+                    ${list?list.generateToc.map(x=>`<li class="list-item" ><span scroll-to="${x.innerText}">${x.innerText}</span></li>`).join(''):Object.keys(wiki).filter(x=>x!='about' && wiki[x].published).map(x=>`<li class="list-item"><a href="#${x}">${x}</a></li>`).join('')}
                 </ul>`;
             }
         },
         wiki: {
             form: {
-                render: function({title, tags, categories, authors, wrote, toc, generateToc, content, ref}){
+                render: function({published, title, tags, categories, authors, wrote, toc, generateToc, content, ref}){
+                    if(!published) return '';
                     let refLink = ref.map(({name, link})=>`<div><a href="${link}" target="_blank" title="${name}">${name}</a></div>`).join('');
 
                     let filteredContent = content.map(c=>{
@@ -174,9 +309,9 @@
                                 if(x.match(':end')) return '';
                                 let sp = x.trim().split(/\:\s?/).map(y=>y.trim());
                                 if(sp[0].match(/th/g)){
-                                    return `<tr>${sp[1].split('|').map(y=>`<th>${y}</th>`).join('')}</tr>`;
+                                    return `<thead><tr>${sp[1].split('|').map((y,i)=>`<th${i==0?` width="15%"`:''}>${y}</th$>`).join('')}</tr></thead>`;
                                 } else {
-                                    return `${sp[1].split('\\').map(y=>'<tr>'+y.split('|').map(z=>`<td>${z.match(/\!/)?`<span class="w-block text-center fw-bold">${z.replace('!','')}</span>`:z}</td>`).join('')+'<tr>').join('')}`;
+                                    return `<tbody>${sp[1].split('\\').map(y=>'<tr>'+y.split('|').map(z=>`<td>${z.match(/\!/)?`<span class="w-block text-center fw-bold">${z.replace('!','')}</span>`:z}</td>`).join('')+'<tr>').join('')}</tbody>`;
                                 }
                             });
                             return `<table class="table">${match.filter(y=>y!='').join('')}</table>`
@@ -202,11 +337,13 @@
                                 </ul>
                             </li>
                             <li class="list-item py-1">
+                                <span class="tag">작성자</span>
+                                <span>${authors.map(x=>`<span class="tag text-brand">${x}</span>`).join('')}</span>
                                 <span class="tag">작성일</span>
                                 <time class="tag time text-muted">${new Date(wrote).toLocaleString().slice(0,-3)}</time>
                             </li>
                         </ul>
-                        ${toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div><ol>':''}
+                        ${toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div><ol class="toc">':''}
                             ${!toc||generateToc.map(x=>`<li><span scroll-to="${x.innerText}">${x.innerHTML}</span></li>`).join('')}
                         ${toc?'</ol></div>':''}
                         <p>${filteredContent}</p>
@@ -296,7 +433,7 @@
             this.lazyConnect();
         }
 
-        this.createBaseTemplate = function (page) {
+        this.createBaseTemplate = function () {
             document.body.insertAdjacentHTML('afterBegin', parts.templates.base.render(Object.keys(parts.templates.baseModule)));
 
             for(let field of document.querySelectorAll('[put-name]')){
@@ -319,25 +456,37 @@
         }
 
         this.renderView = function (page) {
-            let template, type, dir;
-            template = page.shift();
-            type = page.shift();
-            dir = page.length>0?page.shift():null;
+            let type = page.pop();
+
+            document.querySelector('[put-type="wiki"]').scrollTo({behavior:'smooth',left:0,top:0});
+
+            if(Object.keys(wiki).indexOf(decodeURI(type))==-1 && type !== 'home' && type !== 'about'){
+                type = '404';
+            }
 
             this.changeTitle(type);
             this.changeWikiTemplate(type);
+            this.setScrollPoint();
+        }
+
+        this.setScrollPoint = function(){
+            [...document.querySelectorAll('.h3')].forEach(x => x.setAttribute('scroll-focus', x.innerText));
         }
 
         this.changeTitle = function(subTitle){
             let removeTag = new DOMParser().parseFromString(title,'text/html').body.innerText;
-            document.head.querySelector('title').innerHTML = `${removeTag}${subTitle!=='home'?' :: '+subTitle:''}`;
+            document.head.querySelector('title').innerHTML = decodeURI(`${removeTag}${subTitle!=='home'?' :: '+subTitle:''}`);
         }
 
         this.changeWikiTemplate = function(type){
             this.clearView();
-
+            type = decodeURI(type);
+            
             if(type=='home' || type=='about') {
                 document.querySelector('[put-type="wiki"]').insertAdjacentHTML('beforeEnd', parts.templates.baseModule[type].render(Object.keys(wiki)));
+                document.querySelector('[put-type="side-bar-item"]').insertAdjacentHTML('beforeEnd', parts.templates['side-bar-item'].render());
+            } else if(type=='404'){
+                document.querySelector('[put-type="wiki"]').insertAdjacentHTML('beforeEnd', parts.templates[type].render(wiki[type]));
                 document.querySelector('[put-type="side-bar-item"]').insertAdjacentHTML('beforeEnd', parts.templates['side-bar-item'].render());
             } else {
                 wiki[type]['generateToc'] = this.generateToc(wiki[type]);
