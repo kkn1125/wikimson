@@ -1,0 +1,75 @@
+.align-items-baseline {
+    align-items: baseline;
+}
+
+.resizer {
+    height: 100%;
+    width: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: col-resize;
+}
+
+.resizer .dotted {
+    display: block;
+    width: 5px;
+    height: 5px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    background-color: gray;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+aside.side-bar{
+    transition: width 150ms;
+    -webkit-transition: width 150ms;
+    -moz-transition: width 150ms;
+    -ms-transition: width 150ms;
+    -o-transition: width 150ms;
+}
+
+.highlight{
+    color: coral;
+}
+
+.overflow-hidden{
+    overflow: hidden;
+}
+.overflow-visible{
+    overflow: visible;
+}
+.overflow-auto{
+    overflow: auto;
+}
+
+table td{
+    vertical-align: middle;
+}
+
+table ul li{
+    list-style: disc;
+}
+table ol li{
+    list-style: decimal;
+}
+
+ul:not(.list-group),
+ol:not(.list-group){
+    margin-left: 1.5em;
+}
+
+[put-type="wiki"]{
+    overflow-y: auto;
+    height: calc(100vh - 61px - 51.6px);
+}
+
+img,a{
+    -webkit-user-drag: none;
+    -moz-window-dragging: none;
+}
