@@ -50,11 +50,11 @@
     }
 
     function scrollIntoHandler(ev) {
+        let target = ev.target;
+        if (!target.getAttribute('scroll-to')) return;
+        let focus = target.getAttribute('scroll-to');
+        let scrollHead = null;
         setTimeout(()=>{
-            let target = ev.target;
-            if (!target.getAttribute('scroll-to')) return;
-            let focus = target.getAttribute('scroll-to');
-            let scrollHead = null;
             for (let key of [...document.querySelectorAll('.h3, .h6')]) {
                 if (key.getAttribute('scroll-focus') == focus) {
                     if (window.innerWidth - 17 > 576) scrollHead = document.querySelector('[put-type="wiki"]');
@@ -66,7 +66,7 @@
                     })
                 }
             }
-        })
+        }, 10);
     }
 
     function scrollSpy(ev) {

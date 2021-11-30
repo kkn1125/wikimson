@@ -155,7 +155,7 @@
             ],
         },
         '교착상태': {
-            published: true,
+            published: false,
             title: '교착상태 (dead-lock)',
             tags: ['dead-lock', '교착상태', 'thread'],
             categories: ['CS'],
