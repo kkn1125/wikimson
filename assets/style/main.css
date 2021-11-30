@@ -366,6 +366,10 @@ label#mtWrap>span::before {
     box-shadow: 0 0 .5rem rgba(var(--pl-dark-rgb), .2);
 }
 
+#gnbMenu{
+    text-transform: capitalize;
+}
+
 body{
     overflow-x: auto;
     overflow-y: hidden;
@@ -380,6 +384,19 @@ body{
 .roundText,
 .h2{
     font-family: var(--font-gugi);
+}
+
+.ref::after{
+    content: 'ref';
+    position: relative;
+    font-size: .5em;
+    top: -1em;
+    margin-left: .2em;
+    margin-right: .5em;
+}
+
+a[href].ref{
+    color: rgba(var(--pl-brand-rgb), 1);
 }
 
 body.dark {

@@ -97,7 +97,7 @@
                 // },
             ],
         },
-        'Process&Thread': {
+        'process&thread': {
             published: true,
             title: '프로세스와 스레드',
             tags: ['프로세스', '스레드'],
@@ -139,9 +139,39 @@
                                 <ul>
                                     <li>시스템 자원 소모와 처리비용가 감소하고 스레드 간 자원 공유가 가능합니다.</li>
                                     <li>디버깅이 어렵고 동기화 이슈를 안고 있으며 하나의 스레드 오류로 전체 프로세스에 문제가 발생합니다.</li>
+                                    <li>교착상태(dead-lock)가 발생하지 않도록 주의해야합니다.</li>
                                 </ul>@
                                 :end
                         </div>
+                    </div>
+                </div>
+                `,
+            ],
+            ref: [
+                {
+                    name:'이해를 돕는 강의 <span class="tag tag-danger">Youtube</span>',
+                    link:'https://www.youtube.com/watch?v=kNNHaAaFDs8'
+                },
+            ],
+        },
+        '교착상태': {
+            published: true,
+            title: '교착상태 (dead-lock)',
+            tags: ['dead-lock', '교착상태', 'thread'],
+            categories: ['CS'],
+            authors: ['kimson'],
+            wrote: '2021-11-30 14:20:53',
+            toc: true,
+            content: [
+                `
+                <div><span class="h3">#교착상태 (dead-lock)[process&thread|정의]:end</span></div>
+                <div>
+                    <div>
+                        <span class="h6">정의</span>
+                        <div>
+                            
+                        </div>
+                        
                     </div>
                 </div>
                 `,
@@ -195,6 +225,8 @@
         },
     }
 
+    window['wikimson'] = Object.entries(wiki);
+
     const templates = {
         base: {
             render: function ([nav, side, footer]) {
@@ -227,7 +259,7 @@
                         </button>
                     </div>
                     <ul id="gnbMenu" class="gnb-menu gx-2 w-flex">
-                        ${Object.keys(wiki).filter(x=>x!='home' && wiki[x].published).map(x=>`<li><a class="nav-link" href="#${x}">${x.split('-').map(y=>y.charAt(0).toUpperCase()+y.slice(1)).join(' ')}</a></li>`).join('')}
+                        ${Object.keys(wiki).filter(x=>x!='home' && wiki[x].published).map(x=>`<li><a class="nav-link" href="#${x}">${x}</a></li>`).join('')}
                         <li id="mode"></li>
                     </ul>
                 </div>`;
@@ -329,11 +361,18 @@
                 </div>
                 <ul class="list-group">
                     ${list?list.generateToc.map(x=>{
+                        function convertSyntax(target){
+                            if(target.match(/[\#\|\:]/g))
+                            return target.replace(/\#([\s\S]*?)\[([\s\S]*?)\]:end/g, (origin,text,ref,i)=>{
+                                return `${text}`;
+                            });
+                            else return target;
+                        }
                         return x.map(y=>{
                             if(y instanceof Array) return `<ol>${y.map(z=>{
-                                return `<li scroll-to="${z.innerText}">${z.innerText}</li>`
+                                return `<li scroll-to="${convertSyntax(z.innerText)}">${convertSyntax(z.innerText)}</li>`
                             }).join('')}</ol>`;
-                            else return `<li scroll-to="${y.innerText}">${y.innerText}</li>`;
+                            else return `<li scroll-to="${convertSyntax(y.innerText)}">${convertSyntax(y.innerText)}</li>`;
                         }).join('');
                     }).join(''):Object.keys(wiki).filter(x=>x!='about' && wiki[x].published).map(x=>`<li class="list-item"><a href="#${x}">${x}</a></li>`).join('')}
                 </ul>`;
@@ -343,9 +382,19 @@
             form: {
                 render: function({published, title, tags, categories, authors, wrote, toc, generateToc, content, ref}){
                     if(!published) return '';
-                    let refLink = ref.map(({name, link})=>`<div><a href="${link}" target="_blank" title="${name}">${name}</a></div>`).join('');
+                    let refLink = ref.map(({name, link})=>{
+                        let nameElement = new DOMParser().parseFromString(name, 'text/html').body;
+                        return `<div><a href="${link}" target="_blank" title="${nameElement.textContent}">${nameElement.innerHTML}</a></div>`;
+                    }).join('');
 
                     let filteredContent = content.map(c=>{
+                        // ref syntax convert
+                        c= c.replace(/\#([\s\S]*?)\[([\s\S]*?)\]:end/g, (origin,text,ref,i)=>{
+                            let page = ref.split('|').shift();
+                            let scroll = ref.split('|').pop();
+                            return `<a class="ref" href="#${page}" scroll-to="${scroll}" title='"${page}"에서 "${scroll}" 참조'>${text}</a>`;
+                        });
+                        // table syntax convert
                         c = c.replace(/t[hb]:\s?[\S\s]*?[\s\n]*?:end/gm, (match)=>{
                             match = match.split('@').map(x=>{
                                 if(x.match(':end')) return '';
@@ -389,10 +438,17 @@
                         ${toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div><ol class="toc">':''}
                         ${!toc||generateToc.map(x=>{
                             return x.map(y=>{
+                                function convertSyntax(target){
+                                    if(target.match(/[\#\|\:]/g))
+                                    return target.replace(/\#([\s\S]*?)\[([\s\S]*?)\]:end/g, (origin,text,ref,i)=>{
+                                        return `${text}`;
+                                    });
+                                    else return target;
+                                }
                                 if(y instanceof Array) return `<ol>${y.map(z=>{
-                                    return `<li scroll-to="${z.innerText}">${z.innerText}</li>`
+                                    return `<li scroll-to="${convertSyntax(z.innerText)}">${convertSyntax(z.innerText)}</li>`
                                 }).join('')}</ol>`;
-                                else return `<li scroll-to="${y.innerText}">${y.innerText}</li>`;
+                                else return `<li scroll-to="${convertSyntax(y.innerText)}">${convertSyntax(y.innerText)}</li>`;
                             }).join('');
                         }).join('')}
                         ${toc?`</ol></div>`:``}
@@ -412,11 +468,19 @@
             models = model;
 
             models.renderWiki();
-            window.addEventListener('click', this.anchorHandler);
+            window.addEventListener('mouseup', this.anchorHandler);
         }
 
         this.anchorHandler = function (ev) {
             let target = ev.target;
+            if(ev.which==4 || ev.which==5){
+                setTimeout(function(){
+                    models.clearPath();
+                    models.checkUrl(location.hash);
+                    models.covertCurrentPath(location.hash);
+                    models.renderView();
+                }, 10);
+            }
             if (target.tagName !== 'A' || !target.getAttribute('href').match(/\#/gm)) return;
             ev.preventDefault();
             models.anchorHandler(target.getAttribute('href'));
@@ -505,6 +569,9 @@
                 Object.assign(document.body.insertAdjacentElement('beforeEnd', document.createElement('script')),{
                     src: 'assets/script/resize.js',
                 });
+                // Object.assign(document.body.insertAdjacentElement('beforeEnd', document.createElement('script')),{
+                //     src: 'assets/script/finder.js',
+                // });
 
                 setTimeout(()=>{
                     settingHandler();
