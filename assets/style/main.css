@@ -461,3 +461,25 @@ body.dark #lsb {
 body.dark .tag{
     color: white;
 }
+
+@keyframes page-load {
+    from {
+        width:0;
+    }
+    to {
+        width:100%;
+    }
+}
+.page-loading::before {
+    content:" ";
+    display:block;
+    position:fixed;
+    z-index:2000;
+    height:2px;
+    width:100%;
+    top:0;
+    left:0;
+    background-color:rgba(var(--pl-subpoint-rgb), 1);
+    animation: page-load ease-out 150ms;
+    -webkit-animation: page-load ease-out 150ms;
+}

@@ -862,6 +862,7 @@
             }
 
             this.timer();
+            // this.progressing();
         }
 
         this.timer = function(){
@@ -920,6 +921,21 @@
             this.changeTitle(type);
             this.changeWikiTemplate(type);
             this.setScrollPoint();
+        }
+
+        this.progressing = function(){
+            var links = document.querySelectorAll("a[href*='#']"),
+            i = 0, l = links.length,
+            body = document.body;
+            console.log(links)
+            for(;i<l;i++) {
+                links[i].addEventListener("click",function(){
+                    body.classList.add("page-loading");
+                    setTimeout(function(){
+                        body.classList.remove('page-loading');
+                    },200);
+                },false);
+            }
         }
 
         this.setScrollPoint = function(){
