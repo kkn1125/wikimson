@@ -155,7 +155,7 @@
             ],
         },
         '교착상태': {
-            published: false,
+            published: true,
             title: '교착상태 (dead-lock)',
             tags: ['dead-lock', '교착상태', 'thread'],
             categories: ['CS'],
@@ -484,6 +484,8 @@
             if (target.tagName !== 'A' || !target.getAttribute('href').match(/\#/gm)) return;
             ev.preventDefault();
             models.anchorHandler(target.getAttribute('href'));
+            if(target.getAttribute('scroll-to')) models.scrollToRef(target.getAttribute('scroll-to'));
+            
         }
     }
 
@@ -505,6 +507,23 @@
             this.covertCurrentPath(hash);
             this.applyFakeUrl(hash);
             this.renderView();
+        }
+
+        this.scrollToRef = function(ref){
+            let scrollHead = null;
+            setTimeout(()=>{
+                for (let key of [...document.querySelectorAll('.h3, .h6')]) {
+                    if (key.getAttribute('scroll-focus') == ref) {
+                        if (window.innerWidth - 17 > 576) scrollHead = document.querySelector('[put-type="wiki"]');
+                        else scrollHead = document.querySelector('.main');
+                        scrollHead.scrollTo({
+                            behavior: 'smooth',
+                            left: 0,
+                            top: key.offsetTop
+                        })
+                    }
+                }
+            });
         }
 
         this.covertCurrentPath = function (hash) {
@@ -569,9 +588,6 @@
                 Object.assign(document.body.insertAdjacentElement('beforeEnd', document.createElement('script')),{
                     src: 'assets/script/resize.js',
                 });
-                // Object.assign(document.body.insertAdjacentElement('beforeEnd', document.createElement('script')),{
-                //     src: 'assets/script/finder.js',
-                // });
 
                 setTimeout(()=>{
                     settingHandler();
