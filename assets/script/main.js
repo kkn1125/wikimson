@@ -324,7 +324,7 @@
         'side-bar-item':{
             render: function(list){
                 return `
-                <div class="menu-title text-uppercase mb-5 text-muted roundText"style="white-space: nowrap;">
+                <div class="menu-title text-uppercase mb-5 text-muted roundText"style="min-width:7em;word-break: keep-all;">
                     ${list?list.title.replace('-',' '):'wiki'}
                 </div>
                 <ul class="list-group">
