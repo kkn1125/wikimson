@@ -14,7 +14,7 @@
 
     function readyToResize(ev) {
         let target = ev.target;
-        if (target.id == 'resizer') clicked = true;
+        if (target.id == 'resizer' && ev.which == 1) clicked = true;
     }
 
     function cancelResize(ev) {
