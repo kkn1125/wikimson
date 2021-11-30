@@ -301,6 +301,16 @@ a>span {
     pointer-events: none;
 }
 
+.list-item:not(.frt-none)::before{
+    content: '';
+    display: inline-block;
+    margin-left: .5em;
+}
+
+.list-item:hover{
+    box-shadow: inset 0 0 9999px rgba(var(--pl-subpoint-rgb), 0.1);
+}
+
 /* 
 	dark mode start
  */
@@ -393,6 +403,10 @@ body{
     top: -1em;
     margin-left: .2em;
     margin-right: .5em;
+}
+
+.h3,.h4,.h5,.h6{
+    text-transform: capitalize;
 }
 
 a[href].ref{

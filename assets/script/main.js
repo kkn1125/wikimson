@@ -97,6 +97,124 @@
                 // },
             ],
         },
+        'library': {
+            published: true,
+            title: 'library',
+            tags: ['library', '라이브러리'],
+            categories: ['CS'],
+            authors: ['kimson'],
+            wrote: '2021-11-29 18:56:35',
+            toc: true,
+            content: [
+                `
+                <div><span class="h3">라이브러리란</span></div>
+                <div>
+                    <div>
+                        <span class="h6">정의</span>
+                        <div>
+                            th: 핵심|설명@
+                            tb: !require|<ul>
+                                <li>대체해도 프로젝트가 망하거나 하지 않는다.</li>
+                                <li>"내"가 요청한다.</li>
+                            </ul>@
+                                :end
+                        </div>
+                        
+                    </div>
+                </div>
+                `,
+            ],
+            ref: [
+                {
+                    name:'관련 위키 wikimson>api',
+                    link:'#api'
+                },
+                {
+                    name:'관련 위키 wikimson>framework',
+                    link:'#framework'
+                },
+            ],
+        },
+        'api': {
+            published: true,
+            title: 'api',
+            tags: ['api','aplication-programming-interface'],
+            categories: ['CS'],
+            authors: ['kimson'],
+            wrote: '2021-11-29 18:56:35',
+            toc: true,
+            content: [
+                `
+                <div><span class="h3">API란</span></div>
+                <div>
+                    <div>
+                        <span class="h6">정의</span>
+                        <div>
+                            th: 핵심|설명@
+                            tb: !매개역할|<ul>
+                                <li>프로그램 간 통신을 하게 해준다.</li>
+                                <li>요청하면 서버에 저장된 데이터를 꺼내어 준다.</li>
+                                <li>권한 또는 효청횟수, 비용 등의 제약이 있는 API도 있다.</li>
+                                <li>API를 호출함으로써 다른 프로그램에 전달하여 데이터를 처리, 이용할 수 있다.</li>
+                            </ul>@
+                                :end
+                        </div>
+                        
+                    </div>
+                </div>
+                `,
+            ],
+            ref: [
+                {
+                    name:'관련 위키 wikimson>library',
+                    link:'#library'
+                },
+                {
+                    name:'관련 위키 wikimson>framework',
+                    link:'#framework'
+                },
+            ],
+        },
+        'framework': {
+            published: true,
+            title: 'framework',
+            tags: ['framework'],
+            categories: ['CS'],
+            authors: ['kimson'],
+            wrote: '2021-11-29 18:56:35',
+            toc: true,
+            content: [
+                `
+                <div><span class="h3">framework란</span></div>
+                <div>
+                    <div>
+                        <span class="h6">정의</span>
+                        <div>
+                            th: 핵심|설명@
+                            tb: !Rule|<ul>
+                                <li>프레임워크가 "나"를 부른다.</li>
+                                <li>규칙이 있어서 내가 따라야한다.</li>
+                                <li>규칙을 따를 뿐이다.</li>
+                                <li>프레임워크와 라이브러리의 성격을 모두 가진 영역도 존재한다. 예를 들면 리액트, 뷰 등은 라이브러리이면서 프레임워크의 성격을 가진다.</li>
+                            </ul>@
+                            :end
+                        </div>
+                        
+                    </div>
+                </div>
+                `,
+            ],
+            ref: [
+                {
+                    name:'관련 위키 wikimson>library',
+                    link:'#library'
+                },
+                {
+                    name:'관련 위키 wikimson>api',
+                    link:'#api'
+                },
+            ],
+        },
         'process&thread': {
             published: true,
             title: '프로세스와 스레드',
@@ -156,7 +274,7 @@
         },
         '교착상태': {
             published: true,
-            title: '교착상태 (dead-lock)',
+            title: '교착상태',
             tags: ['dead-lock', '교착상태', 'thread'],
             categories: ['CS'],
             authors: ['kimson'],
@@ -220,6 +338,9 @@
                 // },
             ],
         },
+        home: {
+            published: true
+        },
         about: {
             published: true
         },
@@ -259,10 +380,10 @@
                         </button>
                     </div>
                     <ul id="gnbMenu" class="gnb-menu gx-2 w-flex">
-                        ${Object.keys(wiki).filter(x=>x!='home' && wiki[x].published).map(x=>`<li><a class="nav-link" href="#${x}">${x}</a></li>`).join('')}
+                        ${Object.keys(wiki).filter(x=>x=='home' || x=='about').map(x=>`<li><a class="nav-link" href="#${x}">${x}</a></li>`).join('')}
                         <li id="mode"></li>
                     </ul>
-                </div>`;
+                </div>`; // x!='home' && wiki[x].published
                 }
             },
             'side-bar': {
@@ -307,11 +428,23 @@
                             <div class="w-100">
                                 <input id="finder" class="col-20 form-input form-input-lg" type="text" placeholder="검색어를 입력하세요">
                             </div>
-                            <ul class="list-group">
-                                ${wikis.map(x=>x!='home'?`<li class="list-item"><a class="nav-link" href="#${x}">${x}</a><span class="text-gray text-opacity-25"> | </span><span class="ms-2 fs-8 text-muted">Written at <time class="text-dark">${new Date(wiki[x].wrote).toLocaleString().slice(0,-3)}</time></span></li>`:'').join('')}
-                            </ul>
+                            <div>
+                                <blockquote class="blockquote">
+                                용어에 대한 지식을 기록하는 페이지입니다. 틀린 부분 등은 지적해주시면 정정하도록 하겠습니다.
+                                </blockquote>
+                                <div>
+                                    <span class="fs-5 fw-bold roundText">Notice</span>
+                                    <ul class="list-group">
+                                        <li class="list-item frt-none">위키 페이지를 사용하고 싶으시다면 저장소를 포크하시면 됩니다.</li>
+                                        <li class="list-item frt-none"> 아직 코드가 완전히 정리되지 않았고 사용하는 문법 파서가 있기 때문에 추후 사용법을 올리겠습니다.</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>`;
+                    // <ul class="list-group">
+                    //     ${wikis.map(x=>x!='home'?`<li class="list-item"><a class="nav-link" href="#${x}">${x}</a><span class="text-gray text-opacity-25"> | </span><span class="ms-2 fs-8 text-muted">Written at <time class="text-dark">${new Date(wiki[x].wrote).toLocaleString().slice(0,-3)}</time></span></li>`:'').join('')}
+                    // </ul>
                 }
             },
             about: {
@@ -357,7 +490,7 @@
             render: function(list){
                 return `
                 <div class="menu-title text-uppercase mb-5 text-muted roundText"style="min-width:7em;word-break: keep-all;">
-                    ${list?list.title.replace('-',' '):'wiki'}
+                    ${list?list.title.replaceAll('-',' '):'wiki'}
                 </div>
                 <ul class="list-group">
                     ${list?list.generateToc.map(x=>{
@@ -374,7 +507,13 @@
                             }).join('')}</ol>`;
                             else return `<li scroll-to="${convertSyntax(y.innerText)}">${convertSyntax(y.innerText)}</li>`;
                         }).join('');
-                    }).join(''):Object.keys(wiki).filter(x=>x!='about' && wiki[x].published).map(x=>`<li class="list-item"><a href="#${x}">${x}</a></li>`).join('')}
+                    }).join(''):Object.keys(wiki).sort((a,b)=>{
+                        a=a.toLowerCase();
+                        b=b.toLowerCase();
+                        if(a.charCodeAt(0) < b.charCodeAt(0)) { return -1; }
+                        if(a.charCodeAt(0) > b.charCodeAt(0)) { return 1; }
+                        return 0;
+                    }).filter(x=>x!='home' && x!='about' && wiki[x].published).map(x=>`<li class="list-item"><a href="#${x}">${x}</a></li>`).join('')}
                 </ul>`;
             }
         },
@@ -436,7 +575,7 @@
                         </ul>
 
                         ${toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div><ol class="toc">':''}
-                        ${!toc||generateToc.map(x=>{
+                        ${!toc?'':generateToc.map(x=>{
                             return x.map(y=>{
                                 function convertSyntax(target){
                                     if(target.match(/[\#\|\:]/g))
