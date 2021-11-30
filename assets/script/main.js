@@ -190,14 +190,16 @@
                 // },
             ],
         },
-        about: {},
+        about: {
+            published: true
+        },
     }
 
     const templates = {
         base: {
             render: function ([nav, side, footer]) {
                 return `
-                <nav class="gnb position-sticky bg-light us-none gnb-dark" put-name="${nav}"></nav>
+                <nav class="gnb position-sticky bg-light us-none gnb-primary" put-name="${nav}"></nav>
                 <div class="main">
                     <aside id="lsb" class="side-bar side-bar-size-3 overflow-hidden" data-side-bar="left" put-name="${side}"></aside>
                     <span id="resizer" class="resizer bg-light">
@@ -205,7 +207,7 @@
                         <span class="dotted"></span>
                         <span class="dotted"></span>
                     </span>
-                    <main class="fence-full fence-lg" put-type="wiki">
+                    <main class="fence-full fence-lg overflow-sm-auto" put-type="wiki">
                     </main>
                 </div>
                 <footer class="footer bg-light p-3 text-center fs-7 text-muted" put-name="${footer}"></footer>
@@ -244,8 +246,17 @@
                     <div>
                         <span>copyright author kimson</span>
                         <span class="vr"></span>
-                        <a href="https://kkn1125.github.io" target="_blank">Blog</a>
-                        <a href="#about">About</a>
+                        <ul class="w-inline-flex gx-3">
+                            <li>
+                                <a href="https://kkn1125.github.io" target="_blank">Blog</a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/kkn1125/wikimson" target="_blank">Repository</a>
+                            </li>
+                            <li>
+                                <a href="#about">About</a>
+                            </li>
+                        </ul>
                     </div>
                 `,
             },
@@ -254,12 +265,15 @@
                     let wikis = Object.keys(wiki).filter(x=>x!='about' && wiki[x].published);
                     return `<div class="mt-5 p-5 border border-1 border-light rounded-5">
                         <div class="mt-3">
-                            <div class="">${main}</div>
+                            <div class="roundText">${main}</div>
                         </div>
                         <div class="mt-3">
                             <div class="w-flex align-items-baseline">
-                                <span class="h4">Wiki List</span>
-                                <span class="ms-2 fs-6 tag tag-info">${wikis.length}</span>
+                                <span class="h4 roundText">Wiki List</span>
+                                <span class="ms-2 fs-6 tag tag-info" data-pop-type="msg" data-msg="위키 리스트 카운트 입니다." data-msg-dir="end">${wikis.length}</span>
+                            </div>
+                            <div class="w-100">
+                                <input id="finder" class="col-20 form-input form-input-lg" type="text" placeholder="검색어를 입력하세요">
                             </div>
                             <ul class="list-group">
                                 ${wikis.map(x=>x!='home'?`<li class="list-item"><a class="nav-link" href="#${x}">${x}</a><span class="text-gray text-opacity-25"> | </span><span class="ms-2 fs-8 text-muted">Written at <time class="text-dark">${new Date(wiki[x].wrote).toLocaleString().slice(0,-3)}</time></span></li>`:'').join('')}
@@ -271,7 +285,7 @@
             about: {
                 render: function(){
                     return `<div>
-                        <div><span class="h3">About</span></div>
+                        <div><span class="h2">About</span></div>
                         <blockquote class="blockquote blockquote-info">
                             현재 만들어진 페이지는 순수 자바스크립트로만 이루어져 있습니다. 조작이 쉽도록 구현되어 있고, 페이지 전환은 hash를 통해서 이루어집니다. 자세한 사항은 <a href="https://github.com/kkn1125/wikimson" target="_blank">github 저장소</a>를 참고 해주세요.
                         </blockquote>
@@ -296,10 +310,13 @@
         '404': {
             render: function({title, code, message}){
                 return  `
-                <div class="my-auto w-flex flex-column justify-content-center align-items-center">
-                    <div><span class="h2">${code}</span></div>
-                    <div><span class="h4">${title}</span></div>
+                <div class="h-100 w-flex flex-column justify-content-center align-items-center">
+                    <div><span class="h2 roundText">${code}</span></div>
+                    <div><span class="h4 roundText">${title}</span></div>
                     <div>${message}</div>
+                    <div class="mt-5">
+                        <a href="#home" class="btn btn-success text-white">home</a>
+                    </div>
                 </div>
                 `;
             }
@@ -307,7 +324,7 @@
         'side-bar-item':{
             render: function(list){
                 return `
-                <div class="menu-title text-uppercase mb-5 text-muted">
+                <div class="menu-title text-uppercase mb-5 text-muted roundText"style="white-space: nowrap;">
                     ${list?list.title.replace('-',' '):'wiki'}
                 </div>
                 <ul class="list-group">
@@ -488,6 +505,10 @@
                 Object.assign(document.body.insertAdjacentElement('beforeEnd', document.createElement('script')),{
                     src: 'assets/script/resize.js',
                 });
+
+                setTimeout(()=>{
+                    settingHandler();
+                }, 500);
             },100);
         }
 

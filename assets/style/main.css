@@ -1,3 +1,9 @@
+:root{
+    --font-comfortaa: 'Comfortaa', cursive;
+    --font-noto-sans: 'Noto Sans KR', sans-serif;
+    --font-gugi: 'Gugi', cursive;
+}
+
 .align-items-baseline {
     align-items: baseline;
 }
@@ -39,16 +45,191 @@ aside.side-bar {
     background-color: rgb(255, 229, 219);
 }
 
+.overflow-x-hidden {
+    overflow-x: hidden;
+}
+.overflow-y-hidden {
+    overflow-y: hidden;
+}
 .overflow-hidden {
-    overflow: hidden;
+    overflow-y: hidden;
 }
 
+.overflow-x-visible {
+    overflow-x: visible;
+}
+.overflow-y-visible {
+    overflow-y: visible;
+}
 .overflow-visible {
-    overflow: visible;
+    overflow-y: visible;
 }
 
+.overflow-x-auto {
+    overflow-x: auto;
+}
+.overflow-y-auto {
+    overflow-y: auto;
+}
 .overflow-auto {
-    overflow: auto;
+    overflow-y: auto;
+}
+
+@media (min-width: 576px) {
+    .overflow-x-sm-hidden {
+        overflow-x: hidden;
+    }
+    .overflow-y-sm-hidden {
+        overflow-y: hidden;
+    }
+    .overflow-sm-hidden {
+        overflow-y: hidden;
+    }
+    
+    .overflow-x-sm-visible {
+        overflow-x: visible;
+    }
+    .overflow-y-sm-visible {
+        overflow-y: visible;
+    }
+    .overflow-sm-visible {
+        overflow-y: visible;
+    }
+    
+    .overflow-x-sm-auto {
+        overflow-x: auto;
+    }
+    .overflow-y-sm-auto {
+        overflow-y: auto;
+    }
+    .overflow-sm-auto {
+        overflow-y: auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .overflow-x-md-hidden {
+        overflow-x: hidden;
+    }
+    .overflow-y-md-hidden {
+        overflow-y: hidden;
+    }
+    .overflow-md-hidden {
+        overflow-y: hidden;
+    }
+    
+    .overflow-x-md-visible {
+        overflow-x: visible;
+    }
+    .overflow-y-md-visible {
+        overflow-y: visible;
+    }
+    .overflow-md-visible {
+        overflow-y: visible;
+    }
+    
+    .overflow-x-md-auto {
+        overflow-x: auto;
+    }
+    .overflow-y-md-auto {
+        overflow-y: auto;
+    }
+    .overflow-md-auto {
+        overflow-y: auto;
+    }
+}
+@media (min-width: 992px) {
+    .overflow-x-lg-hidden {
+        overflow-x: hidden;
+    }
+    .overflow-y-lg-hidden {
+        overflow-y: hidden;
+    }
+    .overflow-lg-hidden {
+        overflow-y: hidden;
+    }
+    
+    .overflow-x-lg-visible {
+        overflow-x: visible;
+    }
+    .overflow-y-lg-visible {
+        overflow-y: visible;
+    }
+    .overflow-lg-visible {
+        overflow-y: visible;
+    }
+    
+    .overflow-x-lg-auto {
+        overflow-x: auto;
+    }
+    .overflow-y-lg-auto {
+        overflow-y: auto;
+    }
+    .overflow-lg-auto {
+        overflow-y: auto;
+    }
+}
+@media (min-width: 1200px) {
+    .overflow-x-xl-hidden {
+        overflow-x: hidden;
+    }
+    .overflow-y-xl-hidden {
+        overflow-y: hidden;
+    }
+    .overflow-xl-hidden {
+        overflow-y: hidden;
+    }
+    
+    .overflow-x-xl-visible {
+        overflow-x: visible;
+    }
+    .overflow-y-xl-visible {
+        overflow-y: visible;
+    }
+    .overflow-xl-visible {
+        overflow-y: visible;
+    }
+    
+    .overflow-x-xl-auto {
+        overflow-x: auto;
+    }
+    .overflow-y-xl-auto {
+        overflow-y: auto;
+    }
+    .overflow-xl-auto {
+        overflow-y: auto;
+    }
+}
+@media (min-width: 1400px) {
+    .overflow-x-xxl-hidden {
+        overflow-x: hidden;
+    }
+    .overflow-y-xxl-hidden {
+        overflow-y: hidden;
+    }
+    .overflow-xxl-hidden {
+        overflow-y: hidden;
+    }
+    
+    .overflow-x-xxl-visible {
+        overflow-x: visible;
+    }
+    .overflow-y-xxl-visible {
+        overflow-y: visible;
+    }
+    .overflow-xxl-visible {
+        overflow-y: visible;
+    }
+    
+    .overflow-x-xxl-auto {
+        overflow-x: auto;
+    }
+    .overflow-y-xxl-auto {
+        overflow-y: auto;
+    }
+    .overflow-xxl-auto {
+        overflow-y: auto;
+    }
 }
 
 table td {
@@ -81,11 +262,6 @@ nav ol{
     margin: 0 !important;
 }
 
-[put-type="wiki"] {
-    overflow-y: auto;
-    height: calc(100vh - 61px - 51.6px);
-}
-
 img,
 a {
     -webkit-user-drag: none;
@@ -111,7 +287,14 @@ table.table {
 
 .main {
     min-height: 15em;
-    flex-shrink: 1;
+    overflow-y: auto;
+    height: calc(100vh - 61px - 51.6px);
+}
+
+@media (min-width: 576px) {
+    .main{
+        overflow-y: hidden;
+    }
 }
 
 a>span {
@@ -179,8 +362,28 @@ label#mtWrap>span::before {
     position: absolute;
 }
 
+.gnb{
+    box-shadow: 0 0 .5rem rgba(var(--pl-dark-rgb), .2);
+}
+
+body{
+    overflow-x: auto;
+    overflow-y: hidden;
+    font-family: var(--font-noto-sans);
+}
+
+.gnb .brand{
+    font-family: var(--font-comfortaa);
+    font-weight: bold;
+}
+
+.roundText,
+.h2{
+    font-family: var(--font-gugi);
+}
+
 body.dark {
-    background-color: #2a2b31;
+    background-color:  rgba(var(--pl-dark-rgb-2), 1);
     color: white;
 }
 
@@ -189,16 +392,29 @@ body.dark table.table td{
 }
 
 body.dark footer {
-    background-color: #1c1d20 !important;
+    background-color:  rgba(var(--pl-dark-rgb-1), 1) !important;
     color: inherit;
 }
 
-body.dark footer .brand a {
+body.dark footer a[href] {
     color: inherit;
+}
+
+body.dark nav.gnb.gnb-primary {
+    background-color:  rgba(var(--pl-dark-rgb-1), 1) !important;
+}
+
+body.dark time.text-dark,
+body.dark time{
+    color: white !important;
+}
+
+body.dark #resizer.resizer{
+    background-color: rgba(var(--pl-dark-rgb-1), 1) !important;
 }
 
 body.dark section {
-    background-color: #1c1d20 !important;
+    background-color:  rgba(var(--pl-dark-rgb-2), 1) !important;
     color: inherit;
 }
 
@@ -206,8 +422,8 @@ body.dark section button {
     color: inherit !important;
 }
 
-body.dark aside {
-    background-color: #1c1d20 !important;
+body.dark #lsb {
+    background-color:  rgba(var(--pl-dark-rgb), 1) !important;
     color: inherit;
 }
 
