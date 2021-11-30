@@ -13,6 +13,8 @@
             message: `페이지를 찾을 수 없습니다!`,
         },
         'garbage-collection': {
+            modified: '',
+            done: false,
             published: true,
             title: 'garbage-collection',
             tags: ['garbage-collection'],
@@ -57,6 +59,8 @@
             ],
         },
         'OSI-7계층': {
+            modified: '',
+            done: false,
             published: true,
             title: 'OSI-7계층',
             tags: ['OSI-7계층', '통신규약'],
@@ -98,6 +102,8 @@
             ],
         },
         'library': {
+            modified: '',
+            done: true,
             published: true,
             title: 'library',
             tags: ['library', '라이브러리'],
@@ -136,12 +142,14 @@
             ],
         },
         'api': {
+            modified: '',
+            done: true,
             published: true,
             title: 'api',
             tags: ['api','aplication-programming-interface'],
             categories: ['CS'],
             authors: ['kimson'],
-            wrote: '2021-11-29 18:56:35',
+            wrote: '2021-11-30 21:15:57',
             toc: true,
             content: [
                 `
@@ -175,7 +183,76 @@
                 },
             ],
         },
+        'mvc': {
+            modified: '',
+            done: true,
+            published: true,
+            title: 'mvc',
+            tags: ['mvc','design-pattern'],
+            categories: ['cd','design-pattern'],
+            authors: ['kimson'],
+            wrote: '2021-11-30 18:42:38',
+            toc: true,
+            content: [
+                `
+                <div><span class="h3">mvc란</span></div>
+                <div>
+                    <div>
+                        <div class="text-center">
+                            <figure class="w-inline-flex flex-column">
+                                <img src="https://s3.ap-northeast-2.amazonaws.com/opentutorials-user-file/module/327/1262.png" alt="sample">
+                                <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> amazon</figcaption>
+                            </figure>
+                        </div>
+                        <span class="h6">정의</span>
+                        <div>
+                            th: 핵심|설명@
+                            tb: !Model|데이터를 가지고 로직을 처리한다. 데이터베이스와 대응 될 수 있다\\
+                            !View|요청된 페이지를 데이터 처리의 과정을 거쳐 브라우저에 나타낼 요소들을 출력해주는 역할을 한다.\\
+                            !Controller|사용자의 요청을 받아 요청에 맞는 Model의 로직을 실행하고 데이터의 흐름을 제어한다.@
+                            :end
+                        </div>
+                    </div>
+                    <div>
+                        <span class="h6">MVC1 패턴</span>
+                        <div>
+                            <p>사용자 요청이 들어오면 서버 내의 jsp(view & controller)와 javaBean을 거치게 된다.</p>
+                            <p>요청이 들어오면 jsp에서 view, controller역할을 함께 하게 되고, model을 통해 데이터 처리가 이루어지며, 필요에 따라 데이터베이스와 대응한다. model이 update된 내용을 view에 전달하여 브라우저에 출력이 된다.</p>
+                            <p>비즈니스 로직이 복잡하지 않을 때, 즉, 소규모 프로젝트에 사용되며 빠르고 쉽게 개발할 수 있다는 장점이 있지만 복잡해지고 더 큰 규모로 발전한다면 Controller와 View가 혼재되어 유지보수에 어려움을 겪을 수 있다.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="h6">MVC2 패턴</span>
+                        <div>
+                            <p>패턴2에서는 패턴1의 jsp에서 사용하던 controller와 view를 분리한 형태이다.</p>
+                            <p>단, mvc1 패턴보다 구현이 복잡하고 개발 난이도가 높지만 유지보수 측면에서 유리하고 PE와 BE의 분업이 가능하다.</p>
+                        </div>
+                    </div>
+                </div>
+                `,
+            ],
+            ref: [
+                {
+                    name:'관련 위키 wikimson>library',
+                    link:'#library'
+                },
+                {
+                    name:'관련 위키 wikimson>framework',
+                    link:'#framework'
+                },
+                {
+                    name:'preamtree님 블로그',
+                    link:'https://preamtree.tistory.com/11'
+                },
+                {
+                    name:'생활코딩 디자인 패턴',
+                    link:'https://opentutorials.org/module/327/3828'
+                },
+            ],
+        },
         'framework': {
+            modified: '',
+            done: true,
             published: true,
             title: 'framework',
             tags: ['framework'],
@@ -215,7 +292,49 @@
                 },
             ],
         },
+        'context-switching': {
+            modified: '',
+            done: false,
+            published: true,
+            title: 'context-switching',
+            tags: ['컨텍스트 스위칭','process'],
+            categories: ['CS'],
+            authors: ['kimson'],
+            wrote: '2021-11-29 18:56:35',
+            toc: true,
+            content: [
+                `
+                <div><span class="h3">context switching이란</span></div>
+                <div>
+                    <div>
+                        <span class="h6">정의</span>
+                        <div>
+                            <p>컴퓨터가 마치 동시에 작업을 진행 하는 것처럼 보이는 이유는 아주 빠른 속도로 task를 바꿔가며 실행하기 때문입니다. 이때 CPU가 task를 바꾸면서 실행하기 위해 context switching이 요구됩니다.</p>
+                            <p>현재 진행 중인 task(process, thread)의 상태를 저장하고 다음 진행할 task의 상태 값을 읽는 일련의 과정을 말합니다.</p>
+                        </div>
+                        <span class="h6">과정</span>
+                        <div>
+                            <p>task의 대부분 정보는 레지스터에 저장되고 pcb(process control block)로 관리됩니다.</p>
+                            <p>실행 중인 task pcb정보를 저장하며 다음 실행할 task의 pcb정보를 읽어 레지스터에 저장하고 cpu가 이전에 진행한 과정을 이어서 수행하게 됩니다.</p>
+                        </div>
+                    </div>
+                </div>
+                `,
+            ],
+            ref: [
+                {
+                    name:'관련 위키 wikimson>library',
+                    link:'#library'
+                },
+                {
+                    name:'관련 위키 wikimson>api',
+                    link:'#api'
+                },
+            ],
+        },
         'process&thread': {
+            modified: '',
+            done: true,
             published: true,
             title: '프로세스와 스레드',
             tags: ['프로세스', '스레드'],
@@ -251,13 +370,13 @@
                             tb: !멀티 프로세스|<span>멀티프로세스는 하나의 프로그램을 여러개의 프로세스로 구성하여 각 프로세스가 하나의 작업을 처리하는 것 입니다.</span>
                                 <ul>
                                     <li>하나의 프로세스가 잘못 되어도 프로그램은 동작 합니다.</li>
-                                    <li>context switching 비용이 발생합니다.</li>
+                                    <li>#context switching[context-switching|정의]:end 비용이 발생합니다.</li>
                                 </ul>\\
                                 !멀티 스레드|<span>프로그램을 여러 개의 스레드로 구성하고 각 스레드가 작업을 처리하는 것 입니다.</span>
                                 <ul>
                                     <li>시스템 자원 소모와 처리비용가 감소하고 스레드 간 자원 공유가 가능합니다.</li>
                                     <li>디버깅이 어렵고 동기화 이슈를 안고 있으며 하나의 스레드 오류로 전체 프로세스에 문제가 발생합니다.</li>
-                                    <li>교착상태(dead-lock)가 발생하지 않도록 주의해야합니다.</li>
+                                    <li>#교착상태(dead-lock)[dead-lock|정의]:end가 발생하지 않도록 주의해야합니다.</li>
                                 </ul>@
                                 :end
                         </div>
@@ -272,36 +391,50 @@
                 },
             ],
         },
-        '교착상태': {
+        'dead-lock': {
+            modified: '',
+            done: false,
             published: true,
             title: '교착상태',
-            tags: ['dead-lock', '교착상태', 'thread'],
+            tags: ['dead-lock', '데드락', '교착상태', 'thread'],
             categories: ['CS'],
             authors: ['kimson'],
             wrote: '2021-11-30 14:20:53',
             toc: true,
             content: [
                 `
-                <div><span class="h3">#교착상태 (dead-lock)[process&thread|정의]:end</span></div>
+                <div><span class="h3">#교착상태 (dead-lock)[process&thread|멀티 프로세스와 멀티 스레드]:end</span></div>
                 <div>
                     <div>
                         <span class="h6">정의</span>
                         <div>
-                            
+                            <p>교착상태란 두 개 이상의 작업이 서로 간의 작업이 끝나기 만을 기다리는 상태입니다.</p>
+                            <p>결과적으로 아무것도 완료되지 못하는 상태를 말한다.</p>
+                            <p>예를 들어, 연장이 망치와 톱이 있다 가정할 때 두 사람이 각 연장을 사용하다가 서로의 연장을 먼저 줄 것을 요구하며 지연되는 것과 유사하다.</p>
                         </div>
-                        
+                        <span class="h6">조건</span>
+                        <div>
+                            th: 구분|설명@
+                            tb: !상호배제(Mutal exclusion)|#프로세스[process&thread|정의]:end들이 필요로 하는 자원에 대해 배타적 통제권 요구\\
+                            !점유대기(Hold & Wait)|프로세스가 할당된 자원을 가진 상태에서 다른 자원을 기다림\\
+                            !비선점(No preemption)|프로세스가 어떤 자원의 사용을 끝낼 때까지 그 자원을 뺏을 수 없음\\
+                            !순환대기(Circular wait)|각 프로세스는 순환적으로 다음 프로세스가 요구하는 자원을 가지고 있음
+                            @ :end
+                        </div>
                     </div>
                 </div>
                 `,
             ],
             ref: [
-                // {
-                //     name:'',
-                //     link:''
-                // },
+                {
+                    name:'위키 백과 - 교착상태',
+                    link:'https://ko.wikipedia.org/wiki/%EA%B5%90%EC%B0%A9_%EC%83%81%ED%83%9C'
+                },
             ],
         },
         'Http와 Https': {
+            modified: '',
+            done: true,
             published: true,
             title: 'Http와 Https',
             tags: ['https', 'http'],
@@ -443,7 +576,7 @@
                         </div>
                     </div>`;
                     // <ul class="list-group">
-                    //     ${wikis.map(x=>x!='home'?`<li class="list-item"><a class="nav-link" href="#${x}">${x}</a><span class="text-gray text-opacity-25"> | </span><span class="ms-2 fs-8 text-muted">Written at <time class="text-dark">${new Date(wiki[x].wrote).toLocaleString().slice(0,-3)}</time></span></li>`:'').join('')}
+                    //     ${wikis.map(x=>x!='home'?`<li class="list-item"><a class="nav-link" href="#${wiki[x].title}">${wiki[x].title}</a><span class="text-gray text-opacity-25"> | </span><span class="ms-2 fs-8 text-muted">Written at <time class="text-dark">${new Date(wiki[x].wrote).toLocaleString().slice(0,-3)}</time></span></li>`:'').join('')}
                     // </ul>
                 }
             },
@@ -508,10 +641,10 @@
                             else return `<li scroll-to="${convertSyntax(y.innerText)}">${convertSyntax(y.innerText)}</li>`;
                         }).join('');
                     }).join(''):Object.keys(wiki).sort((a,b)=>{
-                        a=a.toLowerCase();
-                        b=b.toLowerCase();
-                        if(a.charCodeAt(0) < b.charCodeAt(0)) { return -1; }
-                        if(a.charCodeAt(0) > b.charCodeAt(0)) { return 1; }
+                        a=a.toLowerCase().charCodeAt(0);
+                        b=b.toLowerCase().charCodeAt(0);
+                        if(a < b) { return -1; }
+                        if(a > b) { return 1; }
                         return 0;
                     }).filter(x=>x!='home' && x!='about' && wiki[x].published).map(x=>`<li class="list-item"><a href="#${x}">${x}</a></li>`).join('')}
                 </ul>`;
@@ -519,12 +652,12 @@
         },
         wiki: {
             form: {
-                render: function({published, title, tags, categories, authors, wrote, toc, generateToc, content, ref}){
+                render: function({modified, done, published, title, tags, categories, authors, wrote, toc, generateToc, content, ref}){
                     if(!published) return '';
-                    let refLink = ref.map(({name, link})=>{
+                    let refLink = '<ol class="list-group">'+ref.map(({name, link})=>{
                         let nameElement = new DOMParser().parseFromString(name, 'text/html').body;
-                        return `<div><a href="${link}" target="_blank" title="${nameElement.textContent}">${nameElement.innerHTML}</a></div>`;
-                    }).join('');
+                        return `<li class="list-item py-1"><a href="${link}" target="_blank" title="${nameElement.textContent}">${nameElement.innerHTML}</a></li>`;
+                    }).join('')+'</ol>';
 
                     let filteredContent = content.map(c=>{
                         // ref syntax convert
@@ -549,10 +682,22 @@
                         return `${c}<br>`;
                     }).join('');
 
+                    let during = new Date(new Date() - new Date(wrote)).getTime();
+                    let date = parseInt(during/24/60/60/1000);
+                    let hour = parseInt(during/60/60/1000%24);
+                    let min = parseInt(during/60/1000%60);
+
+                    let duringMsg = `${date>0?`${date}일 `:''}${hour>0&&date==0?`${hour}시 `:''}${min>0&&date==0?`${min}분 `:''}전`;
+
                     return `<div>
                         <div>
                             <span class="h2">${title.split('-').map(x=>x.charAt(0).toUpperCase()+x.slice(1)).join(' ')}</span>
                         </div>
+                        ${modified==''&&done?`<div>`:''}
+                        ${modified!=''?`<span class="tag text-muted">${new Date(modified).toLocaleString().slice(0,-3)} 수정됨</span>`:``}
+                        ${done?'':`<span class="tag tag-warning">미완료</span>`}
+                        ${modified==''&&done?`</div>`:''}
+
                         <ul class="list-group">
                             <li class="list-item py-1">
                                 <span class="tag">tags</span>
@@ -568,9 +713,9 @@
                             </li>
                             <li class="list-item py-1">
                                 <span class="tag">작성자</span>
-                                <span>${authors.map(x=>`<span class="tag text-brand">${x}</span>`).join('')}</span>
+                                <span>${authors.map(x=>`<span class="tag text-muted">${x}</span>`).join('')}</span>
                                 <span class="tag">작성일</span>
-                                <time class="tag time text-muted">${new Date(wrote).toLocaleString().slice(0,-3)}</time>
+                                <time class="tag time text-muted">${date<1?duringMsg:new Date(wrote).toLocaleString().slice(0,-3)}</time>
                             </li>
                         </ul>
 
@@ -624,7 +769,6 @@
             ev.preventDefault();
             models.anchorHandler(target.getAttribute('href'));
             if(target.getAttribute('scroll-to')) models.scrollToRef(target.getAttribute('scroll-to'));
-            
         }
     }
 
@@ -665,19 +809,19 @@
             });
         }
 
-        this.covertCurrentPath = function (hash) {
-            if(currentPage.length==0){
-                let hashPath = hash.split('');
-                currentPage.push(hashPath.shift());
-                currentPage.push(hashPath.join(''));
-            }
-        }
-
         this.checkUrl = function (hash) {
             let now = hash.split('#').filter(x=>x!='');
 
             if (now.length == 0) {
                 currentPage.push('#', 'home');
+            }
+        }
+
+        this.covertCurrentPath = function (hash) {
+            if(currentPage.length==0){
+                let hashPath = hash.split('');
+                currentPage.push(hashPath.shift());
+                currentPage.push(hashPath.join(''));
             }
         }
 
@@ -700,6 +844,7 @@
 
     function View() {
         let parts = null;
+        let timeAt = null;
 
         this.init = function (components) {
             parts = components;
@@ -715,6 +860,34 @@
                 let name = field.getAttribute('put-name');
                 field.insertAdjacentHTML('beforeEnd', parts.templates.baseModule[name].render());
             }
+
+            this.timer();
+        }
+
+        this.timer = function(){
+            let before = 0;
+            function times(){
+                let tick = new Date().getSeconds();
+                
+                if(before!==tick){
+                    if(wiki[timeAt]['wrote']) {
+                        let during = new Date(new Date() - new Date(wiki[timeAt]['wrote'])).getTime();
+                        let date = parseInt(during/24/60/60/1000);
+                        let hour = parseInt(during/60/60/1000%24);
+                        let min = parseInt(during/60/1000%60);
+
+                        let duringMsg = `${date>0?`${date}일 `:''}${hour>0&&date==0?`${hour}시 `:''}${min>0&&date==0?`${min}분 `:''}전`;
+                        
+                        if(document.querySelector('time.tag.time.text-muted')){
+                            document.querySelector('time.tag.time.text-muted').textContent = date<1?duringMsg:new Date(wiki[timeAt]['wrote']).toLocaleString().slice(0,-3);
+                        }
+                        // tick%2==0?console.log('tick'):console.log('tock');
+                    }
+                }
+                requestAnimationFrame(times);
+                before = tick;
+            }
+            requestAnimationFrame(times);
         }
 
         this.lazyConnect = function(){
@@ -736,6 +909,7 @@
 
         this.renderView = function (page) {
             let type = page.pop();
+            timeAt = decodeURI(type);
 
             document.querySelector('[put-type="wiki"]').scrollTo({behavior:'smooth',left:0,top:0});
 
