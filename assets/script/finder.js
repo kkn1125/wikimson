@@ -11,10 +11,10 @@ let resultTemplate = {
         finder.parentNode.insertAdjacentHTML('beforeEnd', 
         `<div id="foundResult">
                 <ul class="mt-1 mb-5 px-5 rounded-5 list-group border border-1 border-warning">
-                    ${list.length>0?list.map(li=>`
+                    ${list.length>0?list.map(({sbj,info})=>`
                     <li class="list-item py-1">
-                        <a class="nav-link" href="#${li.title}">${li.title}</a>
-                    <span class="text-gray text-opacity-25"> | </span><span class="ms-2 fs-8 text-muted"><time class="text-dark">${new Date(li.wrote).toLocaleString().slice(0,-3)}</time></span></li>`).join(''):`<li class="list-item">찾은 내용이 없습니다.</li>`}
+                        <a class="nav-link" href="#${sbj}">${sbj}</a>
+                    <span class="text-gray text-opacity-25"> | </span><span class="ms-2 fs-8 text-muted"><time class="text-dark">${new Date(info.wrote).toLocaleString().slice(0,-3)}</time></span></li>`).join(''):`<li class="list-item">찾은 내용이 없습니다.</li>`}
                     <li class="py-0"><span class="tag">검색결과 <span class="text-brand">${list.length}</span> 건</span></li>
                 </ul>
             </div>
@@ -33,7 +33,7 @@ function finderHandler(ev){
         if(target.value!=''){
             let lower = target.value.toLowerCase();
             if(sbj.match(lower) || (info.title && info.tags && (info.title.match(lower) || info.tags.filter(x=>x.match(lower)).length>0))){
-                if(info.published==true) list.push(info);
+                if(info.published==true) list.push({sbj:sbj,info:info});
             }
         } else {
             setTimeout(()=>{
