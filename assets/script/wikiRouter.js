@@ -1,0 +1,16 @@
+const wikiRouter = {
+    '404': _404,
+    'garbage-collection': garbage_collection,
+    'OSI-7계층': OSI,
+    library,
+    api,
+    mvc,
+    framework,
+    'context-switching': context_switching,
+    'process&thread': process_thread,
+    'dead-lock': dead_lock,
+    'Http와 Https': http_https,
+    home,
+    interview,
+    about,
+};
