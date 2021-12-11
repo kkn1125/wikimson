@@ -272,7 +272,7 @@
                         ${toc?`</ol></div>`:``}
                         <p>${filteredContent}</p>
                         ${ref.length>0?'<hr>':''}
-                        ${refLink?`<div><span class="fw-bold">References</span>${refLink}</div>`:''}
+                        ${refLink?`<div><span class="fw-bold">&#x1F4CC; 함께보면 좋은 자료</span>${refLink}</div>`:''}
                     </div>
                     <div class="sr pt-5"></div>`;
                 }

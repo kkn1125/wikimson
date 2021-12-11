@@ -1,4 +1,4 @@
-:root{
+:root {
     --font-comfortaa: 'Comfortaa', cursive;
     --font-noto-sans: 'Noto Sans KR', sans-serif;
     --font-gugi: 'Gugi', cursive;
@@ -48,9 +48,11 @@ aside.side-bar {
 .overflow-x-hidden {
     overflow-x: hidden;
 }
+
 .overflow-y-hidden {
     overflow-y: hidden;
 }
+
 .overflow-hidden {
     overflow-y: hidden;
 }
@@ -58,9 +60,11 @@ aside.side-bar {
 .overflow-x-visible {
     overflow-x: visible;
 }
+
 .overflow-y-visible {
     overflow-y: visible;
 }
+
 .overflow-visible {
     overflow-y: visible;
 }
@@ -68,9 +72,11 @@ aside.side-bar {
 .overflow-x-auto {
     overflow-x: auto;
 }
+
 .overflow-y-auto {
     overflow-y: auto;
 }
+
 .overflow-auto {
     overflow-y: auto;
 }
@@ -79,29 +85,35 @@ aside.side-bar {
     .overflow-x-sm-hidden {
         overflow-x: hidden;
     }
+
     .overflow-y-sm-hidden {
         overflow-y: hidden;
     }
+
     .overflow-sm-hidden {
         overflow-y: hidden;
     }
-    
+
     .overflow-x-sm-visible {
         overflow-x: visible;
     }
+
     .overflow-y-sm-visible {
         overflow-y: visible;
     }
+
     .overflow-sm-visible {
         overflow-y: visible;
     }
-    
+
     .overflow-x-sm-auto {
         overflow-x: auto;
     }
+
     .overflow-y-sm-auto {
         overflow-y: auto;
     }
+
     .overflow-sm-auto {
         overflow-y: auto;
     }
@@ -111,122 +123,149 @@ aside.side-bar {
     .overflow-x-md-hidden {
         overflow-x: hidden;
     }
+
     .overflow-y-md-hidden {
         overflow-y: hidden;
     }
+
     .overflow-md-hidden {
         overflow-y: hidden;
     }
-    
+
     .overflow-x-md-visible {
         overflow-x: visible;
     }
+
     .overflow-y-md-visible {
         overflow-y: visible;
     }
+
     .overflow-md-visible {
         overflow-y: visible;
     }
-    
+
     .overflow-x-md-auto {
         overflow-x: auto;
     }
+
     .overflow-y-md-auto {
         overflow-y: auto;
     }
+
     .overflow-md-auto {
         overflow-y: auto;
     }
 }
+
 @media (min-width: 992px) {
     .overflow-x-lg-hidden {
         overflow-x: hidden;
     }
+
     .overflow-y-lg-hidden {
         overflow-y: hidden;
     }
+
     .overflow-lg-hidden {
         overflow-y: hidden;
     }
-    
+
     .overflow-x-lg-visible {
         overflow-x: visible;
     }
+
     .overflow-y-lg-visible {
         overflow-y: visible;
     }
+
     .overflow-lg-visible {
         overflow-y: visible;
     }
-    
+
     .overflow-x-lg-auto {
         overflow-x: auto;
     }
+
     .overflow-y-lg-auto {
         overflow-y: auto;
     }
+
     .overflow-lg-auto {
         overflow-y: auto;
     }
 }
+
 @media (min-width: 1200px) {
     .overflow-x-xl-hidden {
         overflow-x: hidden;
     }
+
     .overflow-y-xl-hidden {
         overflow-y: hidden;
     }
+
     .overflow-xl-hidden {
         overflow-y: hidden;
     }
-    
+
     .overflow-x-xl-visible {
         overflow-x: visible;
     }
+
     .overflow-y-xl-visible {
         overflow-y: visible;
     }
+
     .overflow-xl-visible {
         overflow-y: visible;
     }
-    
+
     .overflow-x-xl-auto {
         overflow-x: auto;
     }
+
     .overflow-y-xl-auto {
         overflow-y: auto;
     }
+
     .overflow-xl-auto {
         overflow-y: auto;
     }
 }
+
 @media (min-width: 1400px) {
     .overflow-x-xxl-hidden {
         overflow-x: hidden;
     }
+
     .overflow-y-xxl-hidden {
         overflow-y: hidden;
     }
+
     .overflow-xxl-hidden {
         overflow-y: hidden;
     }
-    
+
     .overflow-x-xxl-visible {
         overflow-x: visible;
     }
+
     .overflow-y-xxl-visible {
         overflow-y: visible;
     }
+
     .overflow-xxl-visible {
         overflow-y: visible;
     }
-    
+
     .overflow-x-xxl-auto {
         overflow-x: auto;
     }
+
     .overflow-y-xxl-auto {
         overflow-y: auto;
     }
+
     .overflow-xxl-auto {
         overflow-y: auto;
     }
@@ -258,7 +297,7 @@ ul.toc li {
 }
 
 nav ul,
-nav ol{
+nav ol {
     margin: 0 !important;
 }
 
@@ -292,7 +331,7 @@ table.table {
 }
 
 @media (min-width: 576px) {
-    .main{
+    .main {
         overflow-y: hidden;
     }
 }
@@ -301,13 +340,13 @@ a>span {
     pointer-events: none;
 }
 
-.list-item:not(.frt-none)::before{
+.list-item:not(.frt-none)::before {
     content: '';
     display: inline-block;
     margin-left: .5em;
 }
 
-.list-item:hover{
+.list-item:hover {
     box-shadow: inset 0 0 9999px rgba(var(--pl-subpoint-rgb), 0.1);
 }
 
@@ -315,7 +354,7 @@ a>span {
 	dark mode start
  */
 
- [data-switch="mode"] {
+[data-switch="mode"] {
     display: none;
 }
 
@@ -372,31 +411,31 @@ label#mtWrap>span::before {
     position: absolute;
 }
 
-.gnb{
+.gnb {
     box-shadow: 0 0 .5rem rgba(var(--pl-dark-rgb), .2);
 }
 
-#gnbMenu{
+#gnbMenu {
     text-transform: capitalize;
 }
 
-body{
+body {
     overflow-x: auto;
     overflow-y: hidden;
     font-family: var(--font-noto-sans);
 }
 
-.gnb .brand{
+.gnb .brand {
     font-family: var(--font-comfortaa);
     font-weight: bold;
 }
 
 .roundText,
-.h2{
+.h2 {
     font-family: var(--font-gugi);
 }
 
-.ref::after{
+.ref::after {
     content: 'ref';
     position: relative;
     font-size: .5em;
@@ -405,25 +444,28 @@ body{
     margin-right: .5em;
 }
 
-.h3,.h4,.h5,.h6{
+.h3,
+.h4,
+.h5,
+.h6 {
     text-transform: capitalize;
 }
 
-a[href].ref{
+a[href].ref {
     color: rgba(var(--pl-brand-rgb), 1);
 }
 
 body.dark {
-    background-color:  rgba(var(--pl-dark-rgb-2), 1);
+    background-color: rgba(var(--pl-dark-rgb-2), 1);
     color: white;
 }
 
-body.dark table.table td{
+body.dark table.table td {
     color: inherit !important;
 }
 
 body.dark footer {
-    background-color:  rgba(var(--pl-dark-rgb-1), 1) !important;
+    background-color: rgba(var(--pl-dark-rgb-1), 1) !important;
     color: inherit;
 }
 
@@ -432,20 +474,20 @@ body.dark footer a[href] {
 }
 
 body.dark nav.gnb.gnb-primary {
-    background-color:  rgba(var(--pl-dark-rgb-1), 1) !important;
+    background-color: rgba(var(--pl-dark-rgb-1), 1) !important;
 }
 
 body.dark time.text-dark,
-body.dark time{
+body.dark time {
     color: white !important;
 }
 
-body.dark #resizer.resizer{
+body.dark #resizer.resizer {
     background-color: rgba(var(--pl-dark-rgb-1), 1) !important;
 }
 
 body.dark section {
-    background-color:  rgba(var(--pl-dark-rgb-2), 1) !important;
+    background-color: rgba(var(--pl-dark-rgb-2), 1) !important;
     color: inherit;
 }
 
@@ -454,32 +496,34 @@ body.dark section button {
 }
 
 body.dark #lsb {
-    background-color:  rgba(var(--pl-dark-rgb), 1) !important;
+    background-color: rgba(var(--pl-dark-rgb), 1) !important;
     color: inherit;
 }
 
-body.dark .tag{
+body.dark .tag {
     color: white;
 }
 
 @keyframes page-load {
     from {
-        width:0;
+        width: 0;
     }
+
     to {
-        width:100%;
+        width: 100%;
     }
 }
+
 .page-loading::before {
-    content:" ";
-    display:block;
-    position:fixed;
-    z-index:2000;
-    height:2px;
-    width:100%;
-    top:0;
-    left:0;
-    background-color:rgba(var(--pl-subpoint-rgb), 1);
+    content: " ";
+    display: block;
+    position: fixed;
+    z-index: 2000;
+    height: 2px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(var(--pl-subpoint-rgb), 1);
     animation: page-load ease-out 150ms;
     -webkit-animation: page-load ease-out 150ms;
 }

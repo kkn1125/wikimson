@@ -1,6 +1,6 @@
 const framework = {
     modified: '',
-    done: true,
+    done: false,
     published: true,
     title: 'framework',
     tags: ['framework'],

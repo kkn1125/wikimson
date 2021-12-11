@@ -35,7 +35,7 @@ const garbage_collection = {
             </div>
         </div>
         `,
-        `<div><span class="h3">포인터 추적 방식</span></div>`
+        // `<div><span class="h3">포인터 추적 방식</span></div>`
     ],
     ref: [
         {
