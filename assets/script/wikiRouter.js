@@ -10,6 +10,8 @@ const wikiRouter = {
     'process&thread': process_thread,
     'dead-lock': dead_lock,
     'Http와 Https': http_https,
+    'legacy-code': legacy_code,
+    'domain-driven-design': domain_driven_design,
     home,
     interview,
     about,

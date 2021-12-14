@@ -194,6 +194,14 @@
                     else refLink = '<ol class="list-group">'+refLink+'</ol>';
 
                     let filteredContent = content.map(c=>{
+                        c = c.replace(/->|<-/gm, (a,b)=>{
+                            if(a=='->')return '&#10142;';
+                            else if(a=='<-') return '&#129044;';
+                        });
+                        // c = c.replace(/(\#+?)([a-zA-Zㄱ-힣0-9]+)\s?/gm, (origin, text, ref, i)=>{
+                        //     const hCover = text.split('#').length-1;
+                        //     return `<span class="h${hCover}">${ref}</span>`;
+                        // });
                         // ref syntax convert
                         c= c.replace(/\#([\s\S]*?)\[([\s\S]*?)\]:end/g, (origin,text,ref,i)=>{
                             let page = ref.split('|').shift();
@@ -222,14 +230,14 @@
                     let min = parseInt(during/60/1000%60);
 
                     let duringMsg = `${date>0?`${date}일 `:''}${hour>0&&date==0?`${hour}시 `:''}${min>0&&date==0?`${min}분 `:'방금 '}전`;
-
+                    
                     return `<div>
                         <div>
                             <span class="h2">${title.split('-').map(x=>x.charAt(0).toUpperCase()+x.slice(1)).join(' ')}</span>
                         </div>
                         ${modified==''&&done?`<div>`:''}
                         ${modified!=''?`<span class="tag text-muted">${new Date(modified).toLocaleString().slice(0,-3)} 수정됨</span>`:``}
-                        ${done?'':`<span class="tag tag-warning">미완료</span>`}
+                        ${done?'':`<span class="tag tag-warning">아직 완료되지 않은 문서입니다.</span>`}
                         ${modified==''&&done?`</div>`:''}
 
                         <ul class="list-group">
@@ -396,7 +404,6 @@
             }
 
             this.timer();
-            // this.progressing();
         }
 
         this.timer = function(){
@@ -416,7 +423,6 @@
                         if(document.querySelector('time.tag.time.text-muted')){
                             document.querySelector('time.tag.time.text-muted').textContent = date<1?duringMsg:new Date(wiki[timeAt]['wrote']).toLocaleString().slice(0,-3);
                         }
-                        // tick%2==0?console.log('tick'):console.log('tock');
                     }
                 }
                 requestAnimationFrame(times);
@@ -501,7 +507,10 @@
 
         this.generateToc = function(toc){
             let dom = new DOMParser();
-            let html = dom.parseFromString(toc.content.join(''), 'text/html').body;
+            let html = dom.parseFromString(toc.content.join('').replace(/\-\>|\<\-/gm, (a,b)=>{
+                if(a=='->')return '&#10142;';
+                else if(a=='<-') return '&#129044;';
+            }), 'text/html').body;
             
             let tocs = [...html.querySelectorAll('.h3')].map(x=>{
                 let save = [];
