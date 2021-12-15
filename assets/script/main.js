@@ -41,7 +41,7 @@
                         </button>
                     </div>
                     <ul id="gnbMenu" class="gnb-menu gx-2 w-flex">
-                        ${Object.keys(wiki).filter(x=>x=='home' || x=='about' || x=='interview').map(x=>`<li><a class="nav-link" href="#${x}">${x}</a></li>`).join('')}
+                        ${Object.keys(wiki).filter(x=>x=='home' || x=='about' || x=='interview' || x=='algorithm').map(x=>`<li><a class="nav-link" href="#${x}">${x}</a></li>`).join('')}
                         <li id="mode"></li>
                     </ul>
                 </div>`; // x!='home' && wiki[x].published

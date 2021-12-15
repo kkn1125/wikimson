@@ -14,5 +14,6 @@ const wikiRouter = {
     'domain-driven-design': domain_driven_design,
     home,
     interview,
+    algorithm,
     about,
 };
