@@ -1,5 +1,5 @@
 const OSI = {
-    modified: '',
+    modified: '2021-12-15 12:54:23',
     done: false,
     published: true,
     title: 'OSI-7계층',
