@@ -21,8 +21,33 @@ const algorithm = {
                 <p align="center">
                     <img src="https://i0.wp.com/learningsolo.com/wp-content/uploads/2018/04/binarray1-1.gif?fit=469%2C182&ssl=1" alt="">
                 </p>
-                <p>면접을 보기 위해 아침 일찍 나와야 했습니다. 출근시간보다 더 빠른 시간에 보는 게 지방에 사는 저로서는 오는 길조차 체력의 반을 써야했습니다. 재량을 두고 저를 알리는 자리이니 이러한 불편은 감수해야하지만 힘든건 부정 못하겠네요...</p>
-                <p>면접은 난생 처음 <kbd>다대다</kbd>방식. 심지어 면접도 형식 갖춰서 하는 경험도 전무했던지라 머리가 새하얗게 비었습니다. (이전 직장은 상무님 아들얘기만 듣다가 끝난던 기억이)</p>
+                <p>
+                    그림에 잘 설명 되어 있듯이 필요한 수 찾고자 하는 수와 첫번째 인덱스, 마지막 인덱스입니다. 중간 인덱스를 찾아 해당 값이 찾고자 하는 수보다 작으면 해당 인덱스를 포한하지 않는 더 낮은 수를 찾아야하기 때문에 middle - 1의 인덱스에서 first 사이의 중간지점을 다시 조회합니다. 이런 식으로 반복되면 절반에 절반을 쪼개어 탐색하게 됩니다.
+                    코드로 보면 아래와 같습니다.
+                </p>
+                <p>
+                    <code>
+                        <pre>public int searchBinary(int[] arr, int find) {
+        int mid, start, end;
+        start = 0;
+        end = arr.length - 1;
+
+        while(start <= end) {
+            mid = (start + end) / 2 ;
+            if(arr[mid] == find) {
+                return mid;
+            }
+            
+            if(find < arr[mid]) {
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return -1; 
+    }</pre>
+                    </code>
+                </p>
                 <hr>
                 <div>
                     <span class="h6">너비 우선 탐색 (BFS)</span>
@@ -86,8 +111,7 @@ public class bfsTest {
         }
         return 1;
     }
-}
-                        </pre>
+}</pre>
                     </code>
                 </p>
             </div>
