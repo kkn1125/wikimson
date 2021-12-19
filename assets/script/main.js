@@ -174,7 +174,7 @@
                         if(a < b) { return -1; }
                         if(a > b) { return 1; }
                         return 0;
-                    }).filter(x=>x!='home' && x!='about' && wiki[x].published).map(x=>`<li class="list-item"><a href="#${x}">${x}</a></li>`).join('')}
+                    }).filter(x=>x!='home' && x!='about' && x!='algorithm' && wiki[x].published).map(x=>`<li class="list-item"><a href="#${x}">${x}</a></li>`).join('')}
                 </ul>`;
             }
         },
