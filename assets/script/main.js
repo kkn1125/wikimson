@@ -149,6 +149,7 @@
         },
         'side-bar-item':{
             render: function(list){
+                let count = 0;
                 return `
                 <div class="menu-title text-uppercase mb-5 text-muted roundText"style="min-width:7em;word-break: keep-all;">
                     ${list?list.title.replaceAll('-',' '):'wiki'}
@@ -162,11 +163,11 @@
                             });
                             else return target;
                         }
-                        return x.map(y=>{
+                        return x.map((y,i)=>{
                             if(y instanceof Array) return `<ol>${y.map(z=>{
-                                return `<li scroll-to="${convertSyntax(z.innerText)}">${convertSyntax(z.innerText)}</li>`
+                                return `<li scroll-to="${convertSyntax(z.innerText)}-${count++}">${convertSyntax(z.innerText)}</li>`
                             }).join('')}</ol>`;
-                            else return `<li scroll-to="${convertSyntax(y.innerText)}">${convertSyntax(y.innerText)}</li>`;
+                            else return `<li scroll-to="${convertSyntax(y.innerText)}-${count++}">${convertSyntax(y.innerText)}</li>`;
                         }).join('');
                     }).join(''):Object.keys(wiki).sort((a,b)=>{
                         a=a.toLowerCase().charCodeAt(0);
@@ -479,7 +480,7 @@
         }
 
         this.setScrollPoint = function(){
-            [...document.querySelectorAll('.h3, .h6')].forEach(x => x.setAttribute('scroll-focus', x.innerText));
+            [...document.querySelectorAll('.h3, .h6')].forEach((x,i) => x.setAttribute('scroll-focus', `${x.innerText}-${i}`));
         }
 
         this.changeTitle = function(subTitle){
@@ -512,7 +513,7 @@
                 else if(a=='<-') return '&#129044;';
             }), 'text/html').body;
             
-            let tocs = [...html.querySelectorAll('.h3')].map(x=>{
+            return [...html.querySelectorAll('.h3')].map(x=>{
                 let save = [];
                 if(x.parentNode.nextElementSibling){
                     save.push(x);
@@ -522,7 +523,6 @@
                 }
                 return save;
             });
-            return tocs;
         }
 
         this.clearView = function(){

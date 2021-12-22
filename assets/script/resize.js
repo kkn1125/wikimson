@@ -62,7 +62,7 @@
                     behavior: 'smooth',
                     left: 0,
                     top: key.offsetTop
-                })
+                });
             }
         }
     }
@@ -72,18 +72,18 @@
 
         spy.map(s => s.classList.remove('highlight'));
 
-        for (let key of [...document.querySelectorAll('.h3, .h6')]) {
+        [...document.querySelectorAll('.h3, .h6')].forEach((key,i)=>{
             let top = document.querySelector('[put-type="wiki"]').scrollTop;
             if (key.offsetTop - 16 < top) {
                 let focus = key.getAttribute('scroll-focus');
                 spy.map(s => {
-                    if (document.querySelector(`[scroll-to="${focus}"]`) == s) {
+                    if (document.querySelector(`[scroll-to="${focus}-${i}"]`) == s) {
                         s.classList.add('highlight');
                     } else {
                         s.classList.remove('highlight');
                     }
                 });
             }
-        }
+        });
     }
 })();
