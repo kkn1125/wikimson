@@ -264,7 +264,8 @@
 
                         ${toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div><ol class="toc">':''}
                         ${!toc?'':generateToc.map(x=>{
-                            return x.map(y=>{
+                            let count = 0;
+                            return x.map((y, i)=>{
                                 function convertSyntax(target){
                                     if(target.match(/[\#\|\:]/g))
                                     return target.replace(/\#([\s\S]*?)\[([\s\S]*?)\]:end/g, (origin,text,ref,i)=>{
@@ -273,9 +274,9 @@
                                     else return target;
                                 }
                                 if(y instanceof Array) return `<ol>${y.map(z=>{
-                                    return `<li scroll-to="${convertSyntax(z.innerText)}">${convertSyntax(z.innerText)}</li>`
+                                    return `<li scroll-to="${convertSyntax(z.innerText)}-${count++}">${convertSyntax(z.innerText)}</li>`
                                 }).join('')}</ol>`;
-                                else return `<li scroll-to="${convertSyntax(y.innerText)}">${convertSyntax(y.innerText)}</li>`;
+                                else return `<li scroll-to="${convertSyntax(y.innerText)}-${count++}">${convertSyntax(y.innerText)}</li>`;
                             }).join('');
                         }).join('')}
                         ${toc?`</ol></div>`:``}

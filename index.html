@@ -36,6 +36,7 @@
         <link rel="preload" href="assets/script/resize.js" as="script">
         <link rel="preload" href="assets/script/darkMode.js" as="script">
         <link rel="preload" href="assets/script/finder.js" as="script">
+        <link rel="preload" href="assets/script/pure_function.js" as="script">
         <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-dark.min.css" as="style">
         <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js" as="script">
         
@@ -68,6 +69,7 @@
         <script src="pages/http_https.js"></script>
         <script src="pages/legacy-code.js"></script>
         <script src="pages/domain-driven-design.js"></script>
+        <script src="pages/pure_function.js"></script>
 
         <script src="assets/script/wikiRouter.js"></script>
         <link rel="stylesheet"
@@ -84,7 +86,7 @@
         <script>
             requestAnimationFrame(convertCode);
             function convertCode(){
-                if(!document.querySelector('.hljs'))hljs.highlightAll();
+                if(!document.querySelector('.hljs')) hljs.highlightAll();
                 requestAnimationFrame(convertCode);
             }
         </script>

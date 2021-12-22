@@ -12,6 +12,7 @@ const wikiRouter = {
     'Http와 Https': http_https,
     'legacy-code': legacy_code,
     'domain-driven-design': domain_driven_design,
+    'pure-function': pure_function,
     home,
     interview,
     algorithm,

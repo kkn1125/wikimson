@@ -72,12 +72,12 @@
 
         spy.map(s => s.classList.remove('highlight'));
 
-        [...document.querySelectorAll('.h3, .h6')].forEach((key,i)=>{
+        [...document.querySelectorAll('.h3, .h6')].forEach(key=>{
             let top = document.querySelector('[put-type="wiki"]').scrollTop;
             if (key.offsetTop - 16 < top) {
                 let focus = key.getAttribute('scroll-focus');
                 spy.map(s => {
-                    if (document.querySelector(`[scroll-to="${focus}-${i}"]`) == s) {
+                    if (document.querySelector(`[scroll-to="${focus}"]`) == s) {
                         s.classList.add('highlight');
                     } else {
                         s.classList.remove('highlight');
