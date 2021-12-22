@@ -77,9 +77,13 @@ function addElementToArray(array, elem){
         `
     ],
     ref: [
-        // {
-        //     name: '',
-        //     link: ''
-        // }
+        {
+            name: '민소네님 블로그 - 순수 함수(Pure Function)',
+            link: 'http://minsone.github.io/programming/pure-function'
+        },
+        {
+            name: 'jeong-pro님 블로그 - 순수 함수란? (함수형 프로그래밍의 뿌리, 함수의 부수효과를 없앤다)',
+            link: 'https://jeong-pro.tistory.com/23'
+        },
     ],
 };
