@@ -436,7 +436,7 @@
         this.lazyConnect = function(){
             setTimeout(()=>{
                 Object.assign(document.body.insertAdjacentElement('beforeEnd', document.createElement('script')),{
-                    src: 'https://cdn.jsdelivr.net/gh/kkn1125/penli@vv013/docs/assets/js/penli.js',
+                    src: 'https://cdn.jsdelivr.net/gh/kkn1125/penli@e569ea2/docs/assets/js/penli.js',
                     integrity: 'sha384-nsIRFRt8WvtPsJBMOSiAzsvqgVc0ViFiMC80JMDsPiz6LnNXgOzelTajC1MhBm41',
                     crossorigin: 'anonymous',
                 });

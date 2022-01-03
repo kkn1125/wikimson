@@ -84,6 +84,10 @@ const interview = {
             <p>
                 아무도 보지않을 페이지이지만 누군가 보게 된다면, 누군가 저처럼 현실에 벽을 느끼고 좌절했다면, 아직 좌절하기엔 너무 작은 벽임을 알리며 힘내시길.
             </p>
+            <p>
+                <span class="tag tag-danger">결과</span>
+                <span>불합</span>
+            </p>
         </div>
     </div>
     `
