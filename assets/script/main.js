@@ -338,9 +338,10 @@
 
         this.scrollToRef = function(ref){
             let scrollHead = null;
+            console.log(ref)
             setTimeout(()=>{
                 for (let key of [...document.querySelectorAll('.h3, .h6')]) {
-                    if (key.getAttribute('scroll-focus') == ref) {
+                    if (key.getAttribute('scroll-focus').match(ref)) {
                         if (window.innerWidth - 17 > 576) scrollHead = document.querySelector('[put-type="wiki"]');
                         else scrollHead = document.querySelector('.main');
                         scrollHead.scrollTo({
@@ -350,7 +351,7 @@
                         })
                     }
                 }
-            });
+            }, 10);
         }
 
         this.checkUrl = function (hash) {
@@ -436,8 +437,8 @@
         this.lazyConnect = function(){
             setTimeout(()=>{
                 Object.assign(document.body.insertAdjacentElement('beforeEnd', document.createElement('script')),{
-                    src: 'https://cdn.jsdelivr.net/gh/kkn1125/penli@e569ea2/docs/assets/js/penli.js',
-                    integrity: 'sha384-nsIRFRt8WvtPsJBMOSiAzsvqgVc0ViFiMC80JMDsPiz6LnNXgOzelTajC1MhBm41',
+                    src: 'https://cdn.jsdelivr.net/gh/kkn1125/penli@dabfbd0/docs/assets/js/penli.js',
+                    integrity: 'sha384-v8IcF+Ajik1Du5Pn4UGwOVizMisxuU6LhXVsWYy1WdP2+1MxTdeJRHuYeDAdtQ6v',
                     crossorigin: 'anonymous',
                 });
                 Object.assign(document.body.insertAdjacentElement('beforeEnd', document.createElement('script')),{
@@ -480,8 +481,8 @@
             }
         }
 
-        this.setScrollPoint = function(){
-            [...document.querySelectorAll('.h3, .h6')].forEach((x,i) => x.setAttribute('scroll-focus', `${x.innerText}-${i}`));
+        this.setScrollPoint = function(){ // scroll focus 생성시점
+            [...document.querySelectorAll('.h3, .h6')].forEach((x,i) => x.setAttribute('scroll-focus', `${x.textContent}-${i}`));
         }
 
         this.changeTitle = function(subTitle){
