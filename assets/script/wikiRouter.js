@@ -16,5 +16,6 @@ const wikiRouter = {
     home,
     interview,
     algorithm,
+    javascript,
     about,
 };

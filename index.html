@@ -36,9 +36,8 @@
         <link rel="preload" href="assets/script/resize.js" as="script">
         <link rel="preload" href="assets/script/darkMode.js" as="script">
         <link rel="preload" href="assets/script/finder.js" as="script">
-        <link rel="preload" href="assets/script/pure_function.js" as="script">
-        <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-dark.min.css" as="style">
-        <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js" as="script">
+        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-dark.min.css" as="style">
+        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js" as="script">
         
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,9 +51,14 @@
             document.documentElement.lang = navigator.language.split('-').shift();
         </script>
 
+        <script>
+            const baseurl = location.pathname=='/'?'/':'/wikimson/';
+        </script>
+
         <script src="pages/home.js"></script>
         <script src="pages/interview.js"></script>
         <script src="pages/algorithm.js"></script>
+        <script src="pages/javascript.js"></script>
         <script src="pages/about.js"></script>
         <script src="pages/404.js"></script>
         <script src="pages/garbage_collection.js"></script>
@@ -73,8 +77,8 @@
 
         <script src="assets/script/wikiRouter.js"></script>
         <link rel="stylesheet"
-        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-dark.min.css">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
 
         <title>Wikimson</title>
     </head>

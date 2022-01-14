@@ -1,5 +1,32 @@
 'use strict';
 
+const properties = [
+    'id',
+    'email',
+    'password',
+    'name',
+    'birth',
+    'address',
+    'sex',
+];
+
+const Parent = function () {
+    properties.forEach(name=>{
+        Object.defineProperty(this, name, {
+            get () {
+                return this[`_${name}`];
+            },
+            set (newName) {
+                this[`_${name}`] = newName;
+            }
+        })
+    })
+};
+
+const test = new Parent();
+test.name = 'kimson';
+console.log(test.name);
+
 (function () {
     const title = `<span class="text-subpoint">Wiki</span>mson`;
     const main = `<span class="text-subpoint h1" style="-webkit-text-stroke-width: medium;
@@ -41,7 +68,7 @@
                         </button>
                     </div>
                     <ul id="gnbMenu" class="gnb-menu gx-2 w-flex">
-                        ${Object.keys(wiki).filter(x=>x=='home' || x=='about' || x=='interview' || x=='algorithm').map(x=>`<li><a class="nav-link" href="#${x}">${x}</a></li>`).join('')}
+                        ${Object.keys(wiki).filter(x=>x=='home' || x=='about' || x=='interview' || x=='algorithm' || x=='javascript').map(x=>`<li><a class="nav-link" href="#${x}">${x}</a></li>`).join('')}
                         <li id="mode"></li>
                     </ul>
                 </div>`; // x!='home' && wiki[x].published
@@ -175,7 +202,7 @@
                         if(a < b) { return -1; }
                         if(a > b) { return 1; }
                         return 0;
-                    }).filter(x=>x!='home' && x!='about' && x!='algorithm' && wiki[x].published).map(x=>`<li class="list-item"><a href="#${x}">${x}</a></li>`).join('')}
+                    }).filter(x=>x!='home' && x!='about' && x!='algorithm' && x!='javascript' && wiki[x].published).map(x=>`<li class="list-item"><a href="#${x}">${x}</a></li>`).join('')}
                 </ul>`;
             }
         },

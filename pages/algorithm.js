@@ -26,8 +26,8 @@ const algorithm = {
                     코드로 보면 아래와 같습니다.
                 </p>
                 <p>
-                    <code>
-                        <pre>public int searchBinary(int[] arr, int find) {
+                    <pre>
+                        <code>public int searchBinary(int[] arr, int find) {
         int mid, start, end;
         start = 0;
         end = arr.length - 1;
@@ -45,8 +45,8 @@ const algorithm = {
             }
         }
         return -1; 
-    }</pre>
-                    </code>
+    }</code>
+                    </pre>
                 </p>
                 <hr>
                 <div>
