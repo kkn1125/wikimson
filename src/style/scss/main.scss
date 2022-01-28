@@ -264,13 +264,6 @@ label{
     }
 }
 
-.gnb {
-    box-shadow: 0 0 .5rem rgba(var(--pl-dark-rgb), .2);
-}
-
-#gnbMenu {
-    text-transform: capitalize;
-}
 
 body {
     overflow-x: auto;
@@ -279,6 +272,15 @@ body {
 }
 
 .gnb {
+    box-shadow: 0 0 .5rem rgba(var(--pl-dark-rgb), .2);
+    #gnbMenu {
+        text-transform: capitalize;
+        transition: none !important;
+        -webkit-transition: none !important;
+        -moz-transition: none !important;
+        -ms-transition: none !important;
+        -o-transition: none !important;
+}
     .brand {
         font-family: var(--font-comfortaa);
         font-weight: bold;

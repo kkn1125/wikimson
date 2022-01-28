@@ -1,7 +1,7 @@
-const process_thread = {
+export default {
+    published: true,
     modified: '',
     done: true,
-    published: true,
     title: '프로세스와 스레드',
     tags: ['프로세스', '스레드'],
     categories: ['CS'],
@@ -56,4 +56,9 @@ const process_thread = {
             link:'https://www.youtube.com/watch?v=kNNHaAaFDs8'
         },
     ],
+    template(){
+        return `
+        ${wikiFilter.all.call(this)}
+        `
+    }
 };

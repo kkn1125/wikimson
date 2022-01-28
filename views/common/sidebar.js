@@ -2,7 +2,7 @@ import {Router} from '../../core/core.js'
 
 export default {
     template: function (){
-        let page = location.hash.slice(1);
+        let page = decodeURIComponent(location.hash.slice(1));
         const side = `
         <div class="menu-title text-uppercase mb-5 text-muted roundText"style="min-width:7em;word-break: keep-all;">
             ${!page.match(/home|404/gm)?page.replaceAll('-',' '):'wiki'}

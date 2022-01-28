@@ -1,9 +1,8 @@
 export default {
     pagination: true,
     published: true,
-    title: 'home', // Router 객체에 지정한 이름과 동일
-    module: {}, // 페이지에 모듈을 지정할 때
-    template: function() {
+    title: 'home',
+    template() {
         return `
         <div>
             <div><span class="h2">About</span></div>

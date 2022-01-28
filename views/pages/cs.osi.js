@@ -1,7 +1,7 @@
-const OSI = {
+export default {
+    published: true,
     modified: '2021-12-15 12:54:23',
     done: false,
-    published: true,
     title: 'OSI-7계층',
     tags: ['OSI-7계층', '통신규약'],
     categories: ['CS'],
@@ -42,4 +42,9 @@ const OSI = {
         //     link:''
         // },
     ],
+    template(){
+        return `
+        ${wikiFilter.all.call(this)}
+        `
+    }
 }

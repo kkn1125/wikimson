@@ -1,7 +1,7 @@
-const context_switching = {
+export default {
+    published: true,
     modified: '',
     done: false,
-    published: true,
     title: 'context-switching',
     tags: ['컨텍스트 스위칭','process'],
     categories: ['CS'],

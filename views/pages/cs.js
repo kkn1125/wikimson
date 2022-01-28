@@ -13,9 +13,13 @@ export default {
         api: Router['api']
     },
     list(){
-        return Object.keys(this.module).map(m=>`<li><a href="#${m}">${m}</a></li>`)
+        return Object.keys(this.module).map(m=>`<li><a href="#${m}">${m}</a></li>`).join('');
     },
     template(){
-        return `${this.list()}`
+        return `
+        <ul class="list-group">
+            ${this.list()}
+        </ul>
+        `
     }
 }

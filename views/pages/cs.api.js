@@ -8,20 +8,6 @@ export default {
     authors: ['kimson'],
     wrote: '2021-11-30 21:15:57',
     toc: true,
-    ref: [
-        {
-            name:'wishket 블로그',
-            link:'http://blog.wishket.com/api%EB%9E%80-%EC%89%BD%EA%B2%8C-%EC%84%A4%EB%AA%85-%EA%B7%B8%EB%A6%B0%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8/'
-        },
-        {
-            name:'관련 위키 wikimson>library',
-            link:'#library'
-        },
-        {
-            name:'관련 위키 wikimson>framework',
-            link:'#framework'
-        },
-    ],
     content: [`
         <div><span class="h3">API란</span></div>
         <div>
@@ -65,6 +51,20 @@ export default {
             </div>
         </div>
     `],
+    ref: [
+        {
+            name:'wishket 블로그',
+            link:'http://blog.wishket.com/api%EB%9E%80-%EC%89%BD%EA%B2%8C-%EC%84%A4%EB%AA%85-%EA%B7%B8%EB%A6%B0%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8/'
+        },
+        {
+            name:'관련 위키 wikimson>library',
+            link:'#library'
+        },
+        {
+            name:'관련 위키 wikimson>framework',
+            link:'#framework'
+        },
+    ],
     template(){
         return `
         ${wikiFilter.all.call(this)}

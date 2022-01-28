@@ -1,7 +1,7 @@
-const garbage_collection = {
+export default {
+    published: true,
     modified: '',
     done: false,
-    published: true,
     title: 'garbage-collection',
     tags: ['garbage-collection'],
     categories: ['CS'],
@@ -43,4 +43,9 @@ const garbage_collection = {
             link:'https://ko.wikipedia.org/wiki/%EC%93%B0%EB%A0%88%EA%B8%B0_%EC%88%98%EC%A7%91_(%EC%BB%B4%ED%93%A8%ED%84%B0_%EA%B3%BC%ED%95%99)'
         },
     ],
+    template(){
+        return `
+        ${wikiFilter.all.call(this)}
+        `
+    }
 }

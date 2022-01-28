@@ -3,12 +3,11 @@ import {Router} from '../../core/core.js'
 export default {
     pagination: false,
     published: true,
-    title: 'home', // Router 객체에 지정한 이름과 동일
+    title: 'home',
     main: `<span class="text-subpoint h1" style="-webkit-text-stroke-width: medium;
     ">ㄴㅇㄱ</span><span class="fs-3 text-end ms-5">나를 위한 기록</span>`,
-    module: {}, // 페이지에 모듈을 지정할 때
     wikis: Object.keys(Router),
-    template: function() {
+    template() {
         return `
         <div class="mt-5 p-5 border border-1 border-light rounded-5">
             <div class="mt-3">

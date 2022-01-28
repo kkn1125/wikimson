@@ -12,7 +12,14 @@ export default{
     module: {
         binarysearch: Router['binarysearch'],
     },
+    list(){
+        return Object.keys(this.module).map(m=>`<li><a href="#${m}">${m}</a></li>`).join('');
+    },
     template(){
-        return `${this.module['binarysearch'].name}`
+        return `
+        <ul class="list-group">
+            ${this.list()}
+        </ul>
+        `
     }
 }

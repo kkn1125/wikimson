@@ -1,7 +1,7 @@
-const dead_lock = {
+export default {
+    published: true,
     modified: '',
     done: false,
-    published: true,
     title: '교착상태',
     tags: ['dead-lock', '데드락', '교착상태', 'thread'],
     categories: ['CS'],
@@ -38,4 +38,9 @@ const dead_lock = {
             link:'https://ko.wikipedia.org/wiki/%EA%B5%90%EC%B0%A9_%EC%83%81%ED%83%9C'
         },
     ],
+    template(){
+        return `
+        ${wikiFilter.all.call(this)}
+        `
+    }
 };

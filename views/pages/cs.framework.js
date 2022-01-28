@@ -1,7 +1,7 @@
-const framework = {
+export default {
+    published: true,
     modified: '',
     done: false,
-    published: true,
     title: 'framework',
     tags: ['framework'],
     categories: ['CS'],
@@ -39,4 +39,9 @@ const framework = {
             link:'#api'
         },
     ],
+    template(){
+        return `
+        ${wikiFilter.all.call(this)}
+        `
+    }
 };

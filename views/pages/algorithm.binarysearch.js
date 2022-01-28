@@ -127,11 +127,7 @@ public class bfsTest {
     ],
     template(){
         return `
-        ${wikiFilter.modified.call(this)}
-        ${wikiFilter.regdate.call(this)}
-        ${wikiFilter.toc.call(this)}
-        ${wikiFilter.content.call(this)}
-        ${wikiFilter.ref.call(this)}
+        ${wikiFilter.all.call(this)}
         `
     }
 }

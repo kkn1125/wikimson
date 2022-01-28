@@ -1,7 +1,7 @@
-const legacy_code = {
+export default {
+    published: true,
     modified: '',
     done: true,
-    published: true,
     title: 'legacy-code',
     tags: ['legacy-code', '레거시 코드'],
     categories: ['CS'],
@@ -93,5 +93,10 @@ const legacy_code = {
             name:'우아한테크코스 - 의존관계 주입(Dependency Injection) 쉽게 이해하기',
             link:'https://tecoble.techcourse.co.kr/post/2021-04-27-dependency-injection/'
         },
-    ]
+    ],
+    template(){
+        return `
+        ${wikiFilter.all.call(this)}
+        `
+    }
 };

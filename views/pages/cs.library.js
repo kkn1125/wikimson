@@ -1,7 +1,7 @@
-const library = {
+export default {
+    published: true,
     modified: '',
     done: true,
-    published: true,
     title: 'library',
     tags: ['library', '라이브러리'],
     categories: ['CS'],
@@ -37,4 +37,9 @@ const library = {
             link:'#framework'
         },
     ],
+    template(){
+        return `
+        ${wikiFilter.all.call(this)}
+        `
+    }
 }

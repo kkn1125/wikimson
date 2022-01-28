@@ -173,6 +173,18 @@ wikiFilter.all = function(){
     return temp;
 }
 
+function watch(){
+    let cur = location.hash.slice(1);
+    if(cur != 'home'){
+        document.title = 'Wikimson' + '::' + cur;
+    } else {
+        document.title = 'Wikimson';
+    }
+    requestAnimationFrame(watch);
+}
+
+requestAnimationFrame(watch);
+
 setTimeout(()=>{
     Object.assign(document.body.insertAdjacentElement('beforeEnd', document.createElement('script')),{
         src: 'https://cdn.jsdelivr.net/gh/kkn1125/penli@dabfbd0/docs/assets/js/penli.js',

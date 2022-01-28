@@ -14,8 +14,10 @@ export default {
         return `
         <nav class="gnb position-sticky bg-light us-none gnb-primary">
             <div class="gnb-inner gnb-expand-md hide align-items-center">
-                <div class="brand fw-bold">
-                    <a href="${App.home}">${App.brand}</a>
+                <div class="brand fw-bold w-flex align-items-center">
+                    <a href="${App.home}">
+                    <span class="text-subpoint">Wiki</span>mson
+                    </a>
                 </div>
                 <div class="menu-btn">
                     <button class="btn btn-light text-gray fs-4" data-target="#gnbMenu" style="line-height: 1">
@@ -24,12 +26,6 @@ export default {
                 </div>
                 <ul id="gnbMenu" class="gnb-menu vgap-3 w-flex hide">
                     ${this.wikis()}
-                    <li class="search btn-bundle g-0">
-                        <input type="text" class="form-input col">
-                        <button class="btn btn-info">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </li>
                     <li id="mode"></li>
                 </ul>
             </div>

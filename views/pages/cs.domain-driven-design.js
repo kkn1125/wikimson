@@ -1,7 +1,7 @@
-const domain_driven_design = {
+export default {
+    published: true,
     modified: '',
     done: false,
-    published: true,
     title: 'domain-driven-design',
     tags: ['domain-driven-design', 'ddd', '도메인'],
     categories: ['CS', 'refactoring'],
@@ -76,5 +76,10 @@ const domain_driven_design = {
             name: 'Junha Baek님 velog - 백엔드 서버 아키텍처 — Application Layer 1. 개요와 기본 Variation',
             link: 'https://tech.junhabaek.net/%EB%B0%B1%EC%97%94%EB%93%9C-%EC%84%9C%EB%B2%84-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-application-layer-1-%EA%B0%9C%EC%9A%94%EC%99%80-%EA%B8%B0%EB%B3%B8-variation-9fac801ddba8',
         },
-    ]
+    ],
+    template(){
+        return `
+        ${wikiFilter.all.call(this)}
+        `
+    }
 }

@@ -1,7 +1,7 @@
-const mvc = {
+export default {
+    published: true,
     modified: '',
     done: true,
-    published: true,
     title: 'mvc',
     tags: ['mvc','design-pattern'],
     categories: ['cs','design-pattern'],

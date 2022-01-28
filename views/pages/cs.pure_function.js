@@ -1,7 +1,7 @@
-const pure_function = {
+export default {
+    published: true,
     modified: '',
     done: true,
-    published: true,
     title: 'pure-function',
     tags: ['pure-function', '순수 함수'],
     categories: ['CS'],
@@ -86,4 +86,9 @@ function addElementToArray(array, elem){
             link: 'https://jeong-pro.tistory.com/23'
         },
     ],
+    template(){
+        return `
+        ${wikiFilter.all.call(this)}
+        `
+    }
 };

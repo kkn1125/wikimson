@@ -1,7 +1,7 @@
-const http_https = {
+export default {
+    published: true,
     modified: '',
     done: true,
-    published: true,
     title: 'Http와 Https',
     tags: ['https', 'http'],
     categories: ['CS'],
@@ -36,4 +36,9 @@ const http_https = {
         //     link:''
         // },
     ],
+    template(){
+        return `
+        ${wikiFilter.all.call(this)}
+        `
+    }
 };
