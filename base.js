@@ -175,7 +175,7 @@ wikiFilter.all = function(){
 
 function watch(){
     let cur = location.hash.slice(1);
-    if(cur != 'home'){
+    if(cur != 'home' && cur != ''){
         document.title = 'Wikimson' + '::' + cur;
     } else {
         document.title = 'Wikimson';

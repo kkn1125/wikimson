@@ -5,10 +5,10 @@ export default {
         let page = decodeURIComponent(location.hash.slice(1));
         const side = `
         <div class="menu-title text-uppercase mb-5 text-muted roundText"style="min-width:7em;word-break: keep-all;">
-            ${!page.match(/home|404/gm)?page.replaceAll('-',' '):'wiki'}
+            ${!page.match(/home||404/gm)?page.replaceAll('-',' '):'wiki'}
         </div>
         <ul class="list-group">
-            ${Router[page].page.published && Router[page].page.pagination || page=='home'
+            ${page=='home' || page=='' || (Router[page].page.published && Router[page].page.pagination)
             ?Object.keys(Router)
             .filter(x=>Router[x].page.pagination)
             .sort((a,b)=>{
