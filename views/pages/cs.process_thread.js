@@ -36,13 +36,13 @@ export default {
                     tb: !멀티 프로세스|<span>멀티프로세스는 하나의 프로그램을 여러개의 프로세스로 구성하여 각 프로세스가 하나의 작업을 처리하는 것 입니다.</span>
                         <ul>
                             <li>하나의 프로세스가 잘못 되어도 프로그램은 동작 합니다.</li>
-                            <li>#context switching[context-switching|정의]:end 비용이 발생합니다.</li>
+                            <li>#context switching[ContextSwitching|정의]:end 비용이 발생합니다.</li>
                         </ul>\\
                         !멀티 스레드|<span>프로그램을 여러 개의 스레드로 구성하고 각 스레드가 작업을 처리하는 것 입니다.</span>
                         <ul>
                             <li>시스템 자원 소모와 처리비용가 감소하고 스레드 간 자원 공유가 가능합니다.</li>
                             <li>디버깅이 어렵고 동기화 이슈를 안고 있으며 하나의 스레드 오류로 전체 프로세스에 문제가 발생합니다.</li>
-                            <li>#교착상태(dead-lock)[dead-lock|정의]:end가 발생하지 않도록 주의해야합니다.</li>
+                            <li>#교착상태(dead-lock)[DeadLock|정의]:end가 발생하지 않도록 주의해야합니다.</li>
                         </ul>@
                         :end
                 </div>

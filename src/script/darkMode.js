@@ -29,6 +29,8 @@
 //         requestAnimationFrame(watchTarget);
 //     }
 // }
+let mode = getMode() || 'on';
+setMode(mode);
 if(JSON.parse(sessionStorage['mode']).dark=='off'){
     let body = document.body.classList;
     body.add('dark');

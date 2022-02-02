@@ -32,15 +32,15 @@
         
         <script src="./src/script/main.js" type="module"></script>
         <script src="src/script/finder.js" type="module"></script>
-        <script src="src/script/resize.js" defer></script>
+        <!-- <script src="src/script/resize.js" defer></script> -->
         <script defer>
-            requestAnimationFrame(convertCode);
-            function convertCode(){
-                let detectHljs = document.querySelector('.hljs');
-                if(!detectHljs) hljs.highlightAll();
-                if(detectHljs) cancelAnimationFrame(convertCode);
-                else requestAnimationFrame(convertCode);
-            }
+            // requestAnimationFrame(convertCode);
+            // function convertCode(){
+            //     let detectHljs = document.querySelector('.hljs');
+            //     if(!detectHljs) hljs.highlightAll();
+            //     if(detectHljs) cancelAnimationFrame(convertCode);
+            //     else requestAnimationFrame(convertCode);
+            // }
             let hash = location.hash;
             requestAnimationFrame(watchHash);
             function watchHash(){

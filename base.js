@@ -1,4 +1,111 @@
-const wikiFilter = {};
+const wikiFilter = {}
+
+'use strict';
+
+(function () {
+    let clicked = false;
+    let head = window;
+    
+    window.addEventListener('mousedown', readyToResize);
+    window.addEventListener('mouseup', cancelResize);
+    window.addEventListener('mousemove', moveHandler);
+
+    window.addEventListener('mousedown', readyToResize);
+    window.addEventListener('mouseup', cancelResize);
+    window.addEventListener('click', scrollIntoHandler);
+    window.addEventListener('click', scrollIntoHandler);
+
+    requestAnimationFrame(windowHandler);
+
+    function readyToResize(ev) {
+        let target = ev.target;
+        if (target.id == 'resizer' && ev.which == 1) clicked = true;
+    }
+
+    function cancelResize(ev) {
+        clicked = false;
+    }
+
+    function moveHandler(ev) {
+        if (!clicked && ev.type !== 'touchmove') return;
+
+        let left = ev.x;
+        if (ev.type == 'touchmove') {
+            left = ev.touches[0].clientX;
+        }
+        let leftSideBar = document.querySelector('#lsb');
+        leftSideBar.style.flex = `0 0 ${left}px`;
+    }
+
+    function windowHandler(ev) {
+        if(!document.querySelector('#resizer')){
+            requestAnimationFrame(windowHandler);
+        } else {
+            cancelAnimationFrame(windowHandler);
+            if (window.innerWidth - 17 < 576) {
+                document.querySelector('#resizer').style.display = 'none';
+            } else {
+                document.querySelector('#resizer').style.display = 'flex';
+            }
+    
+            if (navigator.userAgentData.mobile) {
+                head = document.querySelector('#resizer');
+                head.addEventListener('touchmove', moveHandler, {
+                    passive: true
+                });
+            } else {
+                head = window;
+            }
+        }
+    }
+
+    function readyToResize(ev) {
+        let target = ev.target;
+        if (target.id == 'resizer' && ev.which == 1) clicked = true;
+    }
+
+    function cancelResize(ev) {
+        clicked = false;
+    }
+
+    function scrollIntoHandler(ev) {
+        let target = ev.target;
+        if (!target.getAttribute('scroll-to')) return;
+        let focus = target.getAttribute('scroll-to');
+        let scrollHead = null;
+        for (let key of [...document.querySelectorAll('.h3, .h6')]) {
+            if (key.getAttribute('scroll-focus') == focus) {
+                if (window.innerWidth - 17 > 576) scrollHead = document.querySelector('[put-type="wiki"]');
+                else scrollHead = document.querySelector('.main');
+                scrollHead.scrollTo({
+                    behavior: 'smooth',
+                    left: 0,
+                    top: key.offsetTop
+                });
+            }
+        }
+    }
+})();
+
+wikiFilter.spy = function scrollSpy(ev) {
+    let spy = [...document.querySelectorAll(`[scroll-to]`)];
+
+    spy.map(s => s.classList.remove('highlight'));
+
+    [...document.querySelectorAll('.h3, .h6')].forEach(key=>{
+        let top = document.querySelector('[put-type="wiki"]').scrollTop;
+        if (key.offsetTop - 16 < top) {
+            let focus = key.getAttribute('scroll-focus');
+            spy.map(s => {
+                if (document.querySelector(`[scroll-to="${focus}"]`) == s) {
+                    s.classList.add('highlight');
+                } else {
+                    s.classList.remove('highlight');
+                }
+            });
+        }
+    });
+}
 
 wikiFilter.content = function(){
     return this.content.map(c=>{
@@ -170,6 +277,17 @@ wikiFilter.all = function(){
     temp += wikiFilter.toc.call(this);
     temp += wikiFilter.content.call(this);
     temp += wikiFilter.ref.call(this);
+    setTimeout(() => {
+        wikiFilter.scrollPoint();
+        document.querySelector('[put-type="wiki"]').addEventListener('scroll', wikiFilter.spy);
+        if(!document.querySelector('.prev'))
+        document.querySelector('[put-type="wiki"]').insertAdjacentHTML('beforeend', `
+            <button class="btn btn-danger prev" onclick="location='${this.parent.path}'">👈이전 페이지</button>
+        `);
+
+        let detectHljs = document.querySelector('.hljs');
+        if(!detectHljs) hljs.highlightAll();
+    }, 1);
     return temp;
 }
 
@@ -195,5 +313,5 @@ setTimeout(()=>{
     setTimeout(()=>{
         settingHandler();
     }, 500);
-    wikiFilter.scrollPoint();
+    // wikiFilter.scrollPoint();
 },100);

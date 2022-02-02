@@ -1,5 +1,6 @@
 import {Router} from '../../core/core.js'
 
+import Os from './cs.os.js'
 import Api from './cs.api.js'
 import ContextSwitching from './cs.context_switching.js'
 import DeadLock from './cs.dead_lock.js'
@@ -16,6 +17,7 @@ import PureFunction from './cs.pure_function.js'
 
 Api.parent = '#cs';
 
+Router.setPage('Os', Os);
 Router.setPage('Api', Api);
 Router.setPage('ContextSwitching', ContextSwitching);
 Router.setPage('DeadLock', DeadLock);
@@ -35,6 +37,7 @@ export default {
     published: true,
     title: 'cs',
     module: {
+        Os: Router['Os'],
         Api: Router['Api'],
         'ContextSwitching': Router['ContextSwitching'],
         'DeadLock': Router['DeadLock'],

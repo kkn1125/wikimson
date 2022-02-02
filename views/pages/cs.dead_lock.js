@@ -10,7 +10,7 @@ export default {
     toc: true,
     content: [
         `
-        <div><span class="h3">#교착상태 (dead-lock)[process&thread|멀티 프로세스와 멀티 스레드]:end</span></div>
+        <div><span class="h3">#교착상태 (dead-lock)[ProcessThread|멀티 프로세스와 멀티 스레드]:end</span></div>
         <div>
             <div>
                 <span class="h6">정의</span>

@@ -221,6 +221,26 @@ a {
     display: none;
 }
 
+.prev{
+    position: fixed;
+    bottom: 70px;
+    right: 40px;
+}
+
+@media (max-width: 575px) {
+    .prev{
+        position: fixed;
+        bottom: 100px;
+        right: 20px;
+    }
+}
+
+figure{
+    img{
+        width: 100%;
+    }
+}
+
 #mode {
     height: 55px;
 }
