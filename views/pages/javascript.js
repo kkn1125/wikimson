@@ -3,16 +3,16 @@ import {Router, App} from '../../core/core.js'
 import Console from './javascript.console.js'
 import Objects from './javascript.object.js'
 
-Router.setPage('console', Console);
-Router.setPage('object', Objects);
+Router.setPage('Console', Console);
+Router.setPage('Objects', Objects);
 
 export default {
     pagination: true,
     published: true,
     title: '자바스크립트 정리',
     module: {
-        console: Router['console'],
-        object: Router['object'],
+        Console: Router['Console'],
+        Objects: Router['Objects'],
     },
     list(){
         return Object.keys(this.module).map(m=>`<li><a href="#${m}">${m}</a></li>`).join('');

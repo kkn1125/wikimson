@@ -11,6 +11,7 @@ export default {
     </li>`)
     .join(''),
     template: function() {
+        const mode = JSON.parse(sessionStorage['mode'])
         return `
         <nav class="gnb position-sticky bg-light us-none gnb-primary">
             <div class="gnb-inner gnb-expand-md hide align-items-center">
@@ -26,7 +27,9 @@ export default {
                 </div>
                 <ul id="gnbMenu" class="gnb-menu vgap-3 w-flex hide">
                     ${this.wikis()}
-                    <li id="mode"></li>
+                    <li id="mode">
+                        <label for="mode" id="mtWrap" class="${mode.dark}"><span><i class="${mode.dark=='off'?'fas fa-moon':'far fa-sun'}"></i></span><input type="checkbox" data-switch="mode"></label>
+                    </li>
                 </ul>
             </div>
         </nav>

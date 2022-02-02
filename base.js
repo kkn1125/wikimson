@@ -1,4 +1,4 @@
-const wikiFilter = {}
+const wikiFilter = {};
 
 wikiFilter.content = function(){
     return this.content.map(c=>{

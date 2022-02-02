@@ -4,7 +4,7 @@
     --font-gugi: 'Gugi', cursive;
 }
 
-#app{
+#app {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -22,7 +22,7 @@
     justify-content: center;
     align-items: center;
     cursor: col-resize;
-    
+
     .dotted {
         display: block;
         width: 5px;
@@ -35,6 +35,12 @@
         -moz-border-radius: 50%;
         -ms-border-radius: 50%;
         -o-border-radius: 50%;
+    }
+}
+
+@media (max-width: 575px) {
+    #resizer {
+        display: none;
     }
 }
 
@@ -55,35 +61,35 @@ aside.side-bar {
     .overflow-x-#{$size}hidden {
         overflow-x: hidden;
     }
-    
+
     .overflow-y-#{$size}hidden {
         overflow-y: hidden;
     }
-    
+
     .overflow-#{$size}hidden {
         overflow-y: hidden;
     }
-    
+
     .overflow-x-#{$size}visible {
         overflow-x: visible;
     }
-    
+
     .overflow-y-#{$size}visible {
         overflow-y: visible;
     }
-    
+
     .overflow-#{$size}visible {
         overflow-y: visible;
     }
-    
+
     .overflow-x-#{$size}auto {
         overflow-x: auto;
     }
-    
+
     .overflow-y-#{$size}auto {
         overflow-y: auto;
     }
-    
+
     .overflow-#{$size}auto {
         overflow-y: auto;
     }
@@ -141,7 +147,9 @@ ul.toc {
 }
 
 nav {
-    ul,ol {
+
+    ul,
+    ol {
         margin: 0 !important;
     }
 }
@@ -152,7 +160,7 @@ a {
     -moz-window-dragging: none;
 }
 
-img{
+img {
     width: 90%;
 }
 
@@ -171,7 +179,7 @@ img{
     }
 }
 
-table{
+table {
     &.table {
         margin-top: 0;
     }
@@ -180,7 +188,7 @@ table{
 .main {
     min-height: 15em;
     overflow-y: auto;
-    height: calc(100vh - 61px - 51.6px);
+    flex: 1 1 auto;
 }
 
 @media (min-width: 576px) {
@@ -189,7 +197,7 @@ table{
     }
 }
 
-a{
+a {
     &>span {
         pointer-events: none;
     }
@@ -213,7 +221,11 @@ a{
     display: none;
 }
 
-label{
+#mode {
+    height: 55px;
+}
+
+label {
     &#mtWrap {
         user-select: none;
         cursor: pointer;
@@ -232,12 +244,15 @@ label{
         -ms-border-radius: 2rem;
         -o-border-radius: 2rem;
     }
+
     &.on>span {
         left: 0%;
     }
+
     &.off>span {
         left: 50%;
     }
+
     &>span {
         position: absolute;
         display: inline-flex;
@@ -258,6 +273,7 @@ label{
         -moz-transition: 0.3s left cubic-bezier(0.25, 0.46, 0.45, 0.94);
         -ms-transition: 0.3s left cubic-bezier(0.25, 0.46, 0.45, 0.94);
         -o-transition: 0.3s left cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
         &::before {
             position: absolute;
         }
@@ -273,14 +289,16 @@ body {
 
 .gnb {
     box-shadow: 0 0 .5rem rgba(var(--pl-dark-rgb), .2);
+
     #gnbMenu {
         text-transform: capitalize;
-        transition: none !important;
-        -webkit-transition: none !important;
-        -moz-transition: none !important;
-        -ms-transition: none !important;
-        -o-transition: none !important;
-}
+        transition: transform 150ms !important;
+        -webkit-transition: transform 150ms !important;
+        -moz-transition: transform 150ms !important;
+        -ms-transition: transform 150ms !important;
+        -o-transition: transform 150ms !important;
+    }
+
     .brand {
         font-family: var(--font-comfortaa);
         font-weight: bold;
@@ -308,16 +326,17 @@ body {
     text-transform: capitalize;
 }
 
-a[href]{
+a[href] {
     &.ref {
         color: rgba(var(--pl-brand-rgb), 1);
     }
 }
 
-body{
+body {
     &.dark {
         background-color: rgba(var(--pl-dark-rgb-2), 1);
         color: white;
+
         table.table {
             td {
                 color: inherit !important;
@@ -327,38 +346,42 @@ body{
         footer {
             background-color: rgba(var(--pl-dark-rgb-1), 1) !important;
             color: inherit;
+
             a[href] {
                 color: inherit;
             }
         }
-    
+
         nav.gnb.gnb-primary {
             background-color: rgba(var(--pl-dark-rgb-1), 1) !important;
         }
-    
+
         time {
-            &, &.text-dark{
+
+            &,
+            &.text-dark {
                 color: white !important;
             }
         }
-    
+
         #resizer.resizer {
             background-color: rgba(var(--pl-dark-rgb-1), 1) !important;
         }
-    
+
         section {
             background-color: rgba(var(--pl-dark-rgb-2), 1) !important;
             color: inherit;
+
             button {
                 color: inherit !important;
             }
         }
-    
+
         #lsb {
             background-color: rgba(var(--pl-dark-rgb), 1) !important;
             color: inherit;
         }
-    
+
         .tag {
             color: white;
         }

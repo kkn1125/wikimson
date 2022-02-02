@@ -20,19 +20,19 @@
             App.brand = 'Wikimson';
             App.home = '#home';
             App.author = 'kimson';
-            App.baseurl = location.protocol == 'https'?'/router/':'/'
+            App.baseurl = location.protocol.match('https')?'/router/':'/'
             document.title = App.brand;
         </script>
         <title>Document</title>
     </head>
 
     <body>
+        <script src="src/script/darkMode.js" async defer></script>
         <div id="app"></div>
         
         <script src="./src/script/main.js" type="module"></script>
         <script src="src/script/finder.js" type="module"></script>
         <script src="src/script/resize.js" defer></script>
-        <script src="src/script/darkMode.js" async defer></script>
         <script defer>
             requestAnimationFrame(convertCode);
             function convertCode(){
@@ -40,6 +40,45 @@
                 if(!detectHljs) hljs.highlightAll();
                 if(detectHljs) cancelAnimationFrame(convertCode);
                 else requestAnimationFrame(convertCode);
+            }
+            let hash = location.hash;
+            requestAnimationFrame(watchHash);
+            function watchHash(){
+                if(hash != location.hash){
+                    const menuBtns = document.querySelectorAll('.menu-btn');
+                    let target = document.querySelectorAll('.side-bar');
+
+                    if(!target) {
+                        limit--;
+                        if(limit==0){
+                            console.error('[Not Fount] sidebar가 존재하지 않습니다.');
+                            return;
+                        } else {
+                            setTimeout(()=>{
+                                settingHandler();
+                            }, 100);
+                        }
+                    } else {
+                        for(let t of target){
+                            t.querySelector('[class*=position-]').style.top = `${t.getBoundingClientRect().top}px`;
+                        }
+                        for(let btn of menuBtns){
+                            btn.querySelector('button[data-target]').addEventListener('click', menuBtnHandler);
+                        }
+                    
+                        document.querySelectorAll('[data-msg]').forEach(msg=>{
+                            let type = msg.dataset.popType;
+                            let message = msg.dataset[type];
+                            let st = document.createElement('style');
+                            msg.addEventListener('mouseenter', popEnterHandler.bind(msg, message, st));
+                            msg.addEventListener('mouseleave', popLeaveHandler.bind(msg, st));
+                        });
+
+                        document.documentElement.lang = navigator.language.split('-').shift();
+                    }
+                }
+                hash = location.hash;
+                requestAnimationFrame(watchHash);
             }
         </script>
     </body>

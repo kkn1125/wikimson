@@ -1,3 +1,0 @@
-const home = {
-    published: true,
-};

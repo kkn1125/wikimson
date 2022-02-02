@@ -1,34 +1,43 @@
-!function initMode() {
-    // 최초 실행시 세션스토리지 읽고 값 적용
-    findTarget = requestAnimationFrame(watchTarget);
-}();
+// !function initMode() {
+//     // 최초 실행시 세션스토리지 읽고 값 적용
+//     findTarget = requestAnimationFrame(watchTarget);
+// }();
 
-function watchTarget(){
-    let mode = getMode() || 'on';
-    let label = document.createElement('label');
-    let btn = document.createElement('span');
-    label.htmlFor = 'mode';
-    label.id = 'mtWrap';
-    label.append(btn);
+// function watchTarget(){
+//     let mode = getMode() || 'on';
+//     let label = document.createElement('label');
+//     let btn = document.createElement('span');
+//     label.htmlFor = 'mode';
+//     label.id = 'mtWrap';
+//     label.append(btn);
     
-    label.insertAdjacentHTML('beforeend', `<input type="checkbox" data-switch="mode">`);
+//     label.insertAdjacentHTML('beforeend', `<input type="checkbox" data-switch="mode">`);
 
-    const id = document.querySelector('#mode');
-    if(id) {
-        id.append(label);
-        target = document.querySelector(`[data-switch="${label.htmlFor}"]`);
-        if(target) {
-            // target.insertAdjacentElement('beforebegin', label);
-            updateMode.call(label, mode);
-            window.addEventListener('click', modeHandler.bind(label));
-            cancelAnimationFrame(findTarget);
-        } else {
-            requestAnimationFrame(watchTarget);
-        }
-    } else {
-        requestAnimationFrame(watchTarget);
-    }
+//     const id = document.querySelector('#mode');
+//     if(id) {
+//         id.append(label);
+//         target = document.querySelector(`[data-switch="${label.htmlFor}"]`);
+//         if(target) {
+//             // target.insertAdjacentElement('beforebegin', label);
+//             updateMode.call(label, mode);
+//             window.addEventListener('click', modeHandler.bind(label));
+//             // cancelAnimationFrame(findTarget);
+//         } else {
+//             requestAnimationFrame(watchTarget);
+//         }
+//     } else {
+//         requestAnimationFrame(watchTarget);
+//     }
+// }
+if(JSON.parse(sessionStorage['mode']).dark=='off'){
+    let body = document.body.classList;
+    body.add('dark');
+} else {
+    let body = document.body.classList;
+    body.remove('dark');
 }
+
+window.addEventListener('click', modeHandler);
 
 window.addEventListener('load', ()=>{
     let findTarget = requestAnimationFrame(detectMode);
@@ -48,8 +57,8 @@ function modeHandler(ev) {
     let valid = ev.target;
     if (valid.tagName !== 'LABEL' || valid.htmlFor!='mode') return;
     ev.preventDefault();
-    let mode = this.classList.value == 'on' ? 'off' : 'on';
-    updateMode.call(this, mode);
+    let mode = valid.classList.value == 'on' ? 'off' : 'on';
+    updateMode.call(valid, mode);
 }
 
 function updateMode(mode) {
