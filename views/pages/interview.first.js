@@ -60,6 +60,8 @@ export default {
         // },
     ],
     template(){
+        this.title = this.origin.name;
+        
         return `
             ${wikiFilter.all.call(this)}
         `

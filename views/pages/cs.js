@@ -1,6 +1,5 @@
 import {Router} from '../../core/core.js'
 
-import Os from './cs.os.js'
 import Api from './cs.api.js'
 import ContextSwitching from './cs.context_switching.js'
 import DeadLock from './cs.dead_lock.js'
@@ -15,9 +14,6 @@ import Osi from './cs.osi.js'
 import ProcessThread from './cs.process_thread.js'
 import PureFunction from './cs.pure_function.js'
 
-Api.parent = '#cs';
-
-Router.setSubPage('Os', 'cs.os', Os);
 Router.setSubPage('Api', 'cs.api', Api);
 Router.setSubPage('ContextSwitching', 'cs.contextswitching', ContextSwitching);
 Router.setSubPage('DeadLock', 'cs.deadlock', DeadLock);
@@ -54,7 +50,7 @@ export default {
     published: true,
     title: 'cs',
     list(){
-        return Object.keys(this.module).filter(x=>x.slice(1)!=this.origin.path.slice(1)).map(m=>{
+        return Object.keys(this.module).filter(x=>x.slice(1).replace(/[\s\_\-\.]+/gm, '-')!=this.origin.path.slice(1).replace(/[\s\_\-\.]+/gm, '-')).map(m=>{
             return `<li><a href="${this.module[m].path}">${this.module[m].name}</a></li>`;
         }).join('');
     },

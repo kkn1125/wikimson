@@ -9,7 +9,9 @@ export default{
     published: true,
     title: 'binarysearch',
     list(){
-        return Object.keys(this.module).filter(x=>x.slice(1)!=this.origin.path.slice(1)).map(m=>`<li><a href="${this.module[m].path}">${this.module[m].name}</a></li>`).join('');
+        return Object.keys(this.module).filter(x=>x.slice(1).replace(/[\s\_\-\.]+/gm, '-')!=this.origin.path.slice(1).replace(/[\s\_\-\.]+/gm, '-')).map(m=>{
+            return `<li><a href="${this.module[m].path}">${this.module[m].name}</a></li>`;
+        }).join('');
     },
     template(){
         return `

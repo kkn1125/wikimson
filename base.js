@@ -2,6 +2,214 @@ const wikiFilter = {}
 
 'use strict';
 
+Object.defineProperty(Object.prototype, 'toCapitalize', {
+    value: function (){
+        return this.split(/[\_\-\.\s]+/gm).map(x=>{
+            return x.charAt(0).toUpperCase()+x.slice(1);
+        }).join(' ');
+    }
+})
+
+const Markdown = (function () {
+    function Controller() {
+        let models;
+
+        this.init = function (model) {
+            models = model;
+        }
+    }
+
+    function Model() {
+        let views;
+        let md;
+        let temp;
+
+        this.init = function (view) {
+            views = view;
+            md = views.getMd();
+            
+            if(md.match(/\<[\/\w\s]+\>/gm)) return md;
+            this.parse();
+            return views.renderView(md);
+        }
+
+        this.parse = function () {
+            // this.br();
+            this.line();
+            this.ul();
+            this.ol();
+            this.h();
+            this.altH();
+            this.img();
+            this.a();
+            this.font();
+            this.pre();
+            this.blockquote();
+            this.p();
+            this.removeEmpty();
+        }
+
+        this.removeEmpty = function (){
+            md = md.replace(/(\<p\>)([\s\S\n]*?)(\<\/p\>)/gim, (a, $1,$2,$3)=>{
+                if($2.trim()=='') return '';
+                return $1+$2.trim()+$3;
+            });
+        }
+
+        this.ul = function () {
+            // md = md.replace(/^\s*\-\s[\s\S]+?\n/gim, ($,$1,$2)=>{
+            //     if($1)
+            //     return `<li>${$2}</li>`;
+            // });
+            let remember = null;
+            let first = 0;
+            
+            let temp = ``;
+            temp += md.match(/\-\s(.|\s)+/gm).map((a,$1,$2)=>{
+                return a.split(/\n{2}/gm).map((x, i)=>{
+                    if(remember != i) temp = `</ul><ul class="list-group reset">`;
+
+                    remember = i;
+                    return x.split(/\n/gm).filter(z=>z.trim()!='').map(y=>{
+                        if(i==0 && y.match(/^\s+/)){
+                            first = y.match(/^\s+/)[0].split('').length;
+                        } else if(i>0 && y.match(/^\s+/)){
+                            if(y.match(/^\s+/)[0].split('').length<=first){
+                                temp = `</ul><ul class="list-group reset">`;
+                            } else {
+                                temp = `<ul class="list-group reset">`;
+                            }
+                        }
+
+                        let tmp = temp;
+                        temp = '';
+                        return tmp+`<li class="list-item">${y.replace(/^[\-\s]+/gm,'').trim()}</li>`;
+                    }).join('');
+                }).join('');
+            }).join('');
+            temp += `</ul>`;
+
+            md = md.replace(/^\s+?\-\s?([\s\S]+?)\s?$/gm, ()=>{
+                let tmp = temp; // 중복 해결...
+                temp = '';
+                return tmp;
+            });
+        }
+
+        this.ol = function () {
+            let temp = `<ol class="list-group reset">`;
+            temp += md.match(/([0-9])\.\s?([\s\S]+?)\n/gm).map(x=>{
+                return `<li class="list-item">${x.split('.').pop().trim()}</li>`;
+            }).join('');
+            temp += `</ol>`;
+            md = md.replace(/([0-9])\.\s?([\s\S]+?)\n/gm, ()=>{
+                let tmp = temp; // 중복 해결...
+                temp = '';
+                return tmp;
+            });
+        }
+
+        this.br = function () {
+            md = md.replace(/[\s]{2}$/gm, '<br>');
+        }
+
+        this.h = function () {
+            md = md.replace(/[\#]{6}(.+)/g, (a,$1)=>{
+                return `<div><span class="h6">${$1.trim()}</span></div>`;
+            });
+            md = md.replace(/[\#]{5}(.+)/g, (a,$1)=>{
+                return `<div><span class="h5">${$1.trim()}</span></div>`;
+            });
+            md = md.replace(/[\#]{4}(.+)/g, (a,$1)=>{
+                return `<div><span class="h4">${$1.trim()}</span></div>`;
+            });
+            md = md.replace(/[\#]{3}(.+)/g, (a,$1)=>{
+                return `<div><span class="h3">${$1.trim()}</span></div>`;
+            });
+            md = md.replace(/[\#]{2}(.+)/g, (a,$1)=>{
+                return `<div><span class="h2">${$1.trim()}</span></div>`;
+            });
+            md = md.replace(/[\#]{1}(.+)/g, (a,$1)=>{
+                return `<div><span class="h1">${$1.trim()}</span></div>`;
+            });
+        }
+
+        this.altH = function () {
+            md = md.replace(/^(.+)\n\=+/gm, '<h1>$1</h1>');
+            md = md.replace(/^(.+)\n\-+/gm, '<h2>$1</h2>');
+        }
+
+        this.a = function () {
+            md = md.replace(/\[([\s\S]+?)\]\(([A-z0-9ㄱ-힣\.\/\-\_\:\s]+)\s*[\'\"]*([A-z0-9ㄱ-힣\s]*)[\'\"]*\)/gm, `<a href="$2" title="$3">$1</a>`);
+        }
+
+        this.img = function () {
+            md = md.replace(/!\[([\s\S]+?)\]\(([A-z0-9ㄱ-힣\.\/\-\_\:\s]+)\s*[\'\"]*([A-z0-9ㄱ-힣\s]*)[\'\"]*\)/gm, `<img src="$2" alt="$1" title="$3">`);
+        }
+
+        this.font = function () {
+            //font styles
+            md = md.replace(/[\*\_]{2}([^\*\_]+)[\*\_]{2}/g, '<b>$1</b>');
+            md = md.replace(/[\*\_]{1}([^\*\_]+)[\*\_]{1}/g, '<i>$1</i>');
+            md = md.replace(/[\~]{2}([^\~]+)[\~]{2}/g, '<del>$1</del>');
+        }
+
+        this.pre = function () {
+            md = md.replace(/^\s*\n\`\`\`(([^\s]+))?/gm, '<pre class="$2">');
+            md = md.replace(/^\`\`\`\s*\n/gm, '</pre>\n\n');
+        }
+
+        this.code = function () {
+            md = md.replace(/[\`]{1}([^\`]+)[\`]{1}/g, '<code>$1</code>');
+        }
+
+        this.p = function () {
+            md = md.replace(/^\s*(\n)?(.+)/gm, function (m) {
+                return /\<(\/)?(h\d|ul|ol|li|blockquote|pre|img|div|span)/.test(m) ? m : '<p>' + m + '</p>';
+            });
+        }
+
+        this.blockquote = function () {
+            md = md.replace(/^\>(.+)/gm, (a,$1)=>{
+                return `<blockquote>${$1.trim()}</blockquote>`;
+            });
+        }
+
+        this.line = function () {
+            md = md.replace(/(\-|\=){3,}/gm, (a,$1)=>{
+                return `<hr>`;
+            });
+        }
+    }
+
+    function View() {
+        let parts;
+
+        this.init = function (part) {
+            parts = part;
+        }
+
+        this.getMd = function () {
+            return parts;
+        }
+
+        this.renderView = function (md) {
+            return md;
+        }
+    }
+    return {
+        parse(str) {
+            const view = new View();
+            const model = new Model();
+            const controller = new Controller();
+
+            view.init(str);
+            controller.init(model);
+            return model.init(view);
+        }
+    }
+})();
+
 (function () {
     let clicked = false;
     let head = window;
@@ -74,6 +282,7 @@ const wikiFilter = {}
         let focus = target.getAttribute('scroll-to');
         let scrollHead = null;
         for (let key of [...document.querySelectorAll('.h3, .h6')]) {
+            console.log(key.getAttribute('scroll-focus') , focus)
             if (key.getAttribute('scroll-focus') == focus) {
                 if (window.innerWidth - 17 > 576) scrollHead = document.querySelector('[put-type="wiki"]');
                 else scrollHead = document.querySelector('.main');
@@ -109,11 +318,13 @@ wikiFilter.spy = function scrollSpy(ev) {
 
 wikiFilter.content = function(){
     return this.content.map(c=>{
+        c = Markdown.parse(c);
+
         c = c.replace(/->|<-/gm, (a,b)=>{
             if(a=='->')return '&#10142;';
             else if(a=='<-') return '&#129044;';
         });
-        c= c.replace(/\#([\s\S]*?)\[([\s\S]*?)\]:end/g, (origin,text,ref,i)=>{
+        c = c.replace(/\#([\s\S]*?)\[([\s\S]*?)\]:end/g, (origin,text,ref,i)=>{
             let page = ref.split('|').shift();
             let scroll = ref.split('|').pop();
             return `<a class="ref" href="#${page}" scroll-to="${scroll}" title='"${page}"에서 "${scroll}" 참조'>${text}</a>`;
@@ -177,12 +388,14 @@ wikiFilter.regdate = function(){
 
 wikiFilter.toc = function(){
     let dom = new DOMParser();
-    let html = dom.parseFromString(this.content.join('').replace(/\-\>|\<\-/gm, (a,b)=>{
+    
+    let html = dom.parseFromString(Markdown.parse(this.content.join('')).replace(/\-\>|\<\-/gm, (a,b)=>{
         if(a=='->')return '&#10142;';
         else if(a=='<-') return '&#129044;';
     }), 'text/html').body;
-
-    const generateToc = [...html.querySelectorAll('.h3')].map(x=>{
+    // console.log([...html.querySelectorAll('.h3,.h6')])
+    const generateToc = [...html.querySelectorAll('.h3')]
+    .map(x=>{
         let save = [];
         if(x.parentNode.nextElementSibling){
             save.push(x);
@@ -192,10 +405,10 @@ wikiFilter.toc = function(){
         }
         return save;
     });
+    let count = 0;
     
     return `${this.toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div><ol class="toc">':''}
     ${!this.toc?'':generateToc.map(x=>{
-        let count = 0;
         return x.map((y, i)=>{
             function convertSyntax(target){
                 if(target.match(/[\#\|\:]/g))
@@ -231,7 +444,7 @@ wikiFilter.ref = function (){
 
 wikiFilter.sidebar = function (){
     let dom = new DOMParser();
-    let html = dom.parseFromString(this.content.join('').replace(/\-\>|\<\-/gm, (a,b)=>{
+    let html = dom.parseFromString(Markdown.parse(this.content?.join('')).replace(/\-\>|\<\-/gm, (a,b)=>{
         if(a=='->')return '&#10142;';
         else if(a=='<-') return '&#129044;';
     }), 'text/html').body;
@@ -299,19 +512,11 @@ function watch(){
         document.title = 'Wikimson';
     }
     requestAnimationFrame(watch);
+    document.querySelectorAll('ul,ol').forEach(el=>{
+        el.querySelectorAll('br').forEach(x=>{
+            x.remove();
+        })
+    })
 }
 
 requestAnimationFrame(watch);
-
-setTimeout(()=>{
-    Object.assign(document.body.insertAdjacentElement('beforeEnd', document.createElement('script')),{
-        src: 'https://cdn.jsdelivr.net/gh/kkn1125/penli@dabfbd0/docs/assets/js/penli.js',
-        integrity: 'sha384-v8IcF+Ajik1Du5Pn4UGwOVizMisxuU6LhXVsWYy1WdP2+1MxTdeJRHuYeDAdtQ6v',
-        crossorigin: 'anonymous',
-    });
-
-    setTimeout(()=>{
-        settingHandler();
-    }, 500);
-    // wikiFilter.scrollPoint();
-},100);

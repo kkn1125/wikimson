@@ -1,23 +1,19 @@
-import {Router, App} from '../../core/core.js'
+import {Router} from '../../core/core.js'
 
-import First from './interview.first.js'
-import Two from './interview.two.js'
-import Three from './interview.three.js'
+import Base from './os.base.js'
 
-Router.setSubPage('회사 1차 면접', 'interview.first', First);
-Router.setSubPage('회사 2차 면접', 'interview.two', Two);
-Router.setSubPage('결과', 'interview.three', Three);
+Router.setSubPage('운영체제 서론', 'operating_system-base', Base);
 
 export default {
     pagination: true,
     published: true,
-    title: '인터뷰를 정리하자',
+    title: 'os',
     list(){
         return Object.keys(this.module).filter(x=>x.slice(1).replace(/[\s\_\-\.]+/gm, '-')!=this.origin.path.slice(1).replace(/[\s\_\-\.]+/gm, '-')).map(m=>{
             return `<li><a href="${this.module[m].path}">${this.module[m].name}</a></li>`;
         }).join('');
     },
-    template(){
+    template: function(){
         return `
         <ul class="list-group">
             ${this.list()}

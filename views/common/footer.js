@@ -23,7 +23,7 @@ export default {
     },
     wikis: () => Object.keys(Router)
     .filter(x=>Router[x].page.pagination)
-    .map(w=>`<div><a href="#${w}" class="nav-link">${w}</a></div>`)
+    .map(w=>`<div><a href="${Router[w].path}" class="nav-link">${Router[w].convertedName.toCapitalize()}</a></div>`)
     .join(''),
     template: function() {
         return `

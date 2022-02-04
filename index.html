@@ -62,17 +62,19 @@
                         for(let t of target){
                             t.querySelector('[class*=position-]').style.top = `${t.getBoundingClientRect().top}px`;
                         }
-                        for(let btn of menuBtns){
-                            btn.querySelector('button[data-target]').addEventListener('click', menuBtnHandler);
-                        }
-                    
-                        document.querySelectorAll('[data-msg]').forEach(msg=>{
-                            let type = msg.dataset.popType;
-                            let message = msg.dataset[type];
-                            let st = document.createElement('style');
-                            msg.addEventListener('mouseenter', popEnterHandler.bind(msg, message, st));
-                            msg.addEventListener('mouseleave', popLeaveHandler.bind(msg, st));
-                        });
+
+                        setTimeout(()=>{
+                            for(let btn of menuBtns){
+                                btn.querySelector('button[data-target]').addEventListener('click', menuBtnHandler);
+                            }
+                            document.querySelectorAll('[data-msg]').forEach(msg=>{
+                                let type = msg.dataset.popType;
+                                let message = msg.dataset[type];
+                                let st = document.createElement('style');
+                                msg.addEventListener('mouseenter', popEnterHandler.bind(msg, message, st));
+                                msg.addEventListener('mouseleave', popLeaveHandler.bind(msg, st));
+                            });
+                        }, 100);
 
                         document.documentElement.lang = navigator.language.split('-').shift();
                     }
@@ -80,6 +82,19 @@
                 hash = location.hash;
                 requestAnimationFrame(watchHash);
             }
+
+            setTimeout(()=>{
+                Object.assign(document.body.insertAdjacentElement('beforeEnd', document.createElement('script')),{
+                    src: 'https://cdn.jsdelivr.net/gh/kkn1125/penli@dabfbd0/docs/assets/js/penli.js',
+                    integrity: 'sha384-v8IcF+Ajik1Du5Pn4UGwOVizMisxuU6LhXVsWYy1WdP2+1MxTdeJRHuYeDAdtQ6v',
+                    crossorigin: 'anonymous',
+                });
+                setTimeout(()=>{
+                    settingHandler();
+                    wikiFilter.scrollPoint();
+                }, 100);
+            }, 150);
+            
         </script>
     </body>
 

@@ -8,7 +8,7 @@ export default {
             ${!page.match(/home||404/gm)?page.replaceAll('-',' '):'wiki'}
         </div>
         <ul class="list-group">
-            ${page=='home' || page=='' || (Router[page].page.published && Router[page].page.pagination)
+            ${page=='home' || page=='' || (Router[page]?.page.published && Router[page].page?.pagination)
             ?Object.keys(Router)
             .filter(x=>Router[x].page.pagination)
             .sort((a,b)=>{
@@ -17,8 +17,8 @@ export default {
                 if(a < b) { return -1; }
                 if(a > b) { return 1; }
                 return 0;
-            }).filter(x=>Router[x].page.published).map(x=>`<li class="list-item"><a href="#${x}">${x}</a></li>`).join('')
-            :wikiFilter.sidebar.call(Router[page].page)}
+            }).filter(x=>Router[x].page.published).map(x=>`<li class="list-item"><a href="${Router[x].path}">${Router[x].convertedName}</a></li>`).join('')
+            :wikiFilter.sidebar.call(Router[page]?.page)}
         </ul>`
 
         return `
