@@ -26,7 +26,7 @@ export default {
                 `).join('');
 
                 if(!document.querySelector('[recent-post]'))
-                document.querySelector('[recent-posts]').insertAdjacentHTML('afterbegin', list);
+                document.querySelector('[recent-posts]').insertAdjacentHTML('afterbegin', list||`<li  class="list-item py-1" recent-post>최근 1일간 새로운 포스트가 없습니다.</li>`);
 
                 if(document.querySelector('[wiki-length]').innerHTML.trim()=='')
                 document.querySelector('[wiki-length]').insertAdjacentHTML('beforeend', wikibundle.length);

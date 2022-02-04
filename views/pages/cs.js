@@ -55,7 +55,6 @@ export default {
     title: 'cs',
     list(){
         return Object.keys(this.module).filter(x=>x.slice(1)!=this.origin.path.slice(1)).map(m=>{
-            console.log(this.module[m].path)
             return `<li><a href="${this.module[m].path}">${this.module[m].name}</a></li>`;
         }).join('');
     },
