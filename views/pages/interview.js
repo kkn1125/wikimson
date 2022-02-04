@@ -4,21 +4,16 @@ import First from './interview.first.js'
 import Two from './interview.two.js'
 import Three from './interview.three.js'
 
-Router.setPage('Comp1', First);
-Router.setPage('Comp2', Two);
-Router.setPage('Result', Three);
+Router.setSubPage('회사 1차 면접', 'interview.first', First);
+Router.setSubPage('회사 2차 면접', 'interview.two', Two);
+Router.setSubPage('결과', 'interview.three', Three);
 
 export default {
     pagination: true,
     published: true,
     title: '인터뷰를 정리하자',
-    module: {
-        'Comp1': Router['Comp1'],
-        'Comp2': Router['Comp2'],
-        'Result': Router['Result'],
-    },
     list(){
-        return Object.keys(this.module).map(m=>`<li><a href="#${m}">${m}</a></li>`).join('');
+        return Object.keys(this.module).filter(x=>x.slice(1)!=this.origin.path.slice(1)).map(m=>`<li><a href="${this.module[m].path}">${this.module[m].name}</a></li>`).join('');
     },
     template(){
         return `

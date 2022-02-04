@@ -17,43 +17,47 @@ import PureFunction from './cs.pure_function.js'
 
 Api.parent = '#cs';
 
-Router.setPage('Os', Os);
-Router.setPage('Api', Api);
-Router.setPage('ContextSwitching', ContextSwitching);
-Router.setPage('DeadLock', DeadLock);
-Router.setPage('DDD', DDD);
-Router.setPage('Framework', Framework);
-Router.setPage('GarbageCollection', GarbageCollection);
-Router.setPage('HttpHttps', HttpHttps);
-Router.setPage('LegacyCode', LegacyCode);
-Router.setPage('Library', Library);
-Router.setPage('Mvc', Mvc);
-Router.setPage('Osi', Osi);
-Router.setPage('ProcessThread', ProcessThread);
-Router.setPage('PureFunction', PureFunction);
+Router.setSubPage('Os', 'cs.os', Os);
+Router.setSubPage('Api', 'cs.api', Api);
+Router.setSubPage('ContextSwitching', 'cs.contextswitching', ContextSwitching);
+Router.setSubPage('DeadLock', 'cs.deadlock', DeadLock);
+Router.setSubPage('DDD', 'cs.ddd', DDD);
+Router.setSubPage('Framework', 'cs.framework', Framework);
+Router.setSubPage('GarbageCollection', 'cs.garbagecollection', GarbageCollection);
+Router.setSubPage('HttpHttps', 'cs.httphttps', HttpHttps);
+Router.setSubPage('LegacyCode', 'cs.legacycode', LegacyCode);
+Router.setSubPage('Library', 'cs.library', Library);
+Router.setSubPage('Mvc', 'cs.mvc', Mvc);
+Router.setSubPage('Osi', 'cs.osi', Osi);
+Router.setSubPage('ProcessThread', 'cs.processthread', ProcessThread);
+Router.setSubPage('PureFunction', 'cs.purefunction', PureFunction);
+
+// {
+//     Os: Router['Os'],
+//     Api: Router['Api'],
+//     'ContextSwitching': Router['ContextSwitching'],
+//     'DeadLock': Router['DeadLock'],
+//     'DDD': Router['DDD'],
+//     'Framework': Router['Framework'],
+//     'GarbageCollection': Router['GarbageCollection'],
+//     'HttpHttps': Router['HttpHttps'],
+//     'LegacyCode': Router['LegacyCode'],
+//     'Library': Router['Library'],
+//     'Mvc': Router['Mvc'],
+//     'Osi': Router['Osi'],
+//     'ProcessThread': Router['ProcessThread'],
+//     'PureFunction': Router['PureFunction'],
+// }
 
 export default {
     pagination: true,
     published: true,
     title: 'cs',
-    module: {
-        Os: Router['Os'],
-        Api: Router['Api'],
-        'ContextSwitching': Router['ContextSwitching'],
-        'DeadLock': Router['DeadLock'],
-        'DDD': Router['DDD'],
-        'Framework': Router['Framework'],
-        'GarbageCollection': Router['GarbageCollection'],
-        'HttpHttps': Router['HttpHttps'],
-        'LegacyCode': Router['LegacyCode'],
-        'Library': Router['Library'],
-        'Mvc': Router['Mvc'],
-        'Osi': Router['Osi'],
-        'ProcessThread': Router['ProcessThread'],
-        'PureFunction': Router['PureFunction'],
-    },
     list(){
-        return Object.keys(this.module).map(m=>`<li><a href="#${m}">${m}</a></li>`).join('');
+        return Object.keys(this.module).filter(x=>x.slice(1)!=this.origin.path.slice(1)).map(m=>{
+            console.log(this.module[m].path)
+            return `<li><a href="${this.module[m].path}">${this.module[m].name}</a></li>`;
+        }).join('');
     },
     template(){
         return `

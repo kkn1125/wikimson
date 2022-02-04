@@ -48,14 +48,6 @@ export default {
     ],
     ref: [
         {
-            name:'관련 위키 wikimson>library',
-            link:'#library'
-        },
-        {
-            name:'관련 위키 wikimson>framework',
-            link:'#framework'
-        },
-        {
             name:'preamtree님 블로그',
             link:'https://preamtree.tistory.com/11'
         },

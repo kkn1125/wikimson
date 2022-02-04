@@ -2,17 +2,14 @@ import {Router} from '../../core/core.js'
 
 import Binarysearch from './algorithm.binarysearch.js'
 
-Router.setPage('Binarysearch', Binarysearch);
+Router.setSubPage('Binarysearch', 'algorithm.binarysearch', Binarysearch);
 
 export default{
     pagination: true,
     published: true,
     title: 'binarysearch',
-    module: {
-        Binarysearch: Router['Binarysearch'],
-    },
     list(){
-        return Object.keys(this.module).map(m=>`<li><a href="#${m}">${m}</a></li>`).join('');
+        return Object.keys(this.module).filter(x=>x.slice(1)!=this.origin.path.slice(1)).map(m=>`<li><a href="${this.module[m].path}">${this.module[m].name}</a></li>`).join('');
     },
     template(){
         return `

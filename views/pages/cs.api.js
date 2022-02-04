@@ -58,11 +58,11 @@ export default {
         },
         {
             name:'관련 위키 wikimson>library',
-            link:'#library'
+            link:'#cs-library'
         },
         {
             name:'관련 위키 wikimson>framework',
-            link:'#framework'
+            link:'#cs-framework'
         },
     ],
     template(){

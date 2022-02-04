@@ -1,12 +1,12 @@
 export default {
     published: true,
     modified: '',
-    done: true,
+    done: false,
     title: '운영체제 서론',
     tags: ['os'],
     categories: ['cs','Operating System'],
     authors: ['kimson'],
-    wrote: '2022-02-02 20:47:45',
+    wrote: '2022-02-04 16:02:33',
     toc: true,
     content: [
         `
@@ -28,41 +28,14 @@ export default {
                     :end
                 </div>
             </div>
-            <div>
-                <span class="h6">MVC1 패턴</span>
-                <div>
-                    <p>사용자 요청이 들어오면 서버 내의 jsp(view & controller)와 javaBean을 거치게 된다.</p>
-                    <p>요청이 들어오면 jsp에서 view, controller역할을 함께 하게 되고, model을 통해 데이터 처리가 이루어지며, 필요에 따라 데이터베이스와 대응한다. model이 update된 내용을 view에 전달하여 브라우저에 출력이 된다.</p>
-                    <p>비즈니스 로직이 복잡하지 않을 때, 즉, 소규모 프로젝트에 사용되며 빠르고 쉽게 개발할 수 있다는 장점이 있지만 복잡해지고 더 큰 규모로 발전한다면 Controller와 View가 혼재되어 유지보수에 어려움을 겪을 수 있다.</p>
-                </div>
-            </div>
-            <div>
-                <span class="h6">MVC2 패턴</span>
-                <div>
-                    <p>패턴2에서는 패턴1의 jsp에서 사용하던 controller와 view를 분리한 형태이다.</p>
-                    <p>단, mvc1 패턴보다 구현이 복잡하고 개발 난이도가 높지만 유지보수 측면에서 유리하고 PE와 BE의 분업이 가능하다.</p>
-                </div>
-            </div>
         </div>
         `,
     ],
     ref: [
-        {
-            name:'관련 위키 wikimson>library',
-            link:'#library'
-        },
-        {
-            name:'관련 위키 wikimson>framework',
-            link:'#framework'
-        },
-        {
-            name:'preamtree님 블로그',
-            link:'https://preamtree.tistory.com/11'
-        },
-        {
-            name:'생활코딩 디자인 패턴',
-            link:'https://opentutorials.org/module/327/3828'
-        },
+        // {
+        //     name: '',//'생활코딩 디자인 패턴',
+        //     link: '',//'https://opentutorials.org/module/327/3828'
+        // },
     ],
     template(){
         return `

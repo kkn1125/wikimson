@@ -13,12 +13,12 @@ import footer from '../views/common/footer.js'
 import sidebar from '../views/common/sidebar.js'
 import dotted from '../views/common/dotted.js'
 
-Router.setPage('home', Home);
-Router.setPage('algorithm', Algorithm);
-Router.setPage('javascript', Javascript);
-Router.setPage('interview', Interview);
-Router.setPage('cs', Cs);
-Router.setPage('about', About);
+Router.setPage('home', 'home', Home);
+Router.setPage('algorithm', 'algorithm', Algorithm);
+Router.setPage('javascript', 'javascript', Javascript);
+Router.setPage('interview', 'interview', Interview);
+Router.setPage('cs', 'cs', Cs);
+Router.setPage('about', 'about', About);
 // Router.setPage('404', Notfound);
 
 Router.setModulePage('nav', nav);

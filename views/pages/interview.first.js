@@ -7,7 +7,7 @@ export default {
     categories: ['CS'],
     authors: ['kimson'],
     wrote: '2021-12-06 18:14:35',
-    toc: false,
+    toc: true,
     content: [`
         <div>
             <div class="mt-3">

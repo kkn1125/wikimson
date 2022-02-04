@@ -30,11 +30,11 @@ export default {
     ref: [
         {
             name:'관련 위키 wikimson>api',
-            link:'#api'
+            link:'#cs-api'
         },
         {
             name:'관련 위키 wikimson>framework',
-            link:'#framework'
+            link:'#cs-framework'
         },
     ],
     template(){
