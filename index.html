@@ -14,6 +14,7 @@
         <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-dark.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+        <script src="./src/script/mdParser.js"></script>
         <script src="base.js" defer></script>
         <script type="module">
             import {App} from './core/core.js'
@@ -34,13 +35,6 @@
         <script src="src/script/finder.js" type="module"></script>
         <!-- <script src="src/script/resize.js" defer></script> -->
         <script defer>
-            // requestAnimationFrame(convertCode);
-            // function convertCode(){
-            //     let detectHljs = document.querySelector('.hljs');
-            //     if(!detectHljs) hljs.highlightAll();
-            //     if(detectHljs) cancelAnimationFrame(convertCode);
-            //     else requestAnimationFrame(convertCode);
-            // }
             let hash = location.hash;
             requestAnimationFrame(watchHash);
             function watchHash(){
@@ -82,18 +76,6 @@
                 hash = location.hash;
                 requestAnimationFrame(watchHash);
             }
-
-            setTimeout(()=>{
-                Object.assign(document.body.insertAdjacentElement('beforeEnd', document.createElement('script')),{
-                    src: 'https://cdn.jsdelivr.net/gh/kkn1125/penli@dabfbd0/docs/assets/js/penli.js',
-                    integrity: 'sha384-v8IcF+Ajik1Du5Pn4UGwOVizMisxuU6LhXVsWYy1WdP2+1MxTdeJRHuYeDAdtQ6v',
-                    crossorigin: 'anonymous',
-                });
-                setTimeout(()=>{
-                    settingHandler();
-                    wikiFilter.scrollPoint();
-                }, 100);
-            }, 150);
             
         </script>
     </body>

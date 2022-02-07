@@ -48,7 +48,7 @@ function finderReload(ev){
             })
         }
     });
-    resultTemplate.render(list);
+    if(target.value!='') resultTemplate.render(list);
 }
 
 function finderExit(ev){

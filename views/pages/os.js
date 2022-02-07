@@ -1,8 +1,10 @@
 import {Router} from '../../core/core.js'
 
 import Base from './os.base.js'
+import Histories from './os.history.js'
 
 Router.setSubPage('운영체제 서론', 'operating_system-base', Base);
+Router.setSubPage('운영체제 역사', 'operating_system-history', Histories);
 
 export default {
     pagination: true,
