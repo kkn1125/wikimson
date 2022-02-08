@@ -1,59 +1,85 @@
 export default {
     published: true,
-    modified: '2022-02-07 19:00:41',
+    modified: '2022-02-08 22:03:17',
     done: false,
     title: '운영체제 서론',
     tags: ['os'],
     categories: ['cs','Operating System'],
     authors: ['kimson'],
-    wrote: '2022-02-04 22:37:44',
+    wrote: '2022-02-08 22:03:13',
     toc: true,
     md: true,
     content: [
 `
-### 운영체제
+### 운영체제 (Operating System)
 
 > 운영체제란 시스템 하드웨어를 관리, 응용 소프트웨어를 실행하기 위해 하드웨어 추상화 플랫폼과 공통 시스템 서비스를 제공하는 시스템 소프트웨어이다.
 
-입출력, 메모리 할당 등 하드웨어 기능의 경우 운영 체제는 응용 프로그램과 컴퓨터 하드웨어 사이 중재 역할을 한다. 메모리에 있는 파일을 올려 실행하려면 운영체제가 필요하며, 없으면 사용하지 못한다.
+###### 운영체제의 필요성
 
-*운영체제의 목적*
+프로세스가 메인 메모리의 명령을 가져와 실행하고, 그 다음 명령을 가져와 실행 반복하는데 이를 가능하도록 메모리에 실행 파일을 올려주는 역할을 운영체제가 한다.
 
-1. 성능을 높인다.
-2. 편의성을 제공한다.
-3. 컴퓨터를 관리해주는 프로그램이다.
+운영체제가 없다면 메모리에 혼재되어 있는 <kbd class="bg-info">Instruction</kbd>들을 프로세스가 읽더라도 제멋대로의 명령이 실행되어 컴퓨터를 사용하지 못하게 된다.
+
+> *파일의 실행조건* -> 메모리에 올려져야 실행 가능한 상태가 된다.  
+> *하드디스크 내부* -> 실행 파일이 들어있다. (OS도 포함)  
+> *프로그램* -> 메인 메모리에 어떠한 명령(Instruction)들이 기록되어야 하는데 이 명령들의 모음  
+> *프로그램 내장형 컴퓨터* -> 미리 프로그램을 메모리에 내장해두고 실행하는 구조의 컴퓨터
+
+###### 운영체제의 목적
+
+1. 성능(Performance)을 높인다.{:.bg-info.bg-opacity-50}
+2. 편의성(Convenience)을 제공한다.
+3. 컴퓨터를 관리해주는 프로그램이다. (Control program for computer)
+
+### 컴퓨터의 구조
+
+<figure class="w-inline-flex flex-column">
+    <img src="./src/images/os/os03.png" alt="structure of computer" title="structure of computer">
+    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> GeeksforGeeks</figcaption>
+</figure>
+
+###### 컴퓨터 동작 과정
+
+1. 전원 on
+    - ROM을 읽어 실행
+    - POST(Power on self test) 진행
+        - CPU가 컴퓨터의 메인 메로리가 얼마나 있고 하드디스크 용량이 얼마이고, 하드웨어가 잘 연결되어 있는지 부팅 시 테스트 하는 것
+    - Boot Load 진행 (과정을 부팅이라고 한다.)
+        1. 하드디스크의 OS를 조회
+        2. 메인 메모리에 올림
+            - 이때부터 OS는 메모리에 상주하게 된다.
+            - 전원이 꺼지기 전까지 Resident
+    - 위의 과정 종료 후 ROM의 역할이 끝나고 더 이상 ROM을 읽지 않음
+2. 화면이 출력 (흔한 들판 배경 이미지에 폴더, 파일들 주르륵...)
 
 ###### Main Memory
 
-*RAM* => 대부분을 차지  
-*ROM* => 일부만 차지 (10~100KB)
+th: 구분|내용|비고@
+슈: !RAM|전원이 꺼지면 사라지는 휘발성 메모리|수 백MB ~ 수GB\\
+    !ROM  (Read only memory)|전원과 관계 없이 내용이 유지(메인 메모리에서 극히 일부 차지)|수 십KB ~ 수 백KB@
+:end
 
-1. read only memory => 전원과 관계 없이 저장
-2. power on => ROM을 먼저 읽음
-3. Power Of Self Test(POST) => 부팅 때 검은 화면에서 테스팅을 하는 것
-4. Boot Load(Booting) => 하드의 OS를 메인 메모리에 올리는 작업
-
-###### 컴퓨터를 켜는 과정
-
-- 전원을 킨 후 ROM은 더 이상 읽히지 않는다.
-- 전원을 끄면 OS가 메모리에서 사라진다.
-
-### 커널과 쉘
+### 커널(Kernel)과 쉘(Shell)
 
 <figure class="w-inline-flex flex-column">
     <img src="./src/images/os/os01.png" alt="kernel&shell" title="kernel shell">
     <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> google</figcaption>
 </figure>
 
-컴퓨터가 켜진 동안 <kbd>OS</kbd>는 항상 메모리에 있다. 어플리케이션 영역으로 갈수록 사용자와 근접하고 커널로 갈수록 하드웨어와 밀접한 관계를 가진다. 커널과 쉘이 OS이며 커널이 핵심이 되어 하드를 관리하고, 쉘은 명령을 해석하는 OS의 껍데기 정도의 개념이다.
+> 어플리케이션 영역으로 갈수록 사용자와 근접하고, 커널로 갈수록 하드웨어와 밀접한 관계를 가진다. *OS*는 *커널*과 *쉘*로 구성이 되어 있고, *커널이 핵심*이 되어 하드를 관리하고, *쉘*은 *사용자의 명령을 해석*하는 개념이다.
 
-파일을 실행하면 하드에서 메모리로 OS가 올려지고, 컴퓨터를 끝내면 다시 메모리에서 삭제 한다.
-
-운영체제가 바뀌면 APP은 기존 운영체제와 달라 실행되지 않는다. 어플리케이션을 하나의 OS위에서 동작하기 때문이다.
+1. <kbd class="bg-info">H/W(하드웨어)</kbd> 하드디스크
+2. <kbd class="bg-info">OS(운영체제)</kbd> 하드디스크를 관리, 제어한다.
+    - <kbd class="bg-info">kernel</kbd> 실제로 관리를 하는 프로그램 (CPU, Memory, Disk ...)
+    - <kbd class="bg-info">Shell</kbd> 윈도우는 UI로, Linux는 텍스트로 명령을 내린다.
+        - 사용자 명령을 해석하고 출력해준다.
+        - 다른 말로 Command Interpreter
+3. <kbd class="bg-info">H/W(하드웨어)</kbd>
 
 ###### OS의 자원관리
 
-운영체제에는 여러 자원 관리, 할당자가 존재한다.
+운영체제에는 여러 자원 관리자, 자원 할당자가 존재한다.
 
 - Process Management
 - Memory Managementm I/O Management
@@ -74,9 +100,3 @@ export default {
         `
     }
 }
-
-// th: 핵심|설명@
-// tb: !Model|데이터를 가지고 로직을 처리한다. 데이터베이스와 대응 될 수 있다\\
-// !View|요청된 페이지를 데이터 처리의 과정을 거쳐 브라우저에 나타낼 요소들을 출력해주는 역할을 한다.\\
-// !Controller|사용자의 요청을 받아 요청에 맞는 Model의 로직을 실행하고 데이터의 흐름을 제어한다.@
-// :end

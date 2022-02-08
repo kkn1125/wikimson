@@ -115,17 +115,21 @@ wikiFilter.spy = function scrollSpy(ev) {
     });
 }
 
+wikiFilter.md = function (content, isMd){
+    if(isMd)
+    return Markdown.parse(content, {
+        ol: 'list-group reset',
+        ul: 'list-group reset',
+        li: 'list-item',
+        blockquote: 'blockquote blockquote-info',
+        h: true,
+    });
+    else return content;
+}
+
 wikiFilter.content = function(){
     return this.content.map(c=>{
-        if(this.md==true){
-            c = Markdown.parse(c, {
-                ol: 'list-group reset',
-                ul: 'list-group reset',
-                li: 'list-item',
-                blockquote: 'blockquote blockquote-info',
-                h: true,
-            });
-        }
+        c = wikiFilter.md(c, this.md);
 
         c = c.replace(/\-\>|\<\-|\=\>|\<\=/gm, (a,b)=>{
             if(a=='->'||a=='=>')return '&#10142;';

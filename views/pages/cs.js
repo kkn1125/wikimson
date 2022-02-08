@@ -28,26 +28,11 @@ Router.setSubPage('Osi', 'cs.osi', Osi);
 Router.setSubPage('ProcessThread', 'cs.processthread', ProcessThread);
 Router.setSubPage('PureFunction', 'cs.purefunction', PureFunction);
 
-// {
-//     Os: Router['Os'],
-//     Api: Router['Api'],
-//     'ContextSwitching': Router['ContextSwitching'],
-//     'DeadLock': Router['DeadLock'],
-//     'DDD': Router['DDD'],
-//     'Framework': Router['Framework'],
-//     'GarbageCollection': Router['GarbageCollection'],
-//     'HttpHttps': Router['HttpHttps'],
-//     'LegacyCode': Router['LegacyCode'],
-//     'Library': Router['Library'],
-//     'Mvc': Router['Mvc'],
-//     'Osi': Router['Osi'],
-//     'ProcessThread': Router['ProcessThread'],
-//     'PureFunction': Router['PureFunction'],
-// }
-
 export default {
     pagination: true,
     published: true,
+    authors: ['kimson'],
+    wrote: '2022-02-08 21:50:01',
     title: 'cs',
     list(){
         return Object.keys(this.module).filter(x=>x.slice(1).replace(/[\s\_\-\.]+/gm, '-')!=this.origin.path.slice(1).replace(/[\s\_\-\.]+/gm, '-')).map(m=>{

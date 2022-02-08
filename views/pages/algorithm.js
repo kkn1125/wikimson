@@ -7,6 +7,8 @@ Router.setSubPage('Binarysearch', 'algorithm.binarysearch', Binarysearch);
 export default{
     pagination: true,
     published: true,
+    authors: ['kimson'],
+    wrote: '2022-02-08 22:01:12',
     title: 'binarysearch',
     list(){
         return Object.keys(this.module).filter(x=>x.slice(1).replace(/[\s\_\-\.]+/gm, '-')!=this.origin.path.slice(1).replace(/[\s\_\-\.]+/gm, '-')).map(m=>{

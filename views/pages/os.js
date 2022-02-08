@@ -9,6 +9,8 @@ Router.setSubPage('운영체제 역사', 'operating_system-history', Histories);
 export default {
     pagination: true,
     published: true,
+    authors: ['kimson'],
+    wrote: '2022-02-08 21:50:01',
     title: 'os',
     list(){
         return Object.keys(this.module).filter(x=>x.slice(1).replace(/[\s\_\-\.]+/gm, '-')!=this.origin.path.slice(1).replace(/[\s\_\-\.]+/gm, '-')).map(m=>{

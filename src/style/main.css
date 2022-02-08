@@ -381,11 +381,16 @@ ol.reset {
   list-style-position: inside;
 }
 
+.reset li {
+  padding: 0.2rem 0 0.2rem 0;
+}
+
 ul.reset ul,
-ol ul {
+ol.reset ul {
   list-style-type: circle;
   list-style-position: inside;
   margin-left: 15px;
+  padding: 0;
 }
 
 ol.reset ol,
@@ -393,6 +398,7 @@ ul.reset ol {
   list-style-type: lower-latin;
   list-style-position: inside;
   margin-left: 15px;
+  padding: 0;
 }
 
 @media (max-width: 575px) {

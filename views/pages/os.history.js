@@ -1,6 +1,6 @@
 export default {
     published: true,
-    modified: '',
+    modified: '2022-02-08 22:03:23',
     done: false,
     title: '운영체제 역사',
     tags: ['os', 'history'],
