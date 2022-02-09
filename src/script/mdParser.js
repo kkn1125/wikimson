@@ -52,6 +52,18 @@ const Markdown = (function () {
         }
 
         this.readBlockUnit = function () {
+            if(md.match(/(\`+|\~+)/gm)){
+                md = md.replace(/(\`+|\~+)([\w]+\n)?([\s\S]+?)(\`+|\~+)/gm, (a,dotted,lang,content)=>{
+                    console.log(content)
+                    let count = dotted.split('').length;
+                    if(!lang && count<3){
+                        return `<kbd class="bg-info">${content}</kbd>`;
+                    } else {
+                        return `<pre><code class="language-${lang.trim()}">${content}</code></pre>`;
+                    }
+                });
+            }
+
             block = md.split(/\n{2,}/gm);
             temp = [...block];
         }
@@ -201,7 +213,11 @@ const Markdown = (function () {
 
         this.br = function (){
             convertedHTML = convertedHTML.map(x=>{
-                return x.replace(/\s{3,}/gm, '<br>');
+                if(x.match(/pre/g)){
+                    return x;
+                } else {
+                    return x.replace(/\s{3,}/gm, '<br>');
+                }
             });
         }
     }

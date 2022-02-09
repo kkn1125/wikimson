@@ -385,6 +385,10 @@ ol.reset {
   padding: 0.2rem 0 0.2rem 0;
 }
 
+kbd {
+  white-space: nowrap;
+}
+
 ul.reset ul,
 ol.reset ul {
   list-style-type: circle;
