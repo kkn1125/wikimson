@@ -131,9 +131,9 @@ wikiFilter.content = function(){
     return this.content.map(c=>{
         c = wikiFilter.md(c, this.md);
 
-        c = c.replace(/\-\>|\<\-|\=\>|\<\=/gm, (a,b)=>{
-            if(a=='->'||a=='=>')return '&#10142;';
-            else if(a=='<-'||a=='<=') return '&#129044;';
+        c = c.replace(/\-&gt;|&lt;\-|\=&gt;|&lt;\=/gm, (a,b)=>{
+            if(a=='-&gt;'||a=='=&gt;')return '<span class="text-danger">&#10142;</span>';
+            else if(a=='&lt;-'||a=='&lt;=') return '<span class="text-danger">&#129044;</span>';
         });
 
         c = c.replace(/\#([\s\S]*?)\[([\s\S]*?)\]:end/g, (origin,text,ref,i)=>{
@@ -175,7 +175,18 @@ wikiFilter.regdate = function(){
     let min = parseInt(during/60/1000%60);
 
     let duringMsg = `${date>0?`${date}일 `:''}${hour>0&&date==0?`${hour}시 `:''}${min>0&&date==0?`${min}분 `:'방금 '}전`;
-    
+
+    let words = new DOMParser().parseFromString(this.md==true?Markdown.parse(this.content.join(''), {
+        ol: 'list-group reset',
+        ul: 'list-group reset',
+        li: 'list-item',
+        blockquote: 'blockquote blockquote-info',
+        h: true,
+    }).replace(/\-\>|\<\-|\=\>|\<\=/gm, (a,b)=>{
+        if(a=='->'||a=='=>')return '&#10142;';
+        else if(a=='<-'||a=='<=') return '&#129044;';
+    }):this.content, 'text/html').body.textContent.trim().length;
+
     return `<ul class="list-group">
         <li class="list-item py-1">
             <span class="tag">tags</span>
@@ -195,13 +206,15 @@ wikiFilter.regdate = function(){
             <span class="tag">작성일</span>
             <time class="tag time text-muted">${date<1?duringMsg:new Date(this.wrote).toLocaleString().slice(0,-3)}</time>
         </li>
+        <li class="list-item py-1 fs-7">
+            <span class="tag">Read Time</span>
+            <span class="tag text-danger">${Math.ceil(words/250)} min</span>
+        </li>
     </ul>`
 }
 
 wikiFilter.toc = function(){
-    let dom = new DOMParser();
-    
-    let html = dom.parseFromString(this.md==true?Markdown.parse(this.content.join(''), {
+    let html = new DOMParser().parseFromString(this.md==true?Markdown.parse(this.content.join(''), {
         ol: 'list-group reset',
         ul: 'list-group reset',
         li: 'list-item',
@@ -340,6 +353,88 @@ function watch(){
 }
 
 requestAnimationFrame(watch);
+
+let tops, lefts, widths, heights, padding, time, fm=false;
+
+setTimeout(() => {
+    let fms = JSON.parse(sessionStorage['readmode']);
+    document.querySelector('#focusMode').checked = fms;
+    fm = fms;
+}, 100);
+
+window.addEventListener('click', (ev)=>{
+    const focus_mode = ev.target;
+    
+    setTimeout(() => {
+        let fms = JSON.parse(sessionStorage['readmode']);
+        document.querySelector('#focusMode').checked = fms;
+        fm = fms;
+    });
+
+    if(!sessionStorage['readmode']) sessionStorage['readmode'] = 'false';
+
+    if(focus_mode.id != 'focusMode') return;
+
+    if(focus_mode.checked){
+        fm = true;
+    } else {
+        const focus = document.querySelector('.focused');
+        if(focus) focus.remove();
+        fm = false;
+    }
+
+    sessionStorage['readmode'] = JSON.stringify(fm);
+
+})
+
+window.addEventListener('mouseover', (ev)=>{
+    const p = ev.target;
+    const focus = document.querySelector('.focused');
+    const bt = document.querySelector('.block-time');
+    if(!fm) return;
+    if(p.tagName == 'P' || (p.tagName == 'LI' && p.closest('main'))) {
+        let rect = p.getBoundingClientRect();
+
+        if(p.tagName == 'LI') {
+            padding = 0.5;
+            time = '';
+        }
+        if(p.tagName == 'P') {
+            padding = 1;
+            time = `${p.textContent.trim().length} word${p.textContent.trim().length>1?'s':''} / ${Math.ceil(p.textContent.trim().length/250)} min`;
+        }
+
+        tops = p.offsetTop;
+        lefts = p.offsetLeft;
+        widths = rect.width;
+        heights = rect.height;
+    }
+
+    if(!p.closest('main')) {
+        if(focus)
+        document.querySelectorAll('.focused').forEach(el=>el.remove());
+        return;
+    }
+
+    if(!focus)
+    document.querySelector('main').insertAdjacentHTML('beforeend', `<div class="focused"><span class="block-time"></span></div>`);
+
+    if(focus){
+        bt.innerHTML = '';
+        bt.innerHTML = time;
+        focus.style.top = `${tops}px`;
+        focus.style.left = `${lefts}px`;
+        focus.style.width = `${widths}px`;
+        focus.style.height = `${heights}px`;
+        if(padding!=null){
+            focus.style.padding = `${padding}rem`;
+            focus.style.transform = `translate(-${padding}rem, -${padding}rem)`;
+        } else {
+            focus.style.padding = `${padding}rem`;
+            focus.style.transform = `translate(-${padding}rem, -${padding}rem)`;
+        }
+    }
+})
 
 setTimeout(()=>{
     Object.assign(document.body.insertAdjacentElement('beforeEnd', document.createElement('script')),{

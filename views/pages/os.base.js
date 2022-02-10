@@ -28,7 +28,7 @@ export default {
 
 ###### 운영체제의 목적
 
-1. 성능(Performance)을 높인다.{:.bg-info.bg-opacity-50}
+1. 성능(Performance)을 높인다.
 2. 편의성(Convenience)을 제공한다.
 3. 컴퓨터를 관리해주는 프로그램이다. (Control program for computer)
 

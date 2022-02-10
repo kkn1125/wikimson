@@ -33,6 +33,7 @@
     }
 
     function windowHandler(ev) {
+        let resizer = document.querySelector('#resizer');
         if (window.innerWidth - 17 < 576) {
             resizer.style.display = 'none';
         } else {

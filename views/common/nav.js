@@ -30,6 +30,12 @@ export default {
                     <li id="mode">
                         <label for="mode" id="mtWrap" class="${mode.dark}"><span><i class="${mode.dark=='off'?'fas fa-moon':'far fa-sun'}"></i></span><input type="checkbox" data-switch="mode"></label>
                     </li>
+                    <li>
+                        <label>
+                            문서 읽기 모드
+                            <input type="checkbox" id="focusMode" class="form-input">
+                        </label>
+                    </li>
                 </ul>
             </div>
         </nav>

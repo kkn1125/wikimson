@@ -6,31 +6,27 @@
  */
 
 const Markdown = (function () {
-    function Controller() {
-        let models;
-
-        this.init = function (model) {
-            models = model;
-
-            return models.renderView();
-        }
-    }
-
-    function Model() {
-        const INDENT = 4;
-        let views;
-        let options;
-        let md;
-        let block;
-        let temp;
+    function Parser() {
+        let options, block, temp, md;
         let convertedHTML = [];
 
-        this.init = function (view, option) {
-            views = view;
+        this.init = function (markdown, option) {
             options = option;
-            md = views.getMd();
+            md = markdown;
+
             this.parse();
-            this.renderView();
+
+            if(options.raw){
+                return temp
+            } else {
+                let body = new DOMParser().parseFromString(convertedHTML.join(''), 'text/html').body
+                body.querySelectorAll('.parse-code [lang="javascript"] .token.sc').forEach(el=>{
+                    let prev = el.previousElementSibling;
+                    if(prev.classList.contains('sp')) prev.remove();
+                });
+
+                return body.innerHTML;
+            }
         }
 
         this.renderView = function (){
@@ -39,22 +35,23 @@ const Markdown = (function () {
 
         this.parse = function () {
             this.readBlockUnit();
-            this.raw();
+            // this.raw();
+            this.horizontal();
             this.heading();
-            // this.italic();
-            // this.italicBold();
             this.blockListify();
             this.images();
             this.anchors();
             this.paragraphs();
-            this.boldItalic();
             this.br();
+            this.italicBold();
+            this.altImages();
+            this.altAnchors();
+            this.altTable();
         }
 
         this.readBlockUnit = function () {
             if(md.match(/(\`+|\~+)/gm)){
                 md = md.replace(/(\`+|\~+)([\w]+\n)?([\s\S]+?)(\`+|\~+)/gm, (a,dotted,lang,content)=>{
-                    console.log(content)
                     let count = dotted.split('').length;
                     if(!lang && count<3){
                         return `<kbd class="bg-info">${content}</kbd>`;
@@ -66,6 +63,17 @@ const Markdown = (function () {
 
             block = md.split(/\n{2,}/gm);
             temp = [...block];
+        }
+
+        this.horizontal = function (){
+            block.forEach((line, id)=>{
+                if(line.match(/(\-{3,}|\*{3,}|\={3,})/gm)){
+                    convertedHTML[id] = line.replace(/^(\-{3,}|\={3,}|\*{3,})(?=\s*)$/gm, (a,$1,$2)=>{
+                        return `<hr class="hr">`
+                    });
+                    block[id] = '';
+                }
+            });
         }
 
         this.raw = function () {
@@ -80,7 +88,7 @@ const Markdown = (function () {
         this.heading = function () {
             block.forEach((line, id) => {
                 if (line.match(/(\#+)/gm)) {
-                    convertedHTML[id] = line.replace(/[\s\n]*(\#*)(.+)/gm, (a, $1, $2) => {
+                    convertedHTML[id] = line.trim().replace(/[\s\n]*(\#*)(.+)/gm, (a, $1, $2) => {
                         let count = $1.split('').length;
                         return `<h${count}${options.h?` class="h${count}"`:''}>${$2.replace(/^[\s]*/g, '')}</h${count}>`
                     });
@@ -89,24 +97,25 @@ const Markdown = (function () {
             });
         }
 
-        this.boldItalic = function (){
-            convertedHTML.forEach((line, id)=>{
-                if(line.match(/\*{3}(.+?)\*{3}/gm)){
-                    convertedHTML[id] = line.replace(/\*{3}(.+?)\*{3}/gm, `<span class="fw-bold" style="font-style: italic;">$1</span>`);
-                }
-                else if(line.match(/\*{2}(.+?)\*{2}/gm)){
-                    convertedHTML[id] = line.replace(/\*{2}(.+?)\*{2}/gm, `<span style="font-style: italic;">$1</span>`);
-                }
-                else if(line.match(/\*{1}(.+?)\*{1}/gm)){
-                    convertedHTML[id] = line.replace(/\*{1}(.+?)\*{1}/gm, `<span class="fw-bold">$1</span>`);
-                }
-            })
+        this.italicBold = function (){
+            convertedHTML = convertedHTML.map(x=>{
+                if(/(\*+)([\s\S]+?)\*+/g)
+                return x.replace(/(\*{1,3})([\s\S]+?)\*{1,3}/g, (a,$1,$2)=>{
+                    return `${$1.length==2?`<em>`:`<b>${$1.length==3?`<em>`:``}`}${$2}${$1.length!=2?`</b>${$1.length==3?`</em>`:``}`:`</em>`}`
+                });
+                else return x;
+            });
         }
 
         this.blockListify = function (){
+            const array = [];
+            const checkbox = (cb)=>{
+                let ox = cb.match(/\[\s?(x?)\s?\]/);
+                if(ox) return cb.replace(/\[\s?(x?)\s?\]/, `<input disabled type="checkbox"${ox[1]?` checked="true"`:``}>`);
+                else return cb;
+            }
             let indent = 0, before = -1;
-            let array = [];
-
+            
             block.forEach((line, id)=>{
                 if(line.match(/^\s*\>\s/gm) || line.match(/^\s*\-/gm) || line.match(/^\s*[0-9]+\./gm)){
                     convertedHTML[id] = line.split(/\n/gm).filter(x=>x!='').map(li=>{
@@ -118,9 +127,9 @@ const Markdown = (function () {
                         if(indent>before){
                             let gap = 0;
                             if(indent > 0 && before == -1){
-                                gap = parseInt(indent/4) + 1;
+                                gap = parseInt(indent/(options.indent||4)) + 1;
                             } else {
-                                gap = parseInt((indent - before)/4)+(before>-1?0:1);
+                                gap = parseInt((indent - before)/(options.indent||4))+(before>-1?0:1);
                             }
                             for(let i=0; i<gap; i++){
                                 if(li.match(/^\s*\-/gm)){
@@ -132,21 +141,19 @@ const Markdown = (function () {
                                 if(li.match(/^\s*\>\s/gm)){
                                     array.push('blockquote');
                                 }
-                                temp += `<${array[array.length-1]}${options[array[array.length-1]]?` class="${options[array[array.length-1]]}"`:``}>`;
+                                temp += `<${array[array.length-1]} class="${options[array[array.length-1]]}">`;
                             }
                         } else if(indent < before){
-                            let gap = parseInt((before - indent)/4);
+                            let gap = parseInt((before - indent)/(options.indent||4));
                             for(let i=0; i<gap; i++){
                                 temp += `</${array.pop()}>`;
                             }
                         }
 
                         if(li.match(/^\s*\>\s.+/g)){
-                            temp += `${this.checkbox(li.replace(/^\s*\>\s(.+)/gm, '$1'))}`;
+                            temp += `${checkbox(li.replace(/^\s*\>\s(.+)/gm, '$1'))}`;
                         } else {
-                            let classes = this.addClass(li);
-                            
-                            temp += `<li class="list-item ${classes}">${this.checkbox(li.replace(/\{\:(.+)\}/g,'').replace(/^\s*[0-9]\.\s*(.+)/gm, '$1').replace(/^\s*\-\s*(.+)/gm, '$1'))}</li>`;
+                            temp += `<li>${checkbox(li.replace(/^\s*[0-9]\.\s*(.+)/gm, '$1').replace(/^\s*\-\s*(.+)/gm, '$1'))}</li>`;
                         }
                         
                         before = indent;
@@ -159,7 +166,9 @@ const Markdown = (function () {
                 }
                 indent = 0;
                 before = -1;
-                array = [];
+                while(array.length>0){
+                    array.pop();
+                }
             });
         }
 
@@ -194,9 +203,39 @@ const Markdown = (function () {
             block.forEach((line, id) => {
                 if (line != '') {
                     convertedHTML[id] = `<p>${line}</p>`;
-                    block[id] = '';
+                    // block[id] = '';
                 }
             });
+        }
+
+        this.altImages = function (){
+            convertedHTML.forEach((line, id)=>{
+                if(line.match(/\!\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/gm)){
+                    const [a,$1,$2,$3] = line.match(/\!\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/);
+                    convertedHTML[id] = convertedHTML[id].replace(/\!\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/gm, `<figure><img src="${$2}" alt="${$1}"${$3?` title="${$3.replace(/[\'\"]+/gm,'').trim()}"`:''}></figure>`);
+                    // block[id] = '';
+                }
+            });
+        }
+
+        this.altAnchors = function (){
+            convertedHTML.forEach((line, id)=>{
+                if(line.match(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/gm)){
+                    const [a,$1,$2,$3] = line.match(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/m);
+                    convertedHTML[id] = convertedHTML[id].replace(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/gm,`<a href="${$2}"${$3?` title="${$3.replace(/[\'\"]+/gm,'').trim()}"`:''}>${$1}</a>`);
+                    // block[id] = '';
+                }
+            });
+        }
+
+        this.altTable = function (){
+            // convertedHTML = convertedHTML.map(x=>{
+            //     if(/(\*+)([\s\S]+?)\*+/g)
+            //     return x.replace(/(\*{1,3})([\s\S]+?)\*{1,3}/g, (a,$1,$2)=>{
+            //         return `${$1.length==2?`<em>`:`<b>${$1.length==3?`<em>`:``}`}${$2}${$1.length!=2?`</b>${$1.length==3?`</em>`:``}`:`</em>`}`
+            //     });
+            //     else return x;
+            // });
         }
 
         this.addClass = function (str){
@@ -213,39 +252,16 @@ const Markdown = (function () {
 
         this.br = function (){
             convertedHTML = convertedHTML.map(x=>{
-                if(x.match(/pre/g)){
-                    return x;
-                } else {
-                    return x.replace(/\s{3,}/gm, '<br>');
-                }
+                return x.replace(/\s{3,}/gm, '<br>');
             });
         }
     }
 
-    function View() {
-        let parts;
-
-        this.init = function (part) {
-            parts = part;
-        }
-
-        this.getMd = function () {
-            return parts;
-        }
-
-        this.renderView = function (md, convertedHTML) {
-            return convertedHTML;
-        }
-    }
     return {
         parse(str, options) {
-            const view = new View();
-            const model = new Model();
-            const controller = new Controller();
+            const parser = new Parser();
 
-            view.init(str);
-            model.init(view, options);
-            return controller.init(model);
+            return parser.init(str, options);
         }
     }
 })();
