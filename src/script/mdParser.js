@@ -47,20 +47,11 @@ const Markdown = (function () {
             this.altImages();
             this.altAnchors();
             this.altTable();
+            this.altCodeBlock();
+            this.addClass();
         }
 
         this.readBlockUnit = function () {
-            if(md.match(/(\`+|\~+)/gm)){
-                md = md.replace(/(\`+|\~+)([\w]+\n)?([\s\S]+?)(\`+|\~+)/gm, (a,dotted,lang,content)=>{
-                    let count = dotted.split('').length;
-                    if(!lang && count<3){
-                        return `<kbd class="bg-info">${content}</kbd>`;
-                    } else {
-                        return `<pre><code class="language-${lang.trim()}">${content}</code></pre>`;
-                    }
-                });
-            }
-
             block = md.split(/\n{2,}/gm);
             temp = [...block];
         }
@@ -180,10 +171,9 @@ const Markdown = (function () {
 
         this.images = function () {
             block.forEach((line, id) => {
-                let classes = this.addClass(line);
                 if (line.match(/^\!\[/gm)) {
                     const [a, $1, $2, $3] = line.match(/\!\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/);
-                    convertedHTML[id] = `<img${classes?` class="${classes}"`:''} src="${$2}" alt="${$1}"${$3?` title="${$3.replace(/[\'\"]+/gm,'').trim()}"`:''}>`;
+                    convertedHTML[id] = `<img src="${$2}" alt="${$1}"${$3?` title="${$3.replace(/[\'\"]+/gm,'').trim()}"`:''}>`;
                     block[id] = '';
                 }
             });
@@ -238,16 +228,43 @@ const Markdown = (function () {
             // });
         }
 
-        this.addClass = function (str){
-            let classes;
-            if(str.match(/\{\:(.+)\}/g)){
-                classes = str.match(/\{\:(.+)\}/)[1];
-                str = str.replace(/\{\:(.+)\}/g,'');
+        this.altCodeBlock = function (){
+            convertedHTML.forEach((line, id)=>{
+                if(line.match(/(\`+|\~+)([\s\S]+)(\`+|\~+)/gm)){
+                    const [a,$1,$2,$3] = line.match(/(\`+|\~+)([\w]+\n)?([\s\S]+?)(\`+|\~+)/m);
+                    convertedHTML[id] = convertedHTML[id].replace(/(\`+|\~+)([\w]+\n)?([\s\S]+?)(\`+|\~+)/gm,(a,dotted,lang,content)=>{
+                        let count = dotted.split('').length;
+                        if(!lang && count<3){
+                            return `<kbd class="bg-info">${content}</kbd>`;
+                        } else {
+                            return `<pre><code class="language-${lang.trim()}">${content}</code></pre>`;
+                        }
+                    })
+                }
+            });
+        }
 
-                return classes.split('.').filter(x=>x!='').join(' ');
-            } else {
-                return null;
-            }
+        this.addClass = function (){
+            convertedHTML = convertedHTML.map(line=>{
+                if(line.match(/\{\:(.+)\}/g)){
+                    let origin = line.match(/\{\:(.+)\}/g).pop();
+                    let classes = origin.replace(/\{\:(.+)\}/g, '$1').split('.').filter(x=>x!='');
+                    let tag = [...new DOMParser().parseFromString(line, 'text/html').body.childNodes].pop();
+                    let text;
+
+                    [...tag.childNodes].filter(x=>x instanceof Text?text=x:null);
+
+                    let idx = [...tag.childNodes].indexOf(text);
+
+                    tag.innerHTML = tag.innerHTML.replace(origin, '');
+
+                    if(tag.childNodes[idx-1])
+                    tag.childNodes[idx-1].classList.add(classes);
+                    else tag.classList.add(classes);
+                    line = tag.outerHTML;
+                    return line;
+                } else return line;
+            });
         }
 
         this.br = function (){

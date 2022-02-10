@@ -354,17 +354,11 @@ function watch(){
 
 requestAnimationFrame(watch);
 
-let tops, lefts, widths, heights, padding, time, fm=false;
-
-setTimeout(() => {
-    let fms = JSON.parse(sessionStorage['readmode']);
-    document.querySelector('#focusMode').checked = fms;
-    fm = fms;
-}, 100);
+let tops, lefts, widths, heights, padding, time='', fm=false, onWords = false;
 
 window.addEventListener('click', (ev)=>{
     const focus_mode = ev.target;
-    
+
     setTimeout(() => {
         let fms = JSON.parse(sessionStorage['readmode']);
         document.querySelector('#focusMode').checked = fms;
@@ -392,22 +386,48 @@ window.addEventListener('mouseover', (ev)=>{
     const focus = document.querySelector('.focused');
     const bt = document.querySelector('.block-time');
     if(!fm) return;
-    if(p.tagName == 'P' || (p.tagName == 'LI' && p.closest('main'))) {
-        let rect = p.getBoundingClientRect();
+    if(p.tagName == 'P' || (p.closest('li') && p.closest('main'))) {
+        let closer = p.closest('li,p');
+        let rect = closer.getBoundingClientRect();
 
-        if(p.tagName == 'LI') {
+        if(p.closest('li')) {
             padding = 0.5;
             time = '';
         }
-        if(p.tagName == 'P') {
+        if(p.closest('p')) {
             padding = 1;
             time = `${p.textContent.trim().length} word${p.textContent.trim().length>1?'s':''} / ${Math.ceil(p.textContent.trim().length/250)} min`;
         }
 
-        tops = p.offsetTop;
-        lefts = p.offsetLeft;
+        tops = closer.offsetTop;
+        lefts = closer.offsetLeft;
         widths = rect.width;
         heights = rect.height;
+        onWords = true;
+    } else {
+        onWords = false;
+        setTimeout(()=>{
+            if(!onWords){
+                widths = 0;
+                heights = 0;
+                padding = 0;
+                time = '';
+
+                bt.innerHTML = '';
+                bt.innerHTML = time;
+                focus.style.top = `${tops}px`;
+                focus.style.left = `${lefts}px`;
+                focus.style.width = `${widths}px`;
+                focus.style.height = `${heights}px`;
+                if(padding!=null){
+                    focus.style.padding = `${padding}rem`;
+                    focus.style.transform = `translate(-${padding}rem, -${padding}rem)`;
+                } else {
+                    focus.style.padding = `${padding}rem`;
+                    focus.style.transform = `translate(-${padding}rem, -${padding}rem)`;
+                }
+            }
+        }, 500);
     }
 
     if(!p.closest('main')) {
