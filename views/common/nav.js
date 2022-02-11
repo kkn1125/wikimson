@@ -38,6 +38,9 @@ export default {
                     </li>
                 </ul>
             </div>
+            <div class="scroll-gauge">
+                <span class="gauge-bar"></span>
+            </div>
         </nav>
         `
     }

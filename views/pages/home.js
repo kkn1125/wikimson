@@ -93,12 +93,35 @@ export default {
                                 운영체제 (OS) 카테고리 컨텐츠에 적용한 markdown parser에 관심이 있으시면 <a class="text-danger" href="https://github.com/kkn1125/markdown-parser" target="_blank">[markdown 저장소]</a>를 참고 바랍니다.
                             </li>
                         </ul>
+                        <div>
+                            <div>
+                                ${templateInsertAsync({
+                                    string: '3',
+                                    url: '',
+                                    delay: 0,
+                                })}
+                                <span>
+                                    ${templateInsertAsync({
+                                        string: 'inner',
+                                        url: '',
+                                        delay: 0,
+                                    })}
+                                </span>
+
+                                ${templateInsertAsync({
+                                    string: 'test',
+                                    url: '',
+                                    delay: 0,
+                                })}
+                            </div>
+                        </div>
+
+                        
                     </div>
                 </div>
             </div>
         </div>
         `;
-
         return contents;
     }
 }

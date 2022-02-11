@@ -96,23 +96,37 @@ const wikiFilter = {}
 })();
 
 wikiFilter.spy = function scrollSpy(ev) {
+    let aside = document.querySelector('#lsb').children[0];
+
     let spy = [...document.querySelectorAll(`[scroll-to]`)];
-
-    spy.map(s => s.classList.remove('highlight'));
-
-    [...document.querySelectorAll('.h3, .h6')].forEach(key=>{
+    let titles = [...document.querySelectorAll('.h3, .h6')];
+    let last = -1;
+    // spy.map(s => s.classList.remove('highlight'));
+    for(let key of titles){
         let top = document.querySelector('[put-type="wiki"]').scrollTop;
         if (key.offsetTop - 16 < top) {
             let focus = key.getAttribute('scroll-focus');
-            spy.map(s => {
-                if (document.querySelector(`[scroll-to="${focus}"]`) == s) {
-                    s.classList.add('highlight');
-                } else {
-                    s.classList.remove('highlight');
-                }
-            });
+            let spyList = document.querySelector(`[scroll-to="${focus}"]`);
+            last = titles.indexOf(key);
         }
-    });
+    }
+
+    if(last>-1){
+        spy.forEach((s,i)=>{
+            if(i == last && !s.classList.contains('highlight')){
+                s.classList.add('highlight');
+                aside.scrollTo({
+                    behavior: 'smooth',
+                    top: s.offsetTop,
+                    left: 0
+                });
+            } else if(i < last) {
+                s.classList.remove('highlight');
+            } else if(i > last) {
+                s.classList.remove('highlight');
+            }
+        })
+    }
 }
 
 wikiFilter.md = function (content, isMd){
@@ -316,6 +330,16 @@ wikiFilter.scrollPoint = function (){
     [...document.querySelectorAll('.h3, .h6')].forEach((x,i) => x.setAttribute('scroll-focus', `${x.textContent}-${i}`));
 }
 
+wikiFilter.scrollGauge = function(ev){
+    const scrollTop = ev.target.scrollTop;
+    const scrollHeight = ev.target.scrollHeight;
+    const gap = ev.target.clientHeight;
+
+    const realHeight = scrollHeight - gap;
+
+    document.querySelector('.gauge-bar').style.width = `${parseFloat((parseFloat(scrollTop/realHeight)*100).toFixed(2))}%`;
+}
+
 wikiFilter.all = function(){
     let temp = '';
     temp += wikiFilter.modified.call(this);
@@ -325,6 +349,9 @@ wikiFilter.all = function(){
     temp += wikiFilter.ref.call(this);
     setTimeout(() => {
         wikiFilter.scrollPoint();
+        document.querySelector('[put-type="wiki"]').addEventListener('scroll', wikiFilter.scrollGauge);
+        document.querySelector('.main').addEventListener('scroll', wikiFilter.scrollGauge);
+
         document.querySelector('[put-type="wiki"]').addEventListener('scroll', wikiFilter.spy);
         if(!document.querySelector('.prev'))
         document.querySelector('[put-type="wiki"]').insertAdjacentHTML('beforeend', `
@@ -335,6 +362,30 @@ wikiFilter.all = function(){
         if(!detectHljs) hljs.highlightAll();
     }, 1);
     return temp;
+}
+
+function templateInsertAsync({...options}){
+    const temp = new Date().getTime().toString().split('').map(x=>String.fromCharCode(65+parseInt(x))).join('');
+    
+    (async function(){
+        let result;
+
+        if(options.string) result = options.string;
+
+        if(options.url){
+            let res = await fetch(options.url);
+            let data = await res.text();
+            result = data;
+        }
+
+        setTimeout(() => {
+            let target = document.querySelector(`#${temp}`);
+            target.insertAdjacentHTML('afterend', `<span class="delay-injection">${result}</span>`);
+            target.remove();
+        }, options.delay);
+    })();
+    
+    return `<temp id="${temp}"></temp>`;
 }
 
 function watch(){
@@ -355,6 +406,12 @@ function watch(){
 requestAnimationFrame(watch);
 
 let tops, lefts, widths, heights, padding, time='', fm=false, onWords = false;
+
+window.onload = ()=>{
+    let t = JSON.parse(sessionStorage['readmode']);
+    document.querySelector('#focusMode').checked = t;
+    fm = t;
+}
 
 window.addEventListener('click', (ev)=>{
     const focus_mode = ev.target;
@@ -396,7 +453,11 @@ window.addEventListener('mouseover', (ev)=>{
         }
         if(p.closest('p')) {
             padding = 1;
-            time = `${p.textContent.trim().length} word${p.textContent.trim().length>1?'s':''} / ${Math.ceil(p.textContent.trim().length/250)} min`;
+            let wordsLength = p.textContent.trim().length;
+            let min = parseInt(wordsLength/250);
+            let sec = parseInt(wordsLength/(250/60));
+            let toggleTime = [min>0?`${min} m`:'',sec>0?`${sec} s`:``];
+            time = `${wordsLength} word${wordsLength>1?'s':''} / ${toggleTime.join(' ')}`;
         }
 
         tops = closer.offsetTop;
@@ -407,7 +468,7 @@ window.addEventListener('mouseover', (ev)=>{
     } else {
         onWords = false;
         setTimeout(()=>{
-            if(!onWords){
+            if(!onWords && bt){
                 widths = 0;
                 heights = 0;
                 padding = 0;
@@ -454,7 +515,7 @@ window.addEventListener('mouseover', (ev)=>{
             focus.style.transform = `translate(-${padding}rem, -${padding}rem)`;
         }
     }
-})
+});
 
 setTimeout(()=>{
     Object.assign(document.body.insertAdjacentElement('beforeEnd', document.createElement('script')),{

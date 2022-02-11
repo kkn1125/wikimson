@@ -52,9 +52,46 @@ aside.side-bar {
     -o-transition: width 150ms;
 }
 
+$paddings: 0;
 .highlight {
-    color: coral;
-    background-color: rgb(255, 229, 219);
+    position: relative;
+    animation: rightMove 300ms ease both;
+    -webkit-animation: rightMove 300ms ease both;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: $paddings + rem;
+        bottom: $paddings + rem;
+        left: $paddings + rem;
+        right: $paddings + rem;
+        border-left: 3px solid coral;
+        animation: rightMoveAfter 300ms ease both;
+        -webkit-animation: rightMoveAfter 300ms ease both;
+}
+}
+
+@keyframes rightMove {
+    0%{
+        left: 0rem;
+    }
+
+    100%{
+        color: coral;
+        left: 1rem;
+    }
+}
+
+@keyframes rightMoveAfter {
+    0%{
+        opacity: 0;
+        left: $paddings + rem;
+    }
+
+    100%{
+        opacity: 1;
+        left: $paddings - 1 + rem;
+    }
 }
 
 @mixin overflow-settings($size) {
@@ -193,7 +230,7 @@ table {
     }
 }
 
-main{
+main {
     position: relative;
     overflow-x: hidden;
 }
@@ -540,6 +577,7 @@ em {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    overflow: hidden;
 
     .block-time {
         position: relative;
@@ -551,7 +589,26 @@ em {
 }
 
 body.dark {
-    .focused{
+    .focused {
         box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5), inset 0 0 0 9999px rgba(255, 255, 255, 0.1);
+    }
+
+    .gauge-bar {
+        background-color: rgb(233, 117, 35);
+    }
+}
+
+.scroll-gauge {
+    height: 4px;
+    position: relative;
+    background-color: transparent;
+
+    .gauge-bar {
+        display: inline-block;
+        width: 0%;
+        height: 100%;
+        position: absolute;
+        background-color: rgb(236, 77, 255);
+        ;
     }
 }
