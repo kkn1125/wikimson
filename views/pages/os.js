@@ -2,9 +2,11 @@ import {Router} from '../../core/core.js'
 
 import Base from './os.base.js'
 import Histories from './os.history.js'
+import ACA from './os.advanced_computer_architecture.js'
 
 Router.setSubPage('운영체제 서론', 'operating_system-base', Base);
 Router.setSubPage('운영체제 역사', 'operating_system-history', Histories);
+Router.setSubPage('고등운영체제, 인터럽트 기반 운영체제', 'operating_system-advanced_computer_architecture', ACA);
 
 export default {
     pagination: true,

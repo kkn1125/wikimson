@@ -1,7 +1,7 @@
 export default {
     published: true,
-    modified: '2022-02-10 20:46:54',
-    done: false,
+    modified: '2022-02-11 22:42:00',
+    done: true,
     title: '운영체제 역사',
     tags: ['os', 'history'],
     categories: ['cs','Operating System'],
@@ -11,15 +11,15 @@ export default {
     md: true,
     content: [
 `
-### 운영체제 역사
+# 운영체제 역사
 
 컴퓨터의 역사는 1940년대 부터 시작하게 된다. 이전에 1893년 홀러리스에 의해 천공 카드 시스템이 개발되어 대규모 데이터의 취급이 가능해졌다. 천공 카드는 다양한 자료를 동시에 취급, 관리할 수 있게 해주었다.
 
-### No Operating System (1940 ~ 1950)
+### No Operating System \`(1940 ~)\`
 
 <figure class="text-center">
     <img src="./src/images/os/fortran_card.jpg" alt="sample">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> 나무 위키 - 천공카드</figcaption>
+    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> 나무위키 - 천공카드</figcaption>
 </figure>
 
 ###### 천공카드
@@ -44,10 +44,12 @@ export default {
 
 > \`Batch\`는 꾸러미라는 뜻이고 묶어서 처리(Process)한다는 의미를 가진다. 최초의 운영체제(OS)이며, 이는 기존에 Operator(컴퓨터 관리자)가 카드리더기에 카드를 넣고 프린터까지 하는 과정을 대폭 줄여주게 된다.
 
+아래 체크 된 것이 Batch Processing 되는 요소들의 예 입니다.
+
 - Card reader [x]
 - Memory [x]
 - Processing [x]
-- Line printer
+- Line printer []
 
 이러한 반복되는 일련의 작업들을 Operator가 아닌 컴퓨터가 스스로 처리 가능하도록 메모리에 프로그램을 넣어주게 고안 된다.
 
@@ -55,7 +57,14 @@ export default {
 
 메모리에 상주해서 소스코드 -> 컴파일 -> 링크(라이브러리 등등) -> 로드(적재) 등의 꾸러미 일들을 처리한다.
 
-### 하드디스크의 등장
+### 하드디스크의 등장 \`(1956 ~)\`
+
+<figure class="text-center">
+    <img src="./src/images/os/ramac.jpg" alt="sample">
+    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> 나무위키 - HDD</figcaption>
+</figure>
+
+최초의 하드디스크는 1956년 IBM에서 개발된 라막(RAMAC)이다. 크기가 약 60CM에 저장 용량이 그 당시에 무려 약 5MB이다. 당시 천공카드와 자기 코어 메모리가 전부였던 시절을 생각하면 압도적인 용량이다. (여담으로 무게가 무려 1톤이었다고...😲)
 
 초기에는 메모리가 적어 파일 하나만 올라가는데 그쳤다. 하드디스크가 등장하고 메모리가 커지면서 보다 많은 파일을 올릴 수 있었다.
 
@@ -72,38 +81,78 @@ export default {
 
 이러한 과정을 볼 때 입/출력 장치를 사용할 시 CPU는 Idle(논다)한다. 입/출력은 속도가 느리고 반면 CPU는 빠르다. 입/출력 사용 시 많은 시간을 CPU가 대기하기 때문에 CPU의 활용도가 떨어진다.
 
-### Multiprogramming System (다중 프로그래밍)
+당시 컴퓨터는 비싼 자원이었다. 비싸게 주고 산 컴퓨터가 CPU의 효율이 좋지 않으면 그만큼 가성비가 떨어진다.
 
-... 작성중
+### Multiprogramming System (다중 프로그래밍){:.text-danger} \`(1960 ~)\`
 
-###### 운영체제 기술 발전
-
-1. No OS => 종이에 구멍을 뚫어 식별기호를 조합하여 메모리에 수동으로 올림.
-2. Batch Processing (일괄처리 시스템) => 최초의 OS(운영체제)
-3. 하드디스크 등장 => OS의 변화를 가져왔으며, 초기에는 파일이 메모리에 하나만 올라갈 수 있었다.
-
-* batch : 꾸러미, resident monitor  
-* 연산 : CPU담당, 초기에는 CPU가 효율성이 떨어졌음  
-* 입출력 : I/O담당
-
-###### Multi-Programming System
-
-- 컴퓨터는 비싼 자원이었다.
-- 빠른 CPU와 느린 I/O => 메모리에 여러개의 일이 가능해졌다.
-- CPU Scheduling, 메모리 관리, 보호
-
-###### Time Sharing System (시공유 시스템)
+CPU가 노는 것을 방지하고 효율을 높이는 OS가 출현한다. 메모리가 커지면서 가능해진 다중 프로그래밍은 이전과 달리 유저 프로그램 하나가 아닌 여러 개의 유저 프로그램을 메모리에 올릴 수 있게 됐는데, 이때 \`User 1\`에서 \`CPU\`가 작업하다가 \`I/O\`를 실행하는 사이에 \`CPU\`는 놀지 않고 \`User 2\`로 넘어가 \`CPU\`가 작업하게 된다.
 
 <figure class="text-center">
+    <img src="./src/images/os/history-multiprogramming.png" alt="sample">
+    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> kimson</figcaption>
+</figure>
+
+대강 아래와 같은 과정이 그려진다.
+
+1. User 1(Program === Job) => CPU => I/O => Ready => Ready
+2. User 2(Program === Job) => Ready => CPU => I/O => Ready
+3. User 3(Program === Job) => Ready => Ready => CPU => I/O
+
+즉, I/O가 실행 중이어도 CPU를 쉬지 않고 효율적으로 돌릴 수 있고, 여러 개의 프로그램(일)이 가능해졌다.
+
+###### CPU Scheduling
+
+다중 프로그래밍 출현으로 단순히 여러 개의 작업이 가능한 것에 그치는게 아니라 생각해야 할 것이 더 많아졌다.
+
+대표적으로 CPU의 작업 우선순위를 정하는 것이다. 어떠한 순서로 작업을 진행해야 성능이 더 좋은지 결정하는 것을 CPU \`Scheduling\`이라 한다.
+
+###### 메모리 보호
+
+여러 개의 프로그램이 돌기 때문에 다른 프로그램으로 침범이 되지 않도록 고려해야한다. 메모리의 사용을 제어하는 방법이고, 모든 운영 체제에서 중요한 쟁점사항 중 하나이다.
+
+즉, 실행 중인 프로세스가 자신에게 할당되지 않은 영역의 메모리에 접근하는 것을 막는 다는 것이 메모리 보호의 핵심이자 목적이다.
+
+### Time Sharing System (시공유 시스템){:.text-danger} \`(1970 ~)\`
+
+현대는 당연하게 키보드가 있지만 옛날에는 없었다. 시간이 지나고 기술이 발달하면서 모니터가 생기고 키보드가 생기면서 이제는 컴퓨터와 상호작용(Interactive)할 수 있게 된다. 이를 *상호 대화형 컴퓨터*라고 한다.
+
+당시에 컴퓨터를 사용하는 구조는 아래와 같다.
+
+<figure class="text-center" id="img-1">
     <img src="./src/images/os/os02.png" alt="sample">
     <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> google</figcaption>
 </figure>
 
-1960년대 Unix가 등장하고 1970년대에 보급되기 시작하였다. Unix가 대표적인 TSS이며, Unix가 현재의 Linux => TSS에 기반 (window 포함)
+당시 비싼 자원이었던 컴퓨터는 한 대에 여러 단말기(Terminal)을 달아 사용하는 방식이었다. 여러 명이 사용하는데 있어 \`Multiprogramming\` 방식에 문제가 생기기 시작했다.
+
+예를들어 \`User 1\`이 돌 때 나머지 \`User 2\`와 \`User 3\`는 일하지 못하고 대기한다. \`CPU\`가 하나이기 때문에 하나의 프로그램이 끝날 때까지 아무것도 하지 못 하는 것이다.
+
+시간 축이 있다고 가정할 때 100 ~ 1,000초 단위로 나누어 1/100초 동안 \`User 1\`의 작업을 다음 1/100초 동안 \`User 2\`의 작업을 진행하는 식으로 스위칭을 하는 방법이다.
+
+만일 3개의 프로그램이 돌 때 1/100초로 스위칭하면 각자 할당되는 시간은 33.333초로 균일하게 할당되고, 매우 빠른 속도로 스위칭 되기 때문에 사람이 느끼기에는 컴퓨터가 동시에 작업이 되는 것처럼 보이게 된다. 이를 *동기화*라고 한다.
+
+이 방법을 \`시공유 시스템(TSS)\`이라고 하며, 이때부터 컴퓨터에 명령을 내리고 응답을 받는 대화형 시스템이 가능해지고, 한 사용자가 다른 사용자에게 어떠한 데이터를 보낼 수 있게 되는, *프로세스간 통신*이 가능하게 된다.
+
+###### 가상 메모리 (Virtual Memory)
+
+하드디스크가 보편화되면서 사용자가 많아지다 보면 메인메모리가 부족해지는데, 원래의 메인 메모리는 크지 않지만 CPU가 봤을 때 메인 메모리가 커 보이는, 하드디스크의 일부를 마치 메인 메모리처럼 쓰는 기술인 *가상메모리*가 고안 된다.
+
+###### Unix (Linux)
+
+1960년대 \`Unix\`가 등장하고 1970년대에 보급되기 시작하였다. \`Unix\`가 *대표적인 TSS*이며, Unix가 현재의 Linux => TSS에 기반 (window 포함)
+
+- 여담으로 MD DOS는 OS가 하나 User 프로그램이 하나 있는 모델이었다. MS-DOS가 지나고 현재의 Window 등은 TSS 계열이다.
+
+### OS 기술의 변천사
 
 ###### 컴퓨터 규모별 분류
 
-- Super Computer => Mainframe => Mini => Micro
+- Super Computer -> Mainframe -> Mini -> Micro
+- Super Computer ->  Server -> Workstation -> PC -> Handheld -> Embedded
+
+여기서 \`Mainframe\`은 [TSS 이미지](#img-1)의 CPU처럼 중앙에 위치하고 많은 단말기(Mini)가 달려있는 것을 상상하면 된다.
+
+대형 컴퓨터를 위해 기술의 발전이 거듭되었고 점점 대형의 컴퓨터가 가졌던 OS, TSS등의 기술이 점차 작은 단위의 기기도 가지게 되면서 대형 기종을 위한 기술이 작은 단위 기종까지 적용범위가 확대 되게 된다.
 `,
     ],
     ref: [

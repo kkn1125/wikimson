@@ -196,9 +196,9 @@ wikiFilter.regdate = function(){
         li: 'list-item',
         blockquote: 'blockquote blockquote-info',
         h: true,
-    }).replace(/\-\>|\<\-|\=\>|\<\=/gm, (a,b)=>{
-        if(a=='->'||a=='=>')return '&#10142;';
-        else if(a=='<-'||a=='<=') return '&#129044;';
+    }).replace(/\-&gt;|&lt;\-|\=&gt;|&lt;\=/gm, (a,b)=>{
+        if(a=='-&gt;'||a=='=&gt;')return '&#10142;';
+        else if(a=='&lt;-'||a=='&lt;=') return '&#129044;';
     }):this.content, 'text/html').body.textContent.trim().length;
 
     return `<ul class="list-group">
@@ -234,9 +234,9 @@ wikiFilter.toc = function(){
         li: 'list-item',
         blockquote: 'blockquote blockquote-info',
         h: true,
-    }).replace(/\-\>|\<\-|\=\>|\<\=/gm, (a,b)=>{
-        if(a=='->'||a=='=>')return '&#10142;';
-        else if(a=='<-'||a=='<=') return '&#129044;';
+    }).replace(/\-&gt;|&lt;\-|\=&gt;|&lt;\=/gm, (a,b)=>{
+        if(a=='-&gt;'||a=='=&gt;')return '&#10142;';
+        else if(a=='&lt;-'||a=='&lt;=') return '&#129044;';
     }):this.content, 'text/html').body;
     let generateToc = [...html.querySelectorAll('.h3, .h6')];
     generateToc = generateToc.reduce((prev, cur)=>{
@@ -291,9 +291,9 @@ wikiFilter.sidebar = function (){
         li: 'list-item',
         blockquote: 'blockquote blockquote-info',
         h: true,
-    }).replace(/\-\>|\<\-|\=\>|\<\=/gm, (a,b)=>{
-        if(a=='->'||a=='=>')return '&#10142;';
-        else if(a=='<-'||a=='<=') return '&#129044;';
+    }).replace(/\-&gt;|&lt;\-|\=&gt;|&lt;\=/gm, (a,b)=>{
+        if(a=='-&gt;'||a=='=&gt;')return '&#10142;';
+        else if(a=='&lt;-'||a=='&lt;=') return '&#129044;';
     }):this.content, 'text/html').body;
 
     let generateToc = [...html.querySelectorAll('.h3, .h6')];
@@ -365,7 +365,7 @@ wikiFilter.all = function(){
 }
 
 function templateInsertAsync({...options}){
-    const temp = new Date().getTime().toString().split('').map(x=>String.fromCharCode(65+parseInt(x))).join('');
+    const id = new Date().getTime().toString().split('').map(x=>String.fromCharCode(65+parseInt(x))).join('');
     
     (async function(){
         let result;
@@ -378,15 +378,44 @@ function templateInsertAsync({...options}){
             result = data;
         }
 
-        setTimeout(() => {
-            let target = document.querySelector(`#${temp}`);
-            target.insertAdjacentHTML('afterend', `<span class="delay-injection">${result}</span>`);
-            target.remove();
+        window[options.type||'setTimeout'](() => {
+            let target = document.querySelector(`#${id}`);
+            if(target && target.tagName == 'TEMP') {
+                target.insertAdjacentHTML('afterend', `<span id="${id}" class="delay-injection">${result||''}</span>`);
+                target.remove();
+            } else if(target) target.textContent = result;
+
+            if(target && options.string) result = parseInt(result) + options.increase;
+            else if(target && !options.string) result = new options.increase();
         }, options.delay);
     })();
-    
-    return `<temp id="${temp}"></temp>`;
+
+    return `<temp id="${id}"></temp>`;
 }
+
+// function templateInsertAsync({...options}){
+//     const temp = new Date().getTime().toString().split('').map(x=>String.fromCharCode(65+parseInt(x))).join('');
+
+//     (async function(){
+//         let result;
+
+//         if(options.string) result = options.string;
+
+//         if(options.url){
+//             let res = await fetch(options.url);
+//             let data = await res.text();
+//             result = data;
+//         }
+
+//         setTimeout(() => {
+//             let target = document.querySelector(`#${temp}`);
+//             target.insertAdjacentHTML('afterend', `<span class="delay-injection">${result}</span>`);
+//             target.remove();
+//         }, options.delay);
+//     })();
+    
+//     return `<temp id="${temp}"></temp>`;
+// }
 
 function watch(){
     let cur = location.hash.slice(1);
@@ -408,6 +437,7 @@ requestAnimationFrame(watch);
 let tops, lefts, widths, heights, padding, time='', fm=false, onWords = false;
 
 window.onload = ()=>{
+    if(!sessionStorage['readmode']) sessionStorage['readmode'] = false;
     let t = JSON.parse(sessionStorage['readmode']);
     document.querySelector('#focusMode').checked = t;
     fm = t;

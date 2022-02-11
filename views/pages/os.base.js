@@ -1,7 +1,7 @@
 export default {
     published: true,
-    modified: '2022-02-08 22:03:17',
-    done: false,
+    modified: '2022-02-11 22:42:11',
+    done: true,
     title: '운영체제 서론',
     tags: ['os'],
     categories: ['cs','Operating System'],

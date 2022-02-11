@@ -58,7 +58,8 @@ const Markdown = (function () {
 
         this.horizontal = function (){
             block.forEach((line, id)=>{
-                if(line.match(/(\-{3,}|\*{3,}|\={3,})/gm)){
+                if(line.match(/^(\-{3,}|\={3,}|\*{3,})(?=\s*)$/gm)){
+                    console.log(line)
                     convertedHTML[id] = line.replace(/^(\-{3,}|\={3,}|\*{3,})(?=\s*)$/gm, (a,$1,$2)=>{
                         return `<hr class="hr">`
                     });
@@ -78,7 +79,7 @@ const Markdown = (function () {
 
         this.heading = function () {
             block.forEach((line, id) => {
-                if (line.match(/(\#+)/gm)) {
+                if (line.match(/(^\#+)/gm)) {
                     convertedHTML[id] = line.trim().replace(/[\s\n]*(\#*)(.+)/gm, (a, $1, $2) => {
                         let count = $1.split('').length;
                         return `<h${count}${options.h?` class="h${count}"`:''}>${$2.replace(/^[\s]*/g, '')}</h${count}>`
@@ -173,25 +174,25 @@ const Markdown = (function () {
             block.forEach((line, id) => {
                 if (line.match(/^\!\[/gm)) {
                     const [a, $1, $2, $3] = line.match(/\!\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/);
-                    convertedHTML[id] = `<img src="${$2}" alt="${$1}"${$3?` title="${$3.replace(/[\'\"]+/gm,'').trim()}"`:''}>`;
-                    block[id] = '';
+                    block[id] = block[id].replace(/\!\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/g, `<img src="${$2}" alt="${$1}"${$3?` title="${$3.replace(/[\'\"]+/gm,'').trim()}"`:''}>`);
+                    // block[id] = '';
                 }
             });
         }
 
         this.anchors = function () {
             block.forEach((line, id) => {
-                if (line.match(/^\!\[/gm)) {
-                    const [a, $1, $2, $3] = line.match(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/);
-                    convertedHTML[id] = `<a href="${$2}"${$3?` title="${$3.replace(/[\'\"]+/gm,'').trim()}"`:''}>${$1}</a>`;
-                    block[id] = '';
+                if (line.match(/\[/gm)) {
+                    const [a, $1, $2, $3] = line.match(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣#]+)(\s.+)?\)/);
+                    block[id] = block[id].replace(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣#]+)(\s.+)?\)/g, `<a href="${$2}"${$3?` title="${$3.replace(/[\'\"]+/gm,'').trim()}"`:''}>${$1}</a>`);
+                    // block[id] = '';
                 }
             });
         }
 
         this.paragraphs = function () {
             block.forEach((line, id) => {
-                if (line != '') {
+                if (line.trim() != '') {
                     convertedHTML[id] = `<p>${line}</p>`;
                     // block[id] = '';
                 }
@@ -230,9 +231,9 @@ const Markdown = (function () {
 
         this.altCodeBlock = function (){
             convertedHTML.forEach((line, id)=>{
-                if(line.match(/(\`+|\~+)([\s\S]+)(\`+|\~+)/gm)){
-                    const [a,$1,$2,$3] = line.match(/(\`+|\~+)([\w]+\n)?([\s\S]+?)(\`+|\~+)/m);
-                    convertedHTML[id] = convertedHTML[id].replace(/(\`+|\~+)([\w]+\n)?([\s\S]+?)(\`+|\~+)/gm,(a,dotted,lang,content)=>{
+                if(line.match(/(\`+)([\s\S]+)(\`+)|(\~+)([\s\S]+)(\~+)/gm)){
+                    const [a,$1,$2,$3] = line.match(/(\`+)([\w]+\n)?([\s\S]+?)(\`+)|(\~+)([\w]+\n)?([\s\S]+?)(\~+)/m);
+                    convertedHTML[id] = convertedHTML[id].replace(/(\`+)([\w]+\n)?([\s\S]+?)(\`+)|(\~+)([\w]+\n)?([\s\S]+?)(\~+)/gm,(a,dotted,lang,content)=>{
                         let count = dotted.split('').length;
                         if(!lang && count<3){
                             return `<kbd class="bg-info">${content}</kbd>`;
