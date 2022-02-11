@@ -231,9 +231,17 @@ const Markdown = (function () {
 
         this.altCodeBlock = function (){
             convertedHTML.forEach((line, id)=>{
-                if(line.match(/(\`+)([\s\S]+)(\`+)|(\~+)([\s\S]+)(\~+)/gm)){
-                    const [a,$1,$2,$3] = line.match(/(\`+)([\w]+\n)?([\s\S]+?)(\`+)|(\~+)([\w]+\n)?([\s\S]+?)(\~+)/m);
-                    convertedHTML[id] = convertedHTML[id].replace(/(\`+)([\w]+\n)?([\s\S]+?)(\`+)|(\~+)([\w]+\n)?([\s\S]+?)(\~+)/gm,(a,dotted,lang,content)=>{
+                if(line.match(/(\`+)([\s\S]+)(\`+)/gm)){
+                    convertedHTML[id] = convertedHTML[id].replace(/(\`+)([\w]+\n)?([\s\S]+?)(\`+)/gm,(a,dotted,lang,content)=>{
+                        let count = dotted.split('').length;
+                        if(!lang && count<3){
+                            return `<kbd class="bg-info">${content}</kbd>`;
+                        } else {
+                            return `<pre><code class="language-${lang.trim()}">${content}</code></pre>`;
+                        }
+                    })
+                } else if(line.match(/(\~+)[^\s]([\s\S]+)[^\s](\~+)/gm)){
+                    convertedHTML[id] = convertedHTML[id].replace(/(\~+)[^\s]([\w]+\n)?([\s\S]+?)[^\s](\~+)/gm,(a,dotted,lang,content)=>{
                         let count = dotted.split('').length;
                         if(!lang && count<3){
                             return `<kbd class="bg-info">${content}</kbd>`;

@@ -393,30 +393,6 @@ function templateInsertAsync({...options}){
     return `<temp id="${id}"></temp>`;
 }
 
-// function templateInsertAsync({...options}){
-//     const temp = new Date().getTime().toString().split('').map(x=>String.fromCharCode(65+parseInt(x))).join('');
-
-//     (async function(){
-//         let result;
-
-//         if(options.string) result = options.string;
-
-//         if(options.url){
-//             let res = await fetch(options.url);
-//             let data = await res.text();
-//             result = data;
-//         }
-
-//         setTimeout(() => {
-//             let target = document.querySelector(`#${temp}`);
-//             target.insertAdjacentHTML('afterend', `<span class="delay-injection">${result}</span>`);
-//             target.remove();
-//         }, options.delay);
-//     })();
-    
-//     return `<temp id="${temp}"></temp>`;
-// }
-
 function watch(){
     let cur = location.hash.slice(1);
     if(cur != 'home' && cur != ''){
@@ -473,17 +449,17 @@ window.addEventListener('mouseover', (ev)=>{
     const focus = document.querySelector('.focused');
     const bt = document.querySelector('.block-time');
     if(!fm) return;
-    if(p.tagName == 'P' || (p.closest('li') && p.closest('main'))) {
-        let closer = p.closest('li,p');
+    if(p.closest('p, blockquote') || (p.closest('li') && p.closest('main'))) {
+        let closer = p.closest('li,p, blockquote');
         let rect = closer.getBoundingClientRect();
 
         if(p.closest('li')) {
             padding = 0.5;
             time = '';
         }
-        if(p.closest('p')) {
+        if(p.closest('p, blockquote')) {
             padding = 1;
-            let wordsLength = p.textContent.trim().length;
+            let wordsLength = p.closest('p, blockquote').textContent.trim().length;
             let min = parseInt(wordsLength/250);
             let sec = parseInt(wordsLength/(250/60));
             let toggleTime = [min>0?`${min} m`:'',sec>0?`${sec} s`:``];

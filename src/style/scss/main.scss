@@ -213,8 +213,11 @@ img {
 }
 
 [put-type="wiki"] {
+    line-height: 1.8;
+    word-spacing: 0.13em;
+
     p {
-        margin-bottom: 1em;
+        margin-bottom: 2em;
     }
 }
 
@@ -420,6 +423,26 @@ body {
         -moz-transition: transform 150ms !important;
         -ms-transition: transform 150ms !important;
         -o-transition: transform 150ms !important;
+
+        overflow-x: auto;
+        white-space: nowrap;
+        flex: 1 0 0%;
+        flex-wrap: nowrap;
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        &::-webkit-scrollbar{
+            background-color: inherit;
+            height: 2px;
+            width: 2px;
+        }
+
+        &::-webkit-scrollbar-thumb{
+            background-color: rgba(63, 172, 163, 0.5);
+            border: 3px solid inherit;
+            height: 2px;
+            width: 2px;
+        }
     }
 
     .brand {
@@ -446,6 +469,7 @@ body {
 .h4,
 .h5,
 .h6 {
+    line-height: 1.35;
     text-transform: capitalize;
 }
 
@@ -459,6 +483,22 @@ body {
     &.dark {
         background-color: rgba(var(--pl-dark-rgb-2), 1);
         color: white;
+
+        .focused {
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.1), inset 0 0 0 9999px rgba(255, 255, 255, 0.1);
+        }
+    
+        .gauge-bar {
+            background-color: rgb(233, 117, 35);
+        }
+    
+        .block-time {
+            position: relative;
+            font-size: .6rem;
+            color: rgb(225, 255, 94);
+            right: -8px;
+            bottom: -12px;
+        }
 
         table.table {
             td {
@@ -503,6 +543,12 @@ body {
         #lsb {
             background-color: rgba(var(--pl-dark-rgb), 1) !important;
             color: inherit;
+
+            .list-group{
+                li{
+                    color: rgba(255, 255, 255, 0.5);
+                }
+            }
         }
 
         .tag {
@@ -585,16 +631,6 @@ em {
         color: rgba(146, 79, 255, 0.7);
         right: -8px;
         bottom: -12px;
-    }
-}
-
-body.dark {
-    .focused {
-        box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5), inset 0 0 0 9999px rgba(255, 255, 255, 0.1);
-    }
-
-    .gauge-bar {
-        background-color: rgb(233, 117, 35);
     }
 }
 

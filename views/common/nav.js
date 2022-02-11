@@ -7,7 +7,7 @@ export default {
     wikis: () => Object.keys(Router)
     .filter(x=>Router[x].page.pagination)
     .map(w=>`<li>
-        <a class="nav-link" href="${Router[w].path}">${Router[w].convertedName}</a>
+        <a class="nav-link" href="${Router[w].path}">${Router[w].convertedName.length>3?Router[w].convertedName:Router[w].convertedName.toUpperCase()}</a>
     </li>`)
     .join(''),
     template: function() {
