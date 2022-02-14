@@ -42,11 +42,11 @@ const Markdown = (function () {
             this.images();
             this.anchors();
             this.paragraphs();
+            this.altTable();
             this.br();
             this.italicBold();
             this.altImages();
             this.altAnchors();
-            this.altTable();
             this.altCodeBlock();
             this.addClass();
         }
@@ -220,13 +220,103 @@ const Markdown = (function () {
         }
 
         this.altTable = function (){
-            // convertedHTML = convertedHTML.map(x=>{
-            //     if(/(\*+)([\s\S]+?)\*+/g)
-            //     return x.replace(/(\*{1,3})([\s\S]+?)\*{1,3}/g, (a,$1,$2)=>{
-            //         return `${$1.length==2?`<em>`:`<b>${$1.length==3?`<em>`:``}`}${$2}${$1.length!=2?`</b>${$1.length==3?`</em>`:``}`:`</em>`}`
-            //     });
-            //     else return x;
-            // });
+            block.forEach((line, id)=>{
+                let table = document.createElement('table');
+                let thead = document.createElement('thead');
+                let tbody = document.createElement('tbody');
+                let toHead = false;
+                let classes;
+                if(line.match(/(\|.+\|)/g)){
+                    let rows = line.split(/\n/g);
+                    rows = rows.map(row=>row.split(/\|/g));
+        
+                    rows = rows.map(r=>{
+                        if(r[0]==''){
+                            r = r.slice(1);
+                        }
+        
+                        if(r[r.length-1]==''){
+                            r = r.slice(0, -1);
+                        }
+        
+                        if(r[0].match(/\{\:(.+)\}/g)){
+                            classes = r.pop().replace(/[\{\:\}]/g, '').split('.').filter(x=>x!='');
+                        }
+                        
+                        if(r[0].match(/\{\:(.+)\}/g)){
+                            classes = r.pop().replace(/[\{\:\}]/g, '').split('.').filter(x=>x!='');
+                        }
+                        return r;
+                    }).filter(x=>x.length>0);
+        
+                    rows.map(row=>{
+                        let tr = document.createElement('tr');
+                        if(row[0].match(/\-{3,}/g)){
+                            toHead = true;
+                            return '';
+                        }
+                        if(!toHead){
+                            tr.append(...row.map(cols=>{
+                                let th = document.createElement('th');
+                                th.innerHTML = cols;
+                                return th;
+                            }));
+                            thead.append(tr);
+                        } else {
+                            tr.append(...row.map(cols=>{
+                                let td = document.createElement('td');
+                                td.innerHTML = cols;
+                                return td;
+                            }));
+                            tbody.append(tr);
+                        }
+                    });
+        
+                    [...tbody.children].forEach((tr, rid, oo)=>{
+                        let continues = null;
+                        let colspan = 1;
+                        [...tr.children].forEach((td, did, o)=>{
+                            if(td.innerHTML.trim()==''){
+                                if(continues==null) continues = o[did-1];
+                                colspan++;
+                                td.remove();
+        
+                                if(o.indexOf(td)==o.length-1){
+                                    colspan--;
+                                }
+        
+                                if(colspan>1){
+                                    continues.setAttribute('colspan', colspan);
+                                }
+                            }
+        
+                            if(td.innerHTML.trim()!='') {
+                                continues = null;
+                                colspan = 1;
+                            }
+        
+                            if(td.innerHTML.match(/\^{2,}/g)){
+                                if(tbody.children[rid-1].children[did]){
+                                    tbody.children[rid-1].children[did].setAttribute('rowspan', 2);
+                                } else {
+                                    console.log(tbody.children[rid-1].children[tbody.children[rid-1].children.length-1])
+                                    tbody.children[rid-1].children[tbody.children[rid-1].children.length-1].setAttribute('rowspan', 2);
+                                }
+                                td.remove();
+                            }
+                        });
+                    })
+        
+                    table.append(thead, tbody);
+
+                    table.classList.add('table');
+
+                    if(classes) table.classList.add(classes);
+        
+                    convertedHTML[id] = table.outerHTML;
+                    block[id] = '';
+                }
+            });
         }
 
         this.altCodeBlock = function (){
