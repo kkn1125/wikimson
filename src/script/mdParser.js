@@ -40,9 +40,9 @@ const Markdown = (function () {
             this.horizontal();
             this.heading();
             this.altTable();
-            this.blockListify();
             this.images();
             this.anchors();
+            this.blockListify();
             this.paragraphs();
             this.br();
             this.italicBold();
@@ -59,7 +59,6 @@ const Markdown = (function () {
         this.horizontal = function (){
             block.forEach((line, id)=>{
                 if(line.match(/^(\-{3,}|\={3,}|\*{3,})(?=\s*)$/gm) && !line.match(/\<\/?(pre|code)\>/g)){
-                    console.log(line)
                     convertedHTML[id] = line.replace(/^(\-{3,}|\={3,}|\*{3,})(?=\s*)$/gm, (a,$1,$2)=>{
                         return `<hr class="hr">`
                     });
@@ -81,8 +80,9 @@ const Markdown = (function () {
             block.forEach((line, id) => {
                 if (line.match(/(^\#+)/gm)) {
                     convertedHTML[id] = line.trim().replace(/[\s\n]*(\#*)(.+)/gm, (a, $1, $2) => {
+                        let [attrs, classes] = this.addClass(line);
                         let count = $1.split('').length;
-                        return `<h${count}${options.h?` class="h${count}"`:''}>${$2.replace(/^[\s]*/g, '')}</h${count}>`
+                        return `<h${count}${options.h?` class="h${count} ${classes||''}"`:''}>${$2.replace(/^[\s]*/g, '').replace(/\{\:(.+)\}/g, '')}</h${count}>`
                     });
                     block[id] = '';
                 }
@@ -91,10 +91,11 @@ const Markdown = (function () {
 
         this.italicBold = function (){
             convertedHTML = convertedHTML.map(x=>{
+                let [attrs, classes] = this.addClass(x);
                 if(/(\*+)([\s\S]+?)\*+/g && !x.match(/\<\/?(pre|code)\>/g))
                 return x.replace(/(\*{1,3})([\s\S]+?)\*{1,3}/g, (a,$1,$2)=>{
-                    return `${$1.length==2?`<em>`:`<b>${$1.length==3?`<em>`:``}`}${$2}${$1.length!=2?`</b>${$1.length==3?`</em>`:``}`:`</em>`}`
-                });
+                    return `${$1.length==2?`<em class="${classes||''}">`:`<b class="${classes||''}">${$1.length==3?`<em class="${classes||''}">`:``}`}${$2}${$1.length!=2?`</b>${$1.length==3?`</em>`:``}`:`</em>`}`
+                }).replace(/\{\:(.+)\}/g, '');
                 else return x;
             });
         }
@@ -142,10 +143,12 @@ const Markdown = (function () {
                             }
                         }
 
+                        let [attrs, classes] = this.addClass(li);
+
                         if(li.match(/^\s*\>\s.+/g)){
-                            temp += `${checkbox(li.replace(/^\s*\>\s(.+)/gm, '$1'))}`;
+                            temp += `${checkbox(li.replace(/^\s*\>\s(.+)/gm, '$1')).replace(/\{\:(.+)\}/g, '')}`;
                         } else {
-                            temp += `<li>${checkbox(li.replace(/^\s*[0-9]\.\s*(.+)/gm, '$1').replace(/^\s*\-\s*(.+)/gm, '$1'))}</li>`;
+                            temp += `<li class="${classes||''}" ${attrs?.join(' ')||''}>${checkbox(li.replace(/^\s*[0-9]\.\s*(.+)/gm, '$1').replace(/^\s*\-\s*(.+)/gm, '$1')).replace(/\{\:(.+)\}/g, '')}</li>`;
                         }
                         
                         before = indent;
@@ -172,7 +175,7 @@ const Markdown = (function () {
 
         this.images = function () {
             block.forEach((line, id) => {
-                if (line.match(/^\!\[/gm) && !line.match(/\<\/?(pre|code)\>/g)) {
+                if (line.match(/\!\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/gm) && !line.match(/\<\/?(pre|code)\>/g)) {
                     const [a, $1, $2, $3] = line.match(/\!\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/);
                     block[id] = block[id].replace(/\!\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/g, `<img src="${$2}" alt="${$1}"${$3?` title="${$3.replace(/[\'\"]+/gm,'').trim()}"`:''}>`);
                     // block[id] = '';
@@ -183,8 +186,9 @@ const Markdown = (function () {
         this.anchors = function () {
             block.forEach((line, id) => {
                 if (line.match(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣#]+)(\s.+)?\)/gm) && !line.match(/\<\/?(pre|code)\>/g)) {
+                    let [attrs, classes] = this.addClass(line);
                     const [a, $1, $2, $3] = line.match(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣#]+)(\s.+)?\)/);
-                    block[id] = block[id].replace(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣#]+)(\s.+)?\)/g, `<a href="${$2}"${$3?` title="${$3.replace(/[\'\"]+/gm,'').trim()}"`:''}>${$1}</a>`);
+                    block[id] = block[id].replace(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣#]+)(\s.+)?\)/g, `<a href="${$2}"${$3?` title="${$3.replace(/[\'\"]+/gm,'').trim()}"`:''} class="${classes}" ${attrs||''}>${$1}</a>`);
                     // block[id] = '';
                 }
             });
@@ -214,7 +218,9 @@ const Markdown = (function () {
             convertedHTML.forEach((line, id)=>{
                 if(line.match(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/gm)){
                     const [a,$1,$2,$3] = line.match(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/m);
-                    convertedHTML[id] = convertedHTML[id].replace(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/gm,`<a href="${$2}"${$3?` title="${$3.replace(/[\'\"]+/gm,'').trim()}"`:''}>${$1}</a>`);
+                    console.log(line)
+                    let [attrs, classes] = this.addClass(line);
+                    convertedHTML[id] = convertedHTML[id].replace(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/gm,`<a href="${$2}"${$3?` title="${$3.replace(/[\'\"]+/gm,'').trim()}"`:''} class="${classes||''}" ${attrs||''}>${$1}</a>`);
                     // block[id] = '';
                 }
             });
@@ -337,22 +343,22 @@ const Markdown = (function () {
         this.altCodeBlock = function (){
             if(md.match(/(\`+)([\s\S]+)(\`+)|(\~+)[^\s]([\s\S]+)[^\s](\~+)/gm)){
                 return md.replace(/(\`+)([\w]+\n)?([\s\S]+?)(\`+)/gm, (a,dotted,lang,content)=>{
-                    console.log(content)
+                    let [attrs, classes] = this.addClass(content);
                     let ta = document.createElement('textarea');
                     ta.value = content;
                     let count = dotted.split('').length;
                     if(!lang && count<3){
-                        return `<kbd class="bg-info">${content.trim()}</kbd>`;
+                        return `<kbd class="bg-info ${classes||''}">${content.trim().replace(/\{\:(.+)\}/g, '')}</kbd>`;
                     } else {
                         return `<pre><code class="language-${lang.trim()}">${ta.value}</code></pre>`;
                     }
                 }).replace(/(\~+)[^\s]([\w]+\n)?([\s\S]+?)[^\s](\~+)/gm, (a,dotted,lang,content)=>{
+                    let [attrs, classes] = this.addClass(content);
                     let count = dotted.split('').length;
-                    let contents = codeBlockParser.parse(content.trim(), lang);
-                    let lines = [...new DOMParser().parseFromString(contents, 'text/html').body.children];
-                    let lcount = 1;
+                    let ta = document.createElement('textarea');
+                    ta.value = content;
                     if(!lang && count<3){
-                        return `<kbd class="bg-info">${content.trim()}</kbd>`;
+                        return `<kbd class="bg-info ${classes||''}">${content.trim().replace(/\{\:(.+)\}/g, '')}</kbd>`;
                     } else {
                         return `<pre><code class="language-${lang.trim()}">${ta.value}</code></pre>`;
                     }
@@ -360,48 +366,22 @@ const Markdown = (function () {
             } else return md;
         }
 
-        this.addClass = function (){
-            convertedHTML = convertedHTML.map(line=>{
-                if(line.match(/\{\:(.+)\}/g)){
-                    let origin = line.match(/\{\:(.+)\}/g).pop();
-                    let classes = origin.replace(/\{\:(.+)\}/g, '$1').split('.').filter(x=>x!='');
-                    let attrs = [];
-                    classes.forEach((el,i)=>{
-                        if(el.match(/=/g)){
-                            attrs.push(classes.splice(i, 1).pop());
-                        }
-                    });
-                    attrs = attrs.map(el=>{
-                        let [key, val] = el.split('=');
-                        val = val.replace(/[\"]/g, '');
-                        return [key, val];
-                    });
+        this.addClass = function (line){
+            if(line?.match(/\{\:(.+)\}/g)){
+                let origin = line.match(/\{\:(.+)\}/g).pop();
+                let classes = origin.replace(/\{\:(.+)\}/g, '$1').split(/[\.]/g).filter(x=>x!='');
 
-                    let tag = [...new DOMParser().parseFromString(line, 'text/html').body.childNodes].pop();
-                    let text;
+                let attrs = [];
 
-                    [...tag.childNodes].filter(x=>x instanceof Text?text=x:null);
+                classes.forEach((el,i)=>{
+                    if(el.match(/\=/g)) attrs.push(classes.splice(i, 1).pop());
+                });
 
-                    let idx = [...tag.childNodes].indexOf(text);
+                if(attrs.length>0)
+                attrs = attrs.pop().split(',');
 
-                    tag.innerHTML = tag.innerHTML.replace(origin, '');
-
-                    if(tag.childNodes[idx-1]){
-                        tag.childNodes[idx-1].classList.add(classes);
-                        attrs.forEach(el=>{
-                            tag.childNodes[idx-1].setAttribute(el[0], el[1]);
-                        });
-                    } else {
-                        attrs.forEach(el=>{
-                            tag.setAttribute(el[0], el[1]);
-                        });
-                        tag.classList.add(classes);
-                    }
-
-                    line = tag.outerHTML;
-                    return line;
-                } else return line;
-            });
+                return [attrs||'', classes.join(' ')||''];
+            } else return '';
         }
 
         this.br = function (){

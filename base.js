@@ -367,7 +367,6 @@ wikiFilter.all = function(){
         let idx = modules.indexOf('$'+this.origin.path.slice(1).replace(/[\-]/g, '_'));
 
         if(modules.length-1>idx+1){
-            console.log()
             document.querySelector('.gnb').insertAdjacentHTML('afterend', `<div class="next-post fs-7"><button class="btn btn-brand" onclick="location='${this.parent.page.module[modules[idx+1]].path}'">Next</button> <span class="post-name">${this.parent.page.module[modules[idx+1]].convertedName}</span></div>`);
         }
 
