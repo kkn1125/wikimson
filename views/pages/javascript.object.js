@@ -1,40 +1,34 @@
-import {App} from '../../core/core.js'
-
 export default {
     published: true,
-    modified: '',
-    done: false,
     title: '자바스크립트 정리',
+    modified: '2022-02-14 17:18:23',
+    done: false,
     tags: ['api','object'],
     categories: ['javascript'],
     authors: ['kimson'],
     wrote: '2022-01-14 21:47:54',
     toc: true,
+    md: true,
     content: [
-        `
-        <div>
-            <div>
-                <span class="h3">Object</span>
-            </div>
-            <div>
-                <div>
-                    <span class="h6">defineProperty</span>
-                </div>
-                <p align="center">
-                    <img src="${App.baseurl}src/images/javascript/console/console01.png" alt="sample">
-                </p>
-                <p>
-                    class에서 쉽게 getter와 setter를 구현했습니다. 함수형 객체에서도 getter와 setter는 구현할 수 있습니다.
-                </p>
-                <p>
-                    간단한 예로 객체의 프로퍼티중 중 보호되어야 하는 값이 있다면 class에서는 아래와 같이 작성했습니다.
-                </p>
-                <p>
-                    <pre>
-<code>class Parent {
+`
+### Object
+
+###### defineProperty
+
+<figure class="text-center">
+    <img src="./src/images/javascript/console/console01.png" alt="sample" title="sample">
+    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> google</figcaption>
+</figure>
+
+class에서 쉽게 getter와 setter를 구현했습니다. 함수형 객체에서도 getter와 setter는 구현할 수 있습니다.
+
+간단한 예로 객체의 프로퍼티중 중 보호되어야 하는 값이 있다면 class에서는 아래와 같이 작성했습니다.
+
+\`\`\`javascript
+class Parent {
     get name () {
         return this._name;
-    }
+    },
     set name (name) {
         this._name = name;
     }
@@ -43,20 +37,17 @@ export default {
 const obj = {
     get name () {
         return this._name;
-    }
+    },
     set name (name) {
         this._name = name;
     }
 }
-</code>
-                    </pre>
-                </p>
-                <p>
-                    함수형 객체에서는 <kbd class="bg-info">defineProperty</kbd>로 지정해주어야 합니다. 번거로워 보이지만 for문으로 돌려 원하는 프로퍼티들의 <kbd class="bg-warning">getter</kbd>와 <kbd class="bg-warning">setter</kbd>를 한 번에 넣어버릴 수 있습니다.
-                </p>
-                <p>
-                    <pre>
-<code>const porperties = [
+\`\`\`
+
+함수형 객체에서는 \`defineProperty\`로 지정해주어야 합니다. 번거로워 보이지만 for문으로 돌려 원하는 프로퍼티들의 \`getter\`와 \`setter\`를 한 번에 넣어버릴 수 있습니다.
+
+\`\`\`javascript
+const porperties = [
     'id',
     'email',
     'password',
@@ -64,25 +55,22 @@ const obj = {
     'birth',
     'address',
     'sex',
-]
+];
 
 const Parent = function () {
     // ... 코드 작성
 }
-</code>
-                    </pre>
-                    아래의 예를 보시면 일일이 지정하지 않아도 간단한 getter/setter는 만들 수 있습니다. 각각의 프로퍼티마다 해야할 기능이 다르다면 다른 방식으로 작성해야 합니다.
-                </p>
-                <p align="center">
-                    <img src="${App.baseurl}src/images/javascript/object/object01.png" alt="sample">
-                    <blockquote class="blockquote blockquote-info">
-                        Console ->
-                        <li>kimson</li>
-                    </blockquote>
-                </p>
-            </div>
-        </div>
-        `,
+\`\`\`
+
+아래의 예를 보시면 일일이 지정하지 않아도 간단한 getter/setter는 만들 수 있다. 각각의 프로퍼티마다 해야할 기능이 다르다면 다른 방식으로 작성해야 한다.
+
+<figure class="text-center">
+    <img src="./src/images/javascript/object/object01.png" alt="sample" title="sample">
+    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> google</figcaption>
+</figure>
+
+> Console -> kimson
+`,
     ],
     ref: [
         // {

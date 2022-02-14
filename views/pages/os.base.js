@@ -1,8 +1,8 @@
 export default {
     published: true,
+    title: '운영체제 서론',
     modified: '2022-02-11 22:42:11',
     done: true,
-    title: '운영체제 서론',
     tags: ['os'],
     categories: ['cs','Operating System'],
     authors: ['kimson'],
@@ -55,10 +55,10 @@ export default {
 
 ###### Main Memory
 
-th: 구분|내용|비고@
-슈: !RAM|전원이 꺼지면 사라지는 휘발성 메모리|수 백MB ~ 수GB\\
-    !ROM  (Read only memory)|전원과 관계 없이 내용이 유지(메인 메모리에서 극히 일부 차지)|수 십KB ~ 수 백KB@
-:end
+|구분|내용|비고|
+|---|---|---|
+|*RAM*|전원이 꺼지면 사라지는 휘발성 메모리|수 백MB ~ 수GB|
+|*ROM (Read only memory)*|전원과 관계 없이 내용이 유지(메인 메모리에서 극히 일부 차지)|수 십KB ~ 수 백KB|
 
 ### 커널(Kernel)과 쉘(Shell)
 
@@ -75,17 +75,35 @@ th: 구분|내용|비고@
     - \`Shell\` 윈도우는 UI로, Linux는 텍스트로 명령을 내린다.
         - 사용자 명령을 해석하고 출력해준다.
         - 다른 말로 Command Interpreter
-3. \`H/W(하드웨어)\`
+3. \`Application\` 컴퓨터 응용프로그램이다. 예를들면 mp3, hwp, pptx 등의 실행가능한 프로그램들을 말한다. 이러한 응용프로그램은 어느 운영체제 위에서 실행되게 되는데, 만일 하드웨어가 동일하더라도 OS가 변경되면 이 응용프로그램은 작동되지 못한다.
 
-\`\`\`javascript
-function test() {
-    return 123;
-}
-\`\`\`
+> \`Application\`은 하드웨어 자원을 사용하고는 있지만 직접적으로 사용하는 것이 아닌 OS의 조정을 통해 사용 가능해지는 것이다.
 
 ###### OS의 자원관리
 
-운영체제에는 여러 자원 관리자, 자원 할당자가 존재한다.
+<figure class="text-center">
+    <img src="./src/images/os/os-base-schematic.png" alt="electricalfundablog" title="electricalfundablog">
+    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> 
+        <a taget="_blank" href="https://electricalfundablog.com/operating-system-os-functions-types-resource-management/">electricalfundablog</a>
+    </figcaption>
+</figure>
+
+운영체제에는 여러 자원 관리자, 자원 할당자가 존재한다. 운영체제를 총괄 관리하는 개념으로 정부를 예를 들고는 한다. 하지만 전공이 건축이기 때문에 예를 건축가로 들고 싶다.
+
+건축가는 여러 업체나 전문가와 협력해서 건축물을 계획하고 설계한다. 이때 인력이라는 자원, 레퍼런스라는 자원, 전문가라는 자원을 잘 활용해서 본인이 일을 직접 하긴하지만 구조설계, 기계, 전기, 토목 등 다양한 전문분야의 전문가와 회의를 통해 여러 문제점을 해결해 나간다.
+
+건축가는 업체들과 함께 일을 진행하면서 생기는 업무(자원)을 각 전문가와 업체에게 할당하고 관리하게 된다.
+
+이러한 순환은 건축 뿐 아니라 여러 직군에서도 그럴 것이라 생각한다. 위 예시를 토대로 컴퓨터의 관점에서 보자면 \`OS\`는 \`하드웨어\`라는 자원을 \`Application\`에 *할당*하고 *관리*하는 이야기로 바꿔 말할 수 있다.
+
+###### OS의 management 종류
+
+<figure class="text-center">
+    <img src="./src/images/os/os-base-managements.png" alt="kernel&shell" title="kernel shell">
+    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> 
+        <a taget="_blank" href="https://electricalfundablog.com/operating-system-os-functions-types-resource-management/">electricalfundablog</a>
+    </figcaption>
+</figure>
 
 - Process Management
 - Memory Managementm I/O Management

@@ -1,8 +1,8 @@
 export default {
     published: true,
+    title: '고등운영체제, 인터럽트 기반 운영체제',
     modified: '',
     done: false,
-    title: '고등운영체제, 인터럽트 기반 운영체제',
     tags: ['os', 'advanced computer architecture', '고등운영체제'],
     categories: ['cs','Operating System'],
     authors: ['kimson'],

@@ -3,10 +3,12 @@ import {Router} from '../../core/core.js'
 import Base from './os.base.js'
 import Histories from './os.history.js'
 import ACA from './os.advanced_computer_architecture.js'
+import ProcessM from './os.process_management.js'
 
 Router.setSubPage('운영체제 서론', 'operating_system-base', Base);
 Router.setSubPage('운영체제 역사', 'operating_system-history', Histories);
 Router.setSubPage('고등운영체제, 인터럽트 기반 운영체제', 'operating_system-advanced_computer_architecture', ACA);
+Router.setSubPage('프로세스 관리', 'operating_system-os.process_management', ProcessM);
 
 export default {
     pagination: true,
@@ -21,6 +23,9 @@ export default {
     },
     template: function(){
         return `
+        <blockquote class="blockquote blockquote-warning">
+            운영체제는 <b class="">경성대학교 양희정 교수님</b>의 강의를 토대로 작성 되었으며, 부가적으로 궁금한 내용을 따로 찾아 정리하였음을 알립니다 🙇‍♂️
+        </blockquote>
         <ul class="list-group">
             ${this.list()}
         </ul>

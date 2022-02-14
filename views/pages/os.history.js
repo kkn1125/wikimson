@@ -1,8 +1,8 @@
 export default {
     published: true,
+    title: '운영체제 역사',
     modified: '2022-02-11 22:42:00',
     done: true,
-    title: '운영체제 역사',
     tags: ['os', 'history'],
     categories: ['cs','Operating System'],
     authors: ['kimson'],
@@ -118,7 +118,7 @@ CPU가 노는 것을 방지하고 효율을 높이는 OS가 출현한다. 메모
 
 당시에 컴퓨터를 사용하는 구조는 아래와 같다.
 
-<figure class="text-center" id="img-1">
+<figure class="text-center">
     <img src="./src/images/os/os02.png" alt="sample">
     <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> google</figcaption>
 </figure>
@@ -150,7 +150,7 @@ CPU가 노는 것을 방지하고 효율을 높이는 OS가 출현한다. 메모
 - Super Computer -> Mainframe -> Mini -> Micro
 - Super Computer ->  Server -> Workstation -> PC -> Handheld -> Embedded
 
-여기서 \`Mainframe\`은 [TSS 이미지](#img-1)의 CPU처럼 중앙에 위치하고 많은 단말기(Mini)가 달려있는 것을 상상하면 된다.
+여기서 \`Mainframe\`은 <a href="#operating-system-history" scroll-to="img-1" class="ref">TTS이미지</a>의 CPU처럼 중앙에 위치하고 많은 단말기(Mini)가 달려있는 것을 상상하면 된다.
 
 대형 컴퓨터를 위해 기술의 발전이 거듭되었고 점점 대형의 컴퓨터가 가졌던 OS, TSS등의 기술이 점차 작은 단위의 기기도 가지게 되면서 대형 기종을 위한 기술이 작은 단위 기종까지 적용범위가 확대 되게 된다.
 `,

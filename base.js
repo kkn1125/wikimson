@@ -144,7 +144,7 @@ wikiFilter.md = function (content, isMd){
 wikiFilter.content = function(){
     return this.content.map(c=>{
         c = wikiFilter.md(c, this.md);
-
+        
         c = c.replace(/\-&gt;|&lt;\-|\=&gt;|&lt;\=/gm, (a,b)=>{
             if(a=='-&gt;'||a=='=&gt;')return '<span class="text-danger">&#10142;</span>';
             else if(a=='&lt;-'||a=='&lt;=') return '<span class="text-danger">&#129044;</span>';
@@ -174,7 +174,7 @@ wikiFilter.content = function(){
 
 wikiFilter.modified = function(){
     return `<div>
-        <span class="h2">${this.title.split('-').map(x=>x.charAt(0).toUpperCase()+x.slice(1)).join(' ')}</span>
+        <span class="h2">${this.origin.name.split('-').map(x=>x.charAt(0).toUpperCase()+x.slice(1)).join(' ')}</span>
     </div>
     ${this.modified==''&&this.done?`<div>`:''}
     ${this.modified!=''?`<span class="tag text-muted">${new Date(this.modified).toLocaleString().slice(0,-3)} 수정됨</span>`:``}
@@ -355,11 +355,22 @@ wikiFilter.all = function(){
         document.querySelector('[put-type="wiki"]').addEventListener('scroll', wikiFilter.spy);
         if(!document.querySelector('.prev'))
         document.querySelector('[put-type="wiki"]').insertAdjacentHTML('beforeend', `
-            <button class="btn btn-danger prev" onclick="location='${this.parent.path}'">👈이전 페이지</button>
+            <button class="btn btn-danger prev" onclick="location='${this.parent.path}'">👈목록으로</button>
         `);
 
         let detectHljs = document.querySelector('.hljs');
         if(!detectHljs) hljs.highlightAll();
+
+        if(document.querySelector('.next-post')) document.querySelector('.next-post').remove();
+
+        let modules = Object.keys(this.parent.page.module);
+        let idx = modules.indexOf('$'+this.origin.path.slice(1).replace(/[\-]/g, '_'));
+
+        if(modules.length-1>idx+1){
+            console.log()
+            document.querySelector('.gnb').insertAdjacentHTML('afterend', `<div class="next-post fs-7"><button class="btn btn-brand" onclick="location='${this.parent.page.module[modules[idx+1]].path}'">Next</button> <span class="post-name">${this.parent.page.module[modules[idx+1]].convertedName}</span></div>`);
+        }
+
     }, 1);
     return temp;
 }

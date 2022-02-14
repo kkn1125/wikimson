@@ -34,20 +34,20 @@ const Markdown = (function () {
         }
 
         this.parse = function () {
+            md = this.altCodeBlock();
             this.readBlockUnit();
             // this.raw();
             this.horizontal();
             this.heading();
+            this.altTable();
             this.blockListify();
             this.images();
             this.anchors();
             this.paragraphs();
-            this.altTable();
             this.br();
             this.italicBold();
             this.altImages();
             this.altAnchors();
-            this.altCodeBlock();
             this.addClass();
         }
 
@@ -58,7 +58,7 @@ const Markdown = (function () {
 
         this.horizontal = function (){
             block.forEach((line, id)=>{
-                if(line.match(/^(\-{3,}|\={3,}|\*{3,})(?=\s*)$/gm)){
+                if(line.match(/^(\-{3,}|\={3,}|\*{3,})(?=\s*)$/gm) && !line.match(/\<\/?(pre|code)\>/g)){
                     console.log(line)
                     convertedHTML[id] = line.replace(/^(\-{3,}|\={3,}|\*{3,})(?=\s*)$/gm, (a,$1,$2)=>{
                         return `<hr class="hr">`
@@ -91,7 +91,7 @@ const Markdown = (function () {
 
         this.italicBold = function (){
             convertedHTML = convertedHTML.map(x=>{
-                if(/(\*+)([\s\S]+?)\*+/g)
+                if(/(\*+)([\s\S]+?)\*+/g && !x.match(/\<\/?(pre|code)\>/g))
                 return x.replace(/(\*{1,3})([\s\S]+?)\*{1,3}/g, (a,$1,$2)=>{
                     return `${$1.length==2?`<em>`:`<b>${$1.length==3?`<em>`:``}`}${$2}${$1.length!=2?`</b>${$1.length==3?`</em>`:``}`:`</em>`}`
                 });
@@ -172,7 +172,7 @@ const Markdown = (function () {
 
         this.images = function () {
             block.forEach((line, id) => {
-                if (line.match(/^\!\[/gm)) {
+                if (line.match(/^\!\[/gm) && !line.match(/\<\/?(pre|code)\>/g)) {
                     const [a, $1, $2, $3] = line.match(/\!\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/);
                     block[id] = block[id].replace(/\!\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣]+)(\s.+)?\)/g, `<img src="${$2}" alt="${$1}"${$3?` title="${$3.replace(/[\'\"]+/gm,'').trim()}"`:''}>`);
                     // block[id] = '';
@@ -182,7 +182,7 @@ const Markdown = (function () {
 
         this.anchors = function () {
             block.forEach((line, id) => {
-                if (line.match(/\[/gm)) {
+                if (line.match(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣#]+)(\s.+)?\)/gm) && !line.match(/\<\/?(pre|code)\>/g)) {
                     const [a, $1, $2, $3] = line.match(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣#]+)(\s.+)?\)/);
                     block[id] = block[id].replace(/\[(.+)\]\(([A-z0-9\.\:\@\/\-\_ㄱ-힣#]+)(\s.+)?\)/g, `<a href="${$2}"${$3?` title="${$3.replace(/[\'\"]+/gm,'').trim()}"`:''}>${$1}</a>`);
                     // block[id] = '';
@@ -192,6 +192,7 @@ const Markdown = (function () {
 
         this.paragraphs = function () {
             block.forEach((line, id) => {
+                
                 if (line.trim() != '') {
                     convertedHTML[id] = `<p>${line}</p>`;
                     // block[id] = '';
@@ -226,10 +227,11 @@ const Markdown = (function () {
                 let tbody = document.createElement('tbody');
                 let toHead = false;
                 let classes;
-                if(line.match(/(\|.+\|)/g)){
+
+                if(line.match(/(\|.+\|)/g) && !line.match(/\<\/?(pre|code)\>/g)){
                     let rows = line.split(/\n/g);
                     rows = rows.map(row=>row.split(/\|/g));
-        
+                    
                     rows = rows.map(r=>{
                         if(r[0]==''){
                             r = r.slice(1);
@@ -272,6 +274,10 @@ const Markdown = (function () {
                         }
                     });
         
+                    let rowspan = 1;
+                    let rowContinus = null;
+                    let removeRowTd = [];
+                    let basedid = 0;
                     [...tbody.children].forEach((tr, rid, oo)=>{
                         let continues = null;
                         let colspan = 1;
@@ -294,18 +300,27 @@ const Markdown = (function () {
                                 continues = null;
                                 colspan = 1;
                             }
-        
+
                             if(td.innerHTML.match(/\^{2,}/g)){
-                                if(tbody.children[rid-1].children[did]){
-                                    tbody.children[rid-1].children[did].setAttribute('rowspan', 2);
+                                if(basedid==-1) basedid = did;
+                            }
+        
+                            if(basedid == did){
+                                if(tbody.children[rid]?.children[basedid]?.innerHTML?.match(/\^{2,}/g)){
+                                    if(rowContinus == null) rowContinus = tbody.children[rid-1].children[basedid];
+        
+                                    if(rowContinus) rowspan++;
+                                    removeRowTd.push(td);
+        
+                                    if(rowContinus) rowContinus.setAttribute('rowspan', rowspan);
                                 } else {
-                                    console.log(tbody.children[rid-1].children[tbody.children[rid-1].children.length-1])
-                                    tbody.children[rid-1].children[tbody.children[rid-1].children.length-1].setAttribute('rowspan', 2);
+                                    rowContinus = null;
+                                    rowspan = 1;
                                 }
-                                td.remove();
                             }
                         });
-                    })
+                    });
+                    removeRowTd.forEach(el=>el.remove());
         
                     table.append(thead, tbody);
 
@@ -320,27 +335,29 @@ const Markdown = (function () {
         }
 
         this.altCodeBlock = function (){
-            convertedHTML.forEach((line, id)=>{
-                if(line.match(/(\`+)([\s\S]+)(\`+)/gm)){
-                    convertedHTML[id] = convertedHTML[id].replace(/(\`+)([\w]+\n)?([\s\S]+?)(\`+)/gm,(a,dotted,lang,content)=>{
-                        let count = dotted.split('').length;
-                        if(!lang && count<3){
-                            return `<kbd class="bg-info">${content}</kbd>`;
-                        } else {
-                            return `<pre><code class="language-${lang.trim()}">${content}</code></pre>`;
-                        }
-                    })
-                } else if(line.match(/(\~+)[^\s]([\s\S]+)[^\s](\~+)/gm)){
-                    convertedHTML[id] = convertedHTML[id].replace(/(\~+)[^\s]([\w]+\n)?([\s\S]+?)[^\s](\~+)/gm,(a,dotted,lang,content)=>{
-                        let count = dotted.split('').length;
-                        if(!lang && count<3){
-                            return `<kbd class="bg-info">${content}</kbd>`;
-                        } else {
-                            return `<pre><code class="language-${lang.trim()}">${content}</code></pre>`;
-                        }
-                    })
-                }
-            });
+            if(md.match(/(\`+)([\s\S]+)(\`+)|(\~+)[^\s]([\s\S]+)[^\s](\~+)/gm)){
+                return md.replace(/(\`+)([\w]+\n)?([\s\S]+?)(\`+)/gm, (a,dotted,lang,content)=>{
+                    console.log(content)
+                    let ta = document.createElement('textarea');
+                    ta.value = content;
+                    let count = dotted.split('').length;
+                    if(!lang && count<3){
+                        return `<kbd class="bg-info">${content.trim()}</kbd>`;
+                    } else {
+                        return `<pre><code class="language-${lang.trim()}">${ta.value}</code></pre>`;
+                    }
+                }).replace(/(\~+)[^\s]([\w]+\n)?([\s\S]+?)[^\s](\~+)/gm, (a,dotted,lang,content)=>{
+                    let count = dotted.split('').length;
+                    let contents = codeBlockParser.parse(content.trim(), lang);
+                    let lines = [...new DOMParser().parseFromString(contents, 'text/html').body.children];
+                    let lcount = 1;
+                    if(!lang && count<3){
+                        return `<kbd class="bg-info">${content.trim()}</kbd>`;
+                    } else {
+                        return `<pre><code class="language-${lang.trim()}">${ta.value}</code></pre>`;
+                    }
+                });
+            } else return md;
         }
 
         this.addClass = function (){
@@ -348,6 +365,18 @@ const Markdown = (function () {
                 if(line.match(/\{\:(.+)\}/g)){
                     let origin = line.match(/\{\:(.+)\}/g).pop();
                     let classes = origin.replace(/\{\:(.+)\}/g, '$1').split('.').filter(x=>x!='');
+                    let attrs = [];
+                    classes.forEach((el,i)=>{
+                        if(el.match(/=/g)){
+                            attrs.push(classes.splice(i, 1).pop());
+                        }
+                    });
+                    attrs = attrs.map(el=>{
+                        let [key, val] = el.split('=');
+                        val = val.replace(/[\"]/g, '');
+                        return [key, val];
+                    });
+
                     let tag = [...new DOMParser().parseFromString(line, 'text/html').body.childNodes].pop();
                     let text;
 
@@ -357,9 +386,18 @@ const Markdown = (function () {
 
                     tag.innerHTML = tag.innerHTML.replace(origin, '');
 
-                    if(tag.childNodes[idx-1])
-                    tag.childNodes[idx-1].classList.add(classes);
-                    else tag.classList.add(classes);
+                    if(tag.childNodes[idx-1]){
+                        tag.childNodes[idx-1].classList.add(classes);
+                        attrs.forEach(el=>{
+                            tag.childNodes[idx-1].setAttribute(el[0], el[1]);
+                        });
+                    } else {
+                        attrs.forEach(el=>{
+                            tag.setAttribute(el[0], el[1]);
+                        });
+                        tag.classList.add(classes);
+                    }
+
                     line = tag.outerHTML;
                     return line;
                 } else return line;
@@ -367,8 +405,22 @@ const Markdown = (function () {
         }
 
         this.br = function (){
+            let done = false;
+            let isCode = false;
             convertedHTML = convertedHTML.map(x=>{
-                return x.replace(/\s{3,}/gm, '<br>');
+                if(x.match(/\<(pre|code)\>/g) || x.match(/\<(for|while|var|public|void|int|let|const)\>/gm)){
+                    isCode = true;
+                    done = false;
+                }
+
+                if(x.match(/\<\/(pre|code)\>/g)){
+                    if(done==true) isCode = false;
+                    done = true;
+                }
+
+                if(isCode)
+                return '\n'.repeat(2)+x;
+                else return x.replace(/\s{3,}/gm, '<br>');
             });
         }
     }
