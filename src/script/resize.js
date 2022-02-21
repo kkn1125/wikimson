@@ -13,10 +13,10 @@
 
     windowHandler();
 
-    function navScrollHandler(ev){
+    function navScrollHandler(ev) {
         const target = ev.target;
         const near = target.closest('#gnbMenu');
-        if(!near) return;
+        if (!near) return;
         near.scrollTo({
             behavior: 'auto',
             left: near.scrollLeft + ev.movementX,
@@ -68,15 +68,15 @@
         let focus = target.getAttribute('scroll-to');
         let scrollHead = null;
         let asideHeight = 0;
-        
-        setTimeout(()=>{
-            for (let key of [...document.querySelectorAll('.h3, .h6')]) {
-            if (key.getAttribute('scroll-focus') == focus) {
-                if (window.innerWidth - 17 > 576) scrollHead = document.querySelector('[put-type="wiki"]');
-                else {
-                    scrollHead = document.querySelector('.main');
-                    asideHeight = document.querySelector('aside').clientHeight;
-                }
+
+        setTimeout(() => {
+            for (let key of [...document.querySelectorAll('*')]) {
+                if (key.getAttribute('scroll-focus') == focus) {
+                    if (window.innerWidth - 17 > 576) scrollHead = document.querySelector('[put-type="wiki"]');
+                    else {
+                        scrollHead = document.querySelector('.main');
+                        asideHeight = document.querySelector('aside').clientHeight;
+                    }
 
                     scrollHead.scrollTo({
                         behavior: 'smooth',

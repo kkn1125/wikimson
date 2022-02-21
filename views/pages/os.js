@@ -3,12 +3,14 @@ import {Router} from '../../core/core.js'
 import Base from './os.base.js'
 import Histories from './os.history.js'
 import ACA from './os.advanced_computer_architecture.js'
+import Interrupt from './os.interrupt_based_system.js'
 import ProcessM from './os.process_management.js'
 
 Router.setSubPage('운영체제 서론', 'operating_system-base', Base);
 Router.setSubPage('운영체제 역사', 'operating_system-history', Histories);
-Router.setSubPage('고등운영체제, 인터럽트 기반 운영체제', 'operating_system-advanced_computer_architecture', ACA);
-Router.setSubPage('프로세스 관리', 'operating_system-os.process_management', ProcessM);
+Router.setSubPage('고등운영체제', 'operating_system-advanced_computer_architecture', ACA);
+Router.setSubPage('인터럽트 기반 시스템', 'operating_system-interrupt_based_system', Interrupt);
+Router.setSubPage('프로세스 관리', 'operating_system-process_management', ProcessM);
 
 export default {
     pagination: true,

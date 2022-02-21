@@ -478,6 +478,22 @@ body {
     width: 100%;
 }
 
+body{
+    counter-reset: sup;
+}
+
+sup {
+    color: rgb(164, 131, 255);
+    &::after{
+        position: relative;
+        font-weight: bold;
+        top: -.5rem;
+        font-size: .5rem;
+        counter-increment: sup;
+        content: counter(sup);
+    }
+}
+
 a[href] {
     &.ref {
         color: rgba(var(--pl-brand-rgb), 1);
@@ -659,6 +675,7 @@ hr {
     position: fixed;
     top: 75px;
     right: 40px;
+    padding-right: .5rem;
     z-index: 1170;
     backdrop-filter: blur(1px);
     background-color: rgba(255, 255, 255, 0.5);

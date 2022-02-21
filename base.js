@@ -95,6 +95,17 @@ const wikiFilter = {}
     }
 })();
 
+wikiFilter.to = function (name){
+    return `scroll-to="${name}"`
+}
+wikiFilter.focus = function (name){
+    return `scroll-focus="${name}"`
+}
+
+wikiFilter.sup = function (name){
+    return `<sup scroll-to="${name}" title="해당 어휘 정의로 이동합니다."></sup>`
+}
+
 wikiFilter.spy = function scrollSpy(ev) {
     let aside = document.querySelector('#lsb').children[0];
 
