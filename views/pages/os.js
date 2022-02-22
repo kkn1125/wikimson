@@ -15,9 +15,9 @@ Router.setSubPage('프로세스 관리', 'operating_system-process_management', 
 export default {
     pagination: true,
     published: true,
+    title: 'os',
     authors: ['kimson'],
     wrote: '2022-02-08 21:50:01',
-    title: 'os',
     list(){
         return Object.keys(this.module).filter(x=>x.slice(1).replace(/[\s\_\-\.]+/gm, '-')!=this.origin.path.slice(1).replace(/[\s\_\-\.]+/gm, '-')).map(m=>{
             return `<li><a href="${this.module[m].path}">${this.module[m].name}</a></li>`;

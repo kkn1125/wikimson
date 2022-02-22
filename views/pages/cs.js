@@ -7,6 +7,8 @@ import DDD from './cs.domain-driven-design.js'
 import Framework from './cs.framework.js'
 import GarbageCollection from './cs.garbage_collection.js'
 import HttpHttps from './cs.http_https.js'
+import Interrupt from './cs.interrupt.js'
+import Isr from './cs.interrupt_service_routine.js'
 import LegacyCode from './cs.legacy-code.js'
 import Library from './cs.library.js'
 import Mvc from './cs.mvc.js'
@@ -21,6 +23,8 @@ Router.setSubPage('DDD', 'cs.ddd', DDD);
 Router.setSubPage('Framework', 'cs.framework', Framework);
 Router.setSubPage('GarbageCollection', 'cs.garbagecollection', GarbageCollection);
 Router.setSubPage('HttpHttps', 'cs.httphttps', HttpHttps);
+Router.setSubPage('Interrupt', 'cs.interrupt', Interrupt);
+Router.setSubPage('Interrupt Service Routine', 'cs.isr', Isr);
 Router.setSubPage('LegacyCode', 'cs.legacycode', LegacyCode);
 Router.setSubPage('Library', 'cs.library', Library);
 Router.setSubPage('Mvc', 'cs.mvc', Mvc);

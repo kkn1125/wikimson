@@ -4,8 +4,8 @@ export default {
     template: function (){
         let page = decodeURIComponent(location.hash.slice(1));
         const side = `
-        <div class="menu-title text-uppercase mb-5 text-muted roundText"style="min-width:7em;word-break: keep-all;">
-            ${!page.match(/home||404/gm)?page.replaceAll('-',' '):'wiki'}
+        <div class="menu-title text-uppercase mb-5 text-muted roundText"style="min-width:7em;word-break: break-word;">
+            ${!page.match(/home|404/gm)?page.replaceAll('-',' '):'wiki'}
         </div>
         <ul class="list-group">
             ${page=='home' || page=='' || (Router[page]?.page.published && Router[page].page?.pagination)

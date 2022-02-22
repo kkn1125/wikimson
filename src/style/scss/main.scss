@@ -478,13 +478,14 @@ body {
     width: 100%;
 }
 
-body{
+body {
     counter-reset: sup;
 }
 
 sup {
     color: rgb(164, 131, 255);
-    &::after{
+
+    &::after {
         position: relative;
         font-weight: bold;
         top: -.5rem;
@@ -665,6 +666,65 @@ em {
     }
 }
 
+[scroll-focus].focus-highlight {
+    position: relative;
+
+    &::before {
+        content: '👉';
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        font-size: 2rem;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -.3rem;
+        left: -.3rem;
+        right: -.3rem;
+        bottom: -.3rem;
+        animation: focus-highlight 3500ms ease both alternate;
+        -webkit-animation: focus-highlight 3500ms ease both alternate;
+        border-radius: .5rem;
+        -webkit-border-radius: .5rem;
+        -moz-border-radius: .5rem;
+        -ms-border-radius: .5rem;
+        -o-border-radius: .5rem;
+    }
+}
+
+@keyframes focus-highlight {
+    0% {
+        box-shadow: inset 0 0 0 9999px rgba(164, 131, 255, 0.3);
+    }
+
+    15% {
+        box-shadow: inset 0 0 0 9999px rgba(164, 131, 255, 0);
+    }
+
+    35% {
+        box-shadow: inset 0 0 0 9999px rgba(164, 131, 255, 0.3);
+    }
+
+    55% {
+        box-shadow: inset 0 0 0 9999px rgba(164, 131, 255, 0);
+    }
+
+    75% {
+        box-shadow: inset 0 0 0 9999px rgba(164, 131, 255, 0.3);
+    }
+
+    100% {
+        box-shadow: inset 0 0 0 9999px rgba(164, 131, 255, 0);
+    }
+}
+
 hr {
     border: none;
     height: 5px;
@@ -685,7 +745,7 @@ hr {
     -ms-border-radius: .5rem;
     -o-border-radius: .5rem;
 
-    button{
+    button {
         &::after {
             content: ' 👉';
             position: relative;
@@ -693,7 +753,7 @@ hr {
             opacity: 0;
             font-size: 0;
         }
-    
+
         &:hover {
             &::after {
                 font-size: 1em;

@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: '고등운영체제',
-    modified: '2022-02-21 21:37:43',
+    modified: '2022-02-22 18:14:18',
     done: true,
     tags: ['os', 'advanced computer architecture', '고등운영체제'],
     categories: ['cs','Operating System'],
@@ -106,7 +106,7 @@ export default {
 
 > 어떤 시간 내에 반드시 끝나야 하는 시스템
 
-예를 들면, 컴파일${wikiFilter.sup('sup-1')}을 한다고 가정할 때 변환되는 속도가 빠를수록 좋다. 단순히 빠른 것이 아닌 *특정 시간 안에* 끝나는 *시간 제약(Deadline)*을 주어 반드시 끝내는 것을 말한다. 그 시간에 계산 해내지 못하면 실패한 작업으로 본다.
+예를 들면, ${wikiFilter.sup('sup-1', '컴파일')}을 한다고 가정할 때 변환되는 속도가 빠를수록 좋다. 단순히 빠른 것이 아닌 *특정 시간 안에* 끝나는 *시간 제약(Deadline)*을 주어 반드시 끝내는 것을 말한다. 그 시간에 계산 해내지 못하면 실패한 작업으로 본다.
 
 또 다른 예로 자동차 네비게이션이 있는데 교차로를 통과하는 상황이라면 교차로에 오기 전에 어느 경로로 갈지 계산이 끝나고 알려주어야 하는데 교차로를 지나고서 네비게이션이 뒤늦게
 
@@ -125,7 +125,7 @@ export default {
 
 -----
 
-- \`컴파일\`{:scroll-focus="sup-1"} *High level language* -> *기계어*로 변환하는 작업을 하는 것
+- \`컴파일\`{:${wikiFilter.focus('sup-1')}} *High level language* -> *기계어*로 변환하는 작업을 하는 것
 `,
     ],
     ref: [

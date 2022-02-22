@@ -21,7 +21,6 @@ const wikiFilter = {}
     window.addEventListener('mousedown', readyToResize);
     window.addEventListener('mouseup', cancelResize);
     window.addEventListener('click', scrollIntoHandler);
-    window.addEventListener('click', scrollIntoHandler);
 
     requestAnimationFrame(windowHandler);
 
@@ -81,17 +80,26 @@ const wikiFilter = {}
         if (!target.getAttribute('scroll-to')) return;
         let focus = target.getAttribute('scroll-to');
         let scrollHead = null;
-        for (let key of [...document.querySelectorAll('.h3, .h6')]) {
-            if (key.getAttribute('scroll-focus') == focus) {
-                if (window.innerWidth - 17 > 576) scrollHead = document.querySelector('[put-type="wiki"]');
-                else scrollHead = document.querySelector('.main');
-                scrollHead.scrollTo({
-                    behavior: 'smooth',
-                    left: 0,
-                    top: key.offsetTop
-                });
+        setTimeout(() => {
+            for (let key of [...document.querySelectorAll('*')]) {
+                if (key.getAttribute('scroll-focus') == focus) {
+                    if (window.innerWidth - 17 > 576) scrollHead = document.querySelector('[put-type="wiki"]');
+                    else scrollHead = document.querySelector('.main');
+                    scrollHead.scrollTo({
+                        behavior: 'smooth',
+                        left: 0,
+                        top: key.offsetTop
+                    });
+
+                    if(!key.classList.contains('focus-highlight')){
+                        key.classList.add('focus-highlight');
+                        setTimeout(() => {
+                            key.classList.remove('focus-highlight');
+                        }, 3500);
+                    }
+                }
             }
-        }
+        }, 10);
     }
 })();
 
@@ -102,8 +110,12 @@ wikiFilter.focus = function (name){
     return `scroll-focus="${name}"`
 }
 
-wikiFilter.sup = function (name){
-    return `<sup scroll-to="${name}" title="해당 어휘 정의로 이동합니다."></sup>`
+wikiFilter.sup = function (name, text){
+    return `<sup scroll-to="${name}" title="해당 어휘 정의로 이동합니다.">${text}</sup>`
+}
+
+wikiFilter.toRef = function (hash, name, text){
+    return `<a class="ref" href="#${hash}" scroll-to="${name}" title="해당 단어 참조로 이동합니다.">${text}</a>`
 }
 
 wikiFilter.spy = function scrollSpy(ev) {

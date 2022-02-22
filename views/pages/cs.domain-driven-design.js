@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'domain-driven-design',
-    modified: '2022-02-14 15:23:10',
+    modified: '2022-02-22 20:11:14',
     done: false,
     tags: ['domain-driven-design', 'ddd', '도메인'],
     categories: ['CS', 'refactoring'],
@@ -16,8 +16,6 @@ export default {
 ###### 정의
 
 도메인 주도 설계라고 직역되며, 도메인의 번역 의미는 *영역, 범위*라는 의미를 가진다. *문제 해결을 하고자 하는 문제 영역*을 도메인이라 하며 도메인은 여러 하위 도메인으로 구성된다. 흔히 객체 지향의 예제로 많이 배우는 형태의 모델로 각 객체가 수행하는 업무를 분담하는 것을 말한다.
-
-###### 정의
 
 ... 작성 중
 

@@ -12,6 +12,8 @@ export default {
     pagination: true,
     published: true,
     title: '인터뷰를 정리하자',
+    authors: ['kimson'],
+    wrote: '2022-02-08 21:50:01',
     list(){
         return Object.keys(this.module).filter(x=>x.slice(1).replace(/[\s\_\-\.]+/gm, '-')!=this.origin.path.slice(1).replace(/[\s\_\-\.]+/gm, '-')).map(m=>{
             return `<li><a href="${this.module[m].path}">${this.module[m].name}</a></li>`;

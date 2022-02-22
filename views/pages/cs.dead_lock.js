@@ -11,7 +11,7 @@ export default {
     md: true,
     content: [
 `
-### <a class="ref" href="#cs-processthread" scroll-to="멀티 프로세스와 멀티 스레드-2">교착상태</a>
+### ${wikiFilter.toRef('cs-processthread', '멀티 프로세스와 멀티 스레드-2', '교착상태')}
 
 ###### 정의
 

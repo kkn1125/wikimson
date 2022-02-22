@@ -3,9 +3,9 @@ import {Router} from '../../core/core.js'
 export default {
     pagination: false,
     published: true,
+    title: 'home',
     authors: ['kimson'],
     wrote: '2022-02-08 21:50:01',
-    title: 'home',
     main: `<span class="text-subpoint h1" style="-webkit-text-stroke-width: medium;
     ">ㄴㅇㄱ</span><span class="fs-3 text-end ms-5">나를 위한 기록</span>`,
     recentPost(){
@@ -14,18 +14,17 @@ export default {
             if(!window.wikibundle) requestAnimationFrame(loadBundle);
             else {
                 let tempFilter = [...wikibundle].filter(post=>{
-                    const max = Math.max(new Date(post.info.wrote).getTime(), post.info.hasOwnProperty('modified')?new Date(post.info.modified).getTime():0);
-                    
-                    let time = new Date(max);
+                    const max = Math.max(new Date(post.info.wrote), new Date(post.info.modified||0));
+                    let time = max;
                     let oneDaysAgo = new Date().getTime()-(1000*60*60*24);
                     if(oneDaysAgo<time) return true;
                     else return false;
                 });
 
                 let list = [...tempFilter].map(post=>{
-                    const max = Math.max(new Date(post.info.wrote).getTime(), post.info.hasOwnProperty('modified')?new Date(post.info.modified).getTime():0);
+                    const max = Math.max(new Date(post.info.wrote), new Date(post.info.modified||0));
 
-                    let during = new Date(new Date() - new Date(max)).getTime();
+                    let during = new Date(new Date() - max).getTime();
                     let date = parseInt(during/24/60/60/1000);
                     let hour = parseInt(during/60/60/1000%24);
                     let min = parseInt(during/60/1000%60);

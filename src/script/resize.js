@@ -7,7 +7,7 @@
     window.addEventListener('mouseup', cancelResize);
     window.addEventListener('mousemove', moveHandler);
     window.addEventListener('resize', windowHandler);
-    window.addEventListener('click', scrollIntoHandler);
+    // window.addEventListener('click', scrollIntoHandler);
     // window.addEventListener('click', imageHandler);
     window.addEventListener('mousemove', navScrollHandler);
 
@@ -62,29 +62,28 @@
         }
     }
 
-    function scrollIntoHandler(ev) {
-        let target = ev.target;
-        if (!target.getAttribute('scroll-to')) return;
-        let focus = target.getAttribute('scroll-to');
-        let scrollHead = null;
-        let asideHeight = 0;
+    // function scrollIntoHandler(ev) {
+        // let target = ev.target;
+        // if (!target.getAttribute('scroll-to')) return;
+        // let focus = target.getAttribute('scroll-to');
+        // let scrollHead = null;
+        // let asideHeight = 0;
+        // setTimeout(() => {
+        //     for (let key of [...document.querySelectorAll('*')]) {
+        //         if (key.getAttribute('scroll-focus') == focus) {
+        //             if (window.innerWidth - 17 > 576) scrollHead = document.querySelector('[put-type="wiki"]');
+        //             else {
+        //                 scrollHead = document.querySelector('.main');
+        //                 asideHeight = document.querySelector('aside').clientHeight;
+        //             }
 
-        setTimeout(() => {
-            for (let key of [...document.querySelectorAll('*')]) {
-                if (key.getAttribute('scroll-focus') == focus) {
-                    if (window.innerWidth - 17 > 576) scrollHead = document.querySelector('[put-type="wiki"]');
-                    else {
-                        scrollHead = document.querySelector('.main');
-                        asideHeight = document.querySelector('aside').clientHeight;
-                    }
-
-                    scrollHead.scrollTo({
-                        behavior: 'smooth',
-                        left: 0,
-                        top: key.offsetTop + asideHeight
-                    });
-                }
-            }
-        }, 10);
-    }
+        //             scrollHead.scrollTo({
+        //                 behavior: 'smooth',
+        //                 left: 0,
+        //                 top: key.offsetTop + asideHeight
+        //             });
+        //         }
+        //     }
+        // }, 10);
+    // }
 })();
