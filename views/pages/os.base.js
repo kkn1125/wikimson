@@ -34,10 +34,7 @@ export default {
 
 ### 컴퓨터의 구조
 
-<figure class="w-inline-flex flex-column">
-    <img src="./src/images/os/os03.png" alt="structure of computer" title="structure of computer">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> GeeksforGeeks</figcaption>
-</figure>
+${wikiFilter.img('os/os03.png', 'GeeksforGeeks', 'structure of computer')}
 
 ###### 컴퓨터 동작 과정
 
@@ -62,10 +59,7 @@ export default {
 
 ### 커널(Kernel)과 쉘(Shell)
 
-<figure class="w-inline-flex flex-column">
-    <img src="./src/images/os/os01.png" alt="kernel&shell" title="kernel shell">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> google</figcaption>
-</figure>
+${wikiFilter.img('os/os01.png', 'google', 'kernel & shell')}
 
 > 어플리케이션 영역으로 갈수록 사용자와 근접하고, 커널로 갈수록 하드웨어와 밀접한 관계를 가진다. *OS*는 *커널*과 *쉘*로 구성이 되어 있고, *커널이 핵심*이 되어 하드를 관리하고, *쉘*은 *사용자의 명령을 해석*하는 개념이다.
 
@@ -81,12 +75,7 @@ export default {
 
 ###### OS의 자원관리
 
-<figure class="text-center">
-    <img src="./src/images/os/os-base-schematic.png" alt="electricalfundablog" title="electricalfundablog">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> 
-        <a taget="_blank" href="https://electricalfundablog.com/operating-system-os-functions-types-resource-management/">electricalfundablog</a>
-    </figcaption>
-</figure>
+${wikiFilter.img('os/os-base-schematic.png', '<a taget="_blank" href="https://electricalfundablog.com/operating-system-os-functions-types-resource-management/">electricalfundablog</a>', 'electricalfundablog')}
 
 운영체제에는 여러 자원 관리자, 자원 할당자가 존재한다. 운영체제를 총괄 관리하는 개념으로 정부를 예를 들고는 한다. 하지만 전공이 건축이기 때문에 예를 건축가로 들고 싶다.
 
@@ -98,12 +87,7 @@ export default {
 
 ###### OS의 management 종류
 
-<figure class="text-center">
-    <img src="./src/images/os/os-base-managements.png" alt="kernel&shell" title="kernel shell">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> 
-        <a taget="_blank" href="https://electricalfundablog.com/operating-system-os-functions-types-resource-management/">electricalfundablog</a>
-    </figcaption>
-</figure>
+${wikiFilter.img('os/os-base-managements.png', '<a class="w-inline-block" taget="_blank" href="https://electricalfundablog.com/operating-system-os-functions-types-resource-management/">electricalfundablog</a>', 'resource management')}
 
 - Process Management
 - Memory Managementm I/O Management

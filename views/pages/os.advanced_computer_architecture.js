@@ -17,24 +17,15 @@ export default {
 
 컴퓨터 구조를 볼 때 대표적으로 폰 노이만 구조를 볼 수 있다. 폰 노이만 구조는 1945년 수학자이자 물리학자인 존 폰 노이만과 다른 사람들이 서술한 설명에 기반해서 만든 컴퓨터 아키텍처이다.
 
-<figure class="text-center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Von_Neumann_Architecture.svg/1024px-Von_Neumann_Architecture.svg.png" alt="sample" title="sample">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> wiki - 폰 노이만 구조</figcaption>
-</figure>
+${wikiFilter.img('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Von_Neumann_Architecture.svg/1024px-Von_Neumann_Architecture.svg.png', 'wiki - 폰 노이만 구조')}
 
 간단히 도식화하면 자주 회자되는 \`CPU\`와 \`Memory\`이다.
 
-<figure class="text-center" ${wikiFilter.focus('img-1')}>
-    <img src="./src/images/os/aca01.png" alt="sample" title="sample">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> kimson</figcaption>
-</figure>
+${wikiFilter.img('os/aca01.png', 'kimson')}
 
 하지만 나아가 볼 것은 CPU가 하나가 아닌 여러 개, 다중 프로세서 시스템에 대해 알아보려한다.
 
-<figure class="text-center" ${wikiFilter.focus('img-2')}>
-    <img src="./src/images/os/aca02.png" alt="sample" title="sample">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> kimson</figcaption>
-</figure>
+${wikiFilter.img('os/aca02.png', 'kimson')}
 
 위의 그림과 같이 *Memory*에 *CPU*여러 개가 병렬로 연결 되어 있는 것을 *병렬 시스템 (Parallel System)*이라고 하며, CPU가 서로 메인 메모리를 공유하며 강하게 결합되어 있어 *강결합 시스템 (Tightly-Coupled System)*이라 부르기도 한다.
 
@@ -64,10 +55,7 @@ export default {
 
 그러나 [이미지 2](${location.hash}){:${wikiFilter.to('img-2')}}를 보면 하나의 CPU가 고장나도 나머지 CPU가 일을 할 수 있기 때문에 작업에 대한 *신뢰성*이 보장된다는 것이다.
 
-<figure class="text-center">
-    <img src="./src/images/os/aca03.png" alt="sample" title="sample">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> kimson</figcaption>
-</figure>
+${wikiFilter.img('os/aca03.png', 'kimson')}
 
 암울한 예제이지만 한 회사 P파트 팀에 5명의 직원이 있으면 3명이 눈치보지 않고 휴가를 갔다면 나머지 2사람이 일을 할 수 있기 때문에 작업에 대한 신뢰성이(현실은 오너입장에선 못 미더움) 보장 된다.
 
@@ -83,10 +71,7 @@ export default {
 
 ### 분산 시스템 (Distributed System)
 
-<figure class="text-center">
-    <img src="./src/images/os/aca04.png" alt="sample" title="sample">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> kimson</figcaption>
-</figure>
+${wikiFilter.img('os/aca04.png', 'kimson')}
 
 컴퓨터와 컴퓨터가 하나의 같은 \`LAN\`(근거리 통신망)으로 연결되어 있을 때 위와 같이 메모리가 3개가 된다.
 

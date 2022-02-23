@@ -462,11 +462,14 @@ body {
 
 .ref::after {
     content: 'ref';
+    display: inline-block;
     position: relative;
     font-size: .5em;
     top: -1em;
     margin-left: .2em;
     margin-right: .5em;
+    overflow-y: hidden;
+    height: 1rem;
 }
 
 .h3,

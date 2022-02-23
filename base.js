@@ -99,7 +99,7 @@ const wikiFilter = {}
                     }
                 }
             }
-        }, 10);
+        }, 50);
     }
 })();
 
@@ -168,10 +168,10 @@ wikiFilter.content = function(){
     return this.content.map(c=>{
         c = wikiFilter.md(c, this.md);
         
-        c = c.replace(/\-&gt;|&lt;\-|\=&gt;|&lt;\=/gm, (a,b)=>{
-            if(a=='-&gt;'||a=='=&gt;')return '<span class="text-danger">&#10142;</span>';
-            else if(a=='&lt;-'||a=='&lt;=') return '<span class="text-danger">&#129044;</span>';
-        });
+        // c = c.replace(/\-&gt;|&lt;\-|\=&gt;|&lt;\=/gm, (a,b)=>{
+        //     if(a=='-&gt;'||a=='=&gt;')return '<span class="text-danger">&#10142;</span>';
+        //     else if(a=='&lt;-'||a=='&lt;=') return '<span class="text-danger">&#129044;</span>';
+        // });
 
         c = c.replace(/\#([\s\S]*?)\[([\s\S]*?)\]:end/g, (origin,text,ref,i)=>{
             let page = ref.split('|').shift();
@@ -250,6 +250,14 @@ wikiFilter.regdate = function(){
     </ul>`
 }
 
+wikiFilter.img = function (url, ref, title='sample', focus){
+    let baseurl = './src/images/';
+    return `<figure class="text-center"${focus?' '+focus:''}>
+        <img src="${url.match(/^http|^https/g)?'':baseurl}${url}" alt="${title}" title="${title}">
+        <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> ${ref}</figcaption>
+    </figure>`;
+}
+
 wikiFilter.toc = function(){
     let html = new DOMParser().parseFromString(this.md==true?Markdown.parse(this.content.join(''), {
         ol: 'list-group reset',
@@ -261,6 +269,7 @@ wikiFilter.toc = function(){
         if(a=='-&gt;'||a=='=&gt;')return '&#10142;';
         else if(a=='&lt;-'||a=='&lt;=') return '&#129044;';
     }):this.content, 'text/html').body;
+
     let generateToc = [...html.querySelectorAll('.h3, .h6')];
     generateToc = generateToc.reduce((prev, cur)=>{
         if(cur.tagName=='H6') {
@@ -291,10 +300,10 @@ wikiFilter.toc = function(){
 }
 
 wikiFilter.ref = function (){
-    let refLink = this.ref.map(({name, link})=>{
+    let refLink = this.ref.map(({name, link, to})=>{
         if(name !== '' && link !== '') {
             let nameElement = new DOMParser().parseFromString(name, 'text/html').body;
-            return `<li class="list-item py-1"><a href="${link}" target="_blank" title="${nameElement.textContent}">${nameElement.innerHTML}</a></li>`;
+            return `<li class="list-item py-1"><a href="${link}" target="_blank" title="${nameElement.textContent}"${to?' scroll-to="'+to+'"':''}>${nameElement.innerHTML}</a></li>`;
         } else {
             return '';
         }

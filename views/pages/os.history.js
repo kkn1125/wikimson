@@ -17,10 +17,7 @@ export default {
 
 ### No Operating System \`(1940 ~)\`
 
-<figure class="text-center">
-    <img src="./src/images/os/fortran_card.jpg" alt="sample">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> 나무위키 - 천공카드</figcaption>
-</figure>
+${wikiFilter.img('os/fortran_card.jpg', '나무위키 - 천공카드')}
 
 ###### 천공카드
 
@@ -59,10 +56,8 @@ export default {
 
 ### 하드디스크의 등장 \`(1956 ~)\`
 
-<figure class="text-center">
-    <img src="./src/images/os/ramac.jpg" alt="sample">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> 나무위키 - HDD</figcaption>
-</figure>
+${wikiFilter.img('os/ramac.jpg', '나무위키 - HDD', 'ramac')}
+
 
 최초의 하드디스크는 1956년 IBM에서 개발된 라막(RAMAC)이다. 크기가 약 60CM에 저장 용량이 그 당시에 무려 약 5MB이다. 당시 천공카드와 자기 코어 메모리가 전부였던 시절을 생각하면 압도적인 용량이다. (여담으로 무게가 무려 1톤이었다고...😲)
 
@@ -87,10 +82,7 @@ export default {
 
 CPU가 노는 것을 방지하고 효율을 높이는 OS가 출현한다. 메모리가 커지면서 가능해진 다중 프로그래밍은 이전과 달리 유저 프로그램 하나가 아닌 여러 개의 유저 프로그램을 메모리에 올릴 수 있게 됐는데, 이때 \`User 1\`에서 \`CPU\`가 작업하다가 \`I/O\`를 실행하는 사이에 \`CPU\`는 놀지 않고 \`User 2\`로 넘어가 \`CPU\`가 작업하게 된다.
 
-<figure class="text-center">
-    <img src="./src/images/os/history-multiprogramming.png" alt="sample">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> kimson</figcaption>
-</figure>
+${wikiFilter.img('os/history-multiprogramming.png', 'kimson', 'sample')}
 
 대강 아래와 같은 과정이 그려진다.
 
@@ -118,10 +110,7 @@ CPU가 노는 것을 방지하고 효율을 높이는 OS가 출현한다. 메모
 
 당시에 컴퓨터를 사용하는 구조는 아래와 같다.
 
-<figure class="text-center" ${wikiFilter.focus('img-1')}>
-    <img src="./src/images/os/os02.png" alt="sample">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> google</figcaption>
-</figure>
+${wikiFilter.img('os/history-multiprogramming.png', 'kimson', 'sample', wikiFilter.focus('img-1'))}
 
 당시 비싼 자원이었던 컴퓨터는 한 대에 여러 단말기(Terminal)을 달아 사용하는 방식이었다. 여러 명이 사용하는데 있어 \`Multiprogramming\` 방식에 문제가 생기기 시작했다.
 

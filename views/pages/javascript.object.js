@@ -15,10 +15,7 @@ export default {
 
 ###### defineProperty
 
-<figure class="text-center">
-    <img src="./src/images/javascript/console/console01.png" alt="sample" title="sample">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> google</figcaption>
-</figure>
+${wikiFilter.img('javascript/console/console01.png', 'google')}
 
 class에서 쉽게 getter와 setter를 구현했습니다. 함수형 객체에서도 getter와 setter는 구현할 수 있습니다.
 
@@ -64,10 +61,7 @@ const Parent = function () {
 
 아래의 예를 보시면 일일이 지정하지 않아도 간단한 getter/setter는 만들 수 있다. 각각의 프로퍼티마다 해야할 기능이 다르다면 다른 방식으로 작성해야 한다.
 
-<figure class="text-center">
-    <img src="./src/images/javascript/object/object01.png" alt="sample" title="sample">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> google</figcaption>
-</figure>
+${wikiFilter.img('javascript/object/object01.png', 'google')}
 
 > Console -> kimson
 `,

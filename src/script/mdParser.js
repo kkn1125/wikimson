@@ -49,6 +49,7 @@ const Markdown = (function () {
             this.altImages();
             this.altAnchors();
             this.addClass();
+            this.altSigns();
         }
 
         this.readBlockUnit = function () {
@@ -402,6 +403,40 @@ const Markdown = (function () {
                 return '\n'.repeat(2)+x;
                 else return x.replace(/\s{3,}/gm, '<br>');
             });
+        }
+
+        this.altSigns = function (){
+            const wrapper = (sign)=>`<span class="text-danger">${sign}</span>`;
+            convertedHTML = convertedHTML.map(line=>{
+                line = line
+                .replace(/\<\=\=\>|&lt;\=\=&gt;/gm, wrapper('&DoubleLeftRightArrow;'))
+                .replace(/\<\-\>|&lt;\-&gt;/gm, wrapper('&LeftArrowRightArrow;'))
+                .replace(/\-\>|\-&gt;/gm, wrapper('&#129046;'))
+                .replace(/\<\-|&lt;\-/gm, wrapper('&#129044;'))
+                .replace(/\=\=\>|\=\=&gt;/gm, wrapper('&Rightarrow;'))
+                .replace(/\<\=\=|&lt;\=\=/gm, wrapper('&Leftarrow;'))
+                .replace(/\?\=\=|\?\=\=/gm, wrapper('≒'))
+                .replace(/\=\=\=|\=\=\=/gm, wrapper('⩶'))
+                .replace(/\=\=|\=\=/gm, wrapper('⩵'))
+                .replace(/\>\=|&gt;\=/gm, wrapper(`⪴`))
+                .replace(/\<\=|&lt;\=/gm, wrapper(`⪳`))
+                .replace(/\!\=/gm, wrapper(`≠`))
+                .replace(/\(\:prj\)/gm, `📋`)
+                .replace(/\(\:1\)/gm, `🥇`)
+                .replace(/\(\:2\)/gm, `🥈`)
+                .replace(/\(\:3\)/gm, `🥉`)
+                .replace(/\(\:(x|X)\)/gm, `❌`)
+                .replace(/\(\:(v|V)\)/gm, `✅`)
+                .replace(/\(\:\)\)|\(웃음\)/gm, `😀`)
+                .replace(/\(ㅠㅠ\)|\(슬픔\)/gm, `😥`)
+                .replace(/\(화남\)/gm, `😤`)
+                .replace(/\(꾸벅\)|\(인사\)/gm, `🙇‍♂️`)
+                .replace(/\(\:\!\!\)/gm, `💡`)
+                .replace(/\(\:\!\)/gm, `❗`)
+                .replace(/\(\:\?\)/gm, `❓`)
+                ;
+                return line;
+            })
         }
     }
 

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+DisAllow: /assets/images/
+Sitemap: https://kkn1125.github.io/wikimson/sitemap.xml

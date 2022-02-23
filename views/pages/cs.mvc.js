@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'mvc',
-    modified: '2022-02-14 16:29:00',
+    modified: '2022-02-23 20:38:12',
     done: true,
     tags: ['mvc','design-pattern'],
     categories: ['cs','design-pattern'],
@@ -15,10 +15,7 @@ export default {
 
 ###### 정의
 
-<figure class="text-center">
-    <img src="https://s3.ap-northeast-2.amazonaws.com/opentutorials-user-file/module/327/1262.png" alt="sample">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> amazon</figcaption>
-</figure>
+${wikiFilter.img('https://s3.ap-northeast-2.amazonaws.com/opentutorials-user-file/module/327/1262.png', 'amazon', 'amazon')}
 
 |구분|설명|
 |---|---|

@@ -1,6 +1,8 @@
 import {Router} from '../../core/core.js'
 
 import Api from './cs.api.js'
+import Alu from './cs.alu.js'
+import ControlUnit from './cs.control_unit.js'
 import ContextSwitching from './cs.context_switching.js'
 import DeadLock from './cs.dead_lock.js'
 import DDD from './cs.domain-driven-design.js'
@@ -17,8 +19,10 @@ import ProcessThread from './cs.process_thread.js'
 import PureFunction from './cs.pure_function.js'
 
 Router.setSubPage('Api', 'cs.api', Api);
-Router.setSubPage('ContextSwitching', 'cs.contextswitching', ContextSwitching);
-Router.setSubPage('DeadLock', 'cs.deadlock', DeadLock);
+Router.setSubPage('Arithmetic and Logic Operation Unit (ALU)', 'cs.alu', Alu);
+Router.setSubPage('Control Unit', 'cs.cu', ControlUnit);
+Router.setSubPage('Context Switching', 'cs.contextswitching', ContextSwitching);
+Router.setSubPage('Dead Lock', 'cs.deadlock', DeadLock);
 Router.setSubPage('DDD', 'cs.ddd', DDD);
 Router.setSubPage('Framework', 'cs.framework', Framework);
 Router.setSubPage('GarbageCollection', 'cs.garbagecollection', GarbageCollection);

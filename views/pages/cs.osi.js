@@ -21,12 +21,7 @@ OSI 7 계층은 네트워크에서 통신이 일어나는 과정을 7단계로 �
 
 통신 과정을 단계별로 파악하기 위해서이다. 즉, 문제가 생기면 7계층 중 특정 영역에 이상이 있음을 감지하고 다른 영역을 건들이지 않고 해당 영역만 고칠 수 있기 때문이라는 이야기가 된다. 
 
-<figure class="text-center">
-    <img src="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fg7KXdyFIQoWy4tnLqSs2%2Fuploads%2FbP8e7q5Q2R3CJkARCudZ%2Fimage.png?alt=media&token=7ea1ac13-49ba-428f-a85c-e1304316ca6f" alt="gitbook kimson" title="gitbook kimson">
-    <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> 
-        <a href="https://learningsolo.com/binary-search-algorithm/">https://learningsolo.com/binary-search-algorithm/</a>
-    </figcaption>
-</figure>
+${wikiFilter.img('https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fg7KXdyFIQoWy4tnLqSs2%2Fuploads%2FbP8e7q5Q2R3CJkARCudZ%2Fimage.png?alt=media&token=7ea1ac13-49ba-428f-a85c-e1304316ca6f', '<a href="https://learningsolo.com/binary-search-algorithm/">https://learningsolo.com/binary-search-algorithm/</a>', 'gitbook kimson')}
 
 ### TCP/IP 프로토콜 스택 4계층
 
