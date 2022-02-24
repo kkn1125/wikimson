@@ -411,8 +411,8 @@ const Markdown = (function () {
                 line = line
                 .replace(/\<\=\=\>|&lt;\=\=&gt;/gm, wrapper('&DoubleLeftRightArrow;'))
                 .replace(/\<\-\>|&lt;\-&gt;/gm, wrapper('&LeftArrowRightArrow;'))
-                .replace(/\-\>|\-&gt;/gm, wrapper('&#129046;'))
-                .replace(/\<\-|&lt;\-/gm, wrapper('&#129044;'))
+                .replace(/\-\>|\-&gt;/gm, wrapper('&#8594;'))
+                .replace(/\<\-|&lt;\-/gm, wrapper('&#8592;'))
                 .replace(/\=\=\>|\=\=&gt;/gm, wrapper('&Rightarrow;'))
                 .replace(/\<\=\=|&lt;\=\=/gm, wrapper('&Leftarrow;'))
                 .replace(/\?\=\=|\?\=\=/gm, wrapper('≒'))

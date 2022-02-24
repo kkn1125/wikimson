@@ -58,7 +58,7 @@ export default {
             </div>
             <div class="mt-3">
                 <div class="w-flex align-items-center mb-3">
-                    <span class="h4 roundText">Wiki List</span>
+                    <span class="fs-1 fw-bold roundText">Wiki List</span>
                     <span class="ms-2 fs-6 tag tag-info" data-pop-type="msg" data-msg="위키 리스트 카운트 입니다." data-msg-dir="end" wiki-length></span>
                 </div>
                 <div class="w-100">

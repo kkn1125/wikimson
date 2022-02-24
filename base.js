@@ -80,15 +80,22 @@ const wikiFilter = {}
         if (!target.getAttribute('scroll-to')) return;
         let focus = target.getAttribute('scroll-to');
         let scrollHead = null;
+        let isMobile = 0;
         setTimeout(() => {
             for (let key of [...document.querySelectorAll('*')]) {
                 if (key.getAttribute('scroll-focus') == focus) {
                     if (window.innerWidth - 17 > 576) scrollHead = document.querySelector('[put-type="wiki"]');
                     else scrollHead = document.querySelector('.main');
+
+                    if(navigator.userAgent.toLowerCase().indexOf('mobile')>-1){
+                        isMobile = document.querySelector('#lsb').clientHeight;
+                    }
+
+                    ev.target.insertAdjacentHTML('afterend',1)
                     scrollHead.scrollTo({
                         behavior: 'smooth',
                         left: 0,
-                        top: key.offsetTop
+                        top: key.offsetTop + isMobile,
                     });
 
                     if(!key.classList.contains('focus-highlight')){
