@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: '운영체제 서론',
-    modified: '2022-02-11 22:42:11',
+    modified: '2022-02-24 19:18:12',
     done: true,
     tags: ['os'],
     categories: ['cs','Operating System'],
@@ -96,10 +96,10 @@ ${wikiFilter.img('os/os-base-managements.png', '<a class="w-inline-block" taget=
 `,
     ],
     ref: [
-        // {
-        //     name: '',//'생활코딩 디자인 패턴',
-        //     link: '',//'https://opentutorials.org/module/327/3828'
-        // },
+        {
+            name: '경성대 양희재 교수님 - 1강 운영체제 서론',
+            link: 'http://www.kocw.net/home/cview.do?mty=p&kemId=978503',
+        },
     ],
     template(){
         this.title = this.origin.name;

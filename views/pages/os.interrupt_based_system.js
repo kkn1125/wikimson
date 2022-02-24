@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: '인터럽트 기반 시스템',
-    modified: '2022-02-22 20:10:51',
+    modified: '2022-02-24 19:18:23',
     done: true,
     tags: ['os', 'interrupt based system', '인터럽트 기반 시스템'],
     categories: ['cs','Operating System'],
@@ -72,10 +72,10 @@ OS 내에는 인터럽터가 걸렸을 때 실행되는 ${wikiFilter.toRef('cs-i
 `,
     ],
     ref: [
-        // {
-        //     name: '',//'생활코딩 디자인 패턴',
-        //     link: '',//'https://opentutorials.org/module/327/3828'
-        // },
+        {
+            name: '경성대 양희재 교수님 - 2강 고등운영체제, 인터럽트 기반 운영체제',
+            link: 'http://www.kocw.net/home/cview.do?mty=p&kemId=978503',
+        },
     ],
     template(){
         this.title = this.origin.name;

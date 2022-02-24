@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: '이중 모드',
-    modified: '2022-02-23 21:39:54',
+    modified: '2022-02-24 19:18:18',
     done: true,
     tags: ['os', 'dual mode', '이중 모드'],
     categories: ['cs','Operating System'],
@@ -187,10 +187,10 @@ ISR을 이런 식으로 짜서 *하나의 프로그램*에 *정체되어 있지 
 `,
     ],
     ref: [
-        // {
-        //     name: '',//'생활코딩 디자인 패턴',
-        //     link: '',//'https://opentutorials.org/module/327/3828'
-        // },
+        {
+            name: '경성대 양희재 교수님 - 3강 이중모드, 하드웨어 보호',
+            link: 'http://www.kocw.net/home/cview.do?mty=p&kemId=978503',
+        },
     ],
     template(){
         this.title = this.origin.name;

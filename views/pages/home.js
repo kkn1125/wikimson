@@ -51,7 +51,7 @@ export default {
         return '';
     },
     template() {
-        let contents = `
+        return `
         <div class="mt-5 p-5 border border-1 border-light rounded-5">
             <div class="mt-3">
                 <div class="roundText">${this.main}</div>
@@ -59,7 +59,7 @@ export default {
             <div class="mt-3">
                 <div class="w-flex align-items-center mb-3">
                     <span class="fs-1 fw-bold roundText">Wiki List</span>
-                    <span class="ms-2 fs-6 tag tag-info" data-pop-type="msg" data-msg="위키 리스트 카운트 입니다." data-msg-dir="end" wiki-length></span>
+                    <span class="ms-2 fs-6 tag tag-info" data-pop-type="msg" data-msg="위키 리스트 카운트 입니다. 마스터 페이지 포함입니다." data-msg-dir="end" wiki-length></span>
                 </div>
                 <div class="w-100">
                     <input id="finder" class="col-20 form-input form-input-lg" type="text" placeholder="검색어를 입력하세요">
@@ -77,7 +77,7 @@ export default {
                         <span class="fs-5 fw-bold roundText">Notice</span>
                         <ul class="list-group">
                             <li class="list-item frt-none">
-                                현재 위키는 본인(kimson)이 직접 구현한 router와 css, markdown parser로 제작한 페이지 입니다.
+                                현재 위키는 본인(kimson)이 직접 구현한 <b>router와 css, markdown parser로 제작</b>한 페이지 입니다.
                             </li>
                             <li class="list-item frt-none">
                                 위키 페이지를 사용하고 싶으시다면 저장소를 포크하시면 됩니다.
@@ -97,6 +97,5 @@ export default {
             </div>
         </div>
         `;
-        return contents;
     }
 }

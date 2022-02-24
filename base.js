@@ -91,7 +91,6 @@ const wikiFilter = {}
                         isMobile = document.querySelector('#lsb').clientHeight;
                     }
 
-                    ev.target.insertAdjacentHTML('afterend',1)
                     scrollHead.scrollTo({
                         behavior: 'smooth',
                         left: 0,

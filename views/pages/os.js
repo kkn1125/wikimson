@@ -29,9 +29,12 @@ export default {
     },
     template: function(){
         return `
-        <blockquote class="blockquote blockquote-warning">
-            운영체제는 <b class="">경성대학교 양희정 교수님</b>의 강의를 토대로 작성 되었으며, 부가적으로 궁금한 내용을 따로 찾아 정리하였음을 알립니다 🙇‍♂️
+        <blockquote class="blockquote blockquote-warning pe-3">
+            운영체제는 <b class="">경성대학교 양희재 교수님</b>의 강의를 토대로 작성 되었으며, 부가적으로 궁금한 내용을 따로 찾아 정리하였음을 알립니다 🙇‍♂️
         </blockquote>
+        <div>
+            <span class="tag tag-warning">문서</span> <span class="fs-7">${Object.keys(this.module).filter(k=>k!=`$${this.origin.name.replace(' ', '_')}`).length} 개</span>
+        </div>
         <ul class="list-group">
             ${this.list()}
         </ul>

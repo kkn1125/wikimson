@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: '고등운영체제',
-    modified: '2022-02-22 18:14:18',
+    modified: '2022-02-24 19:19:06',
     done: true,
     tags: ['os', 'advanced computer architecture', '고등운영체제'],
     categories: ['cs','Operating System'],
@@ -114,10 +114,10 @@ ${wikiFilter.img('os/aca04.png', 'kimson')}
 `,
     ],
     ref: [
-        // {
-        //     name: '',//'생활코딩 디자인 패턴',
-        //     link: '',//'https://opentutorials.org/module/327/3828'
-        // },
+        {
+            name: '경성대 양희재 교수님 - 2강 고등운영체제, 인터럽트 기반 운영체제',
+            link: 'http://www.kocw.net/home/cview.do?mty=p&kemId=978503',
+        },
     ],
     template(){
         this.title = this.origin.name;

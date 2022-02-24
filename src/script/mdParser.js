@@ -348,8 +348,9 @@ const Markdown = (function () {
                     let ta = document.createElement('textarea');
                     ta.value = content;
                     let count = dotted.split('').length;
+
                     if(!lang && count<3){
-                        return `<kbd class="bg-info ${classes||''}">${content.trim().replace(/\{\:(.+)\}/g, '')}</kbd>`;
+                        return `<kbd class="bg-info ${classes||''}" ${attrs}>${content.trim().replace(/\{\:(.+)\}/g, '')}</kbd>`;
                     } else {
                         return `<pre><code class="language-${lang.trim()}">${ta.value}</code></pre>`;
                     }
@@ -409,17 +410,29 @@ const Markdown = (function () {
             const wrapper = (sign)=>`<span class="text-danger">${sign}</span>`;
             convertedHTML = convertedHTML.map(line=>{
                 line = line
+                .replace(/\\\<\=\=\>|&lt;\=\=&gt;/gm, '&DoubleLeftRightArrow;')
                 .replace(/\<\=\=\>|&lt;\=\=&gt;/gm, wrapper('&DoubleLeftRightArrow;'))
+                .replace(/\\\<\-\>|&lt;\-&gt;/gm, '&LeftArrowRightArrow;')
                 .replace(/\<\-\>|&lt;\-&gt;/gm, wrapper('&LeftArrowRightArrow;'))
+                .replace(/\\\-\>|\-&gt;/gm, '&#8594;')
                 .replace(/\-\>|\-&gt;/gm, wrapper('&#8594;'))
+                .replace(/\\\<\-|&lt;\-/gm, '&#8592;')
                 .replace(/\<\-|&lt;\-/gm, wrapper('&#8592;'))
+                .replace(/\\\=\=\>|\=\=&gt;/gm, '&Rightarrow;')
                 .replace(/\=\=\>|\=\=&gt;/gm, wrapper('&Rightarrow;'))
+                .replace(/\\\<\=\=|&lt;\=\=/gm, '&Leftarrow;')
                 .replace(/\<\=\=|&lt;\=\=/gm, wrapper('&Leftarrow;'))
+                .replace(/\\\?\=\=|\?\=\=/gm, '≒')
                 .replace(/\?\=\=|\?\=\=/gm, wrapper('≒'))
+                .replace(/\\\=\=\=|\=\=\=/gm, '⩶')
                 .replace(/\=\=\=|\=\=\=/gm, wrapper('⩶'))
+                .replace(/\\\=\=|\=\=/gm, '⩵')
                 .replace(/\=\=|\=\=/gm, wrapper('⩵'))
+                .replace(/\\\>\=|&gt;\=/gm, `⪴`)
                 .replace(/\>\=|&gt;\=/gm, wrapper(`⪴`))
+                .replace(/\\\<\=|&lt;\=/gm, `⪳`)
                 .replace(/\<\=|&lt;\=/gm, wrapper(`⪳`))
+                .replace(/\\\!\=/gm, `≠`)
                 .replace(/\!\=/gm, wrapper(`≠`))
                 .replace(/\(\:prj\)/gm, `📋`)
                 .replace(/\(\:1\)/gm, `🥇`)

@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: '운영체제 역사',
-    modified: '2022-02-22 20:10:44',
+    modified: '2022-02-24 19:18:33',
     done: true,
     tags: ['os', 'history'],
     categories: ['cs','Operating System'],
@@ -86,9 +86,9 @@ ${wikiFilter.img('os/history-multiprogramming.png', 'kimson', 'sample')}
 
 대강 아래와 같은 과정이 그려진다.
 
-1. User 1(Program === Job) => CPU => I/O => Ready => Ready
-2. User 2(Program === Job) => Ready => CPU => I/O => Ready
-3. User 3(Program === Job) => Ready => Ready => CPU => I/O
+1. User 1(Program === Job) ==> CPU ==> I/O ==> Ready ==> Ready
+2. User 2(Program === Job) ==> Ready ==> CPU ==> I/O ==> Ready
+3. User 3(Program === Job) ==> Ready ==> Ready ==> CPU ==> I/O
 
 즉, I/O가 실행 중이어도 CPU를 쉬지 않고 효율적으로 돌릴 수 있고, 여러 개의 프로그램(일)이 가능해졌다.
 
@@ -128,7 +128,7 @@ ${wikiFilter.img('os/history-multiprogramming.png', 'kimson', 'sample', wikiFilt
 
 ###### Unix (Linux)
 
-1960년대 \`Unix\`가 등장하고 1970년대에 보급되기 시작하였다. \`Unix\`가 *대표적인 TSS*이며, Unix가 현재의 Linux => TSS에 기반 (window 포함)
+1960년대 \`Unix\`가 등장하고 1970년대에 보급되기 시작하였다. \`Unix\`가 *대표적인 TSS*이며, Unix가 현재의 Linux ==> TSS에 기반 (window 포함)
 
 - 여담으로 MD DOS는 OS가 하나 User 프로그램이 하나 있는 모델이었다. MS-DOS가 지나고 현재의 Window 등은 TSS 계열이다.
 
@@ -145,10 +145,10 @@ ${wikiFilter.img('os/history-multiprogramming.png', 'kimson', 'sample', wikiFilt
 `,
     ],
     ref: [
-        // {
-        //     name: '',//'생활코딩 디자인 패턴',
-        //     link: '',//'https://opentutorials.org/module/327/3828'
-        // },
+        {
+            name: '경성대 양희재 교수님 - 2강 운영체제 역사',
+            link: 'http://www.kocw.net/home/cview.do?mty=p&kemId=978503',
+        },
     ],
     template(){
         this.title = this.origin.name;

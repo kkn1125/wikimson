@@ -8,6 +8,7 @@ import DeadLock from './cs.dead_lock.js'
 import DDD from './cs.domain-driven-design.js'
 import Framework from './cs.framework.js'
 import GarbageCollection from './cs.garbage_collection.js'
+import harddisk from './cs.hard_disk.js'
 import HttpHttps from './cs.http_https.js'
 import Interrupt from './cs.interrupt.js'
 import Isr from './cs.interrupt_service_routine.js'
@@ -25,8 +26,9 @@ Router.setSubPage('Context Switching', 'cs.contextswitching', ContextSwitching);
 Router.setSubPage('Dead Lock', 'cs.deadlock', DeadLock);
 Router.setSubPage('DDD', 'cs.ddd', DDD);
 Router.setSubPage('Framework', 'cs.framework', Framework);
-Router.setSubPage('GarbageCollection', 'cs.garbagecollection', GarbageCollection);
-Router.setSubPage('HttpHttps', 'cs.httphttps', HttpHttps);
+Router.setSubPage('Garbage Collection', 'cs.garbagecollection', GarbageCollection);
+Router.setSubPage('Hard Disk', 'cs.hard_disk', harddisk);
+Router.setSubPage('Http와 Https', 'cs.httphttps', HttpHttps);
 Router.setSubPage('Interrupt', 'cs.interrupt', Interrupt);
 Router.setSubPage('Interrupt Service Routine', 'cs.isr', Isr);
 Router.setSubPage('LegacyCode', 'cs.legacycode', LegacyCode);
@@ -48,7 +50,14 @@ export default {
         }).join('');
     },
     template(){
+        console.log(this.module)
         return `
+        <blockquote class="blockquote blockquote-warning pe-3">
+            Computer Science는 공부할 때마다 모르는 단어, 개념을 위키백과, 외국 문서 등을 참고로 작성하고 있습니다. 🙇‍♂️
+        </blockquote>
+        <div>
+            <span class="tag tag-warning">문서</span> <span class="fs-7">${Object.keys(this.module).filter(k=>k!=`$${this.origin.name.replace(' ', '_')}`).length} 개</span>
+        </div>
         <ul class="list-group">
             ${this.list()}
         </ul>
