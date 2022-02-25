@@ -288,6 +288,51 @@ wikiFilter.toc = function(){
     }, []);
     let count = 0;
     
+    let genToc = [...html.querySelectorAll('.h1,.h2,.h3,.h4,.h5,.h6')];
+
+    let ol = document.createElement('ol');
+    let temp;
+    let bid, cid;
+    let doubled = 0;
+
+    // genToc.forEach(h=>{
+    //     let li = document.createElement('li');
+
+    //     cid = parseInt(h.tagName.slice(-1));
+
+    //     if(cid>bid){
+    //         doubled++;
+
+    //         console.log('래핑');
+    //         if(doubled>1) {
+    //             console.log('연속 래핑');
+    //             doubled = 0;
+    //             let before = temp;
+    //             ol.append(temp);
+    //             temp = document.createElement('ol');
+    //         } else {
+    //             console.log('첫 래핑')
+    //             doubled = 1;
+    //             temp = document.createElement('ol');
+    //         }
+    //     } else if(cid<bid){
+    //         doubled = 0;
+    //         console.log('한 단계 나옴');
+    //         ol.append(temp);
+    //         temp = temp.parentNode;
+    //     }
+    //     console.log(temp, li);
+
+    //     li.innerText = h.innerText;
+    //     if(temp) temp.append(li);
+    //     else ol.append(li);
+
+    //     bid = cid;
+    // });
+    // ol.append(temp);
+
+    // console.log(ol)
+    
     return `${this.toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div><ol class="toc">':''}
     ${!this.toc?'':generateToc.map(y=>{
         function convertSyntax(target){

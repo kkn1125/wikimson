@@ -218,7 +218,7 @@ img {
     word-spacing: 0.13em;
 
     p {
-        margin-bottom: 2em;
+        margin-bottom: 1em;
     }
 }
 
@@ -303,6 +303,14 @@ ol.reset {
 
 kbd {
     white-space: nowrap;
+    a[href]{
+        color: inherit !important;
+        &.ref{
+            &::after{
+                top: -.3em;
+            }
+        }
+    }
 }
 
 ul.reset {
@@ -467,9 +475,10 @@ body {
     font-size: .5em;
     top: -1em;
     margin-left: .2em;
-    margin-right: .5em;
-    overflow-y: hidden;
+    padding-right: .5em;
+    overflow: hidden;
     height: 1rem;
+    text-indent: 0; // ol ul 에서 ref 가려지는 버그 수정
 }
 
 .h3,

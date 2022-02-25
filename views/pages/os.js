@@ -5,7 +5,7 @@ import Histories from './os.history.js'
 import ACA from './os.advanced_computer_architecture.js'
 import Interrupt from './os.interrupt_based_system.js'
 import DualMode from './os.dual_mode.js'
-import OSService from './os.os_service.js'
+import OSService from './os.service.js'
 import ProcessM from './os.process_management.js'
 
 Router.setSubPage('운영체제 서론', 'operating_system-base', Base);
@@ -13,7 +13,7 @@ Router.setSubPage('운영체제 역사', 'operating_system-history', Histories);
 Router.setSubPage('고등운영체제', 'operating_system-advanced_computer_architecture', ACA);
 Router.setSubPage('인터럽트 기반 시스템', 'operating_system-interrupt_based_system', Interrupt);
 Router.setSubPage('이중 모드', 'operating_system-dual-mode', DualMode);
-Router.setSubPage('운영체제 서비스', 'operating_system-os-service', OSService);
+Router.setSubPage('운영체제 서비스', 'operating_system-service', OSService);
 Router.setSubPage('프로세스 관리', 'operating_system-process_management', ProcessM);
 
 export default {
