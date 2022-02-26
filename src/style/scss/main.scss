@@ -79,7 +79,7 @@ $paddings: 0;
 
     100% {
         color: coral;
-        left: 1rem;
+        left: 0.5rem;
     }
 }
 
@@ -91,7 +91,7 @@ $paddings: 0;
 
     100% {
         opacity: 1;
-        left: $paddings - 1 + rem;
+        left: $paddings - 2 + rem;
     }
 }
 
@@ -463,8 +463,7 @@ body {
     }
 }
 
-.roundText,
-.h2 {
+.roundText {
     font-family: var(--font-gugi);
 }
 

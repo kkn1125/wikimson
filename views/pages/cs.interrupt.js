@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'interrupt',
-    modified: '',
+    modified: '2022-02-26 12:11:32',
     done: false,
     tags: ['Interrupt', '인터럽트'],
     categories: ['CS'],
@@ -10,9 +10,9 @@ export default {
     toc: true,
     md: true,
     content: [`
-### Interrupt Service Routine (ISR)
+# Interrupt Service Routine (ISR)
 
-###### 정의
+## 정의
 
 인터럽트는 하드웨어적으로 접수되어 실행되는 것이 일반적이다. \`CPU\`가 특정 기능을 수행하는 도중에 급하게 다른 일을 처리하고자 할 때 사용할 수 있는 기능이다.
 
@@ -24,7 +24,7 @@ export default {
 
 이렇게 인터럽트 처리가 끝나면 다시 이전에 처리 중이던 작업으로 돌아가 작업을 진행한다.
 
-###### 과정
+## 과정
 
 1. 기존의 작업을 처리하던 도중, 인터럽트가 발생
 2. 현재 컴퓨터가 *처리하는 일을 중지*
@@ -32,7 +32,6 @@ export default {
 4. 해당 인터럽트 처리를 위해 *인터럽트 서비스 루틴*(ISR)을 *처리*
 5. 인터럽트 *처리 이후* 저장되었던 *이전 작업의 상태를 복구*
 6. 이전 *작업 수행 재개*
-
 `],
     ref: [
         {

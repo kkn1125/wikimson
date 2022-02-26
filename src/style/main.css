@@ -74,7 +74,7 @@ aside.side-bar {
   }
   100% {
     color: coral;
-    left: 1rem;
+    left: 0.5rem;
   }
 }
 @keyframes rightMoveAfter {
@@ -84,7 +84,7 @@ aside.side-bar {
   }
   100% {
     opacity: 1;
-    left: -1rem;
+    left: -2rem;
   }
 }
 .overflow-x-hidden {
@@ -572,8 +572,7 @@ body {
   font-weight: bold;
 }
 
-.roundText,
-.h2 {
+.roundText {
   font-family: var(--font-gugi);
 }
 

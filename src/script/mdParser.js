@@ -83,7 +83,7 @@ const Markdown = (function () {
                     convertedHTML[id] = line.trim().replace(/[\s\n]*(\#*)(.+)/gm, (a, $1, $2) => {
                         let [attrs, classes] = this.addClass(line);
                         let count = $1.split('').length;
-                        return `<h${count}${options.h?` class="h${count} ${classes||''}"`:''}>${$2.replace(/^[\s]*/g, '').replace(/\{\:(.+)\}/g, '')}</h${count}>`
+                        return `<h${count}${options.h.custom?` class="h${count} ${options.h.class?options.h.class:''} ${classes||''}"`:''}>${$2.replace(/^[\s]*/g, '').replace(/\{\:(.+)\}/g, '')}</h${count}>`
                     });
                     block[id] = '';
                 }

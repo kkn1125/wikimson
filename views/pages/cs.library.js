@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'library',
-    modified: '2022-02-14 16:26:29',
+    modified: '2022-02-26 12:11:32',
     done: true,
     tags: ['library', '라이브러리'],
     categories: ['CS'],
@@ -9,17 +9,15 @@ export default {
     wrote: '2021-11-29 18:56:35',
     toc: true,
     md: true,
-    content: [
-`
-### 라이브러리란
+    content: [`
+# 라이브러리란
 
-###### 정의
+## 정의
 
 |핵심|설명|
 |---|---|
 |*require*|대체해도 프로젝트가 망하거나 하지 않는다.|
 |^^|"내"가 요청한다.|
-
 `,
     ],
     ref: [

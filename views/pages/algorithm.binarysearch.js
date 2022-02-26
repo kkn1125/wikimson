@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: '알고리즘을 정리하자',
-    modified: '2022-02-14 17:30:38',
+    modified: '2022-02-26 12:11:32',
     done: false,
     tags: ['알고리즘'],
     categories: ['algorithm'],
@@ -16,7 +16,7 @@ export default {
         // },
     ],
     content: [`
-### 이진탐색 (Binary Search)
+# 이진탐색 (Binary Search)
 
 ${wikiFilter.img('https://i0.wp.com/learningsolo.com/wp-content/uploads/2018/04/binarray1-1.gif?fit=469%2C182&ssl=1', 'ref')}
 
@@ -45,7 +45,7 @@ return -1;
 }
 \`\`\`
 
-###### 너비 우선 탐색 (BFS)
+## 너비 우선 탐색 (BFS)
 
 *Breadth-First-Search*
 

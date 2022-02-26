@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'api',
-    modified: '2022-02-14 14:42:07',
+    modified: '2022-02-26 12:11:32',
     done: true,
     tags: ['api','aplication-programming-interface'],
     categories: ['CS'],
@@ -10,10 +10,9 @@ export default {
     toc: true,
     md: true,
     content: [`
+# API란
 
-### API란
-
-###### 정의
+## 정의
 
 |핵심|설명|
 |---|---|
@@ -28,7 +27,7 @@ API의 예로 중간 단계에서 요청을 다루는 역할을 하는 것으로
 
 즉, "내"가 요청해서 "API"가 데이터에 접근하고 요청 내용을 다시 "내"가 받는 모양세입니다. 이 때문에 어디서는 은행에서의 "창구"와 같은 역할, 또는 음식점에서의 "점원"과 같은 역할이라고 표현합니다.
 
-###### API의 유형
+## API의 유형
 
 1. *private API* 제3자에게 노출되지 않는 내부 API입니다. 사내 개발자가 자사 제품, 서비스를 개선하기 위해 내부적으로 사용됩니다.
 2. *public API* 제3자에게 노출되지 않는 내부 API입니다. 사내 개발자가 자사 제품, 서비스를 개선하기 위해 내부적으로 사용됩니다.

@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'pure-function',
-    modified: '2022-02-14 16:45:18',
+    modified: '2022-02-26 12:11:32',
     done: true,
     tags: ['pure-function', '순수 함수'],
     categories: ['CS'],
@@ -9,24 +9,23 @@ export default {
     wrote: '2021-12-14 12:12:22',
     toc: true,
     md: true,
-    content:[
-`
-### 순수 함수 (Pure Function)
+    content:[`
+# 순수 함수 (Pure Function)
 
-###### 특징
+## 특징
 
 |구분|설명|
 |---|---|
 |부수효과(side effect)|주어진 입력으로 계산하는 것 외, 프로그램의 실행에 영향을 미치지 않아야 한다.|
 |참조투명성(Referential transparency, RT)|입력 값이 같으면 결과 값도 같은 것|
 
-###### 순수함수와 비순수함수
+## 순수함수와 비순수함수
 
 순수함수의 예로는 java의 문자열 길이를 반환하는 *length()*가 대표적입니다.
 
 즉, 순수 함수는 함수 그 자체로 기능이 되어야하고, 어떠한 값이 인자로 왔을 때 원래의 것은 변함이 없어야하며, 항상 같은 결과 값을 리턴해야한다는 것에 있습니다. 부수효과가 없어야 하는 조건과 참조투명성이 있어야 \`Pure Function\`이 성립됩니다.
 
-###### 예제
+## 예제
 
 <pre>
 <code class="language-javascript">/**

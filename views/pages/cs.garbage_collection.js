@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'garbage-collection',
-    modified: '2022-02-14 16:26:42',
+    modified: '2022-02-26 12:11:32',
     done: false,
     tags: ['garbage-collection'],
     categories: ['CS'],
@@ -9,11 +9,10 @@ export default {
     wrote: '2021-11-28 21:19:21',
     toc: true,
     md: true,
-    content: [ // th: thead, tb: tbody, \\: tr 추가, !: 강조, @: 단락바꿈, |: td 추가
-`
-### 가비지 컬렉션이란
+    content: [`
+# 가비지 컬렉션이란
 
-###### 정의
+## 정의
 
 메모리 관리 기법 중의 하나이며, 프로그램이 동적으로 할당했던 메모리 영역 중 필요 없게 된 영역을 해제하는 기능.
 

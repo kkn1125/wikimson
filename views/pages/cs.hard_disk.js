@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'Hark Disk',
-    modified: '',
+    modified: '2022-02-26 12:11:32',
     done: false,
     tags: ['hard disk','하드디스크', '보조기억장치'],
     categories: ['CS'],
@@ -9,11 +9,10 @@ export default {
     wrote: '2022-02-24 19:39:54',
     toc: true,
     md: true,
-    content: [
-`
-### Hark Disk (보조기억장치)
+    content: [`
+# Hark Disk (보조기억장치)
 
-###### 정의
+## 정의
 
 ${wikiFilter.img('os/os-service02.jpg', 'kimson', 'sample')}
 

@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: '운영체제 역사',
-    modified: '2022-02-24 19:18:33',
+    modified: '2022-02-26 12:11:32',
     done: true,
     tags: ['os', 'history'],
     categories: ['cs','Operating System'],
@@ -9,17 +9,16 @@ export default {
     wrote: '2022-02-07 19:00:29',
     toc: true,
     md: true,
-    content: [
-`
+    content: [`
 # 운영체제 역사
 
 컴퓨터의 역사는 1940년대 부터 시작하게 된다. 이전에 1893년 홀러리스에 의해 천공 카드 시스템이 개발되어 대규모 데이터의 취급이 가능해졌다. 천공 카드는 다양한 자료를 동시에 취급, 관리할 수 있게 해주었다.
 
-### No Operating System \`(1940 ~)\`
+## No Operating System \`(1940 ~)\`
 
 ${wikiFilter.img('os/fortran_card.jpg', '나무위키 - 천공카드')}
 
-###### 천공카드
+### 천공카드
 
 *천공카드*{:.text-danger}는 요즘의 OMR카드의 시초가 된 것으로 입력장치이자 기억장치이다. 20세기 초반까지 컴퓨터 기억장치로 활용이 되었다. 하지만 한장만으로 보관할 수 있는 데이터 양이 너무 적어 몇십장에서 복잡한 연산의 경우 몇백장을 소비해야하는 비효율적인 기억장치이다.
 
@@ -37,7 +36,7 @@ ${wikiFilter.img('os/fortran_card.jpg', '나무위키 - 천공카드')}
 
 이러한 방식이 도저히 사람이 해서는 너무 일이 많아 다름의 시스템이 출현하게 된다.
 
-### Batch Processing System (일괄처리){:.text-danger}
+## Batch Processing System (일괄처리){:.text-danger}
 
 > \`Batch\`는 꾸러미라는 뜻이고 묶어서 처리(Process)한다는 의미를 가진다. 최초의 운영체제(OS)이며, 이는 기존에 Operator(컴퓨터 관리자)가 카드리더기에 카드를 넣고 프린터까지 하는 과정을 대폭 줄여주게 된다.
 
@@ -50,11 +49,11 @@ ${wikiFilter.img('os/fortran_card.jpg', '나무위키 - 천공카드')}
 
 이러한 반복되는 일련의 작업들을 Operator가 아닌 컴퓨터가 스스로 처리 가능하도록 메모리에 프로그램을 넣어주게 고안 된다.
 
-###### Resident Monitor
+### Resident Monitor
 
 메모리에 상주해서 소스코드 -> 컴파일 -> 링크(라이브러리 등등) -> 로드(적재) 등의 꾸러미 일들을 처리한다.
 
-### 하드디스크의 등장 \`(1956 ~)\`
+## 하드디스크의 등장 \`(1956 ~)\`
 
 ${wikiFilter.img('os/ramac.jpg', '나무위키 - HDD', 'ramac')}
 
@@ -63,7 +62,7 @@ ${wikiFilter.img('os/ramac.jpg', '나무위키 - HDD', 'ramac')}
 
 초기에는 메모리가 적어 파일 하나만 올라가는데 그쳤다. 하드디스크가 등장하고 메모리가 커지면서 보다 많은 파일을 올릴 수 있었다.
 
-###### 당시 컴퓨터 동작
+### 당시 컴퓨터 동작
 
 메모리에 OS(Batch Processing System)가 있고, 유저 프로그램 혹은 컴파일러, 링크, 게임 등 하나만 올라갔다.
 
@@ -78,7 +77,7 @@ ${wikiFilter.img('os/ramac.jpg', '나무위키 - HDD', 'ramac')}
 
 당시 컴퓨터는 비싼 자원이었다. 비싸게 주고 산 컴퓨터가 CPU의 효율이 좋지 않으면 그만큼 가성비가 떨어진다.
 
-### Multiprogramming System (다중 프로그래밍) \`(1960 ~)\` {:.text-danger}
+## Multiprogramming System (다중 프로그래밍) \`(1960 ~)\` {:.text-danger}
 
 CPU가 노는 것을 방지하고 효율을 높이는 OS가 출현한다. 메모리가 커지면서 가능해진 다중 프로그래밍은 이전과 달리 유저 프로그램 하나가 아닌 여러 개의 유저 프로그램을 메모리에 올릴 수 있게 됐는데, 이때 \`User 1\`에서 \`CPU\`가 작업하다가 \`I/O\`를 실행하는 사이에 \`CPU\`는 놀지 않고 \`User 2\`로 넘어가 \`CPU\`가 작업하게 된다.
 
@@ -92,19 +91,19 @@ ${wikiFilter.img('os/history-multiprogramming.png', 'kimson', 'sample')}
 
 즉, I/O가 실행 중이어도 CPU를 쉬지 않고 효율적으로 돌릴 수 있고, 여러 개의 프로그램(일)이 가능해졌다.
 
-###### CPU Scheduling
+### CPU Scheduling
 
 다중 프로그래밍 출현으로 단순히 여러 개의 작업이 가능한 것에 그치는게 아니라 생각해야 할 것이 더 많아졌다.
 
 대표적으로 CPU의 작업 우선순위를 정하는 것이다. 어떠한 순서로 작업을 진행해야 성능이 더 좋은지 결정하는 것을 CPU \`Scheduling\`이라 한다.
 
-###### 메모리 보호
+### 메모리 보호
 
 여러 개의 프로그램이 돌기 때문에 다른 프로그램으로 침범이 되지 않도록 고려해야한다. 메모리의 사용을 제어하는 방법이고, 모든 운영 체제에서 중요한 쟁점사항 중 하나이다.
 
 즉, 실행 중인 프로세스가 자신에게 할당되지 않은 영역의 메모리에 접근하는 것을 막는 다는 것이 메모리 보호의 핵심이자 목적이다.
 
-### Time Sharing System (시공유 시스템) \`(1970 ~)\`{:.text-danger}
+## Time Sharing System (시공유 시스템) \`(1970 ~)\`{:.text-danger}
 
 현대는 당연하게 키보드가 있지만 옛날에는 없었다. 시간이 지나고 기술이 발달하면서 모니터가 생기고 키보드가 생기면서 이제는 컴퓨터와 상호작용(Interactive)할 수 있게 된다. 이를 *상호 대화형 컴퓨터*라고 한다.
 
@@ -122,19 +121,19 @@ ${wikiFilter.img('os/history-multiprogramming.png', 'kimson', 'sample', wikiFilt
 
 이 방법을 \`시공유 시스템(TSS)\`이라고 하며, 이때부터 컴퓨터에 명령을 내리고 응답을 받는 대화형 시스템이 가능해지고, 한 사용자가 다른 사용자에게 어떠한 데이터를 보낼 수 있게 되는, *프로세스간 통신*이 가능하게 된다.
 
-###### 가상 메모리 (Virtual Memory)
+### 가상 메모리 (Virtual Memory)
 
 하드디스크가 보편화되면서 사용자가 많아지다 보면 메인메모리가 부족해지는데, 원래의 메인 메모리는 크지 않지만 CPU가 봤을 때 메인 메모리가 커 보이는, 하드디스크의 일부를 마치 메인 메모리처럼 쓰는 기술인 *가상메모리*가 고안 된다.
 
-###### Unix (Linux)
+### Unix (Linux)
 
 1960년대 \`Unix\`가 등장하고 1970년대에 보급되기 시작하였다. \`Unix\`가 *대표적인 TSS*이며, Unix가 현재의 Linux ==> TSS에 기반 (window 포함)
 
 - 여담으로 MD DOS는 OS가 하나 User 프로그램이 하나 있는 모델이었다. MS-DOS가 지나고 현재의 Window 등은 TSS 계열이다.
 
-### OS 기술의 변천사
+## OS 기술의 변천사
 
-###### 컴퓨터 규모별 분류
+### 컴퓨터 규모별 분류
 
 - Super Computer -> Mainframe -> Mini -> Micro
 - Super Computer ->  Server -> Workstation -> PC -> Handheld -> Embedded

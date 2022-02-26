@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: '자바스크립트 정리',
-    modified: '2022-02-14 17:18:23',
+    modified: '2022-02-26 12:11:32',
     done: false,
     tags: ['api','object'],
     categories: ['javascript'],
@@ -9,11 +9,10 @@ export default {
     wrote: '2022-01-14 21:47:54',
     toc: true,
     md: true,
-    content: [
-`
-### Object
+    content: [`
+# Object
 
-###### defineProperty
+## defineProperty
 
 ${wikiFilter.img('javascript/console/console01.png', 'google')}
 

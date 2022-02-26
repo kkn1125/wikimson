@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: '자바스크립트 정리',
-    modified: '2022-02-14 17:18:49',
+    modified: '2022-02-26 12:11:32',
     done: false,
     tags: ['api','worker api'],
     categories: ['javascript'],
@@ -9,11 +9,10 @@ export default {
     wrote: '2022-01-14 21:47:54',
     toc: true,
     md: true,
-    content: [
-`
-### Console
+    content: [`
+# Console
 
-###### table
+## table
 
 ${wikiFilter.img('javascript/console/console01.png', 'google')}
 
@@ -53,7 +52,7 @@ ${wikiFilter.img('javascript/console/console04.png', 'google')}
 
 ***
 
-###### time/timeEnd
+## time/timeEnd
 
 time과 timeEnd는 짝이다. time은 함수나 어떤 기능의 실행 소요 시간을 측정하는데 사용된다.
 

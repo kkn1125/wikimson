@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'interrupt service routine',
-    modified: '',
+    modified: '2022-02-26 12:11:32',
     done: true,
     tags: ['isr', 'interrupt service routine', 'Interrupt Handler', '인터럽트 서비스 루틴'],
     categories: ['CS'],
@@ -10,9 +10,9 @@ export default {
     toc: true,
     md: true,
     content: [`
-### Interrupt Service Routine (ISR)
+# Interrupt Service Routine (ISR)
 
-###### 정의
+## 정의
 
 인터럽트 서비스 루틴은 *인터럽트 핸들러(Interrupt Handler)*라고도 한다.
 
@@ -24,7 +24,7 @@ export default {
 
 운영체제를 사용하는 컴퓨터 시스템에서는 커널과 밀접한 관계를 갖는데, 커널에 존재하고 응용 프로그램에는 넣지 않는다.
 
-###### 예외 대응 종류
+## 예외 대응 종류
 
 1. 입출력 장치 인터럽트 종류
     - 하드웨어 RESET
@@ -38,7 +38,6 @@ export default {
     - USB
     - 이더넷
     - 기타 장치
-
 `],
     ref: [
         {

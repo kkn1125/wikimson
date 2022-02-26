@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'Control Unit',
-    modified: '',
+    modified: '2022-02-26 12:11:32',
     done: false,
     tags: ['Control Unit', 'CU'],
     categories: ['CS'],
@@ -10,7 +10,7 @@ export default {
     toc: true,
     md: true,
     content: [`
-### Control Unit (CU)
+# Control Unit (CU)
 
 1. CPU 제어 장치 (Control Unit)
     - 명령어,데이터의 입출력과 ALU의 동작 제어

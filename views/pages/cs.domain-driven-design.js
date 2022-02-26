@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'domain-driven-design',
-    modified: '2022-02-22 20:11:14',
+    modified: '2022-02-26 12:11:32',
     done: false,
     tags: ['domain-driven-design', 'ddd', '도메인'],
     categories: ['CS', 'refactoring'],
@@ -9,17 +9,16 @@ export default {
     wrote: '2021-12-14 15:01:34',
     toc: true,
     md: true,
-    content:[
-`
-### DDD(domain driven design)
+    content:[`
+# DDD(domain driven design)
 
-###### 정의
+## 정의
 
 도메인 주도 설계라고 직역되며, 도메인의 번역 의미는 *영역, 범위*라는 의미를 가진다. *문제 해결을 하고자 하는 문제 영역*을 도메인이라 하며 도메인은 여러 하위 도메인으로 구성된다. 흔히 객체 지향의 예제로 많이 배우는 형태의 모델로 각 객체가 수행하는 업무를 분담하는 것을 말한다.
 
 ... 작성 중
 
-###### 도메인 모델 패턴 4 계층
+## 도메인 모델 패턴 4 계층
 
 |계층|설명|
 |---|---|
@@ -28,7 +27,7 @@ export default {
 |도메인|시스템이 제공할 도메인의 규칙을 구현한다.|
 |인프라스트럭처|데이터베이스나 메시징 시스템과 같은 외부 시스템과의 연동을 처리한다.|
 
-###### 도메인 모델 도출
+## 도메인 모델 도출
 
 ... 작성 중
 `

@@ -2,9 +2,11 @@ export default {
     pagination: true,
     published: true,
     title: 'home',
+    author: ['kimson'],
+    wrote: '2022-02-08 22:01:12',
     md: true,
     content: [`
-## About
+# About
 
 > 현재 만들어진 페이지는 순수 자바스크립트로만 이루어져 있습니다. 조작이 쉽도록 구현되어 있고, 페이지 전환은 hash를 통해서 이루어집니다. 자세한 사항은 [github 저장소](https://github.com/kkn1125/wikimson){:target="_blank"}를 참고 해주세요.
 

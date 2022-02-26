@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: '운영체제 서비스',
-    modified: '',
+    modified: '2022-02-26 12:11:32',
     done: false,
     tags: ['os', 'Operating System Service', 'OS Service', '운영체제 서비스'],
     categories: ['cs','Operating System'],
@@ -9,11 +9,10 @@ export default {
     wrote: '2022-02-24 20:51:05',
     toc: true,
     md: true,
-    content: [
-`
-### 운영체제 서비스
+    content: [`
+# 운영체제 서비스
 
-###### 운영체제가 하는 일은 무엇인가?
+## 운영체제가 하는 일은 무엇인가?
 
 ${wikiFilter.img('os/os-service01.jpg', 'kimson', 'sample')}
 
@@ -23,7 +22,7 @@ ${wikiFilter.img('os/os-service01.jpg', 'kimson', 'sample')}
 
 그 자원을 효율적으로 나누어 주는 것이 \`Operating System (OS)\`이다.
 
-### Process Management
+## Process Management
 
 정부와 마찬가지로 자원을 나누어 주는데, 하는 일에 따라 관리 영역이 존재한다.
 
@@ -34,7 +33,7 @@ ${wikiFilter.img('os/os-service01.jpg', 'kimson', 'sample')}
 1. Process -> 하드디스크에서 메인 메모리로 올라 왔을 때의 실행 중인 상태의 프로그램 (*program in execution*)
 2. Program -> 하드디스크 내에 있는 실행 파일
 
-주요 기능은 아래와 같다.
+### 주요 기능
 
 - 프로세스 생성, 소멸 (creation, deletion)
 - 프로세스 활동 일시 중지, 활동 재개 (suspend, resume)
@@ -42,11 +41,11 @@ ${wikiFilter.img('os/os-service01.jpg', 'kimson', 'sample')}
 - 프로세스 간 동기화 (synchronization)
 - 교착상태 처리 (deadlock handling)
 
-### Main memory management
+## Main memory management
 
 주 기억장치 또는 컴퓨터 메모리는 컴퓨터에서 수치, 명령, 자료 등을 기억하는 컴퓨터 하드웨어 장치를 말한다.
 
-###### 주요 기능
+### 주요 기능
 
 - 프로세스에게 메모리를 할당(allocation)한다.
 - 메모리의 어느 부분이 어느 프로세스에게 할당되었는가 추적과 감시를 한다.
@@ -55,7 +54,7 @@ ${wikiFilter.img('os/os-service01.jpg', 'kimson', 'sample')}
 
 > 가상메모리 : 컴퓨터 메모리의 내용은 보조 기억장치로 전송할 수 있는데, 이를 *가상 메모리*라 불리는 *메모리 관리 기법*을 통해 가능하며, 물리적 *실제 메모리보다 큰 용량*을 갖도록 한다.
 
-### File management
+## File management
 
 ${wikiFilter.img('os/os-service02.jpg', 'kimson', 'sample', wikiFilter.focus('img-1'))}
 
@@ -63,7 +62,7 @@ ${wikiFilter.toRef('cs-hard-disk', '정의-1', '하드디스크')}는 크게 Fla
 
 플래터(원반)는 섹터와 트랙이 있는데 학교 운동장 트랙을 떠올리면 쉽다. 이 트랙 내에 간격을 두고 섹터가 있는데 이 섹터에 전기적 신호로 데이터를 쓰고 지워, *파일이라는 개념*으로 보이도록 한다.
 
-###### 주요 기능
+### 주요 기능
 
 - 파일 생성, 삭제 (file creation & deletion)
 - 디렉토리(directory)(?== 폴더)의 생성, 삭제
@@ -77,11 +76,11 @@ ${wikiFilter.toRef('cs-hard-disk', '정의-1', '하드디스크')}는 크게 Fla
 - Track/Sector <-> File 간의 매핑(Mapping)
 - 백업(Backup), 복원
 
-### Secondary storage management (보조기억장치 관리)
+## Secondary storage management (보조기억장치 관리)
 
 데스크탑의 하드디스크와 스마트폰의 플래시 메모리 등을 관리를 한다.
 
-###### 주요 기능
+### 주요 기능
 
 > 파일 관리에서 언급한 ${wikiFilter.sup('img-1', '섹터')}의 묶음을 블록이라 한다. 만일 하드디스크를 포맷했을 때 처음에는 비어있는 블록 상태인데 이 빈 공간을 관리한다.
 
@@ -89,11 +88,11 @@ ${wikiFilter.toRef('cs-hard-disk', '정의-1', '하드디스크')}는 크게 Fla
 - 저장공간 할당 (Storage allocation)
 - 디스크 스케쥴링 (Disk scheduling)
 
-### I/O device management (입출력 장치 관리)
+## I/O device management (입출력 장치 관리)
 
 컴퓨터의 여러 입출력 장치, USB나 웹캠, 사운드카드 등의 장치를 사용하기 위해 장치 드라이버가 필요한데, 이 장치 드라이버도 OS에 포함이 된다.
 
-###### 주요 기능
+### 주요 기능
 
 - 장치 드라이브 (Device drivers)
 - 입출력 장치 성능 향상
@@ -102,13 +101,13 @@ ${wikiFilter.toRef('cs-hard-disk', '정의-1', '하드디스크')}는 크게 Fla
     - \`spooling\` -> 메모리 대신에 하드디스크를 중간(?==보조) 매체로 사용하는 것.
         - 예를 들어, \`프린터\`로 글자를 찍을 때, \`프린터\`가 다 찍을 때까지 \`CPU\`가 기다리면 너무 늦기 때문에, \`프린터\`보다 빠르고 \`CPU\`보다 느린 *디스크에 저장*한다. 그 후 내용을 천천히 프린터에 보낸다. 이렇게 되면 \`CPU\`는 그 사이 다른 작업이 가능해진다.
 
-### System Calls (시스템 콜)
+## System Calls (시스템 콜)
 
 > \`Application Program\`이 *OS가 제공하는 여러 서비스*를 받기 위해 *호출하는 것*이다.
 
 프로그램이 돌다보면 \`OS\`의 관리가 필요할 때가 있다. 이때 프로그램이 실행되다가 OS로 Jump하여 호출을 하는데 이것이 시스템 콜이다.
 
-###### 주요 시스템 콜
+### 주요 시스템 콜
 
 - Process ==> \`end{:title="종료"}\` \`abort{:title="강제종료"}\` \`load{:title="프로그램 \\-> 메인메모리로 가져옴"}\` \`execute{:title="실행"}\` \`create{:title="프로세스 생성"}\` \`terminate{:title="종료"}\` \`get/set attributes{:title="메모리 얼마나 사용하는지 아이디는 무엇인지 등"}\` \`wait\`  \`event\` \`signal event\`
 - Memory ==> \`allocate{:title="메모리 할당"}\` \`free{:title="메모리 회수"}\`

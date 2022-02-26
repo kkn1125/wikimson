@@ -41,16 +41,15 @@ Router.setSubPage('PureFunction', 'cs.purefunction', PureFunction);
 export default {
     pagination: true,
     published: true,
+    title: 'cs',
     authors: ['kimson'],
     wrote: '2022-02-08 21:50:01',
-    title: 'cs',
     list(){
         return Object.keys(this.module).filter(x=>x.slice(1).replace(/[\s\_\-\.]+/gm, '-')!=this.origin.path.slice(1).replace(/[\s\_\-\.]+/gm, '-')).map(m=>{
             return `<li><a href="${this.module[m].path}">${this.module[m].name}</a></li>`;
         }).join('');
     },
     template(){
-        console.log(this.module)
         return `
         <blockquote class="blockquote blockquote-warning pe-3">
             Computer Science는 공부할 때마다 모르는 단어, 개념을 위키백과, 외국 문서 등을 참고로 작성하고 있습니다. 🙇‍♂️

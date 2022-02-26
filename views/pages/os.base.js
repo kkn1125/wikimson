@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: '운영체제 서론',
-    modified: '2022-02-24 19:18:12',
+    modified: '2022-02-26 12:11:32',
     done: true,
     tags: ['os'],
     categories: ['cs','Operating System'],
@@ -9,13 +9,12 @@ export default {
     wrote: '2022-02-08 22:03:13',
     toc: true,
     md: true,
-    content: [
-`
-### 운영체제 (Operating System)
+    content: [`
+# 운영체제 (Operating System)
 
 > 운영체제란 시스템 하드웨어를 관리, 응용 소프트웨어를 실행하기 위해 하드웨어 추상화 플랫폼과 공통 시스템 서비스를 제공하는 시스템 소프트웨어이다.
 
-###### 운영체제의 필요성
+## 운영체제의 필요성
 
 프로세스가 메인 메모리의 명령을 가져와 실행하고, 그 다음 명령을 가져와 실행 반복하는데 이를 가능하도록 메모리에 실행 파일을 올려주는 역할을 운영체제가 한다.
 
@@ -26,17 +25,17 @@ export default {
 > *프로그램* -> 메인 메모리에 어떠한 명령(Instruction)들이 기록되어야 하는데 이 명령들의 모음  
 > *프로그램 내장형 컴퓨터* -> 미리 프로그램을 메모리에 내장해두고 실행하는 구조의 컴퓨터
 
-###### 운영체제의 목적
+## 운영체제의 목적
 
 1. 성능(Performance)을 높인다.
 2. 편의성(Convenience)을 제공한다.
 3. 컴퓨터를 관리해주는 프로그램이다. (Control program for computer)
 
-### 컴퓨터의 구조
+# 컴퓨터의 구조
 
 ${wikiFilter.img('os/os03.png', 'GeeksforGeeks', 'structure of computer')}
 
-###### 컴퓨터 동작 과정
+## 컴퓨터 동작 과정
 
 1. 전원 on
     - ROM을 읽어 실행
@@ -50,14 +49,14 @@ ${wikiFilter.img('os/os03.png', 'GeeksforGeeks', 'structure of computer')}
     - 위의 과정 종료 후 ROM의 역할이 끝나고 더 이상 ROM을 읽지 않음
 2. 화면이 출력 (흔한 들판 배경 이미지에 폴더, 파일들 주르륵...)
 
-###### Main Memory
+## Main Memory
 
 |구분|내용|비고|
 |---|---|---|
 |*RAM*|전원이 꺼지면 사라지는 휘발성 메모리|수 백MB ~ 수GB|
 |*ROM (Read only memory)*|전원과 관계 없이 내용이 유지(메인 메모리에서 극히 일부 차지)|수 십KB ~ 수 백KB|
 
-### 커널(Kernel)과 쉘(Shell)
+# 커널(Kernel)과 쉘(Shell)
 
 ${wikiFilter.img('os/os01.png', 'google', 'kernel & shell')}
 
@@ -73,7 +72,7 @@ ${wikiFilter.img('os/os01.png', 'google', 'kernel & shell')}
 
 > \`Application\`은 하드웨어 자원을 사용하고는 있지만 직접적으로 사용하는 것이 아닌 OS의 조정을 통해 사용 가능해지는 것이다.
 
-###### OS의 자원관리
+## OS의 자원관리
 
 ${wikiFilter.img('os/os-base-schematic.png', '<a taget="_blank" href="https://electricalfundablog.com/operating-system-os-functions-types-resource-management/">electricalfundablog</a>', 'electricalfundablog')}
 
@@ -85,7 +84,7 @@ ${wikiFilter.img('os/os-base-schematic.png', '<a taget="_blank" href="https://el
 
 이러한 순환은 건축 뿐 아니라 여러 직군에서도 그럴 것이라 생각한다. 위 예시를 토대로 컴퓨터의 관점에서 보자면 \`OS\`는 \`하드웨어\`라는 자원을 \`Application\`에 *할당*하고 *관리*하는 이야기로 바꿔 말할 수 있다.
 
-###### OS의 management 종류
+## OS의 management 종류
 
 ${wikiFilter.img('os/os-base-managements.png', '<a class="w-inline-block" taget="_blank" href="https://electricalfundablog.com/operating-system-os-functions-types-resource-management/">electricalfundablog</a>', 'resource management')}
 

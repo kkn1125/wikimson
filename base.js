@@ -128,9 +128,9 @@ wikiFilter.spy = function scrollSpy(ev) {
     let aside = document.querySelector('#lsb').children[0];
 
     let spy = [...document.querySelectorAll(`[scroll-to]`)];
-    let titles = [...document.querySelectorAll('.h3, .h6')];
+    let titles = [...document.querySelectorAll('h1.h1, h2.h2, h3.h3, h4.h4, h5.h5, h6.h6')];
     let last = -1;
-    // spy.map(s => s.classList.remove('highlight'));
+
     for(let key of titles){
         let top = document.querySelector('[put-type="wiki"]').scrollTop;
         if (key.offsetTop - 16 < top) {
@@ -165,7 +165,10 @@ wikiFilter.md = function (content, isMd){
         ul: 'list-group reset',
         li: 'list-item',
         blockquote: 'blockquote blockquote-info',
-        h: true,
+        h: {
+            custom: true,
+            class: 'roundText',
+        },
     });
     else return content;
 }
@@ -173,11 +176,6 @@ wikiFilter.md = function (content, isMd){
 wikiFilter.content = function(){
     return this.content.map(c=>{
         c = wikiFilter.md(c, this.md);
-        
-        // c = c.replace(/\-&gt;|&lt;\-|\=&gt;|&lt;\=/gm, (a,b)=>{
-        //     if(a=='-&gt;'||a=='=&gt;')return '<span class="text-danger">&#10142;</span>';
-        //     else if(a=='&lt;-'||a=='&lt;=') return '<span class="text-danger">&#129044;</span>';
-        // });
 
         c = c.replace(/\#([\s\S]*?)\[([\s\S]*?)\]:end/g, (origin,text,ref,i)=>{
             let page = ref.split('|').shift();
@@ -203,10 +201,10 @@ wikiFilter.content = function(){
 
 wikiFilter.modified = function(){
     return `<div>
-        <span class="h2">${this.origin.name.split('-').map(x=>x.charAt(0).toUpperCase()+x.slice(1)).join(' ')}</span>
+        <span class="h1 roundText">${this.origin.name.split('-').map(x=>x.charAt(0).toUpperCase()+x.slice(1)).join(' ')}</span>
     </div>
     ${this.modified==''&&this.done?`<div>`:''}
-    ${this.modified!=''?`<span class="tag text-muted">${new Date(this.modified).toLocaleString().slice(0,-3)} 수정됨</span>`:``}
+    ${this.modified!=''?`<span class="tag text-muted">${new Date(this.modified).toLocaleString().slice(0,-3)} 수정 됨</span>`:``}
     ${this.done?'':`<span class="tag tag-warning">아직 완료되지 않은 문서입니다.</span>`}
     ${this.modified==''&&this.done?`</div>`:''}`
 }
@@ -224,7 +222,10 @@ wikiFilter.regdate = function(){
         ul: 'list-group reset',
         li: 'list-item',
         blockquote: 'blockquote blockquote-info',
-        h: true,
+        h: {
+            custom: true,
+            class: 'roundText',
+        },
     }).replace(/\-&gt;|&lt;\-|\=&gt;|&lt;\=/gm, (a,b)=>{
         if(a=='-&gt;'||a=='=&gt;')return '&#10142;';
         else if(a=='&lt;-'||a=='&lt;=') return '&#129044;';
@@ -264,90 +265,53 @@ wikiFilter.img = function (url, ref, title='sample', focus){
     </figure>`;
 }
 
-wikiFilter.toc = function(){
+wikiFilter.createToc = function (){
     let html = new DOMParser().parseFromString(this.md==true?Markdown.parse(this.content.join(''), {
         ol: 'list-group reset',
         ul: 'list-group reset',
         li: 'list-item',
         blockquote: 'blockquote blockquote-info',
-        h: true,
+        h: {
+            custom: true,
+            class: 'roundText',
+        },
     }).replace(/\-&gt;|&lt;\-|\=&gt;|&lt;\=/gm, (a,b)=>{
         if(a=='-&gt;'||a=='=&gt;')return '&#10142;';
         else if(a=='&lt;-'||a=='&lt;=') return '&#129044;';
     }):this.content, 'text/html').body;
 
-    let generateToc = [...html.querySelectorAll('.h3, .h6')];
-    generateToc = generateToc.reduce((prev, cur)=>{
-        if(cur.tagName=='H6') {
-            if(!(prev[prev.length-1] instanceof Array)) prev.push([]);
-            prev[prev.length-1].push(cur);
-        } else {
-            prev.push(cur);
-        }
-        return prev;
-    }, []);
-    let count = 0;
-    
     let genToc = [...html.querySelectorAll('.h1,.h2,.h3,.h4,.h5,.h6')];
 
-    let ol = document.createElement('ol');
-    let temp;
-    let bid, cid;
-    let doubled = 0;
+    let stack = [];
+    let temp = '';
+    let bid = -1, cid = 0;
+    let count = 0;
 
-    // genToc.forEach(h=>{
-    //     let li = document.createElement('li');
+    genToc.forEach(h=>{
+        cid = parseInt(h.tagName.slice(-1));
 
-    //     cid = parseInt(h.tagName.slice(-1));
-
-    //     if(cid>bid){
-    //         doubled++;
-
-    //         console.log('래핑');
-    //         if(doubled>1) {
-    //             console.log('연속 래핑');
-    //             doubled = 0;
-    //             let before = temp;
-    //             ol.append(temp);
-    //             temp = document.createElement('ol');
-    //         } else {
-    //             console.log('첫 래핑')
-    //             doubled = 1;
-    //             temp = document.createElement('ol');
-    //         }
-    //     } else if(cid<bid){
-    //         doubled = 0;
-    //         console.log('한 단계 나옴');
-    //         ol.append(temp);
-    //         temp = temp.parentNode;
-    //     }
-    //     console.log(temp, li);
-
-    //     li.innerText = h.innerText;
-    //     if(temp) temp.append(li);
-    //     else ol.append(li);
-
-    //     bid = cid;
-    // });
-    // ol.append(temp);
-
-    // console.log(ol)
-    
-    return `${this.toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div><ol class="toc">':''}
-    ${!this.toc?'':generateToc.map(y=>{
-        function convertSyntax(target){
-            if(target.match(/[\#\|\:]/g))
-            return target.replace(/\#([\s\S]*?)\[([\s\S]*?)\]:end/g, (origin,text,ref,i)=>{
-                return `${text}`;
-            });
-            else return target;
+        if(cid>bid){
+            let gap = cid - (bid==-1?cid-1:bid);
+            for(let i=0; i<gap; i++){
+                stack.push('ol');
+                temp += `<${stack[stack.length-1]}>`;
+            }
+        } else if(cid < bid){
+            let gap = bid - cid;
+            for(let i=0; i<gap; i++){
+                temp += `</${stack.pop()}>`;
+            }
         }
-        if(y instanceof Array) return `<ol>${y.map(z=>{
-            return `<li scroll-to="${convertSyntax(z.innerText)}-${count++}">${convertSyntax(z.innerText)}</li>`
-        }).join('')}</ol>`;
-        else return `<li scroll-to="${convertSyntax(y.innerText)}-${count++}">${convertSyntax(y.innerText)}</li>`;
-    }).join('')}
-    ${this.toc?`</ol></div>`:``}`
+
+        temp += `<li scroll-to="${h.innerText}-${count++}">${h.innerText.replace(/\{\:(.+)\}/g, '')}</li>`;
+
+        bid = cid;
+    });
+
+    let converted = new DOMParser().parseFromString(temp, 'text/html').body;
+    converted.querySelector('ol').classList.add('toc');
+
+    return converted.querySelector('ol').outerHTML;
 }
 
 wikiFilter.ref = function (){
@@ -367,50 +331,11 @@ wikiFilter.ref = function (){
 }
 
 wikiFilter.sidebar = function (){
-    let dom = new DOMParser();
-    let html = dom.parseFromString(this.md==true?Markdown.parse(this.content?.join(''), {
-        ol: 'list-group reset',
-        ul: 'list-group reset',
-        li: 'list-item',
-        blockquote: 'blockquote blockquote-info',
-        h: true,
-    }).replace(/\-&gt;|&lt;\-|\=&gt;|&lt;\=/gm, (a,b)=>{
-        if(a=='-&gt;'||a=='=&gt;')return '&#10142;';
-        else if(a=='&lt;-'||a=='&lt;=') return '&#129044;';
-    }):this.content, 'text/html').body;
-
-    let generateToc = [...html.querySelectorAll('.h3, .h6')];
-    generateToc = generateToc.reduce((prev, cur)=>{
-        if(cur.tagName=='H6') {
-            if(!(prev[prev.length-1] instanceof Array)) prev.push([]);
-            prev[prev.length-1].push(cur);
-        } else {
-            prev.push(cur);
-        }
-        return prev;
-    }, []);
-    
-    let count = 0;
-    return `
-    ${!this.toc?'':generateToc.map(y=>{
-        // return x.map((y, i)=>{
-            function convertSyntax(target){
-                if(target.match(/[\#\|\:]/g))
-                return target.replace(/\#([\s\S]*?)\[([\s\S]*?)\]:end/g, (origin,text,ref,i)=>{
-                    return `${text}`;
-                });
-                else return target;
-            }
-            if(y instanceof Array) return `<ol>${y.map(z=>{
-                return `<li scroll-to="${convertSyntax(z.innerText)}-${count++}">${convertSyntax(z.innerText)}</li>`
-            }).join('')}</ol>`;
-            else return `<li scroll-to="${convertSyntax(y.innerText)}-${count++}">${convertSyntax(y.innerText)}</li>`;
-        // }).join('');
-    }).join('')}`;
+    return `${!this.toc?'':wikiFilter.createToc.call(this)}`;
 }
 
 wikiFilter.scrollPoint = function (){
-    [...document.querySelectorAll('.h3, .h6')].forEach((x,i) => x.setAttribute('scroll-focus', `${x.textContent}-${i}`));
+    [...document.querySelectorAll('h1.h1, h2.h2, h3.h3, h4.h4, h5.h5, h6.h6')].forEach((x,i) => x.setAttribute('scroll-focus', `${x.textContent}-${i}`));
 }
 
 wikiFilter.scrollGauge = function(ev){
@@ -427,15 +352,20 @@ wikiFilter.all = function(){
     let temp = '';
     temp += wikiFilter.modified.call(this);
     temp += wikiFilter.regdate.call(this);
-    temp += wikiFilter.toc.call(this);
+    temp += `${this.toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div>':''}` + wikiFilter.createToc.call(this) + `${this.toc?`</div>`:``}`;
     temp += wikiFilter.content.call(this);
     temp += wikiFilter.ref.call(this);
     setTimeout(() => {
         wikiFilter.scrollPoint();
+
         document.querySelector('[put-type="wiki"]').addEventListener('scroll', wikiFilter.scrollGauge);
         document.querySelector('.main').addEventListener('scroll', wikiFilter.scrollGauge);
-
         document.querySelector('[put-type="wiki"]').addEventListener('scroll', wikiFilter.spy);
+
+        document.querySelector('[put-type="wiki"]').addEventListener('scroll', wikiFilter.scrollGauge);
+        document.querySelector('.main').addEventListener('scroll', wikiFilter.scrollGauge);
+        document.querySelector('[put-type="wiki"]').addEventListener('scroll', wikiFilter.spy);
+
         if(!document.querySelector('.prev'))
         document.querySelector('[put-type="wiki"]').insertAdjacentHTML('beforeend', `
             <button class="btn btn-danger prev" onclick="location='${this.parent.path}'">👈목록으로</button>
@@ -452,8 +382,8 @@ wikiFilter.all = function(){
         if(modules.length-1>idx+1){
             document.querySelector('.gnb').insertAdjacentHTML('afterend', `<div class="next-post fs-7"><button class="btn btn-brand" onclick="location='${this.parent.page.module[modules[idx+1]].path}'">Next</button> <span class="post-name">${this.parent.page.module[modules[idx+1]].convertedName}</span></div>`);
         }
-
     }, 1);
+
     return temp;
 }
 

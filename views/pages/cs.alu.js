@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'Arithmetic and Logic Operation Unit',
-    modified: '',
+    modified: '2022-02-26 12:11:32',
     done: false,
     tags: ['Arithmetic and Logic Operation Unit', 'ALU'],
     categories: ['CS'],
@@ -10,11 +10,11 @@ export default {
     toc: true,
     md: true,
     content: [`
-### Arithmetic and Logic Operation Unit (ALU)
+# Arithmetic and Logic Operation Unit (ALU)
 
 산술 논리 연산 장치라고 한다.
 
-###### 정의
+## 정의
 
 1. CPU 산술 논리 연산 장치 (ALU, Arithmetic Logic Unit)
     - CPU에서, 실제로 연산을 수행하는, 장치(유닛)를 말함

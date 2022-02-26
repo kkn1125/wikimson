@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: '고등운영체제',
-    modified: '2022-02-24 19:19:06',
+    modified: '2022-02-26 12:11:32',
     done: true,
     tags: ['os', 'advanced computer architecture', '고등운영체제'],
     categories: ['cs','Operating System'],
@@ -9,11 +9,10 @@ export default {
     wrote: '2022-02-21 21:37:39',
     toc: true,
     md: true,
-    content: [
-`
+    content: [`
 # 고등 운영체제
 
-### 다중 프로세스 시스템 (Multiprocessor System) {:.text-danger}
+## 다중 프로세스 시스템 (Multiprocessor System) {:.text-danger}
 
 컴퓨터 구조를 볼 때 대표적으로 폰 노이만 구조를 볼 수 있다. 폰 노이만 구조는 1945년 수학자이자 물리학자인 존 폰 노이만과 다른 사람들이 서술한 설명에 기반해서 만든 컴퓨터 아키텍처이다.
 
@@ -35,13 +34,13 @@ ${wikiFilter.img('os/aca02.png', 'kimson')}
 2. Cost
 3. Reliability
 
-###### Performanc (성능)
+## Performanc (성능)
 
 예를 들면 계산이 필요한 특정 처리에 있어서 (ex.기상청) 하나의 CPU로 처리하는 것보다 여러 CPU로 더 많은 계산을 할 수 있다는 것이다.
 
 그렇게 성능향상을 위한 것이 장점 중 하나이다.
 
-###### Cost (비용)
+## Cost (비용)
 
 컴퓨터는 빠를수록 좋다. 하지만 좋은 성능의 CPU 하나를 쓰는 것보다 저렴하고 덜 강한 성능의 CPU를 여러 개 사용하는 것이 비용측면에서 더 싸다.
 
@@ -49,7 +48,7 @@ ${wikiFilter.img('os/aca02.png', 'kimson')}
 
 즉, 이렇게 저 비용의 CPU를 여러 개 연결해서 사용해서 성능을 향상시키는 것이 비용적으로 유리할 수 있다는 것이다.
 
-###### Reliablility (신뢰성)
+## Reliablility (신뢰성)
 
 [이미지 1](${location.hash}){:${wikiFilter.to('img-1')}"}을 보면 하나의 CPU가 연결되어 있을 때 CPU가 고장이 나면 아무런 작업을 할 수가 없게 된다.
 
@@ -63,13 +62,13 @@ ${wikiFilter.img('os/aca03.png', 'kimson')}
 
 그래서 신뢰도 측면에서 여러 CPU를 사용하는 방식이 더 낫다는 것이다.
 
-###### 다중 프로세서 운영체제 (Multiprocessor OS) {:.text-danger}
+## 다중 프로세서 운영체제 (Multiprocessor OS) {:.text-danger}
 
 \`CPU\` 하나만 연결된 것과 여러 개가 있는 것은 운영체제가 달라야한다. \`CPU\`가 하나 일 때 작동하는 방식과 달리 여러 개가 있어 더 많은 작업을 할 수 있기 때문에 스케쥴링에 관해서 봐도 많은 것들이 달라야 한다.
 
 그래서 다중 프로세서를 관리하는 *Multiprocessor OS*가 필요하다.
 
-### 분산 시스템 (Distributed System)
+# 분산 시스템 (Distributed System)
 
 ${wikiFilter.img('os/aca04.png', 'kimson')}
 
@@ -81,13 +80,13 @@ ${wikiFilter.img('os/aca04.png', 'kimson')}
 
 이는 앞서 말한 다중 프로세서 시스템의 강결합과 달리 메인 메모리가 서로 떨어져 있고, 하나의 \`LAN\`상에서 느슨하게 결합되어 있기 때문에 *소결합 시스템(Loosely-Coupled System)*이라 부른다.
 
-###### 분산 운영체제 (Distributed OS) {:.text-danger}
+## 분산 운영체제 (Distributed OS) {:.text-danger}
 
 다중 프로세서는 다중 프로세서만의 OS가 있어야 하는 맥락에서 분산 시스템 또한 어떠한 일에 대해 서로 공유하고 연관된 일을 하기 때문에 분산 시스템만의 OS, 즉, *분산 운영체제 (Distributed OS)*가 있어야 한다.
 
 현재까지 언급된 두 가지의 컴퓨터는 공통된 목표를 가지는데 그것은 강하고, 성능이 좋고, 비용이 절감되면서 신뢰성을 보장하는 것이다.
 
-### 실시간 시스템 (Real-Time System)
+# 실시간 시스템 (Real-Time System)
 
 > 어떤 시간 내에 반드시 끝나야 하는 시스템
 
@@ -99,7 +98,7 @@ ${wikiFilter.img('os/aca04.png', 'kimson')}
 
 이러면 욕이 절로 나올 것이다. 이렇게 특정 시간 내에 계산을 끝내어 성공시키는 것을 *실시간 시스템*이라 한다.
 
-###### 사용되는 분야의 예
+## 사용되는 분야의 예
 
 - 공장 자동화(FA)
 - 군사, 항공, 우주 등

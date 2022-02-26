@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'mvc',
-    modified: '2022-02-23 20:38:12',
+    modified: '2022-02-26 12:11:32',
     done: true,
     tags: ['mvc','design-pattern'],
     categories: ['cs','design-pattern'],
@@ -9,11 +9,10 @@ export default {
     wrote: '2021-11-30 18:42:38',
     toc: true,
     md: true,
-    content: [
-`
-### mvc란
+    content: [`
+# mvc란
 
-###### 정의
+## 정의
 
 ${wikiFilter.img('https://s3.ap-northeast-2.amazonaws.com/opentutorials-user-file/module/327/1262.png', 'amazon', 'amazon')}
 
@@ -23,7 +22,7 @@ ${wikiFilter.img('https://s3.ap-northeast-2.amazonaws.com/opentutorials-user-fil
 |View|요청된 페이지를 데이터 처리의 과정을 거쳐 브라우저에 나타낼 요소들을 출력해주는 역할을 한다.|
 |Controller|사용자의 요청을 받아 요청에 맞는 Model의 로직을 실행하고 데이터의 흐름을 제어한다.|
 
-###### MVC1 패턴
+## MVC1 패턴
 
 사용자 요청이 들어오면 서버 내의 jsp(view & controller)와 javaBean을 거치게 된다.
 
@@ -31,7 +30,7 @@ ${wikiFilter.img('https://s3.ap-northeast-2.amazonaws.com/opentutorials-user-fil
 
 비즈니스 로직이 복잡하지 않을 때, 즉, 소규모 프로젝트에 사용되며 빠르고 쉽게 개발할 수 있다는 장점이 있지만 복잡해지고 더 큰 규모로 발전한다면 Controller와 View가 혼재되어 유지보수에 어려움을 겪을 수 있다.
 
-###### MVC2 패턴
+## MVC2 패턴
 
 패턴2에서는 패턴1의 jsp에서 사용하던 controller와 view를 분리한 형태이다.
 

@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'framework',
-    modified: '2022-02-14 16:26:44',
+    modified: '2022-02-26 12:11:32',
     done: false,
     tags: ['framework'],
     categories: ['CS'],
@@ -9,11 +9,10 @@ export default {
     wrote: '2021-11-29 18:56:35',
     toc: true,
     md: true,
-    content: [
-`
-### framework란
+    content: [`
+# framework란
 
-###### 정의
+## 정의
 
 |핵심|설명|
 |---|---|
