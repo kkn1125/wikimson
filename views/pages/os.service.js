@@ -1,8 +1,8 @@
 export default {
     published: true,
     title: '운영체제 서비스',
-    modified: '2022-02-26 12:11:32',
-    done: false,
+    modified: '2022-02-26 20:04:01',
+    done: true,
     tags: ['os', 'Operating System Service', 'OS Service', '운영체제 서비스'],
     categories: ['cs','Operating System'],
     authors: ['kimson'],

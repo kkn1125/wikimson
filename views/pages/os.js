@@ -7,6 +7,7 @@ import Interrupt from './os.interrupt_based_system.js'
 import DualMode from './os.dual_mode.js'
 import OSService from './os.service.js'
 import ProcessM from './os.process_management.js'
+import CPUscheduling from './os.cpu_scheduling.js'
 
 Router.setSubPage('운영체제 서론', 'operating_system-base', Base);
 Router.setSubPage('운영체제 역사', 'operating_system-history', Histories);
@@ -15,6 +16,7 @@ Router.setSubPage('인터럽트 기반 시스템', 'operating_system-interrupt_b
 Router.setSubPage('이중 모드', 'operating_system-dual-mode', DualMode);
 Router.setSubPage('운영체제 서비스', 'operating_system-service', OSService);
 Router.setSubPage('프로세스 관리', 'operating_system-process_management', ProcessM);
+Router.setSubPage('CPU 스케쥴링 알고리즘', 'operating_system-cpu_scheduling', CPUscheduling);
 
 export default {
     pagination: true,
@@ -24,7 +26,7 @@ export default {
     wrote: '2022-02-08 21:50:01',
     list(){
         return Object.keys(this.module).filter(x=>x.slice(1).replace(/[\s\_\-\.]+/gm, '-')!=this.origin.path.slice(1).replace(/[\s\_\-\.]+/gm, '-')).map(m=>{
-            return `<li><a href="${this.module[m].path}">${this.module[m].name}</a></li>`;
+            return `<li><a href="${this.module[m].path}">${this.module[m].name}</a>${this.module[m].page.done?'':'<sub> ⚠ 작성 중인 페이지 입니다.</sub>'}</li>`;
         }).join('');
     },
     template: function(){

@@ -4,7 +4,7 @@ import Binarysearch from './algorithm.binarysearch.js'
 
 Router.setSubPage('Binarysearch', 'algorithm.binarysearch', Binarysearch);
 
-export default{
+export default {
     pagination: true,
     published: true,
     title: 'binarysearch',
@@ -12,7 +12,7 @@ export default{
     wrote: '2022-02-08 22:01:12',
     list(){
         return Object.keys(this.module).filter(x=>x.slice(1).replace(/[\s\_\-\.]+/gm, '-')!=this.origin.path.slice(1).replace(/[\s\_\-\.]+/gm, '-')).map(m=>{
-            return `<li><a href="${this.module[m].path}">${this.module[m].name}</a></li>`;
+            return `<li><a href="${this.module[m].path}">${this.module[m].name}</a>${this.module[m].page.done?'':'<sub> ⚠ 작성 중인 페이지 입니다.</sub>'}</li>`;
         }).join('');
     },
     template(){

@@ -176,6 +176,11 @@ wikiFilter.md = function (content, isMd){
 wikiFilter.content = function(){
     return this.content.map(c=>{
         c = wikiFilter.md(c, this.md);
+        c = c.replace(/\{\{([\s\S]+?)\}\}/g, (a,$1)=>{
+            let child = $1.split(',').map(x=>`${x.trim()}`);
+            let origin = child.reduce((p,n)=>p[isNaN(n)?n:parseInt(n)] ,this);
+            return origin;
+        });
 
         c = c.replace(/\#([\s\S]*?)\[([\s\S]*?)\]:end/g, (origin,text,ref,i)=>{
             let page = ref.split('|').shift();
@@ -303,7 +308,7 @@ wikiFilter.createToc = function (){
             }
         }
 
-        temp += `<li scroll-to="${h.innerText}-${count++}">${h.innerText.replace(/\{\:(.+)\}/g, '')}</li>`;
+        temp += `<li scroll-to="${h.innerText.trim()}-${count++}">${h.innerText.replace(/\{\:(.+)\}/g, '')}</li>`;
 
         bid = cid;
     });
@@ -318,7 +323,7 @@ wikiFilter.ref = function (){
     let refLink = this.ref.map(({name, link, to})=>{
         if(name !== '' && link !== '') {
             let nameElement = new DOMParser().parseFromString(name, 'text/html').body;
-            return `<li class="list-item py-1"><a href="${link}" target="_blank" title="${nameElement.textContent}"${to?' scroll-to="'+to+'"':''}>${nameElement.innerHTML}</a></li>`;
+            return `<li class="list-item py-1"><a href="${link}" target="_blank" title="${nameElement.textContent}"${to?' scroll-to="'+to.trim()+'"':''}>${nameElement.innerHTML}</a></li>`;
         } else {
             return '';
         }
@@ -335,7 +340,7 @@ wikiFilter.sidebar = function (){
 }
 
 wikiFilter.scrollPoint = function (){
-    [...document.querySelectorAll('h1.h1, h2.h2, h3.h3, h4.h4, h5.h5, h6.h6')].forEach((x,i) => x.setAttribute('scroll-focus', `${x.textContent}-${i}`));
+    [...document.querySelectorAll('h1.h1, h2.h2, h3.h3, h4.h4, h5.h5, h6.h6')].forEach((x,i) => x.setAttribute('scroll-focus', `${x.textContent.trim()}-${i}`));
 }
 
 wikiFilter.scrollGauge = function(ev){
@@ -372,7 +377,10 @@ wikiFilter.all = function(){
         `);
 
         let detectHljs = document.querySelector('.hljs');
-        if(!detectHljs) hljs.highlightAll();
+        if(!detectHljs) {
+            hljs.highlightAll();
+            hljs.initLineNumbersOnLoad();
+        }
 
         if(document.querySelector('.next-post')) document.querySelector('.next-post').remove();
 

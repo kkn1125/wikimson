@@ -248,11 +248,11 @@ const Markdown = (function () {
                             r = r.slice(0, -1);
                         }
         
-                        if(r[0].match(/\{\:(.+)\}/g)){
+                        if(r[0]?.match(/\{\:(.+)\}/g)){
                             classes = r.pop().replace(/[\{\:\}]/g, '').split('.').filter(x=>x!='');
                         }
                         
-                        if(r[0].match(/\{\:(.+)\}/g)){
+                        if(r[0]?.match(/\{\:(.+)\}/g)){
                             classes = r.pop().replace(/[\{\:\}]/g, '').split('.').filter(x=>x!='');
                         }
                         return r;
@@ -449,6 +449,7 @@ const Markdown = (function () {
                 .replace(/\(\:\!\!\)/gm, `💡`)
                 .replace(/\(\:\!\)/gm, `❗`)
                 .replace(/\(\:\?\)/gm, `❓`)
+                .replace(/\@([\s\S]+?)\@/g, '<sub>$1</sub>')
                 ;
                 return line;
             })

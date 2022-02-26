@@ -23,56 +23,46 @@ let resultTemplate = {
     }
 }
 
-// window.addEventListener('click', finderHandler);
 window.addEventListener('input', finderHandler);
+window.addEventListener('click', finderHandler);
 window.addEventListener('keydown', finderExit);
-window.addEventListener('click', finderReload);
 
-function finderReload(ev){
-    const target = ev.target;
-    let list = [];
+function clearResult (){
+    if(document.getElementById('foundResult')) document.getElementById('foundResult').remove();
+}
 
-    if(target.id !='finder') {
-        if(document.getElementById('foundResult')) document.getElementById('foundResult').remove();
-        return;
-    }
+function findPosts(target, list){
     wikibundle.forEach(({sbj,info})=>{
         if(target.value!=''){
             let lower = target.value.toLowerCase();
-            if(sbj.match(lower) || (info.title && info.tags && (info.title.match(lower) || info.tags.filter(x=>x.match(lower)).length>0))){
+            if(sbj.match(lower) || (info.title && info.tags && (info.title.match(lower) || info.tags.filter(x=>x.match(lower)).length>0)) || (info.content?.some(c=>new RegExp(lower, 'gi').test(c))||false)){
                 if(info.published==true) list.push({sbj:sbj,info:info});
             }
         } else {
             setTimeout(()=>{
-                if(document.getElementById('foundResult')) document.getElementById('foundResult').remove();
+                clearResult();
             })
         }
     });
-    if(target.value!='') resultTemplate.render(list);
 }
 
 function finderExit(ev){
     if(ev.key!='Escape') return;
 
-    if(document.getElementById('foundResult')) document.getElementById('foundResult').remove();
+    clearResult();
     ev.target.value = '';
 }
 
 function finderHandler(ev){
-    let target = ev.target;
+    const target = ev.target;
     let list = [];
-    if(target.id != 'finder') return;
-    wikibundle.forEach(({sbj,info})=>{
-        if(target.value!=''){
-            let lower = target.value.toLowerCase();
-            if(sbj.match(lower) || (info.title && info.tags && (info.title.match(lower) || info.tags.filter(x=>x.match(lower)).length>0))){
-                if(info.published==true) list.push({sbj:sbj,info:info});
-            }
-        } else {
-            setTimeout(()=>{
-                if(document.getElementById('foundResult')) document.getElementById('foundResult').remove();
-            })
-        }
-    });
-    resultTemplate.render(list);
+
+    if(target.id !='finder') {
+        clearResult();
+        return;
+    }
+
+    findPosts(target, list);
+
+    if(target.value!='') resultTemplate.render(list);
 }

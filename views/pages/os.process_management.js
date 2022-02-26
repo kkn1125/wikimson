@@ -1,9 +1,9 @@
 export default {
     published: true,
     title: '프로세스 관리',
-    modified: '2022-02-26 12:11:32',
-    done: false,
-    tags: ['os'],
+    modified: '2022-02-26 20:03:57',
+    done: true,
+    tags: ['os', 'process management', '프로세스 관리', 'context switching'],
     categories: ['cs','Operating System'],
     authors: ['kimson'],
     wrote: '2022-02-14 18:00:34',
@@ -119,13 +119,13 @@ Job Scheduling은 자주 일어나지 않는다. 이미 메인 메모리에 프�
 
 \`Divice(장치)\` 또한 마찬가지로 여러 프로세스가 \`Divice\`를 사용하기 위해 대기 상태에 있다고 가정할 때, 어떤 프로세스를 먼저 실행해 줄 것인가 결정하는 것이다. 부분적으로 볼 때 프린터에 대한 스케쥴러는 \`Printer Scheduler\`, 디스크에 대한 스케쥴러는 \`Disk Scheduler\`가 있다. 이들을 통틀어 *Divice Scheduler*라 한다.
 
-# Multiprogramming
+## Multiprogramming
 
-## Degree of multiprogramming
+### Degree of multiprogramming
 
 멀티 프로그래밍의 *정도*를 말하는데, 메인 메모리에 *프로세스가 몇 개* 올라와져 있는가를 의미한다.
 
-## I/O-Bound process와 CPU-Bound process
+### I/O-Bound process와 CPU-Bound process
 
 - \`IO Bound\` -> 프로세스가 \`I/O\`관련 작업만 하는 것, 주로 입 출력을 많이 하는 프로세스.
     - 워드 프로그램 등 ...
@@ -134,7 +134,7 @@ Job Scheduling은 자주 일어나지 않는다. 이미 메인 메모리에 프�
 
 > I/O Bound process만 올라오면 CPU가 할 일이 없고, CPU Bound process만 올라오면 I/O가 할 일이 없어진다. 그 때문에 골고루 사용하기 위해 Job Scheduler가 \`CPU\`, \`I/O Bound\`를 적절히 섞어 \`I/O\`, \`CPU\` 어느 하나 놀지 않게 조정하는 일을 *Job Scheduler*가 한다.
 
-## Midium-term Scheduler {:.text-danger}
+### Midium-term Scheduler {:.text-danger}
 
 컴퓨터와 대화하듯이 사용하는 시스템을 Interactive System이라 하는데, 보통 대화형 시스템은 Time sharing System이며, 프로세스에게 시간을 균등하게 할당 해주는 역할을 한다.
 
@@ -152,11 +152,24 @@ OS가 쭉 감시하고 있다가 \`B\`가 메모리에 있지만 아무 활동�
 
 기사를 읽거나 하면 문맥이 바뀌는 등을 문맥 전환이라 하는데, 컴퓨터로 비유할 때 메인 메모리에 프로세스가 많이 있어도 CPU는 어느 한 순간에느 하나의 프로세스만 처리한다. 이때 특정 프로세스를 처리하고 다음 프로세스를 넘어가는 것을 *Context Switching*이라 한다.
 
-- \`scheduler\` -> 프로세스가 ready queue에서 어떤 순서로 CPU를 사용하게 하는지, job queue에서 어떤 프로그램을 먼저 메인 메모리에 올리는지 등의 일을 한다.
-- \`dispatcher\` -> 새로운 컨텍스트를 저장하고, 이전의 컨텍스트 정보를 불러와 복원(restore)하는 일을 한다.
-- \`context switching overhead\` -> 스위칭 할 때마다 현재상태를 저장하고, 새로운 상태를 가져오는 등의 많은 부담을 말한다. 스위칭을 자주 할수록 손해이기 때문에 효율이 높은 프로그램(low level)으로 만들게 된다.
+### scheduler
+
+프로세스가 ready queue에서 어떤 순서로 CPU를 사용하게 하는지, job queue에서 어떤 프로그램을 먼저 메인 메모리에 올리는지 등의 일을 한다.
+
+### dispatcher
+
+새로운 컨텍스트를 저장하고, 이전의 컨텍스트 정보를 불러와 복원(restore)하는 일을 한다. \`dispatcher\`는 C언어 같은 \`High Level Language\`가 아닌 효율이 높은 *Assembly*같은 \`Low Level Language\`로 만들어져야한다. 효율을 놓여 overhead를 줄이기 위해서이다.
+
+### context switching overhead
+
+스위칭 할 때마다 현재상태를 저장하고, 새로운 상태를 가져오는 등의 많은 부담을 말한다. 스위칭을 자주 할수록 손해이기 때문에 효율이 높은 프로그램(low level)으로 만들게 된다.
 `],
-    ref: [],
+    ref: [
+        {
+            name: '경성대 양희재 교수님 - 3강 프로세스 관리',
+            link: 'http://www.kocw.net/home/cview.do?mty=p&kemId=978503',
+        },
+    ],
     template(){
         this.title = this.origin.name;
         return `

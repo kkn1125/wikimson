@@ -34,16 +34,15 @@ export default {
 * @returns {int} a와 b의 합
 */
 function sum(a, b){
-return a + b;
+    return a + b;
 }
-
 /**
 * @param {array} array
 * @param {int} elem
 * @returns {array} new array
 */
 function addElementToArray(array, elem){
-return [...array, elem];
+    return [...array, elem];
 }</code>
 </pre>
 

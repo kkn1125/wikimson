@@ -52,6 +52,23 @@ aside.side-bar {
     -o-transition: width 150ms;
 }
 
+th,
+td{
+    word-break: break-word;
+}
+
+.hljs{
+    .hljs-ln-numbers{
+        padding-right: 1rem;
+        border-right: 1px solid rgba(255,255,255,0.5);
+        text-align: right;
+    }
+
+    .hljs-ln-code{
+        padding-left: 1rem;
+    }
+}
+
 $paddings: 0;
 
 .highlight {
@@ -301,6 +318,18 @@ ol.reset {
     }
 }
 
+[title]:not(.ref,img,a) {
+    position: relative;
+    &::before{
+        content: '설명';
+        font-size: 0.6rem;
+        color: rgb(164, 131, 255);
+        position: absolute;
+        top: -1.5em;
+        left: 0;
+    }
+}
+
 kbd {
     white-space: nowrap;
     a[href]{
@@ -310,6 +339,10 @@ kbd {
                 top: -.3em;
             }
         }
+    }
+
+    sub{
+        color: inherit !important;
     }
 }
 
@@ -480,6 +513,8 @@ body {
     text-indent: 0; // ol ul 에서 ref 가려지는 버그 수정
 }
 
+.h1,
+.h2,
 .h3,
 .h4,
 .h5,
@@ -504,6 +539,12 @@ sup {
         counter-increment: sup;
         content: counter(sup);
     }
+}
+
+sub{
+    position: relative;
+    color: rgb(233, 117, 35);
+    font-size: .6rem;
 }
 
 a[href] {

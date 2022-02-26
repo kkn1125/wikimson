@@ -51,6 +51,20 @@ aside.side-bar {
   -o-transition: width 150ms;
 }
 
+th,
+td {
+  word-break: break-word;
+}
+
+.hljs .hljs-ln-numbers {
+  padding-right: 1rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  text-align: right;
+}
+.hljs .hljs-ln-code {
+  padding-left: 1rem;
+}
+
 .highlight {
   position: relative;
   animation: rightMove 300ms ease both;
@@ -433,6 +447,18 @@ ol.reset {
   padding-right: 1.5em;
 }
 
+[title]:not(.ref, img, a) {
+  position: relative;
+}
+[title]:not(.ref, img, a)::before {
+  content: "설명";
+  font-size: 0.6rem;
+  color: #a483ff;
+  position: absolute;
+  top: -1.5em;
+  left: 0;
+}
+
 kbd {
   white-space: nowrap;
 }
@@ -441,6 +467,9 @@ kbd a[href] {
 }
 kbd a[href].ref::after {
   top: -0.3em;
+}
+kbd sub {
+  color: inherit !important;
 }
 
 ul.reset ul {
@@ -589,6 +618,8 @@ body {
   text-indent: 0;
 }
 
+.h1,
+.h2,
 .h3,
 .h4,
 .h5,
@@ -612,6 +643,12 @@ sup::after {
   font-size: 0.5rem;
   counter-increment: sup;
   content: counter(sup);
+}
+
+sub {
+  position: relative;
+  color: #e97523;
+  font-size: 0.6rem;
 }
 
 a[href].ref {
