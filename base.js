@@ -176,9 +176,13 @@ wikiFilter.md = function (content, isMd){
 wikiFilter.content = function(){
     return this.content.map(c=>{
         c = wikiFilter.md(c, this.md);
+        
         c = c.replace(/\{\{([\s\S]+?)\}\}/g, (a,$1)=>{
             let child = $1.split(',').map(x=>`${x.trim()}`);
-            let origin = child.reduce((p,n)=>p[isNaN(n)?n:parseInt(n)] ,this);
+            let origin = child.reduce((p,n)=>{
+                if(p) p[isNaN(n)?n:parseInt(n)];
+                return p;
+            },this);
             return origin;
         });
 
@@ -266,7 +270,7 @@ wikiFilter.img = function (url, ref, title='sample', focus){
     let baseurl = './src/images/';
     return `<figure class="text-center"${focus?' '+focus:''}>
         <img src="${url.match(/^http|^https/g)?'':baseurl}${url}" alt="${title}" title="${title}">
-        <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span> ${ref}</figcaption>
+        <figcaption class="bg-light p-2 text-muted"><span class="tag tag-light">ref</span><sup class="img"></sup> ${ref}</figcaption>
     </figure>`;
 }
 

@@ -630,13 +630,45 @@ body {
 }
 
 body {
-  counter-reset: sup;
+  counter-reset: sup tableCount img;
 }
 
-sup {
+sup.img {
+  font-size: 0.7rem;
+  color: #ff9c83;
+}
+sup.img::after {
+  position: relative;
+  font-weight: bold;
+  top: -0.5rem;
+  font-size: 0.5rem;
+  counter-increment: img;
+  content: counter(img);
+}
+sup.table {
+  font-size: 0.7rem;
+  color: #ff83f5;
+}
+sup.table::before {
+  position: relative;
+  font-weight: bold;
+  top: -0.5rem;
+  font-size: 0.5rem;
+  counter-increment: img;
+  content: "[표 ";
+}
+sup.table::after {
+  position: relative;
+  font-weight: bold;
+  top: -0.5rem;
+  font-size: 0.5rem;
+  counter-increment: tableCount;
+  content: counter(tableCount) "]";
+}
+sup:not(.table, .img) {
   color: #a483ff;
 }
-sup::after {
+sup:not(.table, .img)::after {
   position: relative;
   font-weight: bold;
   top: -0.5rem;

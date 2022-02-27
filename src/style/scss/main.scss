@@ -53,18 +53,18 @@ aside.side-bar {
 }
 
 th,
-td{
+td {
     word-break: break-word;
 }
 
-.hljs{
-    .hljs-ln-numbers{
+.hljs {
+    .hljs-ln-numbers {
         padding-right: 1rem;
-        border-right: 1px solid rgba(255,255,255,0.5);
+        border-right: 1px solid rgba(255, 255, 255, 0.5);
         text-align: right;
     }
 
-    .hljs-ln-code{
+    .hljs-ln-code {
         padding-left: 1rem;
     }
 }
@@ -318,9 +318,10 @@ ol.reset {
     }
 }
 
-[title]:not(.ref,img,a) {
+[title]:not(.ref, img, a) {
     position: relative;
-    &::before{
+
+    &::before {
         content: '설명';
         font-size: 0.6rem;
         color: rgb(164, 131, 255);
@@ -332,16 +333,18 @@ ol.reset {
 
 kbd {
     white-space: nowrap;
-    a[href]{
+
+    a[href] {
         color: inherit !important;
-        &.ref{
-            &::after{
+
+        &.ref {
+            &::after {
                 top: -.3em;
             }
         }
     }
 
-    sub{
+    sub {
         color: inherit !important;
     }
 }
@@ -525,23 +528,58 @@ body {
 }
 
 body {
-    counter-reset: sup;
+    counter-reset: sup tableCount img;
 }
 
 sup {
-    color: rgb(164, 131, 255);
+    &.img {
+        font-size: .7rem;
+        color: rgb(255, 156, 131);
+        &::after {
+            position: relative;
+            font-weight: bold;
+            top: -.5rem;
+            font-size: .5rem;
+            counter-increment: img;
+            content: counter(img);
+        }
+    }
 
-    &::after {
-        position: relative;
-        font-weight: bold;
-        top: -.5rem;
-        font-size: .5rem;
-        counter-increment: sup;
-        content: counter(sup);
+    &.table {
+        font-size: .7rem;
+        color: rgb(255, 131, 245);
+        &::before {
+            position: relative;
+            font-weight: bold;
+            top: -.5rem;
+            font-size: .5rem;
+            counter-increment: img;
+            content: '[표 ';
+        }
+        &::after {
+            position: relative;
+            font-weight: bold;
+            top: -.5rem;
+            font-size: .5rem;
+            counter-increment: tableCount;
+            content: counter(tableCount) "]";
+        }
+    }
+
+    &:not(.table, .img) {
+        color: rgb(164, 131, 255);
+        &::after {
+            position: relative;
+            font-weight: bold;
+            top: -.5rem;
+            font-size: .5rem;
+            counter-increment: sup;
+            content: counter(sup);
+        }
     }
 }
 
-sub{
+sub {
     position: relative;
     color: rgb(233, 117, 35);
     font-size: .6rem;

@@ -1,3 +1,5 @@
+import {tables} from '../../store/tables/tables.js'
+
 export default {
     published: true,
     title: 'CPU Scheduling Algorithm',
@@ -9,14 +11,6 @@ export default {
     wrote: '2022-02-26 17:41:36',
     toc: true,
     md: true,
-    table: [
-        `<div class="gantt-workspace"> <div id="gantt" draggable="false"> <table id="chart" style="table-layout: fixed; border-collapse: collapse !important; width: 100% !important; border-spacing: 0px !important;"> <thead id="thead"><tr><th rowspan="1" colspan="1" rowid="0" colid="0" style="font-size: 20px !important; width: auto !important; height: 50px !important; color: rgb(255, 255, 255) !important; background-color: rgb(156, 124, 254) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 3px 0px !important; border-bottom-color: rgb(125, 125, 125) !important; border-right-color: rgb(161, 161, 161) !important; border-right-style: dashed !important;">Process</th><th rowspan="1" colspan="1" rowid="0" colid="1" style="font-size: 20px !important; width: auto !important; height: 50px !important; color: rgb(255, 255, 255) !important; background-color: rgb(156, 124, 254) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 3px !important; border-bottom-color: rgb(125, 125, 125) !important;">Burst&nbsp;Time&nbsp;(msec)</th></tr></thead> <tbody id="tbody"><tr><td rowspan="1" colspan="1" rowid="0" colid="0" style="font-size: 16px !important; width: auto !important; height: auto !important; color: rgb(0, 0, 0) !important; background-color: rgb(243, 225, 254) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 0px 0px !important; border-right-color: rgb(161, 161, 161) !important; border-right-style: dashed !important;">P1</td><td rowspan="1" colspan="1" rowid="0" colid="1" style="font-size: 16px !important; width: auto !important; height: auto !important; color: rgb(0, 0, 0) !important; background-color: rgb(243, 225, 254) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px !important;">24</td></tr><tr><td rowspan="1" colspan="1" rowid="1" colid="0" style="font-size: 16px !important; width: auto !important; height: auto !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 0px 0px !important; border-right-color: rgb(161, 161, 161) !important; border-right-style: dashed !important;">P2</td><td rowspan="1" colspan="1" rowid="1" colid="1" style="font-size: 16px !important; width: auto !important; height: auto !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px !important;">3</td></tr><tr><td rowspan="1" colspan="1" rowid="2" colid="0" style="font-size: 16px !important; width: auto !important; height: auto !important; color: rgb(0, 0, 0) !important; background-color: rgb(243, 225, 254) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 0px 0px !important; border-right-color: rgb(161, 161, 161) !important; border-right-style: dashed !important;">P3</td><td rowspan="1" colspan="1" rowid="2" colid="1" style="font-size: 16px !important; width: auto !important; height: auto !important; color: rgb(0, 0, 0) !important; background-color: rgb(243, 225, 254) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 0px 0px !important;">3</td></tr></tbody> </table> </div> </div>`,
-        `<div class="gantt-workspace"> <div id="gantt" draggable="false"> <table id="chart" style="table-layout: fixed; border-collapse: collapse !important; width: 100% !important; border-spacing: 0px !important;"> <thead id="thead"></thead> <tbody id="tbody"><tr><td rowspan="1" colspan="1" rowid="0" colid="0" style="font-size: 14px !important; width: 15px !important; height: auto !important; padding: 10px 5px !important; color: rgb(0, 0, 0) !important; background-color: rgb(201, 201, 201) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 3px 0px !important; border-right-color: rgb(125, 125, 125) !important; border-bottom-color: rgb(122, 122, 122) !important;">구분</td><td rowspan="1" colspan="1" rowid="0" colid="1" style="font-size: 14px !important; width: 61px !important; height: auto !important; padding: 10px 5px !important; color: rgb(255, 255, 255) !important; background-color: rgb(220, 122, 255) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 3px 0px !important; border-right-style: dashed !important; border-right-color: rgb(255, 138, 138) !important; border-bottom-color: rgb(122, 122, 122) !important;">P1</td><td rowspan="1" colspan="1" rowid="0" colid="2" style="font-size: 14px !important; width: 24px !important; height: auto !important; padding: 10px 5px !important; color: rgb(255, 255, 255) !important; background-color: rgb(117, 188, 255) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 3px 0px !important; border-right-style: dashed !important; border-right-color: rgb(255, 138, 138) !important; border-bottom-color: rgb(122, 122, 122) !important;">P2</td><td rowspan="1" colspan="1" rowid="0" colid="3" style="font-size: 14px !important; width: 24px !important; height: auto !important; padding: 10px 5px !important; color: rgb(255, 255, 255) !important; background-color: rgb(255, 155, 61) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 3px !important; border-bottom-color: rgb(122, 122, 122) !important;">P3</td></tr><tr><td rowspan="1" colspan="1" rowid="1" colid="0" style="font-size: 14px !important; width: 15px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(237, 237, 237) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px !important; border-right-color: rgb(125, 125, 125) !important;">Burst&nbsp;Time</td><td rowspan="1" colspan="1" rowid="1" colid="1" style="font-size: 14px !important; width: 61px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-color: rgb(254, 144, 144) !important; border-left-style: solid !important;">24/msec</td><td rowspan="1" colspan="1" rowid="1" colid="2" style="font-size: 14px !important; width: 24px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-color: rgb(254, 144, 144) !important; border-left-style: solid !important;">3/msec</td><td rowspan="1" colspan="1" rowid="1" colid="3" style="font-size: 14px !important; width: 24px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-color: rgb(255, 163, 163) !important; border-left-style: solid !important;">3/msec</td></tr><tr><td rowspan="1" colspan="1" rowid="2" colid="0" style="font-size: 14px !important; width: 15px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(237, 237, 237) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px !important; border-right-color: rgb(125, 125, 125) !important;">Waiting&nbsp;Time</td><td rowspan="1" colspan="1" rowid="2" colid="1" style="font-size: 14px !important; width: 61px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: left !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-color: rgb(254, 144, 144) !important; border-left-style: solid !important;">←&nbsp;0</td><td rowspan="1" colspan="1" rowid="2" colid="2" style="font-size: 14px !important; width: 24px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: left !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-color: rgb(254, 144, 144) !important; border-left-style: solid !important;">←&nbsp;24</td><td rowspan="1" colspan="1" rowid="2" colid="3" style="font-size: 14px !important; width: 24px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: left !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-color: rgb(255, 163, 163) !important; border-left-style: solid !important;">←&nbsp;27</td></tr></tbody> </table> </div> </div>`,
-        `<div class="gantt-workspace"> <div id="gantt" draggable="false"> <table id="chart" style="table-layout: fixed; border-collapse: collapse !important; width: 100% !important; border-spacing: 0px !important;"> <thead id="thead"></thead> <tbody id="tbody"><tr><td rowspan="1" colspan="1" rowid="0" colid="0" style="font-size: 14px !important; width: 15px !important; height: auto !important; padding: 10px 5px !important; color: rgb(0, 0, 0) !important; background-color: rgb(201, 201, 201) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 3px 0px !important; border-left-color: rgb(255, 163, 163) !important; border-left-style: solid !important; border-right-color: rgb(125, 125, 125) !important; border-bottom-color: rgb(122, 122, 122) !important;">구분</td><td rowspan="1" colspan="1" rowid="0" colid="1" style="font-size: 14px !important; width: 24px !important; height: auto !important; padding: 10px 5px !important; color: rgb(255, 255, 255) !important; background-color: rgb(255, 155, 61) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 3px 1px !important; border-left-color: rgb(255, 163, 163) !important; border-left-style: solid !important; border-bottom-color: rgb(122, 122, 122) !important; border-right-style: dashed !important; border-right-color: rgb(255, 97, 97) !important;">P3</td><td rowspan="1" colspan="1" rowid="0" colid="2" style="font-size: 14px !important; width: 24px !important; height: auto !important; padding: 10px 5px !important; color: rgb(255, 255, 255) !important; background-color: rgb(117, 188, 255) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 3px 1px !important; border-bottom-color: rgb(122, 122, 122) !important; border-left-color: rgb(254, 98, 98) !important; border-left-style: dashed !important; border-right-style: dashed !important; border-right-color: rgb(224, 224, 224) !important;">P2</td><td rowspan="1" colspan="1" rowid="0" colid="3" style="font-size: 14px !important; width: 61px !important; height: auto !important; padding: 10px 5px !important; color: rgb(255, 255, 255) !important; background-color: rgb(220, 122, 255) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 3px 1px !important; border-bottom-color: rgb(122, 122, 122) !important; border-left-color: rgb(254, 98, 98) !important; border-left-style: dashed !important; border-right-style: dashed !important; border-right-color: rgb(224, 224, 224) !important;">P1</td></tr><tr><td rowspan="1" colspan="1" rowid="1" colid="0" style="font-size: 14px !important; width: 15px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(237, 237, 237) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px !important; border-left-color: rgb(255, 163, 163) !important; border-left-style: solid !important; border-right-color: rgb(125, 125, 125) !important;">Burst&nbsp;Time</td><td rowspan="1" colspan="1" rowid="1" colid="1" style="font-size: 14px !important; width: 24px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-color: rgb(255, 163, 163) !important; border-left-style: solid !important; border-right-color: rgb(125, 125, 125) !important;">3/msec</td><td rowspan="1" colspan="1" rowid="1" colid="2" style="font-size: 14px !important; width: 24px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-color: rgb(255, 163, 163) !important; border-left-style: solid !important; border-right-color: rgb(125, 125, 125) !important;">3/msec</td><td rowspan="1" colspan="1" rowid="1" colid="3" style="font-size: 14px !important; width: 24px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-color: rgb(255, 163, 163) !important; border-left-style: solid !important; border-right-color: rgb(125, 125, 125) !important;">24/msec</td></tr><tr><td rowspan="1" colspan="1" rowid="2" colid="0" style="font-size: 14px !important; width: 15px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(237, 237, 237) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px !important; border-left-color: rgb(255, 163, 163) !important; border-left-style: solid !important; border-right-color: rgb(125, 125, 125) !important;">Waiting&nbsp;Time</td><td rowspan="1" colspan="1" rowid="2" colid="1" style="font-size: 14px !important; width: 24px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: left !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-color: rgb(255, 163, 163) !important; border-left-style: solid !important; border-right-color: rgb(125, 125, 125) !important;">←&nbsp;0</td><td rowspan="1" colspan="1" rowid="2" colid="2" style="font-size: 14px !important; width: 24px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: left !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-color: rgb(255, 163, 163) !important; border-left-style: solid !important; border-right-color: rgb(125, 125, 125) !important;">←&nbsp;3</td><td rowspan="1" colspan="1" rowid="2" colid="3" style="font-size: 14px !important; width: 24px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: left !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-color: rgb(255, 163, 163) !important; border-left-style: solid !important; border-right-color: rgb(125, 125, 125) !important;">←&nbsp;6</td></tr></tbody> </table> </div> </div>`,
-        `<div class="gantt-workspace"> <div id="gantt" draggable="false"> <table id="chart" style="table-layout: fixed; border-collapse: collapse !important; width: 100% !important; border-spacing: 0px !important;"> <thead id="thead"><tr><th rowspan="1" colspan="1" rowid="0" colid="0" style="font-size: 20px !important; width: auto !important; height: 50px !important; color: rgb(255, 255, 255) !important; background-color: rgb(156, 124, 254) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 3px 0px !important; border-bottom-color: rgb(125, 125, 125) !important; border-right-color: rgb(161, 161, 161) !important; border-right-style: dashed !important;">Process</th><th rowspan="1" colspan="1" rowid="0" colid="1" style="font-size: 20px !important; width: auto !important; height: 50px !important; color: rgb(255, 255, 255) !important; background-color: rgb(156, 124, 254) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 3px !important; border-bottom-color: rgb(125, 125, 125) !important;">Burst&nbsp;Time&nbsp;(msec)</th></tr></thead> <tbody id="tbody"><tr><td rowspan="1" colspan="1" rowid="0" colid="0" style="font-size: 16px !important; width: auto !important; height: auto !important; color: rgb(0, 0, 0) !important; background-color: rgb(243, 225, 254) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 0px 0px !important; border-right-color: rgb(161, 161, 161) !important; border-right-style: dashed !important;">P1</td><td rowspan="1" colspan="1" rowid="0" colid="1" style="font-size: 16px !important; width: auto !important; height: auto !important; color: rgb(0, 0, 0) !important; background-color: rgb(243, 225, 254) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px !important; border-bottom-color: rgb(125, 125, 125) !important;">6</td></tr><tr><td rowspan="1" colspan="1" rowid="1" colid="0" style="font-size: 16px !important; width: auto !important; height: auto !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 0px 0px !important; border-bottom-color: rgb(125, 125, 125) !important; border-right-color: rgb(161, 161, 161) !important; border-right-style: dashed !important;">P2</td><td rowspan="1" colspan="1" rowid="1" colid="1" style="font-size: 16px !important; width: auto !important; height: auto !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px !important; border-bottom-color: rgb(125, 125, 125) !important; border-right-color: rgb(161, 161, 161) !important; border-right-style: dashed !important;">8</td></tr><tr><td rowspan="1" colspan="1" rowid="2" colid="0" style="font-size: 16px !important; width: auto !important; height: auto !important; color: rgb(0, 0, 0) !important; background-color: rgb(243, 225, 254) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 0px 0px !important; border-bottom-color: rgb(125, 125, 125) !important; border-right-color: rgb(161, 161, 161) !important; border-right-style: dashed !important;">P3</td><td rowspan="1" colspan="1" rowid="2" colid="1" style="font-size: 16px !important; width: auto !important; height: auto !important; color: rgb(0, 0, 0) !important; background-color: rgb(243, 225, 254) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px !important; border-bottom-color: rgb(125, 125, 125) !important; border-right-color: rgb(161, 161, 161) !important; border-right-style: dashed !important;">7</td></tr><tr><td rowspan="1" colspan="1" rowid="3" colid="0" style="font-size: 16px !important; width: auto !important; height: auto !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 0px 0px !important; border-bottom-color: rgb(125, 125, 125) !important; border-right-color: rgb(161, 161, 161) !important; border-right-style: dashed !important;">P4</td><td rowspan="1" colspan="1" rowid="3" colid="1" style="font-size: 16px !important; width: auto !important; height: auto !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px !important; border-bottom-color: rgb(125, 125, 125) !important; border-right-color: rgb(161, 161, 161) !important; border-right-style: dashed !important;">3</td></tr></tbody> </table> </div> </div>`,
-        `<div class="gantt-workspace"> <div id="gantt" draggable="false"> <table id="chart" style="table-layout: fixed; border-collapse: collapse !important; width: 100% !important; border-spacing: 0px !important;"> <thead id="thead"></thead> <tbody id="tbody"><tr><td rowspan="1" colspan="1" rowid="0" colid="0" style="font-size: 14px !important; width: 5px !important; height: auto !important; padding: 10px 5px !important; color: rgb(0, 0, 0) !important; background-color: rgb(201, 201, 201) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 3px 0px !important; border-bottom-color: rgb(115, 115, 115) !important; border-right-style: solid !important; border-right-color: rgb(120, 120, 120) !important;">구분</td><td rowspan="1" colspan="1" rowid="0" colid="1" style="font-size: 14px !important; width: 13px !important; height: auto !important; padding: 10px 5px !important; color: rgb(255, 255, 255) !important; background-color: rgb(255, 155, 61) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 3px 0px !important; border-bottom-color: rgb(115, 115, 115) !important; border-right-style: dashed !important; border-right-color: rgb(255, 138, 138) !important;">P4</td><td rowspan="1" colspan="1" rowid="0" colid="2" style="font-size: 14px !important; width: 18px !important; height: auto !important; padding: 10px 5px !important; color: rgb(255, 255, 255) !important; background-color: rgb(117, 188, 255) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 3px 0px !important; border-bottom-color: rgb(115, 115, 115) !important; border-right-style: dashed !important; border-right-color: rgb(255, 138, 138) !important;">P1</td><td rowspan="1" colspan="1" rowid="0" colid="3" style="font-size: 14px !important; width: 14px !important; height: auto !important; padding: 10px 5px !important; color: rgb(255, 255, 255) !important; background-color: rgb(220, 122, 255) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 3px 0px !important; border-bottom-color: rgb(115, 115, 115) !important; border-right-style: dashed !important; border-right-color: rgb(255, 138, 138) !important;">P3</td><td rowspan="1" colspan="1" rowid="0" colid="4" style="font-size: 14px !important; width: 10px !important; height: auto !important; padding: 10px 5px !important; color: rgb(255, 255, 255) !important; background-color: rgb(105, 221, 182) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 3px !important; border-bottom-color: rgb(115, 115, 115) !important;">P2</td></tr><tr><td rowspan="1" colspan="1" rowid="1" colid="0" style="font-size: 14px !important; width: 15px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(237, 237, 237) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px !important;">Burst&nbsp;Time</td><td rowspan="1" colspan="1" rowid="1" colid="1" style="font-size: 14px !important; width: 13px !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">3/msec</td><td rowspan="1" colspan="1" rowid="1" colid="2" style="font-size: 14px !important; width: auto !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">6/msec</td><td rowspan="1" colspan="1" rowid="1" colid="3" style="font-size: 14px !important; width: 14px !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">7/msec</td><td rowspan="1" colspan="1" rowid="1" colid="4" style="font-size: 14px !important; width: 10px !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">8/msec</td></tr><tr><td rowspan="1" colspan="1" rowid="2" colid="0" style="font-size: 14px !important; width: 15px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(237, 237, 237) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px !important;">Waiting&nbsp;Time</td><td rowspan="1" colspan="1" rowid="2" colid="1" style="font-size: 14px !important; width: 13px !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: left !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">←&nbsp;0</td><td rowspan="1" colspan="1" rowid="2" colid="2" style="font-size: 14px !important; width: auto !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: left !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">←&nbsp;3</td><td rowspan="1" colspan="1" rowid="2" colid="3" style="font-size: 14px !important; width: 14px !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: left !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">←&nbsp;9</td><td rowspan="1" colspan="1" rowid="2" colid="4" style="font-size: 14px !important; width: 10px !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: left !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">←&nbsp;16</td></tr></tbody> </table> </div> </div>`,
-        `<div class="gantt-workspace"> <div id="gantt" draggable="false"> <table id="chart" style="table-layout: fixed; border-collapse: collapse !important; width: 100% !important; border-spacing: 0px !important;"> <thead id="thead"></thead> <tbody id="tbody"><tr><td rowspan="1" colspan="1" rowid="0" colid="0" style="font-size: 14px !important; width: 5px !important; height: auto !important; padding: 10px 5px !important; color: rgb(0, 0, 0) !important; background-color: rgb(201, 201, 201) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 3px 0px !important; border-bottom-color: rgb(115, 115, 115) !important; border-right-style: solid !important; border-right-color: rgb(120, 120, 120) !important;">구분</td><td rowspan="1" colspan="1" rowid="0" colid="1" style="font-size: 14px !important; width: 18px !important; height: auto !important; padding: 10px 5px !important; color: rgb(255, 255, 255) !important; background-color: rgb(117, 188, 255) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 3px 0px !important; border-bottom-color: rgb(115, 115, 115) !important; border-right-style: dashed !important; border-right-color: rgb(255, 138, 138) !important;">P1</td><td rowspan="1" colspan="1" rowid="0" colid="2" style="font-size: 14px !important; width: 10px !important; height: auto !important; padding: 10px 5px !important; color: rgb(255, 255, 255) !important; background-color: rgb(105, 221, 182) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 3px !important; border-bottom-color: rgb(115, 115, 115) !important;">P2</td><td rowspan="1" colspan="1" rowid="0" colid="3" style="font-size: 14px !important; width: 14px !important; height: auto !important; padding: 10px 5px !important; color: rgb(255, 255, 255) !important; background-color: rgb(220, 122, 255) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 3px 0px !important; border-bottom-color: rgb(115, 115, 115) !important; border-right-style: dashed !important; border-right-color: rgb(255, 138, 138) !important;">P3</td><td rowspan="1" colspan="1" rowid="0" colid="4" style="font-size: 14px !important; width: 13px !important; height: auto !important; padding: 10px 5px !important; color: rgb(255, 255, 255) !important; background-color: rgb(255, 155, 61) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 1px 3px 0px !important; border-bottom-color: rgb(115, 115, 115) !important; border-right-style: dashed !important; border-right-color: rgb(255, 138, 138) !important;">P4</td></tr><tr><td rowspan="1" colspan="1" rowid="1" colid="0" style="font-size: 14px !important; width: 15px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(237, 237, 237) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px !important;">Burst&nbsp;Time</td><td rowspan="1" colspan="1" rowid="1" colid="1" style="font-size: 14px !important; width: auto !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">6/msec</td><td rowspan="1" colspan="1" rowid="1" colid="2" style="font-size: 14px !important; width: 10px !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">8/msec</td><td rowspan="1" colspan="1" rowid="1" colid="3" style="font-size: 14px !important; width: 14px !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">7/msec</td><td rowspan="1" colspan="1" rowid="1" colid="4" style="font-size: 14px !important; width: 13px !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: center !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">3/msec</td></tr><tr><td rowspan="1" colspan="1" rowid="2" colid="0" style="font-size: 14px !important; width: 15px !important; height: auto !important; padding: 5px 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(237, 237, 237) !important; font-weight: bold !important; text-align: center !important; vertical-align: middle !important; border-width: 0px !important;">Waiting&nbsp;Time</td><td rowspan="1" colspan="1" rowid="2" colid="1" style="font-size: 14px !important; width: auto !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: left !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">←&nbsp;0</td><td rowspan="1" colspan="1" rowid="2" colid="2" style="font-size: 14px !important; width: 10px !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: left !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">←&nbsp;6</td><td rowspan="1" colspan="1" rowid="2" colid="3" style="font-size: 14px !important; width: 14px !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: left !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">←&nbsp;14</td><td rowspan="1" colspan="1" rowid="2" colid="4" style="font-size: 14px !important; width: 13px !important; height: auto !important; padding: 0px !important; color: rgb(0, 0, 0) !important; background-color: rgb(255, 255, 255) !important; font-weight: normal !important; text-align: left !important; vertical-align: middle !important; border-width: 0px 0px 0px 1px !important; border-left-style: solid !important; border-left-color: rgb(254, 144, 144) !important;">←&nbsp;21</td></tr></tbody> </table> </div> </div>`
-    ],
     content: [`
 # CPU Scheduling Algorithm
 
@@ -90,27 +84,27 @@ ${wikiFilter.toRef('operating-system-process-management', 'Midium-term Scheduler
 
 #### Find Average Waiting Time
 
-{{table, 0}}
+${tables[0]} <sup class="table"></sup>
 
 P@1@와 P@2@, P@3@이 있다고 가정할 때 각각 \`Busrt Time{:title="해당 프로세스가 CPU를 얼마나 사용할 것인가"}\`이 24, 3, 3이라면, 평균 대기 시간 (AWT)는 무엇인가?
 
 24 + 3 + 3이라고 생각 할 수도 있지만 이것은 Burst Time이고, 대기 시간을 보면 다른 식을 세워야한다는 것을 알 수 있다.
 
-{{table, 1}}
+${tables[1]} <sup class="table"></sup>
 
 P@1@은 대기시간이 \`0\`이다. P@2@는 대기시간이 P@1@이 끝난 \`24\`이고, P@3@의 대기시간은 P@2@가 끝나는 \`27(24 + 3)\`이다. 각 대기시간의 합을 프로세스의 개수 \`3\`으로 나누어주면 \`AWT\`는 *17/msec*이 된다. 즉, 식으로 보면 아래와 같다.
 
-- AWT = (0 + 24 + 27) / 3 === 17/msec
+- AWT = (0@P1@ + 24@P2@ + 27@P3@) / 3 === \`17/msec\`
 
 ##### 만일 반대로 순서를 세웠으면 어떻게 될까?
 
 [표 2]를 다시 바꾸어 보면 아래와 같을 것이다.
 
-{{table, 2}}
+${tables[2]} <sup class="table"></sup>
 
 P@3@가 먼저 시작하고 그 다음이 P@2@가, 마지막으로 P@1@이 오게 된다. 이렇게 되면 AWT는 *3/msec*이 된다.
 
-- AWT = (0 + 3 + 6) / 3 === 3/msec
+- AWT = (0@P1@ + 3@P2@ + 6@P3@) / 3 === \`3/msec\`
 
 이렇게 봤을 때 순서대로 들어왔을지라도 그대로 처리하면 대기시간 면에서는 별로 좋지 않다는 것을 알 수 있다.
 
@@ -129,41 +123,169 @@ P@3@가 먼저 시작하고 그 다음이 P@2@가, 마지막으로 P@1@이 오�
 
 은행 등에서 짧게 끝나는 프로세스를 앞세워야 전체적인 시간을 줄일 수 있다는 이야기이다. 예를 들어 표를 그려보자.
 
-{{table, 3}}
+${tables[3]} <sup class="table"></sup>
 
 이렇게 P@1@부터 P@4@까지의 프로세스가 있고, 각각 Burst Time이 주어질 때 AWT를 구해보자.
 
-{{table, 4}}
+${tables[4]} <sup class="table"></sup>
 
-- AWT = (0 + 3 + 9 + 16) / 4 === 7/msec
+- AWT = (0@P1@ + 3@P2@ + 9@P3@ + 16@P4@) / 4 === \`7/msec\`
 
 #### 그렇다면 FCFS 측면에서 계산해보면 어떻게 될까?
 
-{{table, 5}}
+${tables[5]} <sup class="table"></sup>
 
-- AWT = (0 + 6 + 14 + 21) / 4 === 10.25/msec \`(FCFS)\`
+- AWT = (0@P1@ + 6@P2@ + 14@P3@ + 21@P4@) / 4 === \`10.25/msec\` (FCFS)
 
 표 4가 더 좋은 결과를 가져온다.
 
-#### Provably optimal (증명 최적)
+- \`Provably optimal\` (증명 최적) ==> SJF는 대기시간을 줄이는 측면에서 가장 좋은 방법이다.
+- \`Not Realistic{:.bg-danger}\` ==> 돌려봐야 CPU 활용시간(Burst Time)을 알 수 있는데 이것은 비현실적이다.
+- \`Prediction may be needed\` ==> 하지만 CPU가 활용되는 시간을 예측해 볼 수는 있다. n번째는 CPU를 얼마나 사용했는가, m번째는 CPU를 얼마나 사용했는가를 OS가 조사를 해서 다음 번에는 CPU가 얼마만큼의 CPU를 사용하겠다를 예측하는 것이다. 그만큼 과거의 기록을 많이 가지고 있어야 하기 때문에 overhead가 많은 것이다.
 
-이 SJF는 대기시간을 줄이는 측면에서 가장 좋은 방법이다.
+#### Preemptive or Nonpreemptive
 
-#### Not realistic
+##### Nonpreemptive의 예제
 
-비현실적이기 때문, 돌려봐야 아는데 미리 CPU활용시간을 알 수 없기 때문이다.
+${tables[6]} <sup class="table"></sup>
 
-#### Prediction may be needed
+위의 표는 도착 시간이 함께 표시되어 있다. 도착시간 0에 P@1@만 있으므로 P@1@을 먼저 앞에 둔다. Nonpreemptive이기 때문에 나머지 프로세스는 Ready Queue에 대기하게 된다.
 
-그렇지만 예상, 추측 해 볼 수는 있다.
+${tables[7]} <sup class="table"></sup>
 
-### Priority
+AWT를 계산하면 위의 표와 같이 나온 \`WT\`를 합산해서 나눈다. P@1@은 0에 도착해서 대기시간이 없이 CPU를 활용했다. P@2@는 1에 도착해서 P@1@이 끝나는 8msec까지 기다렸다. 그러면 7msec을 기다린 것이다. P@3@는 2msec에 도착해서 17msec을 기다렸으니 15msec이 된다.
+
+- AWT = (0@P1@ + 7@P2@ + 15@P3@ + 9@P4@) / 4 === \`7.75/msec\`
+
+##### Preemptive의 예제
+
+> 이 방식은 실행 후 얼마나 짧은 시간이 남아있는가를 우선으로 해서 작업을 처리하는 방식이다. 이를 다른 말로 *Shortest-Remaining-Time-First (최소잔여시간 우선)*이라 한다.
+
+표 7을 그대로 사용해보자.
+
+Preemptive는 급한 프로세스를 먼저 처리하기 때문에 표 6과는 많이 다르게 도착 시간에 따라 계산된다.
+
+${tables[8]} <sup class="table"></sup>
+
+1. \`0/msec{:.bg-brand}\` ==> P@1@이 들어온다. 8msec 만큼 CPU를 사용한다.
+2. \`1/msec{:.bg-brand}\` ==> P@2@가 들어온다. 이 시점에서 각각의 Burst Time은 아래와 같다.
+    - P@1@ -> \`7/msec\`
+    - P@2@ -> \`4/msec{:.bg-danger}\`
+    - 둘 중 P@2@가 급하므로 컨텐스트 스위칭이 일어나 P@2@가 점유하게 된다.
+3. \`2/msec{:.bg-brand}\` ==> P@3@이 들어온다.
+    - P@1@ -> \`7/msec\`
+    - P@2@ -> \`3/msec{:.bg-danger}\`
+    - P@3@ -> \`9/msec\`
+4. \`3/msec{:.bg-brand}\` ==> P@4@가 들어온다.
+    - P@1@ -> \`7/msec\`
+    - P@2@ -> \`2/msec{:.bg-danger}\`
+    - P@3@ -> \`9/msec\`
+    - P@4@ -> \`5/msec\`
+5. \`5/msec{:.bg-brand}\` ==> 이제 들어오는 프로세스가 없으므로 처리중이던 P@2@가 여전히 급하기 때문에 나머지 2/msec을 돈다.
+    - P@1@ -> \`7/msec\`
+    - P@2@ -> \`끝 (:))\`
+    - P@3@ -> \`9/msec\`
+    - P@4@ -> \`5/msec{:.bg-danger}\` 제일 급한 P@4@가 점유한다.
+6. \`10/msec{:.bg-brand}\` ==> P@4@가 5/msec동안 돈다.
+    - P@1@ -> \`7/msec{:.bg-danger}\` P@1@가 점유한다.
+    - P@2@ -> \`끝 (:))\`
+    - P@3@ -> \`9/msec\`
+    - P@4@ -> \`끝 (:))\`
+7. \`17/msec{:.bg-brand}\` ==> P@4@가 5/msec동안 돈다.
+    - P@1@ -> \`끝 (:))\`
+    - P@2@ -> \`끝 (:))\`
+    - P@3@ -> \`9/msec{:.bg-danger}\` P@3@가 점유한다.
+    - P@4@ -> \`끝 (:))\`
+8. \`26/msec{:.bg-brand}\` ==> 작업이 모두 끝난다.
+
+- AWT = (9@P1@ + 0@P2@ + 15@P3@ + 2@P4@) / 4 === \`6.5/msec\`
+
+### Priority Scheduling
 
 > 우선순위가 높은 일을 먼저 서비스한다.
+
+${tables[9]} <sup class="table"></sup>
+
+우선순위 수가 작은 것이 우선순위가 높은 것이다. 간트차트로 다시 흐름을 그려보면 아래와 같다.
+
+${tables[10]} <sup class="table"></sup>
+
+- AWT = (6 + 0 + 16 + 18 + 1) / 5 === \`8.2/msec\`
+
+#### Priority
+
+> 우선순위를 정하는데는 내부적인 요소와 외부적인 요소로 정할 수 있다.
+
+- Internal (내부적 요소)
+    - Time limit ==> Time limit가 짧은 프로세스를 먼저.
+    - Memoty Requirement ==> 메모리를 적게 차지하는 프로세스 먼저.
+    - I/O to CPU Burst ==> I/O 혹은 CPU를 많이 차지하는 프로세스가 있을 때 CPU 입장에서 Burst가 짧은 프로세스인 I/O가 길고 CPU Burst가 짧은 프로세스를 먼저 실행.
+- External (외부적 요소)
+    - Amount of funds being paid ==> 돈 많이 내는 사람 먼저.
+    - Political factors ==> 정치적 요소로 급한 것 먼저.
+
+#### Preemptive or Nonpreemptive
+
+SJF와 마찬가지로 선점, 비선점 방식으로 구성할 수 있다.
+
+#### Problems
+
+- Indefinite blocking ==> starvation (기아)
+    - 예를 들어 프로세스 A, B, C가 있을 때 B의 우선순위가 가장 낮다면 새로 들어오는 프로세스의 우선순위가 높을 때 B가 계속해서 대기열에 남아 CPU시간을 차지하지 못하고 실행되지 않는 것을 말한다.
+- Solution ==> againg (나이 듦)
+    - starvation을 해결하기 위해 위와 같은 상황에 놓여있다면 OS가 주기적으로 Ready Queue를 감시하면서 오랫동안 실행되지 않고 있다면 시간이 지날수록 우선순위를 점진적으로 올려주는 것을 말한다.
 
 ### Round-Robin (RR)
 
 > 빙빙 돌면서 순서대로 서비스한다.
+
+#### Time-sharing System (시분할/시공유 시스템)
+
+${tables[11]} <sup class="table"></sup>
+
+Time Quantum(시간 양자) === Time Slice(10 ~ 100/msec) 이고, 시간양자의 단위로는 ⊿(delta)를 사용한다.
+
+#### Preemptive Scheduling
+
+\`RR\`은 선점 스케쥴링이다. P@1@이 끝나지 않아도 일정 시간이 지나면 다음 프로세스를 넘어가기 때문이다.
+
+#### 예제
+
+${tables[12]} <sup class="table"></sup>
+
+그리고 시간 양자를 나타내는 값이 4⊿(delta)일 때 아래와 같은 흐름으로 그려지게 된다.
+
+${tables[13]} <sup class="table"></sup>
+
+- AWT = (6@P1@ + 4@P2@ + 7@P3@) / 3 === \`5.66/msec\`
+
+\`RR\`은 시간 양자의 값이 얼마여야 가장 성능이 좋을 것인지를 중점으로 Time Quantum에 의존적인 방법이다.
+
+#### 델타가 무한대라면?
+
+델타가 무한대이기 때문에 P@1@이 들어오면 P@1@의 작업이 끝날 때까지 진행하고 P@2@가 들어오면 P@2@가 끝날 때까지 진행한다. 이는 \`FCFS\`와 똑같아진다.
+
+### 델타가 0이라면?
+
+Processor sharing (Context switching overhead)이 발생한다. 이 말은 Context switching이 너무 자주 일어나기 때문에 거의 동시에 돌고 있는 것처럼 느껴지는 것을 말한다.
+
+#### Average Turnaround Time (ATT)
+
+이번에는 평균 반환시간을 구해보자.
+
+${tables[14]} <sup class="table"></sup>
+
+##### 델타가 1일 때
+
+\`P@1@\` -> 1/msec ->\`P@2@\` -> 1/msec ->\`P@3@\` -> 1/msec ->\`P@4@\` -> 1/msec ->\`P@1@\` -> 1/msec ->\`P@2@\` -> 1/msec ->\`P@4@\` -> 1/msec ->\`P@1@\` -> 1/msec ->\`P@2@\` -> 1/msec ->\`P@4@\` -> 1/msec ->\`P@1@\` -> 1/msec ->\`P@4@\` ...
+
+- ATT = (15@P1@ + 9@P2@ + 3@P3@ + 17@P4@) / 4 === \`11.0/msec\`
+
+##### 델타가 5일 때
+
+\`P@1@\` -> 5/msec ->\`P@2@\` -> 3/msec ->\`P@3@\` -> 1/msec ->\`P@4@\` -> 5/msec ->\`P@1@\` -> 1/msec ->\`P@4@\` -> 2/msec ->\`끝\`
+
+- ATT = (15@P1@ + 8@P2@ + 9@P3@ + 17@P4@) / 4 === \`12.25/msec\`
 
 ### Multilevel Queue (다단계 큐)
 
