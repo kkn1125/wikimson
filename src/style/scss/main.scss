@@ -249,6 +249,54 @@ table {
     &.table {
         margin-top: 0;
     }
+
+    th,
+    td {
+        sup {
+            color: inherit !important;
+        }
+    }
+}
+
+.imgWrap {
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    z-index: 1200;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    button.del-btn {
+        border: none;
+        color: white;
+        position: fixed;
+        top: 30px;
+        right: 30px;
+        background-color: rgb(255, 88, 116);
+        border-radius: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        -ms-border-radius: 0;
+        -o-border-radius: 0;
+
+        &:focus-within{
+            box-shadow: 0 0 0 5px rgba(255, 88, 116, 0.5);
+        }
+    }
+
+    .imgInner {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100%;
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        img {
+            width: 95%;
+            margin: 5rem 1rem;
+        }
+    }
 }
 
 main {
@@ -535,6 +583,7 @@ sup {
     &.img {
         font-size: .7rem;
         color: rgb(255, 156, 131);
+
         &::after {
             position: relative;
             font-weight: bold;
@@ -548,14 +597,15 @@ sup {
     &.table {
         font-size: .7rem;
         color: rgb(255, 131, 245);
+
         &::before {
             position: relative;
             font-weight: bold;
             top: -.5rem;
             font-size: .5rem;
-            counter-increment: img;
             content: '[표 ';
         }
+
         &::after {
             position: relative;
             font-weight: bold;
@@ -568,6 +618,7 @@ sup {
 
     &:not(.table, .img) {
         color: rgb(164, 131, 255);
+
         &::after {
             position: relative;
             font-weight: bold;

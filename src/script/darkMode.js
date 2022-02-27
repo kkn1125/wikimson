@@ -1,34 +1,3 @@
-// !function initMode() {
-//     // 최초 실행시 세션스토리지 읽고 값 적용
-//     findTarget = requestAnimationFrame(watchTarget);
-// }();
-
-// function watchTarget(){
-//     let mode = getMode() || 'on';
-//     let label = document.createElement('label');
-//     let btn = document.createElement('span');
-//     label.htmlFor = 'mode';
-//     label.id = 'mtWrap';
-//     label.append(btn);
-    
-//     label.insertAdjacentHTML('beforeend', `<input type="checkbox" data-switch="mode">`);
-
-//     const id = document.querySelector('#mode');
-//     if(id) {
-//         id.append(label);
-//         target = document.querySelector(`[data-switch="${label.htmlFor}"]`);
-//         if(target) {
-//             // target.insertAdjacentElement('beforebegin', label);
-//             updateMode.call(label, mode);
-//             window.addEventListener('click', modeHandler.bind(label));
-//             // cancelAnimationFrame(findTarget);
-//         } else {
-//             requestAnimationFrame(watchTarget);
-//         }
-//     } else {
-//         requestAnimationFrame(watchTarget);
-//     }
-// }
 let mode = getMode() || 'on';
 setMode(mode);
 if(JSON.parse(sessionStorage['mode']).dark=='off'){

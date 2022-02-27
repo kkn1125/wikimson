@@ -1,17 +1,15 @@
-import {Router, App} from '../../core/core.js'
+import {Router} from '../../../core/core.js'
 
-import Console from './javascript.console.js'
-import Objects from './javascript.object.js'
+import Binarysearch from './algorithm.binarysearch.js'
 
-Router.setSubPage('Console', 'javascript.console', Console);
-Router.setSubPage('Objects', 'javascript.objects', Objects);
+Router.setSubPage('Binarysearch', 'algorithm.binarysearch', Binarysearch);
 
 export default {
     pagination: true,
     published: true,
-    title: '자바스크립트 정리',
+    title: 'binarysearch',
     authors: ['kimson'],
-    wrote: '2022-02-08 21:50:01',
+    wrote: '2022-02-08 22:01:12',
     list(){
         return Object.keys(this.module).filter(x=>x.slice(1).replace(/[\s\_\-\.]+/gm, '-')!=this.origin.path.slice(1).replace(/[\s\_\-\.]+/gm, '-')).map(m=>{
             return `<li><a href="${this.module[m].path}">${this.module[m].name}</a>${this.module[m].page.done?'':'<sub> ⚠ 작성 중인 페이지 입니다.</sub>'}</li>`;
@@ -27,4 +25,4 @@ export default {
         </ul>
         `
     }
-};
+}

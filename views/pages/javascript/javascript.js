@@ -1,17 +1,15 @@
-import {Router, App} from '../../core/core.js'
+import {Router, App} from '../../../core/core.js'
 
-import First from './interview.first.js'
-import Two from './interview.two.js'
-import Three from './interview.three.js'
+import Console from './javascript.console.js'
+import Objects from './javascript.object.js'
 
-Router.setSubPage('회사 1차 면접', 'interview.first', First);
-Router.setSubPage('회사 2차 면접', 'interview.two', Two);
-Router.setSubPage('결과', 'interview.three', Three);
+Router.setSubPage('Console', 'javascript.console', Console);
+Router.setSubPage('Objects', 'javascript.objects', Objects);
 
 export default {
     pagination: true,
     published: true,
-    title: '인터뷰를 정리하자',
+    title: '자바스크립트 정리',
     authors: ['kimson'],
     wrote: '2022-02-08 21:50:01',
     list(){
@@ -29,4 +27,4 @@ export default {
         </ul>
         `
     }
-}
+};

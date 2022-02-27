@@ -1,4 +1,4 @@
-import {Router} from '../../core/core.js'
+import {Router} from '../../../core/core.js'
 
 import Base from './os.base.js'
 import Histories from './os.history.js'
@@ -7,7 +7,10 @@ import Interrupt from './os.interrupt_based_system.js'
 import DualMode from './os.dual_mode.js'
 import OSService from './os.service.js'
 import ProcessM from './os.process_management.js'
-import CPUscheduling from './os.cpu_scheduling.js'
+import CPUscheduling01 from './os.cpu_scheduling01.js'
+import CPUscheduling02 from './os.cpu_scheduling02.js'
+import CPUscheduling03 from './os.cpu_scheduling03.js'
+import CPUscheduling04 from './os.cpu_scheduling04.js'
 
 Router.setSubPage('운영체제 서론', 'operating_system-base', Base);
 Router.setSubPage('운영체제 역사', 'operating_system-history', Histories);
@@ -16,7 +19,10 @@ Router.setSubPage('인터럽트 기반 시스템', 'operating_system-interrupt_b
 Router.setSubPage('이중 모드', 'operating_system-dual-mode', DualMode);
 Router.setSubPage('운영체제 서비스', 'operating_system-service', OSService);
 Router.setSubPage('프로세스 관리', 'operating_system-process_management', ProcessM);
-Router.setSubPage('CPU 스케쥴링 알고리즘', 'operating_system-cpu_scheduling', CPUscheduling);
+Router.setSubPage('CPU 스케쥴링 알고리즘 01 - [스케쥴링]', 'operating_system-cpu_scheduling_01', CPUscheduling01);
+Router.setSubPage('CPU 스케쥴링 알고리즘 02 - [FCFS와 SJF]', 'operating_system-cpu_scheduling_02', CPUscheduling02);
+Router.setSubPage('CPU 스케쥴링 알고리즘 03 - [Multi Queue Scheduling]', 'operating_system-cpu_scheduling_03', CPUscheduling03);
+Router.setSubPage('CPU 스케쥴링 알고리즘 04 - [Process Create & Delete]', 'operating_system-cpu_scheduling_04', CPUscheduling04);
 
 export default {
     pagination: true,

@@ -1,4 +1,4 @@
-import {Router} from '../../core/core.js'
+import {Router} from '../../../core/core.js'
 
 import Api from './cs.api.js'
 import Alu from './cs.alu.js'

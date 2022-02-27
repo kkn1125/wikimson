@@ -7,8 +7,8 @@
     window.addEventListener('mouseup', cancelResize);
     window.addEventListener('mousemove', moveHandler);
     window.addEventListener('resize', windowHandler);
-    // window.addEventListener('click', scrollIntoHandler);
-    // window.addEventListener('click', imageHandler);
+    window.addEventListener('click', imageHandler);
+    window.addEventListener('keyup', clearImageHandler);
     window.addEventListener('mousemove', navScrollHandler);
 
     windowHandler();
@@ -62,28 +62,49 @@
         }
     }
 
-    // function scrollIntoHandler(ev) {
-        // let target = ev.target;
-        // if (!target.getAttribute('scroll-to')) return;
-        // let focus = target.getAttribute('scroll-to');
-        // let scrollHead = null;
-        // let asideHeight = 0;
-        // setTimeout(() => {
-        //     for (let key of [...document.querySelectorAll('*')]) {
-        //         if (key.getAttribute('scroll-focus') == focus) {
-        //             if (window.innerWidth - 17 > 576) scrollHead = document.querySelector('[put-type="wiki"]');
-        //             else {
-        //                 scrollHead = document.querySelector('.main');
-        //                 asideHeight = document.querySelector('aside').clientHeight;
-        //             }
+    function clearImgPopup(){
+        document.querySelectorAll('.imgWrap').forEach(e=>e?e.remove():null);
+    }
 
-        //             scrollHead.scrollTo({
-        //                 behavior: 'smooth',
-        //                 left: 0,
-        //                 top: key.offsetTop + asideHeight
-        //             });
-        //         }
-        //     }
-        // }, 10);
-    // }
+    function clearImageHandler(ev){
+        const key = ev.key;
+
+        new RegExp('escape', 'gi').test(key)?clearImgPopup():null;
+    }
+
+    function imageHandler(ev){
+        const target = ev.target;
+
+        /**
+         * 1. 이미지를 클릭한다.
+         * 2. 이미지가 확대된다.
+         *  1. 이미지를 클릭한다.
+         *   1. 아무일도 안일어난다.
+         *  2. 이미지 바깥을 클릭한다.
+         *   1. 닫힌다.
+         *  3. x 버튼
+         *   1. 닫힌다.
+         */
+        if(target.classList.contains('imgInner') || target.classList.contains('del-btn')) {
+            clearImgPopup();
+        }
+
+        if(target.closest('.imgWrap')) return;
+        if(target.tagName != 'IMG') return;
+
+        const cloned = target.cloneNode(true);
+        const imgWrap = document.createElement('div');
+        const imgInner = document.createElement('div');
+        const delBtn = document.createElement('button');
+
+        imgWrap.classList.add('imgWrap');
+        imgInner.classList.add('imgInner');
+        delBtn.classList.add('del-btn');
+
+        delBtn.innerHTML = '&times;';
+
+        imgInner.append(cloned)
+        imgWrap.append(imgInner, delBtn);
+        document.body.append(imgWrap);
+    }
 })();
