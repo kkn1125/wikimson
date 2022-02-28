@@ -3,7 +3,7 @@ import {tables} from '../../../store/tables/tables.js'
 export default {
     published: true,
     title: 'CPU Scheduling Algorithm 03',
-    modified: '2022-02-27 22:18:39',
+    modified: '2022-02-28 22:27:00',
     done: true,
     tags: ['os', 'round robin', 'rr', 'priority', 'multi queue'],
     categories: ['cs','Operating System'],
@@ -147,6 +147,34 @@ ${wikiFilter.img('os/os-cpu02.jpg', 'kimson', 'sample')}
 [그림 1]에서는 아래로 내려가지만, 만일 \`starvation\`이 일어나면 다시 순위를 올려 그룹을 위쪽으로 이동할 수도 있다.
 
 윈도우나 리눅스는 여러 스케쥴링 정책을 사용하고 있다.
+
+## 프로세스 생성과 종료
+
+> 프로세스는 프로세스에 의해 만들어진다.
+
+제일 첫 번째 프로세스는 부팅하고 OS가 메인메모리에 올라간다. 여러 초기화 작업이 끝난 다음 *OS가 제일 먼저*하는 일이 *첫 프로세스를 만드는 것*이다. 첫 프로세스의 이름은 운영체제마다 다르지만 옛날 유닉스의 경우는 *init*이라 했다.
+
+\`init\`프로세스가 다른 프로세스들을 생성한다.
+
+- \`부모 프로세스 (Parent process)\` ==> 해당 프로세스의 상위 프로세스
+- \`자식 프로세스 (Child process)\` ==> 해당 프로세스의 하위 프로세스
+- \`프로세스 트리 (Process Tree)\` ==> 족보의 가계도처럼 나아가는 형태
+
+### Process Identifier (PID)
+
+제일 먼저 만들어지는 프로세스의 \`PID\`는 0이다. 그 다음의 프로세스들은 차례대로 PID가 부여된다.
+
+- \`Typically an integer number\`
+- \`PPID\` ==> Parent PID
+
+### 프로세스 생성
+
+- \`fork system call{:.bg-danger}\` ==> 새로운 프로세스를 만든다. 하나의 프로세스에서 여러 개가 나오는 것과 같다해서 붙여진 이름. 부모 프로세스 복사.
+- \`exec(){:.bg-danger}\` ==> 새로 만들어진 프로세스에 실행파일을 복사해서 메모리로 가져오기
+
+### 프로세스 종료
+
+종료될 때 exec를 호출하고 종료한다. 가지고 있던 자원인 파일들 혹은 프린터 사용을 회수하고 OS가 파일에 대한 모든 권한을 가져간다. 정당한 요구가 있을 때 필요로하는 프로세스에게 파일을 전달하거나 다른 프로세스에게 회수한 메모리를 부여하게 된다.
 `],
     ref: [
         {
