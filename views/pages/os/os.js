@@ -11,6 +11,8 @@ import CPUscheduling01 from './os.cpu_scheduling01.js'
 import CPUscheduling02 from './os.cpu_scheduling02.js'
 import CPUscheduling03 from './os.cpu_scheduling03.js'
 import ProcessSync from './os.process_synchronization.js'
+import CriticalSection from './os.critical_section.js'
+import Semaphores from './os.semaphores.js'
 
 Router.setSubPage('운영체제 서론', 'operating_system-base', Base);
 Router.setSubPage('운영체제 역사', 'operating_system-history', Histories);
@@ -23,6 +25,8 @@ Router.setSubPage('CPU 스케쥴링 알고리즘 01', 'operating_system-cpu_sche
 Router.setSubPage('CPU 스케쥴링 알고리즘 02', 'operating_system-cpu_scheduling_02', CPUscheduling02);
 Router.setSubPage('CPU 스케쥴링 알고리즘 03', 'operating_system-cpu_scheduling_03', CPUscheduling03);
 Router.setSubPage('프로세스 동기화', 'operating_system-process_synchronization', ProcessSync);
+Router.setSubPage('임계구역 문제', 'operating_system-critical_section', CriticalSection);
+Router.setSubPage('세마포', 'operating_system-semaphores', Semaphores);
 
 export default {
     pagination: true,
