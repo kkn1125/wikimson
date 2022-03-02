@@ -20,6 +20,7 @@ git commit -m "deploy $today"
 # git push -f https://github.com/<USERNAME>/<USERNAME>.github.io.git master
 
 # https://<USERNAME>.github.io/<REPO> 에 배포하는 경우
+# 가 아니라 git초기화 된 디렉토리에서는 master:<branch>로 해줘야한다.
 # git push -f https://github.com/<USERNAME>/<REPO>.git master:gh-pages
 
 # 필자의 경우 TIL repository에 배포하기 때문에 아래와 같이 작성했다.

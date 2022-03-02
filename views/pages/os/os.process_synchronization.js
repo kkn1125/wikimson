@@ -123,19 +123,16 @@ class MyThread extends Thread {
 \`\`\`java
 class BankAccount {
     int balance;
-    
     void deposit(int a) {
         System.out.println("+"); // 시간 지연
         int temp = a;
         balance += temp; // 시간 지연
     }
-
     void withdraw(int a) {
         System.out.println("-"); // 시간 지연
         int temp = a;
         balance -= temp; // 시간 지연
     }
-
     int getBalance(){
         return balance;
     }
@@ -146,7 +143,6 @@ class Parent extends Thread {
     Parent(BankAccount b){
         this.b = b;
     }
-
     public void run(){
         for(int i=0; i<100; i++) {
             b.deposit(1000);
@@ -155,11 +151,9 @@ class Parent extends Thread {
 }
 class Child extends Thread {
     BackAccount b;
-
     Child(BankAccount b){
         this.b = b;
     }
-
     public void run(){
         for(int i=0; i<100; i++) {
             b.withdraw(1000);
@@ -171,7 +165,6 @@ public class Test {
         BankAccount b = new BankAccount();
         Parent p = new Parent(b);
         Child c = new Child(b);
-
         p.start();
         c.start();
         p.join(); // 부모가 입금 끝날 때까지 기다림
