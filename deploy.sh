@@ -23,6 +23,6 @@ git commit -m "deploy $today"
 # git push -f https://github.com/<USERNAME>/<REPO>.git master:gh-pages
 
 # 필자의 경우 TIL repository에 배포하기 때문에 아래와 같이 작성했다.
-git push -f https://github.com/kkn1125/wikimson.git master:main
+git push -f https://github.com/kkn1125/wikimson.git main
 
 # cd -
