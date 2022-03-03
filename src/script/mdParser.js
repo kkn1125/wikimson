@@ -44,7 +44,7 @@ const Markdown = (function () {
             this.anchors();
             this.blockListify();
             this.paragraphs();
-            this.br();
+            // this.br();
             this.italicBold();
             this.altImages();
             this.altAnchors();
@@ -52,9 +52,39 @@ const Markdown = (function () {
             this.altSigns();
         }
 
-        this.readBlockUnit = function () {
+        this.readBlockUnit = function () { // 이 버전으로 마크다운 파서 업데이트 하기
             block = md.split(/\n{2,}/gm);
-            temp = [...block];
+
+            let temp = [];
+            let isCode = false;
+
+            block = block.reduce((pre, cur)=>{
+                if(cur.match(/<(pre|code)>/g)) {
+                    isCode = true;
+                    temp.push(cur);
+                    
+                    if(cur.match(/<\/(pre|code)>/g)) {
+                        cur = temp.join('\n\n');
+                        temp = [];
+                        isCode = false;
+                    } else {
+                        cur = '';
+                    }
+                } else if (cur.match(/<\/(pre|code)>/g)) {
+                    cur = temp.concat(cur).join('\n\n');
+                    temp = [];
+                    isCode = false;
+                } else {
+                    if(isCode) {
+                        temp.push(cur);
+                        cur = '';
+                    }
+                }
+                pre.push(cur);
+                return pre;
+            }, []);
+
+            temp = [...block.filter(x=>x!='')];
         }
 
         this.horizontal = function (){
@@ -147,8 +177,10 @@ const Markdown = (function () {
                         let [attrs, classes] = this.addClass(li);
 
                         if(li.match(/^\s*\>\s.+/g)){
+                            li = this.br(li);
                             temp += `${checkbox(li.replace(/^\s*\>\s(.+)/gm, '$1')).replace(/\{\:(.+)\}/g, '')}`;
                         } else {
+                            li = this.br(li);
                             temp += `<li class="${classes||''}" ${attrs?.join(' ')||''}>${checkbox(li.replace(/^\s*[0-9]\.\s*(.+)/gm, '$1').replace(/^\s*\-\s*(.+)/gm, '$1')).replace(/\{\:(.+)\}/g, '')}</li>`;
                         }
                         
@@ -199,7 +231,7 @@ const Markdown = (function () {
             block.forEach((line, id) => {
                 
                 if (line.trim() != '') {
-                    convertedHTML[id] = `<p>${line}</p>`;
+                    convertedHTML[id] = `<p>${this.br(line)}</p>`;
                     // block[id] = '';
                 }
             });
@@ -386,24 +418,25 @@ const Markdown = (function () {
             } else return '';
         }
 
-        this.br = function (){
-            let done = false;
-            let isCode = false;
-            convertedHTML = convertedHTML.map(x=>{
-                if(x.match(/\<(pre|code)\>/g) || x.match(/\<(for|while|var|public|void|int|let|const)\>/gm)){
-                    isCode = true;
-                    done = false;
-                }
+        this.br = function (str){
+            return str.replace(/\s{3,}/, '<br>');
+            // let done = false;
+            // let isCode = false;
+            // convertedHTML = convertedHTML.map(x=>{
+            //     if(x.match(/\<(pre|code)\>/g) || x.match(/\<(for|while|var|public|void|int|let|const)\>/gm)){
+            //         isCode = true;
+            //         done = false;
+            //     }
 
-                if(x.match(/\<\/(pre|code)\>/g)){
-                    if(done==true) isCode = false;
-                    done = true;
-                }
+            //     if(x.match(/\<\/(pre|code)\>/g)){
+            //         if(done==true) isCode = false;
+            //         done = true;
+            //     }
 
-                if(isCode)
-                return '\n'.repeat(2)+x;
-                else return x.replace(/\s{3,}/gm, '<br>');
-            });
+            //     if(isCode)
+            //     return '\n'.repeat(2)+x;
+            //     else return x.replace(/\s{3,}/gm, '<br>');
+            // });
         }
 
         this.altSigns = function (){

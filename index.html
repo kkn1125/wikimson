@@ -24,6 +24,16 @@
             App.author = 'kimson';
             App.baseurl = location.protocol.match('https')?'/wikimson/':'/'
             document.title = App.brand;
+
+            setTimeout(()=>{
+                if(!location.protocol.match(/https/i)){
+                    document.querySelector('main').scrollTo({
+                        behavior: 'auto',
+                        top: document.querySelector('main').scrollHeight,
+                        left: 0,
+                    });
+                }
+            }, 100);
         </script>
         <title>Document</title>
     </head>
