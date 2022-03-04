@@ -9,4 +9,7 @@
 *.scss.map
 scss/
 
+deploy
+dev
+
 # End of https://www.toptal.com/developers/gitignore/api/sass
