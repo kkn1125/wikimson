@@ -39,7 +39,7 @@ do
         echo "포스팅으로 진행합니다."
         echo "메세지 남기기 (enter: 공백으로 넘어가기)"
         read MSG
-        MSG=" $MSG"
+        MSG="${\s}$MSG"
         TYPE=":bulb: post:"
         break
     fi
