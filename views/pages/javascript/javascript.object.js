@@ -1,8 +1,8 @@
 export default {
     published: true,
     title: '자바스크립트 정리',
-    modified: '2022-02-26 12:11:32',
-    done: false,
+    modified: '2022-03-04 16:44:15',
+    done: true,
     tags: ['api','object'],
     categories: ['javascript'],
     authors: ['kimson'],
@@ -14,7 +14,7 @@ export default {
 
 ## defineProperty
 
-${wikiFilter.img('javascript/console/console01.png', 'google')}
+${wikiFilter.img('javascript/console/console01.png', 'kimson')}
 
 class에서 쉽게 getter와 setter를 구현했습니다. 함수형 객체에서도 getter와 setter는 구현할 수 있습니다.
 
@@ -60,20 +60,13 @@ const Parent = function () {
 
 아래의 예를 보시면 일일이 지정하지 않아도 간단한 getter/setter는 만들 수 있다. 각각의 프로퍼티마다 해야할 기능이 다르다면 다른 방식으로 작성해야 한다.
 
-${wikiFilter.img('javascript/object/object01.png', 'google')}
+${wikiFilter.img('javascript/object/object01.png', 'kimson')}
 
 > Console -> kimson
 `,
     ],
-    ref: [
-        // {
-        //     name:'위키 백과 - CS',
-        //     link:'https://ko.wikipedia.org/wiki/%EC%93%B0%EB%A0%88%EA%B8%B0_%EC%88%98%EC%A7%91_(%EC%BB%B4%ED%93%A8%ED%84%B0_%EA%B3%BC%ED%95%99)'
-        // },
-    ],
+    ref: [],
     template(){
-        return `
-            ${wikiFilter.all.call(this)}
-        `
+        return `${wikiFilter.all.call(this)}`;
     }
 };

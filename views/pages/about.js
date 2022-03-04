@@ -8,7 +8,7 @@ export default {
     content: [`
 # About
 
-> 현재 만들어진 페이지는 순수 자바스크립트로만 이루어져 있습니다. 조작이 쉽도록 구현되어 있고, 페이지 전환은 hash를 통해서 이루어집니다. 자세한 사항은 [github 저장소](https://github.com/kkn1125/wikimson){:target="_blank"}를 참고 해주세요.
+> 현재 만들어진 페이지는 순수 자바스크립트로만 이루어져 있습니다. 조작이 쉽도록 구현되어 있고, *페이지 전환*은 *hash*를 통해서 이루어집니다. 자세한 사항은 [github 저장소](https://github.com/kkn1125/wikimson){:target="_blank"}를 참고 해주세요.
 
 매일 *배운 것을 기록하기 위해* \`나만의 위키백과\`를 테마로 만들어졌습니다.
 

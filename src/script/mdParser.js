@@ -19,12 +19,11 @@ const Markdown = (function () {
             if(options.raw){
                 return temp
             } else {
-                let body = new DOMParser().parseFromString(convertedHTML.join(''), 'text/html').body
+                let body = new DOMParser().parseFromString(convertedHTML.join(''), 'text/html').body;
                 body.querySelectorAll('.parse-code [lang="javascript"] .token.sc').forEach(el=>{
                     let prev = el.previousElementSibling;
                     if(prev.classList.contains('sp')) prev.remove();
                 });
-
                 return body.innerHTML;
             }
         }
@@ -75,7 +74,8 @@ const Markdown = (function () {
                     temp = [];
                     isCode = false;
                 } else {
-                    if(isCode) {
+                    if(isCode) { // 코드 사이에 <, > 부호 변환 (파싱때 임의 태그로 치환되버려서 변경)
+                        cur = cur.replace(/\</g, '&lt;').replace(/\>/, '&gt;')
                         temp.push(cur);
                         cur = '';
                     }
@@ -84,7 +84,7 @@ const Markdown = (function () {
                 return pre;
             }, []);
 
-            temp = [...block.filter(x=>x!='')];
+            block = [...block.filter(x=>x!='')];
         }
 
         this.horizontal = function (){
@@ -441,6 +441,7 @@ const Markdown = (function () {
 
         this.altSigns = function (){
             const wrapper = (sign)=>`<span class="text-danger">${sign}</span>`;
+
             convertedHTML = convertedHTML.map(line=>{
                 line = line
                 .replace(/\\\<\=\=\>|\\&lt;\=\=&gt;/gm, '&DoubleLeftRightArrow;')
@@ -485,7 +486,7 @@ const Markdown = (function () {
                 .replace(/\@([\s\S]+?)\@/g, '<sub>$1</sub>')
                 ;
                 return line;
-            })
+            });
         }
     }
 

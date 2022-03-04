@@ -5,6 +5,45 @@ set -e
 
 today=`date`
 
+while true;
+do
+    echo -e "1) update.\n"
+    echo -e "2) bugfix.\n"
+    echo -e "3) post.\n"
+    echo -e "4) close\n"
+    echo -e "선택해주세요."
+    
+    read -r -n 1 input
+    
+    if [ $input -eq 1 ];then
+        clear
+        echo "업데이트로 진행합니다."
+        TYPE=":bulb: update:"
+        break
+    fi
+
+    if [ $input -eq 2 ];then
+        clear
+        echo "버그 수정으로 진행합니다."
+        TYPE=":wrench: bugfix:"
+        break
+    fi
+
+    if [ $input -eq 3 ];then
+        clear
+        echo "포스팅으로 진행합니다."
+        TYPE=":bulb: post:"
+        break
+    fi
+
+    if [ $input -eq 4 ];then
+        clear
+        echo "종료됩니다."
+        break
+    fi
+    
+done
+
 # 문서(md)를 build하여 html로 만든다. 
 # npm run build
 
@@ -14,7 +53,7 @@ today=`date`
 # init + add + commit을 해준 다음
 git init
 git add -A
-git commit -m "deploy $today"
+git commit -m "$TYPE $today"
 
 # https://<USERNAME>.github.io 에 배포하는 경우
 # git push -f https://github.com/<USERNAME>/<USERNAME>.github.io.git master

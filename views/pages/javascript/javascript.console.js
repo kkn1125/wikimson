@@ -1,8 +1,8 @@
 export default {
     published: true,
     title: '자바스크립트 정리',
-    modified: '2022-02-26 12:11:32',
-    done: false,
+    modified: '2022-03-04 16:43:28',
+    done: true,
     tags: ['api','worker api'],
     categories: ['javascript'],
     authors: ['kimson'],
@@ -14,13 +14,13 @@ export default {
 
 ## table
 
-${wikiFilter.img('javascript/console/console01.png', 'google')}
+${wikiFilter.img('javascript/console/console01.png', 'kimson')}
 
 콘솔은 코드를 짜는데 많은 사용 비중을 차지한다고 생각합니다. <kbd class="bg-info">Jest</kbd>를 사용하면서 콘솔의 사용이 줄었지만 데이터 값을 확인 할 때 자주 사용되곤 합니다.
 
 *console.table()*메서드는 테이블 형식으로 데이터를 표시합니다. 배열이나 객체를 확인 할 때 보기 좋게 콘솔에 나타나고, 엑셀의 표처럼 인덱싱을 할 수 있다.
 
-${wikiFilter.img('javascript/console/console02.png', 'google')}
+${wikiFilter.img('javascript/console/console02.png', 'kimson')}
 
 위 이미지처럼 개체를 테이블로 나타낼 수도 있다. 단일 객체, 1차원 배열의 경우 아래와 같이 테이블로 표시되게 할 수 있다.
 
@@ -30,7 +30,7 @@ console.table(new Dog());
 
 2차원 배열도 table메서드의 첫 번째 인자로 주면 아래와 같이 2차원 배열부터 컬럼이 추가되며 표시됩니다.
 
-${wikiFilter.img('javascript/console/console03.png', 'google')}
+${wikiFilter.img('javascript/console/console03.png', 'kimson')}
 
 조금 더 나아가 선택적으로 테이블 표시를 제한 할 수 도 있다. 
 
@@ -46,7 +46,7 @@ console.table([new Dog(),new Dog()], ['name','age', [, ...]])
 
 배열로 묶어 컬럼명을 넣어주면 필터링된 테이블이 표시되는 것을 볼 수 있다.
 
-${wikiFilter.img('javascript/console/console04.png', 'google')}
+${wikiFilter.img('javascript/console/console04.png', 'kimson')}
 
 없는 컬럼명은 알아서 오류없이 걸러집니다.
 
@@ -74,15 +74,8 @@ console.timeEnd('라벨1');
 - test: 0.133056640625 ms
 `,
     ],
-    ref: [
-        // {
-        //     name:'위키 백과 - CS',
-        //     link:'https://ko.wikipedia.org/wiki/%EC%93%B0%EB%A0%88%EA%B8%B0_%EC%88%98%EC%A7%91_(%EC%BB%B4%ED%93%A8%ED%84%B0_%EA%B3%BC%ED%95%99)'
-        // },
-    ],
+    ref: [],
     template(){
-        return `
-            ${wikiFilter.all.call(this)}
-        `
+        return `${wikiFilter.all.call(this)}`;
     }
 };
