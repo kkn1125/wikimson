@@ -39,6 +39,7 @@ do
         echo "포스팅으로 진행합니다."
         echo "메세지 남기기 (enter: 공백으로 넘어가기)"
         read MSG
+        MSG=" $MSG"
         TYPE=":bulb: post:"
         break
     fi
@@ -60,7 +61,7 @@ done
 # init + add + commit을 해준 다음
 git init
 git add -A
-git commit -m "$TYPE $MSG $today"
+git commit -m "$TYPE$MSG $today"
 
 # https://<USERNAME>.github.io 에 배포하는 경우
 # git push -f https://github.com/<USERNAME>/<USERNAME>.github.io.git master
