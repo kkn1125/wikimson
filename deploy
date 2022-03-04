@@ -4,6 +4,7 @@
 set -e
 
 today=`date`
+MSG=''
 
 while true;
 do
@@ -18,6 +19,8 @@ do
     if [ $input -eq 1 ];then
         clear
         echo "업데이트로 진행합니다."
+        echo "메세지 남기기 (enter: 공백으로 넘어가기)"
+        read MSG
         TYPE=":bulb: update:"
         break
     fi
@@ -25,6 +28,8 @@ do
     if [ $input -eq 2 ];then
         clear
         echo "버그 수정으로 진행합니다."
+        echo "메세지 남기기 (enter: 공백으로 넘어가기)"
+        read MSG
         TYPE=":wrench: bugfix:"
         break
     fi
@@ -32,6 +37,8 @@ do
     if [ $input -eq 3 ];then
         clear
         echo "포스팅으로 진행합니다."
+        echo "메세지 남기기 (enter: 공백으로 넘어가기)"
+        read MSG
         TYPE=":bulb: post:"
         break
     fi
@@ -53,7 +60,7 @@ done
 # init + add + commit을 해준 다음
 git init
 git add -A
-git commit -m "$TYPE $today"
+git commit -m "$TYPE $MSG $today"
 
 # https://<USERNAME>.github.io 에 배포하는 경우
 # git push -f https://github.com/<USERNAME>/<USERNAME>.github.io.git master
