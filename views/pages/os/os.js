@@ -15,6 +15,7 @@ import CriticalSection from './os.critical_section.js'
 import Semaphores from './os.semaphores.js'
 import ClassicalSync01 from './os.classical_synchronization_problem01.js'
 import ClassicalSync02 from './os.classical_synchronization_problem02.js'
+import Deadlock from './os.deadlock.js'
 
 Router.setSubPage('운영체제 서론', 'operating_system-base', Base);
 Router.setSubPage('운영체제 역사', 'operating_system-history', Histories);
@@ -31,6 +32,7 @@ Router.setSubPage('임계구역 문제', 'operating_system-critical_section', Cr
 Router.setSubPage('세마포', 'operating_system-semaphores', Semaphores);
 Router.setSubPage('전통적 동기화 - 1', 'operating_system-classical_synchronization_01', ClassicalSync01);
 Router.setSubPage('전통적 동기화 - 2', 'operating_system-classical_synchronization_02', ClassicalSync02);
+Router.setSubPage('교착상태 (deadlock)', 'operating_system-deadlock', Deadlock);
 
 export default {
     pagination: true,

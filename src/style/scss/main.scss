@@ -559,15 +559,15 @@ body {
 
 .ref::after {
     content: 'ref';
-    display: inline-block;
-    position: relative;
-    font-size: .5em;
     top: -1em;
-    margin-left: .2em;
-    padding-right: .5em;
-    overflow: hidden;
-    height: 1rem;
     text-indent: 0; // ol ul 에서 ref 가려지는 버그 수정
+    // height: 1.05em;
+    font-size: .5em;
+    overflow: hidden;
+    margin-left: .2em;
+    position: relative;
+    padding-right: .5em;
+    display: inline-block;
 }
 
 .h1,

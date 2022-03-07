@@ -121,7 +121,7 @@ wikiFilter.sup = function (name, text){
 }
 
 wikiFilter.toRef = function (hash, name, text){
-    return `<a class="ref" href="#${hash}" scroll-to="${name}" title="해당 단어 참조로 이동합니다.">${text}</a>`
+    return `<a class="ref" href="#${hash}" ${wikiFilter.to(name)} title="해당 단어 참조로 이동합니다.">${text}</a>`
 }
 
 wikiFilter.spy = function scrollSpy(ev) {
