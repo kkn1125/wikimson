@@ -16,6 +16,7 @@ import Semaphores from './os.semaphores.js'
 import ClassicalSync01 from './os.classical_synchronization_problem01.js'
 import ClassicalSync02 from './os.classical_synchronization_problem02.js'
 import Deadlock from './os.deadlock.js'
+import Monitor from './os.monitor.js'
 
 Router.setSubPage('운영체제 서론', 'operating_system-base', Base);
 Router.setSubPage('운영체제 역사', 'operating_system-history', Histories);
@@ -33,6 +34,7 @@ Router.setSubPage('세마포', 'operating_system-semaphores', Semaphores);
 Router.setSubPage('전통적 동기화 - 1', 'operating_system-classical_synchronization_01', ClassicalSync01);
 Router.setSubPage('전통적 동기화 - 2', 'operating_system-classical_synchronization_02', ClassicalSync02);
 Router.setSubPage('교착상태 (deadlock)', 'operating_system-deadlock', Deadlock);
+Router.setSubPage('모니터', 'operating_system-monitor', Monitor);
 
 export default {
     pagination: true,
@@ -47,6 +49,9 @@ export default {
     },
     template: function(){
         return `
+        <div>
+            ${wikiFilter.imgonly('covers/os.jpg', {class: ['w-100'], style: ['aspect-ratio: 16/9']})}
+        </div>
         <blockquote class="blockquote blockquote-warning pe-3">
             운영체제는 <b class="">경성대학교 양희재 교수님</b>의 강의를 토대로 작성 되었으며, 부가적으로 궁금한 내용을 따로 찾아 정리하였음을 알립니다 🙇‍♂️
         </blockquote>

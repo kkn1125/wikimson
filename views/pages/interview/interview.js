@@ -22,6 +22,9 @@ export default {
     template(){
         return `
         <div>
+            ${wikiFilter.imgonly('covers/interview.jpg', {class: ['w-100'], style: ['aspect-ratio: 16/9']})}
+        </div>
+        <div>
             <span class="tag tag-warning">문서</span> <span class="fs-7">${Object.keys(this.module).filter(k=>k!=`$${this.origin.name.replace(' ', '_')}`).length} 개</span>
         </div>
         <ul class="list-group">

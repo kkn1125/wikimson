@@ -3,7 +3,7 @@ export default {
     title: 'classical synchronization problem 01',
     modified: '2022-03-04 16:41:40',
     done: true,
-    tags: ['os', 'classical', 'problem', 'synchronization'],
+    tags: ['os', 'classical', 'problem', 'synchronization', 'busy-wait', '생산', '소비'],
     categories: ['cs','Operating System'],
     authors: ['kimson'],
     wrote: '2022-03-03 20:56:12',

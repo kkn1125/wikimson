@@ -1,8 +1,10 @@
 import {Router} from '../../../core/core.js'
 
 import Binarysearch from './algorithm.binarysearch.js'
+import BFS from './algorithm.bfs.js'
 
 Router.setSubPage('Binarysearch', 'algorithm.binarysearch', Binarysearch);
+Router.setSubPage('Bfs', 'algorithm.bfs', BFS);
 
 export default {
     pagination: true,
@@ -17,6 +19,9 @@ export default {
     },
     template(){
         return `
+        <div>
+            ${wikiFilter.imgonly('covers/algorithm.jpg', {class: ['w-100'], style: ['aspect-ratio: 16/9']})}
+        </div>
         <div>
             <span class="tag tag-warning">문서</span> <span class="fs-7">${Object.keys(this.module).filter(k=>k!=`$${this.origin.name.replace(' ', '_')}`).length} 개</span>
         </div>

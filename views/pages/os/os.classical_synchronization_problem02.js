@@ -3,7 +3,7 @@ export default {
     title: 'classical synchronization problem 02',
     modified: '2022-03-07 13:51:18',
     done: true,
-    tags: ['os', 'classical', 'problem', 'synchronization'],
+    tags: ['os', 'classical', 'problem', 'synchronization', 'philosopher', '철학자'],
     categories: ['cs','Operating System'],
     authors: ['kimson'],
     wrote: '2022-03-04 16:41:59',

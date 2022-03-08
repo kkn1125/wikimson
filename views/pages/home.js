@@ -1,12 +1,10 @@
-import {Router} from '../../core/core.js'
-
 export default {
     pagination: false,
     published: true,
     title: 'home',
     authors: ['kimson'],
     wrote: '2022-02-08 21:50:01',
-    main: `<span class="text-subpoint h1" style="-webkit-text-stroke-width: medium;
+    main: `<span class="text-subpoint w-inline h1" style="-webkit-text-stroke-width: medium;
     ">ㄴㅇㄱ</span><span class="fs-3 text-end ms-5">나를 위한 기록</span>`,
     recentPost(){
         requestAnimationFrame(loadBundle);
@@ -29,7 +27,7 @@ export default {
                     let hour = parseInt(during/60/60/1000%24);
                     let min = parseInt(during/60/1000%60);
 
-                    let duringMsg = date<=0?`${date>0?`${date}일 `:''}${hour>0&&date==0?`${hour}시간 `:''}${min<2&&date==0&&hour==0?`방금`:`${min}분 `}전`:new Date(post.info.wrote).toLocaleDateString();
+                    let duringMsg = date<=0?`${date>0?`${date}일 `:''}${hour>0&&date==0?`${hour}시간 `:''}${min<2&&date==0&&hour==0?`방금 `:`${min}분 `}전`:new Date(post.info.wrote).toLocaleDateString();
                     return `
                     <li class="list-item py-1" recent-post>
                         <a class="nav-link" href="${post.info.origin.path}">${post.info.origin.name}</a>
@@ -52,7 +50,7 @@ export default {
     },
     template() {
         return `
-        <div class="mt-5 p-5 border border-1 border-light rounded-5">
+        <div class="my-5 p-5 border border-1 border-light rounded-5">
             <div class="mt-3">
                 <div class="roundText">${this.main}</div>
             </div>
@@ -80,7 +78,7 @@ export default {
                                 현재 위키는 본인(kimson)이 직접 구현한 <b>router와 css, markdown parser로 제작</b>한 페이지 입니다.
                             </li>
                             <li class="list-item frt-none">
-                                위키 페이지를 사용하고 싶으시다면 저장소를 포크하시면 됩니다.
+                                운영체제 (OS) 카테고리 컨텐츠에 적용한 markdown parser에 관심이 있으시면 <a class="text-danger" href="https://github.com/kkn1125/markdown-parser" target="_blank">[markdown 저장소]</a>를 참고 바랍니다.
                             </li>
                             <li class="list-item frt-none">
                                 hash방식 페이지 처리에 관심이 있으시면 <a class="text-danger" href="https://github.com/kkn1125/router" target="_blank">[router 저장소]</a>를 참고 바랍니다.
@@ -89,7 +87,7 @@ export default {
                                 현재 페이지에 적용한 penli css 관심이 있으시면 <a class="text-danger" href="https://github.com/kkn1125/penli" target="_blank">[penli 저장소]</a>를 참고 바랍니다.
                             </li>
                             <li class="list-item frt-none">
-                                운영체제 (OS) 카테고리 컨텐츠에 적용한 markdown parser에 관심이 있으시면 <a class="text-danger" href="https://github.com/kkn1125/markdown-parser" target="_blank">[markdown 저장소]</a>를 참고 바랍니다.
+                                위키 페이지를 사용하고 싶으시다면 저장소를 포크하시면 됩니다.
                             </li>
                         </ul>
                     </div>

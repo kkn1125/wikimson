@@ -75,16 +75,6 @@
     function imageHandler(ev){
         const target = ev.target;
 
-        /**
-         * 1. 이미지를 클릭한다.
-         * 2. 이미지가 확대된다.
-         *  1. 이미지를 클릭한다.
-         *   1. 아무일도 안일어난다.
-         *  2. 이미지 바깥을 클릭한다.
-         *   1. 닫힌다.
-         *  3. x 버튼
-         *   1. 닫힌다.
-         */
         if(target.classList.contains('imgInner') || target.classList.contains('del-btn')) {
             clearImgPopup();
         }

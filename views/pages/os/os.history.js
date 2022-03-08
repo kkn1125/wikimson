@@ -3,7 +3,7 @@ export default {
     title: '운영체제 역사',
     modified: '2022-02-26 12:11:32',
     done: true,
-    tags: ['os', 'history'],
+    tags: ['os', 'history', '역사'],
     categories: ['cs','Operating System'],
     authors: ['kimson'],
     wrote: '2022-02-07 19:00:29',

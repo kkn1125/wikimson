@@ -274,6 +274,11 @@ wikiFilter.img = function (url, ref, title='sample', focus){
     </figure>`;
 }
 
+wikiFilter.imgonly = function (url, data){
+    let baseurl = './src/images/';
+    return `<img${data?.hasOwnProperty('style')?` style="${data.style.join(';')}"`:''}${data?.hasOwnProperty('class')?` class="${data.class.join(' ')}"`:''} src="${url.match(/^http|^https/g)?'':baseurl}${url}" alt="sample" title="sample">`;
+}
+
 wikiFilter.createToc = function (){
     let html = new DOMParser().parseFromString(this.md==true?Markdown.parse(this.content.join(''), {
         ol: 'list-group reset',

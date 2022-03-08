@@ -3,7 +3,7 @@ export default {
     title: 'Critical Section',
     modified: '',
     done: true,
-    tags: ['os', 'critical section', 'semaphore'],
+    tags: ['os', 'critical section', 'semaphore', '세마포', '임계구역'],
     categories: ['cs','Operating System'],
     authors: ['kimson'],
     wrote: '2022-03-02 21:35:42',

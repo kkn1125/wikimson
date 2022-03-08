@@ -5,7 +5,7 @@ export default {
     title: 'Semaphore',
     modified: '2022-03-03 20:32:42',
     done: true,
-    tags: ['os', 'critical section', 'semaphore', 'synchronization'],
+    tags: ['os', 'critical section', 'semaphore', 'synchronization', '세마포'],
     categories: ['cs','Operating System'],
     authors: ['kimson'],
     wrote: '2022-03-02 21:39:23',

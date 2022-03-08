@@ -51,6 +51,9 @@ export default {
     },
     template(){
         return `
+        <div>
+            ${wikiFilter.imgonly('covers/cs.jpg', {class: ['w-100'], style: ['aspect-ratio: 16/9']})}
+        </div>
         <blockquote class="blockquote blockquote-warning pe-3">
             Computer Science는 공부할 때마다 모르는 단어, 개념을 위키백과, 외국 문서 등을 참고로 작성하고 있습니다. 🙇‍♂️
         </blockquote>

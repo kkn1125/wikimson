@@ -69,6 +69,8 @@ td {
 }
 .hljs .hljs-ln-code {
   padding-left: 1rem;
+  word-spacing: 0.2em;
+  letter-spacing: 0.05em;
 }
 
 .highlight {
@@ -429,7 +431,7 @@ table td sup {
   overflow-y: auto;
 }
 .imgWrap .imgInner img {
-  width: 95%;
+  width: 95% !important;
   margin: 5rem 1rem;
 }
 

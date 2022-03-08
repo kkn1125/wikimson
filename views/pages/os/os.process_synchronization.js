@@ -3,7 +3,7 @@ export default {
     title: 'Process Synchronization',
     modified: '2022-03-02 21:36:58',
     done: true,
-    tags: ['os', 'process', 'pid', 'synchronization'],
+    tags: ['os', 'process', 'pid', 'synchronization', '동기화', '스레드', 'thread'],
     categories: ['cs','Operating System'],
     authors: ['kimson'],
     wrote: '2022-02-27 22:27:39',
