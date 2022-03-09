@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'classical synchronization problem 01',
-    modified: '2022-03-04 16:41:40',
+    modified: '2022-03-09 20:30:30',
     done: true,
     tags: ['os', 'classical', 'problem', 'synchronization', 'busy-wait', '생산', '소비'],
     categories: ['cs','Operating System'],
@@ -117,7 +117,7 @@ class Buf {
 
 이렇게 생산하고 소비하는 것을 똑같은 횟수로 반복하면 count는 0이 나와야 한다. 하지만 간혹 아닌 경우가 있다.
 
-그렇다면 Producer와 Comsumer를 Java로 구현해보면 어떻게 될까? 이전에 했던 BankAccount 문제 처럼 두 가지를 스레드로 만들면 된다.
+그렇다면 *Producer*와 *Comsumer*를 Java로 구현해보면 어떻게 될까? 이전에 했던 \`BankAccount\` 문제 처럼 두 가지를 스레드로 만들면 된다.
 
 \`\`\`java
 package os;
@@ -457,7 +457,7 @@ public class Test2 {
 `],
     ref: [
         {
-            name: '경성대 양희재 교수님 - 4강 생산자-소비자 문제',
+            name: '경성대 양희재 교수님 - 6강 생산자-소비자 문제',
             link: 'http://www.kocw.net/home/cview.do?mty=p&kemId=978503',
         },
     ],

@@ -17,6 +17,7 @@ import ClassicalSync01 from './os.classical_synchronization_problem01.js'
 import ClassicalSync02 from './os.classical_synchronization_problem02.js'
 import Deadlock from './os.deadlock.js'
 import Monitor from './os.monitor.js'
+import Prac01 from './os.practice01.js'
 
 Router.setSubPage('운영체제 서론', 'operating_system-base', Base);
 Router.setSubPage('운영체제 역사', 'operating_system-history', Histories);
@@ -35,6 +36,7 @@ Router.setSubPage('전통적 동기화 - 1', 'operating_system-classical_synchro
 Router.setSubPage('전통적 동기화 - 2', 'operating_system-classical_synchronization_02', ClassicalSync02);
 Router.setSubPage('교착상태 (deadlock)', 'operating_system-deadlock', Deadlock);
 Router.setSubPage('모니터', 'operating_system-monitor', Monitor);
+Router.setSubPage('정리와 복습 (1)', 'operating_system-practice-01', Prac01);
 
 export default {
     pagination: true,

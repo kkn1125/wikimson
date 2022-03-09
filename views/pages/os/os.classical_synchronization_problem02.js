@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'classical synchronization problem 02',
-    modified: '2022-03-07 13:51:18',
+    modified: '2022-03-09 20:30:25',
     done: true,
     tags: ['os', 'classical', 'problem', 'synchronization', 'philosopher', '철학자'],
     categories: ['cs','Operating System'],
@@ -239,7 +239,7 @@ id가 짝 수 일 때 왼쪽 젓가락을, 홀 수 일 때 오른쪽 젓가락�
 `],
     ref: [
         {
-            name: '경성대 양희재 교수님 - 4강 기타 전통적 동기화 문제',
+            name: '경성대 양희재 교수님 - 6강 기타 전통적 동기화 문제',
             link: 'http://www.kocw.net/home/cview.do?mty=p&kemId=978503',
         },
     ],

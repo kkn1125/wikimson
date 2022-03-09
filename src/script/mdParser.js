@@ -265,11 +265,20 @@ const Markdown = (function () {
                 let thead = document.createElement('thead');
                 let tbody = document.createElement('tbody');
                 let toHead = false;
-                let classes;
 
                 if(line.match(/(\|.+\|)/g) && !line.match(/\<\/?(pre|code)\>/g)){
                     let rows = line.split(/\n/g);
                     rows = rows.map(row=>row.split(/\|/g));
+
+                    if(rows[0][0].match(/\{\:([\s\S]+?)\}/gi)){
+                        let [attrs, classes] = this.addClass(rows[0][0].match(/\{\:([\s\S]+?)\}/gi)[0]);
+                        table.className += ' ' + classes;
+                        attrs?.forEach(e=>{
+                            let [k,v] = e.split('=');
+                            table.setAttribute(k, v.replace(/[\"\']/g, ''));
+                        });
+                        rows.shift();
+                    }
                     
                     rows = rows.map(r=>{
                         if(r[0]==''){
@@ -279,14 +288,7 @@ const Markdown = (function () {
                         if(r[r.length-1]==''){
                             r = r.slice(0, -1);
                         }
-        
-                        if(r[0]?.match(/\{\:(.+)\}/g)){
-                            classes = r.pop().replace(/[\{\:\}]/g, '').split('.').filter(x=>x!='');
-                        }
-                        
-                        if(r[0]?.match(/\{\:(.+)\}/g)){
-                            classes = r.pop().replace(/[\{\:\}]/g, '').split('.').filter(x=>x!='');
-                        }
+
                         return r;
                     }).filter(x=>x.length>0);
         
@@ -299,14 +301,26 @@ const Markdown = (function () {
                         if(!toHead){
                             tr.append(...row.map(cols=>{
                                 let th = document.createElement('th');
-                                th.innerHTML = cols;
+                                let [attrs, classes] = this.addClass(cols);
+                                th.className += ' ' + classes;
+                                attrs?.forEach(e=>{
+                                    let [k,v] = e.split('=');
+                                    th.setAttribute(k, v);
+                                })
+                                th.innerHTML = cols.replace(/\{\:([\s\S]+?)\}/gi, '');
                                 return th;
                             }));
                             thead.append(tr);
                         } else {
                             tr.append(...row.map(cols=>{
                                 let td = document.createElement('td');
-                                td.innerHTML = cols;
+                                let [attrs, classes] = this.addClass(cols);
+                                td.className += ' ' + classes;
+                                attrs?.forEach(e=>{
+                                    let [k,v] = e.split('=');
+                                    td.setAttribute(k, v);
+                                })
+                                td.innerHTML = cols.replace(/\{\:([\s\S]+?)\}/gi, '');
                                 return td;
                             }));
                             tbody.append(tr);
@@ -365,8 +379,6 @@ const Markdown = (function () {
 
                     table.classList.add('table');
 
-                    if(classes) table.classList.add(classes);
-        
                     convertedHTML[id] = table.outerHTML;
                     block[id] = '';
                 }

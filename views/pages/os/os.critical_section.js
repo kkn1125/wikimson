@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'Critical Section',
-    modified: '',
+    modified: '2022-03-09 20:28:17',
     done: true,
     tags: ['os', 'critical section', 'semaphore', '세마포', '임계구역'],
     categories: ['cs','Operating System'],
@@ -47,7 +47,7 @@ export default {
 `],
     ref: [
         {
-            name: '경성대 양희재 교수님 - 4강 임계구역 문제',
+            name: '경성대 양희재 교수님 - 5강 임계구역 문제',
             link: 'http://www.kocw.net/home/cview.do?mty=p&kemId=978503',
         },
     ],

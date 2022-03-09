@@ -303,7 +303,7 @@ public class Test {
 `],
     ref: [
         {
-            name: '경성대 양희재 교수님 - 4강 세마포',
+            name: '경성대 양희재 교수님 - 6강 세마포',
             link: 'http://www.kocw.net/home/cview.do?mty=p&kemId=978503',
         },
     ],

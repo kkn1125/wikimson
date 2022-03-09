@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'Process Synchronization',
-    modified: '2022-03-02 21:36:58',
+    modified: '2022-03-09 20:28:24',
     done: true,
     tags: ['os', 'process', 'pid', 'synchronization', '동기화', '스레드', 'thread'],
     categories: ['cs','Operating System'],
@@ -186,7 +186,7 @@ java가 컴파일할 때 어셈블리어로 변환된다. 예를 들어 \`balanc
 `],
     ref: [
         {
-            name: '경성대 양희재 교수님 - 4강 프로세스 동기화',
+            name: '경성대 양희재 교수님 - 5강 프로세스 동기화',
             link: 'http://www.kocw.net/home/cview.do?mty=p&kemId=978503',
         },
     ],

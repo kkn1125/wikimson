@@ -3,7 +3,7 @@ import {tables} from '../../../store/tables/deadlock.js';
 export default {
     published: true,
     title: 'dead lock',
-    modified: '2022-03-08 14:32:26',
+    modified: '2022-03-09 20:30:41',
     done: true,
     tags: ['os', '해결', '교착상태', 'deadlock'],
     categories: ['cs','Operating System'],
@@ -107,7 +107,7 @@ ${tables['ex02']}
 `],
     ref: [
         {
-            name: '경성대 양희재 교수님 - 4강 교착상태',
+            name: '경성대 양희재 교수님 - 7강 교착상태',
             link: 'http://www.kocw.net/home/cview.do?mty=p&kemId=978503',
         },
     ],
