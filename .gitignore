@@ -13,4 +13,6 @@ deploy
 dev
 getimg
 
+test/
+
 # End of https://www.toptal.com/developers/gitignore/api/sass
