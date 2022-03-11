@@ -49,6 +49,7 @@ const Markdown = (function () {
             this.altAnchors();
             this.addClass();
             this.altSigns();
+            this.switchTable();
         }
 
         this.readBlockUnit = function () { // 이 버전으로 마크다운 파서 업데이트 하기
@@ -56,21 +57,20 @@ const Markdown = (function () {
 
             let temp = [];
             let isCode = false;
-
             block = block.reduce((pre, cur)=>{
                 if(cur.match(/<(pre|code)>/g)) {
                     isCode = true;
                     temp.push(cur);
                     
                     if(cur.match(/<\/(pre|code)>/g)) {
-                        cur = temp.join('\n\n');
+                        cur = temp.join('\n');
                         temp = [];
                         isCode = false;
                     } else {
                         cur = '';
                     }
                 } else if (cur.match(/<\/(pre|code)>/g)) {
-                    cur = temp.concat(cur).join('\n\n');
+                    cur = temp.concat(cur).join('\n');
                     temp = [];
                     isCode = false;
                 } else {
@@ -83,8 +83,82 @@ const Markdown = (function () {
                 pre.push(cur);
                 return pre;
             }, []);
-
             block = [...block.filter(x=>x!='')];
+            let useBlock = false;
+            block.forEach((e,i)=>{
+                if(block[i].match(/<(pre|code)/g)){
+                    useBlock = true;
+                }
+                if(useBlock){
+                    convertedHTML[i] = block[i];
+                    if(block[i].match(/\<\/(pre|code)\>/g)){
+                        useBlock = false;
+                    }
+                    block[i] = '';
+                }
+                if(block[i].match(/\<\/(pre|code)\>/g)){
+                    useBlock = false;
+                }
+            });
+        }
+
+        this.switchTable = function (){
+            let regexp = /\{\%\s*table\s*\%\}([\s\S]+?)\{\%\s*endTable\s*\%\}/, flag = `gm`;
+            let ex = new RegExp(regexp, flag);
+            
+            convertedHTML = convertedHTML.join('@@@#@@@').replace(ex, (a, $1)=>{
+                let result = document.createElement('div');
+                let tabs = document.createElement('div');
+                let contents = document.createElement('div');
+                let tab = [];
+                let content = [];
+                result.classList.add('switchTable');
+                tabs.classList.add('btn-bundle');
+                contents.classList.add('tables');
+
+                $1.replace(/\$([\s\S]+?)\s*\:\s*([\s\S]+?)\s*\:\$/g, (z, $$1, $$2)=>{
+                    tab.push($$1);
+                    content.push($$2);
+                    return $$1;
+                });
+
+                tab.forEach(e=>{
+                    let span = document.createElement('button');
+                    span.classList.add('btn', 'btn-info', 'tab');
+                    span.setAttribute('target', e);
+                    span.innerHTML = e;
+                    tabs.append(span, '\n');
+                });
+
+                content.forEach((e,i)=>{
+                    let span = document.createElement('span');
+                    span.classList.add('content');
+                    span.setAttribute('ref-to', tab[i]);
+                    if(i!=0) span.hidden = true;
+                    span.innerHTML = e;
+                    contents.append(span, '\n');
+                });
+
+                result.append(tabs, contents);
+                return result.outerHTML;
+            }).split('@@@#@@@');
+
+            window.addEventListener('click', handleTabs);
+            function handleTabs(e){
+                const target = e.target;
+                if(!target.hasAttribute('target')) return;
+                document.querySelectorAll('[target].tab').forEach(e=>{
+                    e.classList.remove('selected');
+                });
+                target.classList.add('selected');
+
+                if(target.classList.contains('selected')) {
+                    document.querySelectorAll(`[ref-to]`).forEach(e=>{
+                        e.hidden = true;
+                    });
+                    document.querySelector(`[ref-to="${target.getAttribute('target')}"]`).removeAttribute('hidden');
+                }
+            }
         }
 
         this.horizontal = function (){

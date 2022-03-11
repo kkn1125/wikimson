@@ -8,6 +8,32 @@ export default {
     content: [`
 # About
 
+{%table%}
+$다양한 기능:
+현재 보시는 tab-list는 마크다우기존의 마크다운에서 별도로 추가한 확장 기능입니다.
+(:))
+:$
+
+$마크다운지원:
+# h1
+
+\`\`\`java
+public class test {
+    public static void main (String[] args) {
+        System.out.print('test')
+    }
+}
+\`\`\`
+:$
+
+$Tab3:
+탭을 늘리는 것을 단순합니다.
+
+\`$tab명칭: 내용내용 &#x3A;$\` 으로 사용합니다.
+:$
+
+{%endTable%}
+
 > 현재 만들어진 페이지는 순수 자바스크립트로만 이루어져 있습니다. 조작이 쉽도록 구현되어 있고, *페이지 전환*은 *hash*를 통해서 이루어집니다. 자세한 사항은 [github 저장소](https://github.com/kkn1125/wikimson){:target="_blank"}를 참고 해주세요.
 
 매일 *배운 것을 기록하기 위해* \`나만의 위키백과\`를 테마로 만들어졌습니다.
@@ -16,7 +42,7 @@ export default {
 `],
     template() {
         return `
-        ${wikiFilter.content.call(this)}
+        ${wikiFilter.all.call(this)}
         `
     }
 }

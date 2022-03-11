@@ -364,11 +364,13 @@ wikiFilter.scrollGauge = function(ev){
 
 wikiFilter.all = function(){
     let temp = '';
-    temp += wikiFilter.modified.call(this);
-    temp += wikiFilter.regdate.call(this);
-    temp += `${this.toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div>':''}` + wikiFilter.createToc.call(this) + `${this.toc?`</div>`:``}`;
+    if(!this.pagination){
+        temp += wikiFilter.modified.call(this);
+        temp += wikiFilter.regdate.call(this);
+        temp += `${this.toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div>':''}` + wikiFilter.createToc.call(this) + `${this.toc?`</div>`:``}`;
+        temp += wikiFilter.ref.call(this);
+    }
     temp += wikiFilter.content.call(this);
-    temp += wikiFilter.ref.call(this);
     setTimeout(() => {
         wikiFilter.scrollPoint();
 

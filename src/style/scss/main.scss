@@ -20,6 +20,17 @@
     display: inline-block;
 }
 
+.tables {
+    padding: 1rem;
+    margin-top: .3rem;
+    border-radius: .5rem;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+    background-color: rgba(var(--pl-gray-rgb), 0.1);
+}
+
 .resizer {
     height: 100%;
     width: 12px;
