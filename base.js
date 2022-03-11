@@ -10,7 +10,7 @@ const wikiFilter = {}
             }).join(' ');
         }
     })
-
+//
     let clicked = false;
     let head = window;
     
