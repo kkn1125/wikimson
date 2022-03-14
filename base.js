@@ -371,7 +371,9 @@ wikiFilter.all = function(){
         temp += `${this.toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div>':''}` + wikiFilter.createToc.call(this) + `${this.toc?`</div>`:``}`;
     }
     temp += wikiFilter.content.call(this);
-    temp += wikiFilter.ref.call(this);
+    if(!this.hasOwnProperty('pagination')){
+        temp += wikiFilter.ref.call(this);
+    }
     setTimeout(() => {
         wikiFilter.scrollPoint();
 
