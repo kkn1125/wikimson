@@ -18,6 +18,8 @@ import ClassicalSync02 from './os.classical_synchronization_problem02.js'
 import Deadlock from './os.deadlock.js'
 import Monitor from './os.monitor.js'
 import MMM from './os.main_memory_management.js'
+import AvoidWastingMemory from './os.avoid_wasting_memory.js'
+import CMA from './os.contiguous_memory_allocation.js'
 
 Router.setSubPage('운영체제 서론', 'operating_system-base', Base);
 Router.setSubPage('운영체제 역사', 'operating_system-history', Histories);
@@ -36,7 +38,9 @@ Router.setSubPage('전통적 동기화 - 1', 'operating_system-classical_synchro
 Router.setSubPage('전통적 동기화 - 2', 'operating_system-classical_synchronization_02', ClassicalSync02);
 Router.setSubPage('교착상태 (deadlock)', 'operating_system-deadlock', Deadlock);
 Router.setSubPage('모니터', 'operating_system-monitor', Monitor);
-Router.setSubPage('Main Memory Management', 'operating_system-main_memory_management', MMM);
+Router.setSubPage('메인 메모리 관리 (Main Memory Management)', 'operating_system-main_memory_management', MMM);
+Router.setSubPage('메모리 낭비 방지 (Avoid Wasting Memory)', 'operating_system-avoid_wasting_memory', AvoidWastingMemory);
+Router.setSubPage('연속 메모리 할당 (Contiguous Memory Allocation)', 'operating_system-contiguous_memory_allocation', CMA);
 
 export default {
     pagination: true,

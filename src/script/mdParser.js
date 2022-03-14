@@ -251,11 +251,9 @@ const Markdown = (function () {
                         let [attrs, classes] = this.addClass(li);
 
                         if(li.match(/^\s*\>\s.+/g)){
-                            li = this.br(li);
-                            temp += `${checkbox(li.replace(/^\s*\>\s(.+)/gm, '$1')).replace(/\{\:(.+)\}/g, '')}`;
+                            temp += `${checkbox(this.br(li.replace(/^\s*\>\s(.+)/gm, '$1')).replace(/\{\:(.+)\}/g, ''))}`;
                         } else {
-                            li = this.br(li);
-                            temp += `<li class="${classes||''}" ${attrs?.join(' ')||''}>${checkbox(li.replace(/^\s*[0-9]\.\s*(.+)/gm, '$1').replace(/^\s*\-\s*(.+)/gm, '$1')).replace(/\{\:(.+)\}/g, '')}</li>`;
+                            temp += `<li class="${classes||''}" ${attrs?.join(' ')||''}>${checkbox(this.br(li.replace(/^\s*\d\.\s*(.+)/gm, '$1').replace(/^\s*\-\s*(.+)/gm, '$1')).replace(/\{\:(.+)\}/g, ''))}</li>`;
                         }
                         
                         before = indent;
@@ -468,7 +466,7 @@ const Markdown = (function () {
                     let count = dotted.split('').length;
 
                     if(!lang && count<3){
-                        return `<kbd class="bg-info ${classes||''}" ${attrs}>${content.trim().replace(/\{\:(.+)\}/g, '')}</kbd>`;
+                        return `<kbd class="bg-info ${classes||''}" ${attrs||''}>${content.trim().replace(/\{\:(.+)\}/g, '')}</kbd>`;
                     } else {
                         return `<pre><code class="language-${lang.trim()}">${ta.value}</code></pre>`;
                     }

@@ -626,7 +626,7 @@ table:not(.hljs-ln) {
         top: -2em;
         font-size: .5rem;
         counter-increment: tableCount;
-        content: "[ 표 " counter(tableCount) " ]";
+        content: "[ 표 "counter(tableCount) " ]";
     }
 }
 
@@ -832,8 +832,12 @@ em {
         height: 100%;
         position: absolute;
         background-color: rgb(236, 77, 255);
-        ;
-    }
+        transition: 500ms 100ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        -webkit-transition: 500ms 100ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        -moz-transition: 500ms 100ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        -ms-transition: 500ms 100ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        -o-transition: 500ms 100ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
 }
 
 [scroll-focus].focus-highlight {

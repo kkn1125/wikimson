@@ -243,7 +243,7 @@ wikiFilter.regdate = function(){
     return `<ul class="list-group">
         <li class="list-item py-1">
             <span class="tag">tags</span>
-            <ul class="w-inline-flex gx-1">
+            <ul class="w-inline-flex g-1">
                 ${this.tags.map(x=>`<li class="tag tag-info">${x}</li>`).join('')}
             </ul>
         </li>
@@ -337,7 +337,8 @@ wikiFilter.ref = function (){
             return '';
         }
     }).join('');
-    if(refLink.trim()=='')  refLink = null;
+
+    if(refLink.trim()=='') refLink = null;
     else refLink = '<ol class="list-group">'+refLink+'</ol>';
 
     return `${this.ref.length>0?'<hr>':''}
@@ -358,19 +359,19 @@ wikiFilter.scrollGauge = function(ev){
     const gap = ev.target.clientHeight;
 
     const realHeight = scrollHeight - gap;
-
+    
     document.querySelector('.gauge-bar').style.width = `${parseFloat((parseFloat(scrollTop/realHeight)*100).toFixed(2))}%`;
 }
 
 wikiFilter.all = function(){
     let temp = '';
-    if(!this.pagination){
+    if(!this.hasOwnProperty('pagination')){
         temp += wikiFilter.modified.call(this);
         temp += wikiFilter.regdate.call(this);
         temp += `${this.toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div>':''}` + wikiFilter.createToc.call(this) + `${this.toc?`</div>`:``}`;
-        temp += wikiFilter.ref.call(this);
     }
     temp += wikiFilter.content.call(this);
+    temp += wikiFilter.ref.call(this);
     setTimeout(() => {
         wikiFilter.scrollPoint();
 
