@@ -45,7 +45,7 @@ $second: 내용2내용2 :$
 ### 이모지
 
 1. \\\<\=\=\> or \\&lt;\=\=&gt; 👉 &DoubleLeftRightArrow;
-2. \<\=\=\> or &lt;\=\=&gt; 👉 <span&gt;&DoubleLeftRightArrow;</1. span&gt;
+2. \<\=\=\> or &lt;\=\=&gt; 👉 <span&gt;&DoubleLeftRightArrow;</span&gt;
 3. \\\<\-\> or \\&lt;\-&gt; 👉 &LeftArrowRightArrow;
 4. \<\-\> or &lt;\-&gt; 👉 <span&gt;&LeftArrowRightArrow;</span&gt;
 5. \\\-\> or \\\-&gt; 👉 &#8594;
