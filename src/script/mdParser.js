@@ -458,7 +458,7 @@ const Markdown = (function () {
         }
 
         this.altCodeBlock = function (){
-            if(md.match(/(\`+)([\s\S]+)(\`+)|(\~+)[^\s]([\s\S]+)[^\s](\~+)/gm)){
+            if(md.match(/(\`+)([\s\S]+)(\`+)|(\~+)([\s\S]+)(\~+)/gm)){
                 return md.replace(/(\`+)([\w]+\n)?([\s\S]+?)(\`+)/gm, (a,dotted,lang,content)=>{
                     let [attrs, classes] = this.addClass(content);
                     let ta = document.createElement('textarea');
@@ -470,11 +470,16 @@ const Markdown = (function () {
                     } else {
                         return `<pre><code class="language-${lang.trim()}">${ta.value}</code></pre>`;
                     }
-                }).replace(/(\~+)[^\s]([\w]+\n)?([\s\S]+?)[^\s](\~+)/gm, (a,dotted,lang,content)=>{
+                }).replace(/(\~+)([\w]+\n)?([\s\S]+?)(\~+)/gm, (a,dotted,lang,content)=>{
                     let [attrs, classes] = this.addClass(content);
                     let count = dotted.split('').length;
                     let ta = document.createElement('textarea');
                     ta.value = content;
+                    console.log(a)
+                    if(a.match(/\~/gm).length==2 && a.match(/\n/g)){
+                        return a;
+                    }
+
                     if(!lang && count<3){
                         return `<kbd class="bg-info ${classes||''}">${content.trim().replace(/\{\:(.+)\}/g, '')}</kbd>`;
                     } else {

@@ -192,6 +192,21 @@ $paddings: 0;
 }
 
 table {
+    &.table {
+        margin-top: 0;
+    }
+
+    th,
+    td {
+        sup {
+            color: inherit !important;
+        }
+
+        sub {
+            color: inherit !important;
+        }
+    }
+
     td {
         vertical-align: middle;
     }
@@ -261,19 +276,6 @@ img {
 @media (max-width: 575px) {
     [put-type="wiki"] {
         flex: 0 0 auto;
-    }
-}
-
-table {
-    &.table {
-        margin-top: 0;
-    }
-
-    th,
-    td {
-        sup {
-            color: inherit !important;
-        }
     }
 }
 
@@ -413,6 +415,13 @@ kbd {
 
     sub {
         color: inherit !important;
+    }
+
+    span {
+        color: inherit !important;
+        &[class|="text"]{
+            color: inherit !important;
+        }
     }
 }
 
