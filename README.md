@@ -83,7 +83,7 @@ $second: 내용2내용2 :$
 37. (:!!) 👉 💡
 38. (:!) 👉 ❗
 39. (:?) 👉 ❓
-40. Text@text@ 👉 Text <sub&gt;text</sub&gt;
+40. Text!@text@ 👉 Text! <sub&gt;text</sub&gt;
 
 ### 검색기능
 
