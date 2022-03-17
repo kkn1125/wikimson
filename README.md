@@ -44,46 +44,46 @@ $second: 내용2내용2 :$
 
 ### 이모지
 
-\\\<\=\=\> or \\&lt;\=\=&gt; 👉 &DoubleLeftRightArrow;  
-\<\=\=\> or &lt;\=\=&gt; 👉 <span&gt;&DoubleLeftRightArrow;</span&gt;  
-\\\<\-\> or \\&lt;\-&gt; 👉 &LeftArrowRightArrow;  
-\<\-\> or &lt;\-&gt; 👉 <span&gt;&LeftArrowRightArrow;</span&gt;  
-\\\-\> or \\\-&gt; 👉 &#8594;  
-\-\> or \-&gt; 👉 <span&gt;&#8594;</span&gt;  
-\\\<\- or \\&lt;\- 👉 &#8592;  
-\<\- or &lt;\- 👉 <span&gt;&#8592;</span&gt;  
-\\\=\=\> or \\\=\=&gt; 👉 &Rightarrow;  
-\=\=\> or \=\=&gt; 👉 <span&gt;&Rightarrow;</span&gt;  
-\\\<\=\= or \\&lt;\=\= 👉 &Leftarrow;  
-\<\=\= or &lt;\=\= 👉 <span&gt;&Leftarrow;</span&gt;  
-\\\?\=\= or \\\?\=\= 👉 ≒  
-\?\=\= or \?\=\= 👉 <span&gt;≒</span&gt;  
-\\\=\=\= or \\\=\=\= 👉 ⩶  
-\=\=\= or \=\=\= 👉 <span&gt;⩶</span&gt;  
-\\\=\= or \\\=\= 👉 ⩵  
-\=\= or \=\= 👉 <span&gt;⩵</span&gt;  
-\\\>\= or \\&gt;\= 👉 ⪴  
-\>\= or &gt;\= 👉 <span&gt;⪴</span&gt;  
-\\\<\= or \\&lt;\= 👉 ⪳  
-\<\= or &lt;\= 👉 <span&gt;⪳</span&gt;  
-\\\!\= 👉 ≠  
-\!\= 👉 <span&gt;≠</span&gt;  
-\\\.\.\. 👉 …  
-\.\.\. 👉 <span&gt;…</span&gt;  
-(:prj) 👉 📋  
-(:1) 👉 🥇  
-(:2) 👉 🥈  
-(:3) 👉 🥉  
-(:(x or X)) 👉 ❌  
-(:(v or V)) 👉 ✅  
-(: )) or (웃음) 👉 😀  
-(ㅠㅠ) or (슬픔) 👉 😥  
-(화남) 👉 😤  
-(꾸벅) or (인사) 👉 🙇‍♂️  
-(:!!) 👉 💡  
-(:!) 👉 ❗  
-(:?) 👉 ❓  
-Text@text@ 👉 Text <sub&gt;text</sub&gt;
+1. \\\<\=\=\> or \\&lt;\=\=&gt; 👉 &DoubleLeftRightArrow;
+2. \<\=\=\> or &lt;\=\=&gt; 👉 <span&gt;&DoubleLeftRightArrow;</1. span&gt;
+3. \\\<\-\> or \\&lt;\-&gt; 👉 &LeftArrowRightArrow;
+4. \<\-\> or &lt;\-&gt; 👉 <span&gt;&LeftArrowRightArrow;</span&gt;
+5. \\\-\> or \\\-&gt; 👉 &#8594;
+6. \-\> or \-&gt; 👉 <span&gt;&#8594;</span&gt;
+7. \\\<\- or \\&lt;\- 👉 &#8592;
+8. \<\- or &lt;\- 👉 <span&gt;&#8592;</span&gt;
+9. \\\=\=\> or \\\=\=&gt; 👉 &Rightarrow;
+10. \=\=\> or \=\=&gt; 👉 <span&gt;&Rightarrow;</span&gt;
+11. \\\<\=\= or \\&lt;\=\= 👉 &Leftarrow;
+12. \<\=\= or &lt;\=\= 👉 <span&gt;&Leftarrow;</span&gt;
+13. \\\?\=\= or \\\?\=\= 👉 ≒
+14. \?\=\= or \?\=\= 👉 <span&gt;≒</span&gt;
+15. \\\=\=\= or \\\=\=\= 👉 ⩶
+16. \=\=\= or \=\=\= 👉 <span&gt;⩶</span&gt;
+17. \\\=\= or \\\=\= 👉 ⩵
+18. \=\= or \=\= 👉 <span&gt;⩵</span&gt;
+19. \\\>\= or \\&gt;\= 👉 ⪴
+20. \>\= or &gt;\= 👉 <span&gt;⪴</span&gt;
+21. \\\<\= or \\&lt;\= 👉 ⪳
+22. \<\= or &lt;\= 👉 <span&gt;⪳</span&gt;
+23. \\\!\= 👉 ≠
+24. \!\= 👉 <span&gt;≠</span&gt;
+25. \\\.\.\. 👉 …
+26. \.\.\. 👉 <span&gt;…</span&gt;
+27. (:prj) 👉 📋
+28. (:1) 👉 🥇
+29. (:2) 👉 🥈
+30. (:3) 👉 🥉
+31. (:(x or X)) 👉 ❌
+32. (:(v or V)) 👉 ✅
+33. (: )) or (웃음) 👉 😀
+34. (ㅠㅠ) or (슬픔) 👉 😥
+35. (화남) 👉 😤
+36. (꾸벅) or (인사) 👉 🙇‍♂️
+37. (:!!) 👉 💡
+38. (:!) 👉 ❗
+39. (:?) 👉 ❓
+40. Text@text@ 👉 Text <sub&gt;text</sub&gt;
 
 ### 검색기능
 
