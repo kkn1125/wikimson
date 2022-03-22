@@ -102,7 +102,7 @@ ${wikiFilter.img('os/cma04.jpg','kimson','sample')}
 
 전체 주소 중에 n을 몇 비트로 할 것인지는 페이지의 사이즈를 얼마로 하는 가에 달려있다.
 
-${wikiFilter.toRef(location.hash.slice(1),'페이징 (Paging)-10','페이징')}에서 언급할 때는 ~10KB~라고 했지만 이는 모든 컴퓨터마다 ~10KB~가 아니고 컴퓨터마다 다르다.
+${wikiFilter.toRef('operating-system-contiguous-memory-allocation','페이징 (Paging)-10','페이징')}에서 언급할 때는 ~10KB~라고 했지만 이는 모든 컴퓨터마다 ~10KB~가 아니고 컴퓨터마다 다르다.
 
 간단하게 한 페이지에 ~16Byte~라 가정하자. 즉, 프로세스를 나눌 때 16Byte로 나눈다는 이야기이다.
 
