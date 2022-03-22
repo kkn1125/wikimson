@@ -475,7 +475,6 @@ const Markdown = (function () {
                     let count = dotted.split('').length;
                     let ta = document.createElement('textarea');
                     ta.value = content;
-                    console.log(a)
                     if(a.match(/\~/gm).length==2 && a.match(/\n/g)){
                         return a;
                     }

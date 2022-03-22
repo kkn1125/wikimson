@@ -29,7 +29,7 @@ export default {
         return `
         <footer class="footer bg-light p-3 text-center fs-7 text-muted" put-name="footer">
             <div>
-                <span>copyright ${App.author}</span>
+                <span>Copyright ${new Date().getFullYear()}. ${App.author} all rights reserved.</span>
                 |
                 <ul class="w-inline-flex gx-3">
                     ${this.othersLink()}

@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'Contiguous Memory Allocation',
-    modified: '2022-03-17 22:11:46',
+    modified: '2022-03-22 22:26:25',
     done: false,
     tags: ['os', 'main memory management', '메인 메모리 관리', 'contiguous memory allocation', '연속 메모리 할당'],
     categories: ['cs','Operating System'],
@@ -88,17 +88,75 @@ ${wikiFilter.img('os/cma03.jpg', 'kimson', 'sample')}
 
 프로세스를 자른 것을 *page*이라 하고, 메모리를 자른 것을 *frame*이라 한다. ~page~과 ~frame~의 크기는 *서로 같은 크기*를 가진다. 즉, 프로세스는 페이지(page)의 집합이고, 메모리는 프레임(frame)의 집합인 것이다.
 
-페이지를 프레임에 할당 할 때 ~MMU~ 내의 재배치 레지스터 값을 바꿈으로서 동작하는데 이 때 ~MMU~는 페이징을 목적으로 할 때 더 이상 ~MMU~라 하지않고, *재배치 레지스터*가 여러 개가 *테이블*처럼 있다고해서 *페이지 테이블(page table)*이라고 한다. 이로써 외부 단편화의 문제가 모두 해결이 된다.
+페이지를 프레임에 할당 할 때 ~MMU~ 내의 재배치 레지스터 값을 바꿈으로서 동작하는데 이 때 ~MMU~는 페이징을 목적으로 할 때 ~MMU~라 하지않고, *재배치 레지스터*가 여러 개가 *테이블*처럼 있다고해서 *페이지 테이블(page table)*이라고 한다. 이로써 외부 단편화의 문제가 모두 해결이 된다.
 
 > ~Logical Address~는 *연속(Contiguous)*하고, ~Physical Address~는 *흩어진(Scattered)* 형태를 가진다.
 
 ## 주소 변환 (Address Translation) {:.text-danger}
+
+### 논리 주소 (Logical Address) {:.text-danger}
+
+CPU가 내는 주소를 말하며, 2진수로 표현한다. 전체를 m비트라 할 때 하위 n비트는 *오프셋(offset)* 또는 *변위(displacement)* 이다. 이때 *변위는 항상 고정된 값을 가지며 변하지 않는다*. 상위 m-n비트는 *페이지의 번호* 이다. 그림으로 보면 아래와 같다.
+
+${wikiFilter.img('os/cma04.jpg','kimson','sample')}
+
+전체 주소 중에 n을 몇 비트로 할 것인지는 페이지의 사이즈를 얼마로 하는 가에 달려있다.
+
+${wikiFilter.toRef(location.hash.slice(1),'페이징 (Paging)-10','페이징')}에서 언급할 때는 ~10KB~라고 했지만 이는 모든 컴퓨터마다 ~10KB~가 아니고 컴퓨터마다 다르다.
+
+간단하게 한 페이지에 ~16Byte~라 가정하자. 즉, 프로세스를 나눌 때 16Byte로 나눈다는 이야기이다.
+
+16Byte는 2의 4제곱이고 n(displacement)의 값은 ~4bit~가 되는 것이다. 다른 예로 한 페이지의 사이즈가 ~1KB~라 한다면 ~1024Byte~이고 2의 10제곱이기 때문에 n은 ~10bit~가 된다.
+
+> *페이지 사이즈가 2의 n제곱*이라면, *displacement는 n*이 된다.
+
+### 주소 변환 : 논리 주소 -> 물리 주소 {:.text-danger}
+
+메인 메모리는 여러 개의 ~frame~으로 이루어져있고, ~frame~의 크기는 페이지의 크기와 동일하다. 페이지의 크기가 ~8KB~이면 ~frame~하나의 크기도 ~8KB~이다. 페이징에서 사용하는 ~MMU~를 ~page table~이라 부르는데, 해당 *프로세스가 몇 개의 페이지를 사용하는 가*에 따라 *page table의 entry갯수가 결정*된다. 즉, 프로세스의 페이지가 ~1KB~이고, 프로세스 크기가 ~8KB~라면 8개의 *relocation register*가 들어가는 ~page table~이 필요하다.
+
+- page table entry 개수 == page 개수
+
+만일 ~CPU~가 50번지의 주소를 냈을 때 메인 메모리의 몇 번지에 해당될까?
+
+한 페이지의 크기를 ~16Byte~라고 가정한다. 50번지를 먼저 2진수로 나타낸다. 2로 나누어 계산하면 ~110010~이 된다. 여기서 하위의 4bit를 묶는다. ~0010~이 ~displacement~가 된다. ~11~이 ~Page number~가 된다.
+
+따라서 50번지는 몇 번째의 페이지냐하면 ~11~번, 즉, 10진수로 변환했을 때 3번 페이지가 된다.
+
+${wikiFilter.img('os/cma06.jpg','kimson','sample')}
+
+이렇게 ~CPU~가 낸 주소가 실제로는 메인 메모리의 다른 곳에 해당되기 때문에 ~CPU~는 프로세스를 연속된 메모리 공간에 위치한다고 보고, 실제로는 흩어져서 프로세스가 메모리에 올라가게 되는 것이다.
+
+위 그림에서 page table에 할당되는 숫자를 임의 값으로 적었는데 이는 아래와 같은 원리로 할당이 된다.
+
+${wikiFilter.img('os/cma07.jpg','kimson','sample')}
+
+빨간 원에 있는 숫자 순서대로 프로세스 0번의 a는 메인 메모리의 1q번에 있으므로 page table의 frame number는 0번에 1이 된다. 그렇게 쭉 나열해보면 1, 5, 3, 0이 할당되고, ~CPU~의 입장에서는 인덱스번호 순으로 순차적으로 프로세스가 연속된 메모리 공간에 위치한다고 본다.
+
+#### 예제 1
+
+- Page size = 4 bytes
+- Page Table -> 5 6 1 2
+- 논리주소 13 번지는 물리주소의 몇 번지인가?
+
+${wikiFilter.img('os/cma08.jpg','kimson','sample')}
+
+논리주소 13을 내었을 때 페이지의 크기가 4바이트가 2의 2제곱이므로 *d(displacement) 값은 2*가 된다. *13을 이진수로 변환하면 1101*이고 이때 ~d~가 2이므로 ~01~이 ~d~가 된다.
+
+그러면 페이지 넘버는 ~11~이 되고 십진수로 변환하면 ~3~이므로 page table의 3번 인덱스에 있는 ~frame~번호는 ~2~가 된다.
+
+그러면 ~frame~번호 ~2~를 *이진수로 변환*하여 ~10~을 얻고, ~d~는 원래 값에서 *변하지 않으므로* ~1001~이라는 물리주소를 가지게 된다.
+
+[10 === 2]번째 프레임에서 [01 === 1]만큼 떨어진 위치가 된다. 이진수를 뜯어 위치를 찾을 수도 있고, 위의 그림에 메인메모리 우측의 빨간 글씨와 같이 한 프레임이 4bytes간격이므로 0, 4, 8, 16 ... 번지일 때 2번 프레임의 1/4지점인 9번지를 동일하게 찾을 수도 있다.
 
 ... 작성 중 ...
 `],
     ref: [
         {
             name: '경성대 양희재 교수님 - 8강 연속 메모리 할당',
+            link: 'http://www.kocw.net/home/cview.do?mty=p&kemId=978503',
+        },
+        {
+            name: '경성대 양희재 교수님 - 9강 페이징',
             link: 'http://www.kocw.net/home/cview.do?mty=p&kemId=978503',
         },
     ],
