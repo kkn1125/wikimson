@@ -68,8 +68,8 @@
 
     function clearImageHandler(ev){
         const key = ev.key;
-
-        new RegExp('escape', 'gi').test(key)?clearImgPopup():null;
+        if(key.toLowerCase() != 'escape') return;
+        clearImgPopup();
     }
 
     function imageHandler(ev){

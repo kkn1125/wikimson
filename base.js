@@ -90,11 +90,13 @@ const wikiFilter = {}
                     if(navigator.userAgent.toLowerCase().indexOf('mobile')>-1){
                         isMobile = document.querySelector('#lsb').clientHeight;
                     }
-
+                    let target = key.offsetParent||key.parentNode.parentNode;
+                    let added = target.classList.contains('tables')?target.offsetTop:0;
+                    // tables error시 주의 부분
                     scrollHead.scrollTo({
                         behavior: 'smooth',
                         left: 0,
-                        top: key.offsetTop + isMobile,
+                        top: added||key.offsetTop + isMobile,
                     });
 
                     if(!key.classList.contains('focus-highlight')){
@@ -135,7 +137,7 @@ wikiFilter.spy = function scrollSpy(ev) {
         let top = document.querySelector('[put-type="wiki"]').scrollTop;
         if (key.offsetTop - 16 < top) {
             let focus = key.getAttribute('scroll-focus');
-            let spyList = document.querySelector(`[scroll-to="${focus}"]`);
+            // let spyList = document.querySelector(`[scroll-to="${focus}"]`);
             last = titles.indexOf(key);
         }
     }
@@ -144,9 +146,12 @@ wikiFilter.spy = function scrollSpy(ev) {
         spy.forEach((s,i)=>{
             if(i == last && !s.classList.contains('highlight')){
                 s.classList.add('highlight');
+                
+                let target = s.offsetParent||s.parentNode.parentNode;
+                let added = target.classList.contains('tables')?target.offsetTop:0;
                 aside.scrollTo({
                     behavior: 'smooth',
-                    top: s.offsetTop,
+                    top: added||s.offsetTop,
                     left: 0
                 });
             } else if(i < last) {
@@ -154,13 +159,12 @@ wikiFilter.spy = function scrollSpy(ev) {
             } else if(i > last) {
                 s.classList.remove('highlight');
             }
-        })
+        });
     }
 }
 
 wikiFilter.md = function (content, isMd){
-    if(isMd)
-    return Markdown.parse(content, {
+    if(isMd) return Markdown.parse(content, {
         ol: 'list-group reset',
         ul: 'list-group reset',
         li: 'list-item',
@@ -174,7 +178,7 @@ wikiFilter.md = function (content, isMd){
 }
 
 wikiFilter.content = function(){
-    return this.content.map(c=>{
+    return this.content.map(c => {
         c = wikiFilter.md(c, this.md);
         
         c = c.replace(/\{\{([\s\S]+?)\}\}/g, (a,$1)=>{
@@ -277,6 +281,21 @@ wikiFilter.img = function (url, ref, title='sample', focus){
 wikiFilter.imgonly = function (url, data){
     let baseurl = './src/images/';
     return `<img${data?.hasOwnProperty('style')?` style="${data.style.join(';')}"`:''}${data?.hasOwnProperty('class')?` class="${data.class.join(' ')}"`:''} src="${url.match(/^http|^https/g)?'':baseurl}${url}" alt="sample" title="sample">`;
+}
+
+wikiFilter.autoComma = function (comma=','){
+    this.content = this.content.map(c=>{
+        return c.replace(/(bn)*\d+/g, (a,$1)=>{
+            if($1) {
+                a = a.replace($1, '');
+                return a;
+            } else {
+                let sep = a.split('.');
+                sep[0] = sep[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                return sep.join('.');
+            }
+        });
+    });
 }
 
 wikiFilter.createToc = function (){
@@ -609,6 +628,7 @@ wikiFilter.ccl = function() {
 
 wikiFilter.all = function(){
     let temp = '';
+    wikiFilter.autoComma.call(this);
     if(!this.hasOwnProperty('pagination')){
         temp += wikiFilter.modified.call(this);
         temp += wikiFilter.regdate.call(this);
@@ -623,11 +643,7 @@ wikiFilter.all = function(){
         wikiFilter.scrollPoint();
 
         document.querySelector('[put-type="wiki"]').addEventListener('scroll', wikiFilter.scrollGauge);
-        document.querySelector('.main').addEventListener('scroll', wikiFilter.scrollGauge);
-        document.querySelector('[put-type="wiki"]').addEventListener('scroll', wikiFilter.spy);
-
-        document.querySelector('[put-type="wiki"]').addEventListener('scroll', wikiFilter.scrollGauge);
-        document.querySelector('.main').addEventListener('scroll', wikiFilter.scrollGauge);
+        // document.querySelector('.main').addEventListener('scroll', wikiFilter.scrollGauge);
         document.querySelector('[put-type="wiki"]').addEventListener('scroll', wikiFilter.spy);
 
         if(!document.querySelector('.prev'))
@@ -822,5 +838,5 @@ setTimeout(()=>{
     setTimeout(()=>{
         settingHandler();
         wikiFilter.scrollPoint();
-    }, 100);
+    }, 500);
 }, 150);

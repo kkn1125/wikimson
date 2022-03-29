@@ -122,9 +122,11 @@ const Markdown = (function () {
                     return $$1;
                 });
 
-                tab.forEach(e=>{
+                // 2022-03-29 20:40:07 수정
+                tab.forEach((e,i)=>{
                     let span = document.createElement('button');
-                    span.classList.add('btn', 'btn-info', 'tab');
+                    span.classList.add('btn', 'btn-danger', 'tab', 'px-2', 'text-capitalize');
+                    if(i==0) span.classList.add('selected');
                     span.setAttribute('target', e);
                     span.innerHTML = e;
                     tabs.append(span, '\n');
@@ -134,7 +136,7 @@ const Markdown = (function () {
                     let span = document.createElement('span');
                     span.classList.add('content');
                     span.setAttribute('ref-to', tab[i]);
-                    if(i!=0) span.hidden = true;
+                    if(i!=0) span.setAttribute('ghost', '');
                     span.innerHTML = e;
                     contents.append(span, '\n');
                 });
@@ -154,9 +156,9 @@ const Markdown = (function () {
 
                 if(target.classList.contains('selected')) {
                     document.querySelectorAll(`[ref-to]`).forEach(e=>{
-                        e.hidden = true;
+                        e.setAttribute('ghost', '');
                     });
-                    document.querySelector(`[ref-to="${target.getAttribute('target')}"]`).removeAttribute('hidden');
+                    document.querySelector(`[ref-to="${target.getAttribute('target')}"]`).removeAttribute('ghost');
                 }
             }
         }
