@@ -285,7 +285,7 @@ wikiFilter.imgonly = function (url, data){
 
 wikiFilter.autoComma = function (comma=','){
     this.content = this.content.map(c=>{
-        return c.replace(/(bn)*\d+/g, (a,$1)=>{
+        return c.replace(/(bn)*([\d.])+/g, (a,$1,$2)=>{
             if($1) {
                 a = a.replace($1, '');
                 return a;
@@ -628,17 +628,21 @@ wikiFilter.ccl = function() {
 
 wikiFilter.all = function(){
     let temp = '';
-    wikiFilter.autoComma.call(this);
+    if(!this.origin.name.match(/about|home/gi)) wikiFilter.autoComma.call(this);
+
     if(!this.hasOwnProperty('pagination')){
         temp += wikiFilter.modified.call(this);
         temp += wikiFilter.regdate.call(this);
         temp += `${this.toc?'<div class="blockquote mt-3 pe-3"><div class="fw-bold">TOC</div>':''}` + wikiFilter.createToc.call(this) + `${this.toc?`</div>`:``}`;
     }
+
     temp += wikiFilter.content.call(this);
+
     if(!this.origin.name.match(/about|home/gi)) temp += wikiFilter.ccl();
     if(!this.hasOwnProperty('pagination')){
         temp += wikiFilter.ref.call(this);
     }
+    
     setTimeout(() => {
         wikiFilter.scrollPoint();
 

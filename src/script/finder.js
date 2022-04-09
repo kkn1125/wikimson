@@ -23,12 +23,63 @@ let resultTemplate = {
     }
 }
 
-window.addEventListener('input', finderHandler);
-window.addEventListener('click', finderHandler);
-window.addEventListener('keydown', finderExit);
+if(document.getElementById('finder')) {
+    window.addEventListener('input', finderHandler);
+    window.addEventListener('click', finderHandler);
+    window.addEventListener('keydown', finderExit);
+    window.addEventListener('keyup', listHandler);
+}
+
+let pointer = 0;
+function listHandler (e) {
+    const target = e.target;
+    if(target.id != 'finder') return;
+    // input 없을 때는 막기
+    
+    const key = e.key.toLowerCase();
+    const list = [];
+    const listWrap = [...document.querySelectorAll('#foundResult .list-item')];
+
+    findPosts(target, list);
+
+    let max = list.length-1;
+    let isFirst = pointer == 0;
+    let isLast = pointer == max;
+
+    let activating = () => {
+        listWrap.forEach(x=>x.classList.remove('active'));
+        listWrap[pointer].classList.add('active');
+        
+        document.querySelector('main').scrollTo(0, listWrap[pointer].offsetTop - document.querySelector("#finder").offsetTop)
+    }
+    
+    switch(key) {
+        case 'arrowup':
+            pointer = pointer <= 0 ? 0 : pointer - 1;
+            // console.log('up', pointer);
+            activating();
+            if(isFirst) console.log('first');
+            break;
+        case 'arrowdown':
+            pointer = pointer >= max ? max : pointer + 1;
+            // console.log('down', pointer);
+            activating();
+            if(isLast) console.log('last!');
+            break;
+        case 'enter':
+            const a = document.createElement('a');
+            a.href = list[pointer].info.origin.path;
+            document.body.append(a);
+            a.click();
+            if(a) a.remove();
+            break;
+        default: activating(); break;
+    }
+}
 
 function clearResult (){
     if(document.getElementById('foundResult')) document.getElementById('foundResult').remove();
+    pointer = 0;
 }
 
 function findPosts(target, list){
