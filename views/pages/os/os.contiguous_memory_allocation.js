@@ -1,7 +1,7 @@
 export default {
     published: true,
     title: 'Contiguous Memory Allocation',
-    modified: '2022-03-22 22:26:25',
+    modified: '2022-04-13 14:14:31',
     done: false,
     tags: ['os', 'main memory management', '메인 메모리 관리', 'contiguous memory allocation', '연속 메모리 할당'],
     categories: ['cs','Operating System'],
@@ -191,6 +191,7 @@ ${wikiFilter.img('os/cma10.jpg','kimson','sample')}
     - 주소변환이 빠르다.
 - 단점
     - \`page table\`의 \`entry\`가 실제로는 \`수백\` ~ \`수천개\`인데 \`CPU\`에 들어가기란 무리가 있다.
+    - 현실적으로 적용이 어렵다.
 
 **메인메모리로 만든다면?{:.fw-bold}**
 
@@ -198,6 +199,18 @@ ${wikiFilter.img('os/cma10.jpg','kimson','sample')}
     - 주소변환이 빠르다.
 - 단점
     - 주소변환이 느리다.
+    - 현실적으로 적용이 어렵다.
+
+** 캐시메모리로 만든다면?{:.fw-bold}**
+
+메인메모리는 \`DRAM(동적 램)\`으로 만들고, 캐시메모리의 경우는 \`SRAM(정적 램)\`으로 만들게 된다. 메인 메모리의 내용을 빠르게 엑세스하는 것이 목적이기 때문에 캐시라고 하지 않고, 주소변환을 목적으로 하기 때문에 \`SRAM\`을 사용한 이것을 *${wikiFilter.toRef('cs-tlb','정의-1','TLB(Translation Lookaside Buffer)')}*라 한다.
+
+CPU와 메모리의 중간 성격을 가지게 된다.
+
+1. \`CPU\`보다 느리다. -> 반면 \`CPU Register\`보다 많은 개수를 변환 할 수 있다.
+2. \`메모리\`보다 빠르다. -> 반면 \`메모리\`보다 변환하는 개수가 적다.
+
+테이블 엔트리 개수, 변환 속도로 위의 세가지 방식을 비교할 수 있다.
 `],
     ref: [
         {

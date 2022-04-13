@@ -18,6 +18,7 @@ import Mvc from './cs.mvc.js'
 import Osi from './cs.osi.js'
 import ProcessThread from './cs.process_thread.js'
 import PureFunction from './cs.pure_function.js'
+import Tlb from './cs.tlb.js'
 
 Router.setSubPage('Api', 'cs.api', Api);
 Router.setSubPage('Arithmetic and Logic Operation Unit (ALU)', 'cs.alu', Alu);
@@ -37,6 +38,7 @@ Router.setSubPage('Mvc', 'cs.mvc', Mvc);
 Router.setSubPage('Osi', 'cs.osi', Osi);
 Router.setSubPage('ProcessThread', 'cs.processthread', ProcessThread);
 Router.setSubPage('PureFunction', 'cs.purefunction', PureFunction);
+Router.setSubPage('Translation Lookaside Buffer', 'cs.tlb', Tlb);
 
 export default {
     pagination: true,

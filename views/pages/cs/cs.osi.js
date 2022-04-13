@@ -18,7 +18,9 @@ OSI 7 계층은 네트워크에서 통신이 일어나는 과정을 7단계로 �
 
 ## 계층을 나눈 이유
 
-통신 과정을 단계별로 파악하기 위해서이다. 즉, 문제가 생기면 7계층 중 특정 영역에 이상이 있음을 감지하고 다른 영역을 건들이지 않고 해당 영역만 고칠 수 있기 때문이라는 이야기가 된다. 
+- 사람이 이해하기 쉽도록 흐름을 한 눈에 파악할 수 있게 함
+- 통신 과정을 단계별로 하면 파악이 쉬움
+- 문제 해결 측면에서도 해당하는 단계를 찾아 해결하는데 용이
 
 ${wikiFilter.img('https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fg7KXdyFIQoWy4tnLqSs2%2Fuploads%2FbP8e7q5Q2R3CJkARCudZ%2Fimage.png?alt=media&token=7ea1ac13-49ba-428f-a85c-e1304316ca6f', '<a href="https://learningsolo.com/binary-search-algorithm/">https://learningsolo.com/binary-search-algorithm/</a>', 'gitbook kimson')}
 

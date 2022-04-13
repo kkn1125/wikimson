@@ -2,6 +2,24 @@ const wikiFilter = {}
 
 'use strict';
 
+function setGlobal (name, value) {
+    console.log('%c전역변수를 생성했습니다.', 'color: #ff8051');
+    window[name] = value;
+    return '';
+}
+
+function getGlobal(name, deletion=false) {
+    let msg;
+    try{
+        if(deletion) delete window[name];
+        if(window[name]==undefined) throw new SyntaxError(`없는 변수 입니다. 변수명: "${name}"`);
+    } catch(e) {
+        const stack = e.stack.split('\n').slice(1).map(x=>x.trim()).join('\n');
+        console.log(`%c${e.message}\n${stack}`, `color: #eb4561;`);
+    }
+    return window[name]||'';
+}
+
 (function () {
     Object.defineProperty(Object.prototype, 'toCapitalize', {
         value: function (){
