@@ -1,3 +1,37 @@
+import { GET_NOW_TIME, NO_POST_NOTICE } from "../../core/constants.js";
+
+const getPostLimitDate = (date = 1) => 1000 * 60 * 60 * 24 * date;
+const limitDaysAgo = limitDay => GET_NOW_TIME - getPostLimitDate(limitDay);
+const stringToTime = stringTime => new Date(stringTime);
+const getPostMaxTime = ({wrote, modified}) => Math.max(stringToTime(wrote), stringToTime(modified||0));
+const convertPostMaxTimeSet = (max) => {
+    const during = new Date(new Date() - max).getTime();
+    const date = parseInt(during/24/60/60/1000);
+    const hour = parseInt(during/60/60/1000%24);
+    const min = parseInt(during/60/1000%60);
+    return { during, date, hour, min };
+}
+const getMessageTemplate = ({date, hour, min}, {wrote}) => {
+    return date <= 0 ?
+        `${date > 0 ? `${date}일 ` : ''}${hour > 0 && date == 0 ? `${hour}시간 ` : ''}${min<2&&date==0&&hour==0?`방금 `:`${min}분 `}전`:
+        stringToTime(wrote).toLocaleDateString();
+}
+const getTimeSet = info => convertPostMaxTimeSet(getPostMaxTime(info));
+const getRecentPostNotice = ({info}) => (({origin}) => {
+    const {path, name} = origin;
+    const duringMsg = getMessageTemplate(getTimeSet(info), info);
+    return `
+    <li class="list-item py-1" recent-post>
+        <a class="nav-link" href="${path}">${name}</a>
+        <span class="text-gray text-opacity-25"> | </span>
+        <span class="ms-2 fs-8 text-muted"><time class="text-dark">${duringMsg}</time></span>
+    </li>
+    `
+}).call(this, info);
+const isPostWithinLimitTime = ({info}) => limitDaysAgo(6) < getPostMaxTime(info);
+
+const _$ = elemName => document.querySelector(elemName);
+
 export default {
     pagination: false,
     published: true,
@@ -11,38 +45,14 @@ export default {
         function loadBundle(){
             if(!window.wikibundle) requestAnimationFrame(loadBundle);
             else {
-                let tempFilter = [...wikibundle].filter(post=>{
-                    const max = Math.max(new Date(post.info.wrote), new Date(post.info.modified||0));
-                    let time = max;
-                    let oneDaysAgo = new Date().getTime()-(1000*60*60*24);
-                    if(oneDaysAgo<time) return true;
-                    else return false;
-                });
+                const tempFilter = [...wikibundle].filter(isPostWithinLimitTime);
 
-                let list = [...tempFilter].map(post=>{
-                    const max = Math.max(new Date(post.info.wrote), new Date(post.info.modified||0));
+                const list = [...tempFilter].map(getRecentPostNotice).join('');
 
-                    let during = new Date(new Date() - max).getTime();
-                    let date = parseInt(during/24/60/60/1000);
-                    let hour = parseInt(during/60/60/1000%24);
-                    let min = parseInt(during/60/1000%60);
-
-                    let duringMsg = date<=0?`${date>0?`${date}일 `:''}${hour>0&&date==0?`${hour}시간 `:''}${min<2&&date==0&&hour==0?`방금 `:`${min}분 `}전`:new Date(post.info.wrote).toLocaleDateString();
-                    return `
-                    <li class="list-item py-1" recent-post>
-                        <a class="nav-link" href="${post.info.origin.path}">${post.info.origin.name}</a>
-                        <span class="text-gray text-opacity-25"> | </span>
-                        <span class="ms-2 fs-8 text-muted"><time class="text-dark">${duringMsg}</time></span>
-                    </li>
-                    `
-                }).join('');
-
-                if(!document.querySelector('[recent-post]'))
-                document.querySelector('[recent-posts]').insertAdjacentHTML('afterbegin', list||`<li  class="list-item py-1" recent-post>최근 1일간 새로운 포스트가 없습니다.</li>`);
-
-                if(document.querySelector('[wiki-length]').innerHTML.trim()=='')
-                document.querySelector('[wiki-length]').insertAdjacentHTML('beforeend', wikibundle.length);
-
+                if(!_$('[recent-post]'))
+                    _$('[recent-posts]').insertAdjacentHTML('afterbegin', list || NO_POST_NOTICE);
+                if(_$('[wiki-length]').innerHTML.trim() == '')
+                    _$('[wiki-length]').insertAdjacentHTML('beforeend', wikibundle.length);
                 cancelAnimationFrame(loadBundle);
             }
         }
