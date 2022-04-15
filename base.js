@@ -656,7 +656,25 @@ wikiFilter.all = function(){
 
     temp += wikiFilter.content.call(this);
 
-    if(!this.origin.name.match(/about|home/gi)) temp += wikiFilter.ccl();
+    if(!this.origin.name.match(/about|home/gi)) {
+        temp += wikiFilter.ccl();
+        setTimeout(() => {
+            const script = document.createElement('script');
+            script.src = `https://utteranc.es/client.js`;
+            script.setAttribute('repo', 'kkn1125/wiki-comments');
+            script.setAttribute('issue-term', 'pathname');
+            script.setAttribute('theme', 'github-light');
+            script.setAttribute('crossorigin', 'anonymous');
+            script.async = true;
+            script.defer = true;
+            const comments = document.createElement('div');
+            comments.id = 'comments';
+            comments.innerHTML += '<hr>';
+            comments.append(script);
+            document.querySelector(`main`).insertAdjacentElement('beforeend', comments);
+            console.log(localStorage['utterances-session'])
+        }, 1);
+    }
     if(!this.hasOwnProperty('pagination')){
         temp += wikiFilter.ref.call(this);
     }
@@ -692,7 +710,7 @@ wikiFilter.all = function(){
     return temp;
 }
 
-function templateInsertAsync({...options}){
+function templateInsertefer({...options}){
     const id = new Date().getTime().toString().split('').map(x=>String.fromCharCode(65+parseInt(x))).join('');
     
     (async function(){
