@@ -662,7 +662,7 @@ wikiFilter.all = function(){
             const script = document.createElement('script');
             script.src = `https://utteranc.es/client.js`;
             script.setAttribute('repo', 'kkn1125/wiki-comments');
-            script.setAttribute('issue-term', 'pathname');
+            script.setAttribute('issue-term', 'title');
             script.setAttribute('theme', 'github-light');
             script.setAttribute('crossorigin', 'anonymous');
             script.async = true;
