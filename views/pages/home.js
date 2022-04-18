@@ -1,4 +1,4 @@
-import { GET_NOW_TIME, NO_POST_NOTICE } from "../../core/constants.js";
+import { GET_NOW_TIME, MAIN_NOTICES, NO_POST_NOTICE, TOOLTIP } from "../../core/constants.js";
 
 const getPostLimitDate = (date = 1) => 1000 * 60 * 60 * 24 * date;
 const limitDaysAgo = limitDay => GET_NOW_TIME - getPostLimitDate(limitDay);
@@ -67,7 +67,7 @@ export default {
             <div class="mt-3">
                 <div class="w-flex align-items-center mb-3">
                     <span class="fs-1 fw-bold roundText">Wiki List</span>
-                    <span class="ms-2 fs-6 tag tag-info" data-pop-type="msg" data-msg="위키 리스트 카운트 입니다. 마스터 페이지 포함입니다." data-msg-dir="end" wiki-length></span>
+                    ${TOOLTIP(`위키 리스트 카운트 입니다. 마스터 페이지 포함입니다.`, '', 'end')}
                 </div>
                 <div class="w-100">
                     <input id="finder" class="col-20 form-input form-input-lg" type="text" placeholder="검색어를 입력하세요">
@@ -78,27 +78,14 @@ export default {
                     </blockquote>
                     <div>
                         <span class="fs-5 fw-bold roundText">Recent Post</span>
+                        ${TOOLTIP(`최근 1주일간 포스트`, `?`, `end`)}
                         <ul class="list-group" recent-posts>
                             ${this.recentPost()}
                         </ul>
 
                         <span class="fs-5 fw-bold roundText">Notice</span>
                         <ul class="list-group">
-                            <li class="list-item frt-none">
-                                현재 위키는 본인(kimson)이 직접 구현한 <b>router와 css, markdown parser로 제작</b>한 페이지 입니다.
-                            </li>
-                            <li class="list-item frt-none">
-                                운영체제 (OS) 카테고리 컨텐츠에 적용한 markdown parser에 관심이 있으시면 <a class="text-danger" href="https://github.com/kkn1125/markdown-parser" target="_blank">[markdown 저장소]</a>를 참고 바랍니다.
-                            </li>
-                            <li class="list-item frt-none">
-                                hash방식 페이지 처리에 관심이 있으시면 <a class="text-danger" href="https://github.com/kkn1125/router" target="_blank">[router 저장소]</a>를 참고 바랍니다.
-                            </li>
-                            <li class="list-item frt-none">
-                                현재 페이지에 적용한 penli css 관심이 있으시면 <a class="text-danger" href="https://github.com/kkn1125/penli" target="_blank">[penli 저장소]</a>를 참고 바랍니다.
-                            </li>
-                            <li class="list-item frt-none">
-                                위키 페이지를 사용하고 싶으시다면 저장소를 포크하시면 됩니다.
-                            </li>
+                            ${MAIN_NOTICES.map(notice=>`<li class="list-item frt-none">${notice}</li>`).join('')}
                         </ul>
                     </div>
                 </div>

@@ -13,6 +13,7 @@ import CPUscheduling03 from './os.cpu_scheduling03.js'
 import ProcessSync from './os.process_synchronization.js'
 import CriticalSection from './os.critical_section.js'
 import Semaphores from './os.semaphores.js'
+import Segmentation from './os.segmentation.js'
 import ClassicalSync01 from './os.classical_synchronization_problem01.js'
 import ClassicalSync02 from './os.classical_synchronization_problem02.js'
 import Deadlock from './os.deadlock.js'
@@ -41,6 +42,7 @@ Router.setSubPage('모니터', 'operating_system-monitor', Monitor);
 Router.setSubPage('메인 메모리 관리 (Main Memory Management)', 'operating_system-main_memory_management', MMM);
 Router.setSubPage('메모리 낭비 방지 (Avoid Wasting Memory)', 'operating_system-avoid_wasting_memory', AvoidWastingMemory);
 Router.setSubPage('연속 메모리 할당 (Contiguous Memory Allocation)', 'operating_system-contiguous_memory_allocation', CMA);
+Router.setSubPage('세그멘테이션', 'operating_system-segmentation', Segmentation);
 
 export default {
     pagination: true,

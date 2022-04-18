@@ -234,10 +234,10 @@ wikiFilter.modified = function(){
     return `<div>
         <span class="h1 roundText">${this.origin.name.split('-').map(x=>x.charAt(0).toUpperCase()+x.slice(1)).join(' ')}</span>
     </div>
-    ${this.modified==''&&this.done?`<div>`:''}
-    ${this.modified!=''?`<span class="tag text-muted">${new Date(this.modified).toLocaleString().slice(0,-3)} 수정 됨</span>`:``}
+    ${!this.modified&&this.done?`<div>`:''}
+    ${this.modified?`<span class="tag text-muted">${new Date(this.modified).toLocaleString().slice(0,-3)} 수정 됨</span>`:``}
     ${this.done?'':`<span class="tag tag-warning">아직 완료되지 않은 문서입니다.</span>`}
-    ${this.modified==''&&this.done?`</div>`:''}`
+    ${!this.modified&&this.done?`</div>`:''}`
 }
 
 wikiFilter.regdate = function(){
@@ -788,7 +788,7 @@ window.addEventListener('click', (ev)=>{
 
     sessionStorage['readmode'] = JSON.stringify(fm);
 
-})
+});
 
 window.addEventListener('mouseover', (ev)=>{
     const p = ev.target;
@@ -803,6 +803,7 @@ window.addEventListener('mouseover', (ev)=>{
             padding = 0.5;
             time = '';
         }
+        
         if(p.closest('p, blockquote')) {
             padding = 1;
             let wordsLength = p.closest('p, blockquote').textContent.trim().length;

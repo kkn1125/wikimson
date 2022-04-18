@@ -1,8 +1,8 @@
 export default {
     published: true,
     title: 'Contiguous Memory Allocation',
-    modified: '2022-04-13 14:14:31',
-    done: false,
+    modified: '2022-04-18 10:49:53',
+    done: true,
     tags: ['os', 'main memory management', '메인 메모리 관리', 'contiguous memory allocation', '연속 메모리 할당'],
     categories: ['cs','Operating System'],
     authors: ['kimson'],
@@ -80,15 +80,21 @@ ${wikiFilter.img('os/cma03.jpg', 'kimson', 'sample')}
 
 다른 방법을 강구하던 중 "연속 메모리 할당"에서의 "연속"하지 않으면 되지 않을까? 하는 생각으로 만들어 졌다.
 
+${wikiFilter.img('os/cma03-2.jpg', 'kimson', 'sample')}
+
 프로세스를 잘라서 메모리 ~hole~에 넣자는 것이다. 페이징은 일정 단위를 뜻한다. 프로세스를 만일 ~10KB~로 자른다면 ~hole~또한 ~10KB~단위로 자르고 분산하여 ~hole~에 할당한다.
 
 그렇다면 어떻게 분산해서 프로세스가 실행이 되는가?
 
-~CPU~에서 ~MMU~의 ~relocation register~가 주소를 변경해 메모리에 할당한 것처럼 나누어진 프로세스의 개수 만큼 ~relocation register~를 두어 ~CPU~를 속이고, 각각의 프로세스 조각을 ~hole~에 넣는 것이다.
+~CPU~에서 ~MMU~의 ~relocation register~가 주소를 변경해 메모리에 할당한 것처럼, 나누어진 프로세스의 개수 만큼 ~relocation register~를 두어 ~CPU~를 속이고, 각각의 프로세스 조각을 ~hole~에 넣는 것이다.
 
-프로세스를 자른 것을 *page*이라 하고, 메모리를 자른 것을 *frame*이라 한다. ~page~과 ~frame~의 크기는 *서로 같은 크기*를 가진다. 즉, 프로세스는 페이지(page)의 집합이고, 메모리는 프레임(frame)의 집합인 것이다.
+프로세스를 자른 것을 *page*라 하고, 메모리를 자른 것을 *frame*이라 한다. ~page~와 ~frame~의 크기는 *서로 같은 크기*를 가진다. 즉, 프로세스는 *페이지(page)의 집합*이고, 메모리는 *프레임(frame)의 집합*인 것이다.
 
-페이지를 프레임에 할당 할 때 ~MMU~ 내의 재배치 레지스터 값을 바꿈으로서 동작하는데 이 때 ~MMU~는 페이징을 목적으로 할 때 ~MMU~라 하지않고, *재배치 레지스터*가 여러 개가 *테이블*처럼 있다고해서 *페이지 테이블(page table)*이라고 한다. 이로써 외부 단편화의 문제가 모두 해결이 된다.
+페이지를 프레임에 할당 할 때 ~MMU~ 내의 재배치 레지스터(relocation register) 값을 바꿈으로서 동작하는데, 이 때 ~MMU~는 페이징을 목적으로 할 때 ~MMU~라 하지않고, *재배치 레지스터*가 여러 개가 *테이블*처럼 있다고해서 *페이지 테이블(page table)*이라고 한다.
+
+${wikiFilter.img('os/cma03-3.jpg', 'kimson', 'sample')}
+
+페이지 테이블을 통해 논리 주소를 물리주소로 변환되고, ~hole~이 어디에 있던지 프로세스 조각이 흩어져 할당되기 때문에 이로써 ~hole~이 흩어져 사용하지 못하던 외부 단편화의 문제가 모두 해결이 된다.
 
 > ~Logical Address~는 *연속(Contiguous)*하고, ~Physical Address~는 *흩어진(Scattered)* 형태를 가진다.
 
@@ -96,7 +102,7 @@ ${wikiFilter.img('os/cma03.jpg', 'kimson', 'sample')}
 
 ### 논리 주소 (Logical Address) {:.text-danger}
 
-CPU가 내는 주소를 말하며, 2진수로 표현한다. 전체를 m비트라 할 때 하위 n비트는 *오프셋(offset)* 또는 *변위(displacement)* 이다. 이때 *변위는 항상 고정된 값을 가지며 변하지 않는다*. 상위 m-n비트는 *페이지의 번호* 이다. 그림으로 보면 아래와 같다.
+~CPU~가 내는 주소를 말하며, 2진수로 표현한다. 전체를 m비트라 할 때 하위 n비트는 *오프셋(offset)* 또는 *변위(displacement)* 이다. 이때 *변위는 항상 고정된 값을 가지며 변하지 않는다*. 상위 m-n비트는 *페이지의 번호* 이다. 그림으로 보면 아래와 같다.
 
 ${wikiFilter.img('os/cma04.jpg','kimson','sample')}
 
@@ -211,6 +217,48 @@ CPU와 메모리의 중간 성격을 가지게 된다.
 2. \`메모리\`보다 빠르다. -> 반면 \`메모리\`보다 변환하는 개수가 적다.
 
 테이블 엔트리 개수, 변환 속도로 위의 세가지 방식을 비교할 수 있다.
+
+### 연습
+
+TLB 사용 시 *유효 메모리 접근 시간*(Effective Memory Access Time)
+
+- Tm = 100ns, Tb = 20ns, hit ratio = 80%
+
+Et = hit(Tb + Tm) + (1-h)(Tb + Tm + Tm) = 140ns
+
+- ns ==> 나노 초
+- Tm ==> 메모리를 읽는데 걸리는 시간
+- Tb ==> Translation Look aside Buffer
+- hit ==> \`CPU\`가 값을 가져오려 할 때 메모리까지 가지 않고, \`cache\`에 해당하는 값이 있다면 \`cache\`에서 값을 가져올 수 있다. 이를 \`hit\`이라 한다.
+- 1-h ==> \`hit\` 되지 않는 확률 ?== miss
+
+TLB를 사용했을 때 80% hit이고 20% miss 라면, 140ns가 걸리는 결과가 나온다. 원래는 100ns의 메모리인데 시간이 140ns이기때문에 약 40%느려진 것이다.
+
+외부단편화 로스를 줄이기 위해 써야하고, 실제 현실에서는 \`hit ratio\`는 예제의 80%보다 훨씬 높은 95%이상이다. 그래서 예제의 결과보다는 훨씬 줄어들 것이다.
+
+## 보호와 공유
+
+- 보호 (Protection): 해킹 등 방지
+    - 모든 주소는 페이지 테이블을 경유한다.
+    - 페이지 테이블 엔트리마다 r, w, x 비트를 둔다.
+        - r ==> read
+        - w ==> write
+        - x ==> execute
+
+페이징에서의 보호는 다음과 같이 이루어진다. 각 \`page table entry\`마다 frame number외에도 위 3가지를 추가한다. \`CPU\`가 내는 \`page\`에 대해서 *읽고, 쓰고, 실행*할 수 있게 하는 것이다. r, w, x 가 각각 1, 0, 0값을 가질 때, *읽을 수는 있지만 변경할 수는 없다*. 만일 *변경하고자 한다면* 잘못 시도한 것이기 때문에 *CPU에 interrpt*가 가고, *잘못 요청된 프로세스를 제종료* 시킨다.
+
+- 공유 (Sharing): 메모리 낭비 방지
+    - reentarant code ==> 재진입 가능한 코드
+    - non-self-modifying code ==> 스스로 코드가 실행되면서 그 내용을 바꾸지 않는 코드
+
+하나의 프로그램이 실행될 때는 *code, data, stack이 필요*하다. 같은 프로그램을 쓰는 복수 개의 프로세스가 있다면, code는 공유가 가능하다. 단, *pure code*인 경우를 말한다.
+
+**공유 가능한 코드의 조건{:.fw-bold}**
+
+1. *non-self-modifying code* : 스스로 코드가 실행되면서 그 내용을 바꾸지 않는 코드
+2. *reentarant code*가 아닌 코드 : 재진입 가능한 코드
+
+프로세스의 페이지 테이블 코드 영역이 같은 곳을 가리키게 하고, data와 stack이 컨텍스트 스위칭되어 각 프로그램을 실행할 때 *코드를 공유*하게 하므로써 *메모리의 낭비를 방지*하게 된다.
 `],
     ref: [
         {
