@@ -15,7 +15,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-dark.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script>
-        <script src="./src/script/mdParser.js"></script>
+        <script src="src/script/mdParser.js"></script>
         <script src="base.js" defer></script>
         <script type="module">
             import {App} from './core/core.js'
@@ -42,7 +42,7 @@
         <script src="src/script/darkMode.js" async defer></script>
         <div id="app"></div>
         
-        <script src="./src/script/main.js" type="module"></script>
+        <script src="src/script/main.js" type="module"></script>
         <script src="src/script/finder.js" type="module"></script>
         <script src="src/script/resize.js" defer></script>
         <script defer>
@@ -87,12 +87,8 @@
                 hash = location.hash;
                 requestAnimationFrame(watchHash);
             }
-            const GITHUB_API = 'https://api.github.com/';
-            const GITHUB_ENCODING__HTML_JSON = 'application/vnd.github.VERSION.html+json';
-            const GITHUB_ENCODING__HTML = 'application/vnd.github.VERSION.html';
-            const GITHUB_ENCODING__REST_V3 = 'application/vnd.github.v3+json';
-            
         </script>
+        <script src="core/deploy.js"></script>
     </body>
 
 </html>
