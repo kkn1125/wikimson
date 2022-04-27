@@ -1,16 +1,16 @@
 export default {
     published: true,
-    title: '인터뷰를 정리하자',
-    modified: '2022-02-26 12:11:32',
+    title: 'Comp.01 결과',
+    modified: '2022-04-27 16:46:07',
     done: true,
-    tags: ['인터뷰를 정리하자'],
-    categories: ['CS'],
+    tags: ['comp01'],
+    categories: ['Interview'],
     authors: ['kimson'],
     wrote: '2021-12-06 18:14:35',
     toc: true,
     md: true,
     content: [`
-# 이후 목표
+# Comp.01 결과
 
 ## 느낀 점
 
@@ -22,13 +22,11 @@ export default {
 
 도움이 될 정보는 아니지만 저와 같은 처지인 분들은 힘내시길.
 
-결과 \`불합\`{:.bg-danger}
+-----
+
+결과 \`불합격{:.bg-danger}\`
 `],
     ref: [
-        // {
-        //     name:'위키 백과 - CS',
-        //     link:'https://ko.wikipedia.org/wiki/%EC%93%B0%EB%A0%88%EA%B8%B0_%EC%88%98%EC%A7%91_(%EC%BB%B4%ED%93%A8%ED%84%B0_%EA%B3%BC%ED%95%99)'
-        // },
     ],
     template(){
         this.title = this.origin.name;

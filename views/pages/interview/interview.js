@@ -1,12 +1,18 @@
 import {Router, App} from '../../../core/core.js'
 
-import First from './interview.first.js'
-import Two from './interview.two.js'
-import Three from './interview.three.js'
+import C01First from './interview.comp01.first.js'
+import C01Two from './interview.comp01.two.js'
+import C01Result from './interview.comp01.result.js'
 
-Router.setSubPage('회사 1차 면접', 'interview.first', First);
-Router.setSubPage('회사 2차 면접', 'interview.two', Two);
-Router.setSubPage('결과', 'interview.three', Three);
+import C02First from './interview.comp02.first.js'
+import C02Result from './interview.comp02.result.js'
+
+Router.setSubPage('Company 01 | 1차 실무진 면접', 'interview.comp01.first', C01First);
+Router.setSubPage('Company 01 | 2차 임원진 면접', 'interview.comp01..two', C01Two);
+Router.setSubPage('Company 01 | 결과', 'interview.comp01.result', C01Result);
+
+Router.setSubPage('Company 02 | 1차 실무진 면접', 'interview.comp02.first', C02First);
+Router.setSubPage('Company 02 | 결과', 'interview.comp02.result', C02Result);
 
 export default {
     pagination: true,
