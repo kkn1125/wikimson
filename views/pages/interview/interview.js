@@ -7,12 +7,16 @@ import C01Result from './interview.comp01.result.js'
 import C02First from './interview.comp02.first.js'
 import C02Result from './interview.comp02.result.js'
 
+import C03First from './interview.comp03.first.js'
+
 Router.setSubPage('Company 01 | 1차 실무진 면접', 'interview.comp01.first', C01First);
 Router.setSubPage('Company 01 | 2차 임원진 면접', 'interview.comp01..two', C01Two);
 Router.setSubPage('Company 01 | 결과', 'interview.comp01.result', C01Result);
 
 Router.setSubPage('Company 02 | 1차 실무진 면접', 'interview.comp02.first', C02First);
 Router.setSubPage('Company 02 | 결과', 'interview.comp02.result', C02Result);
+
+Router.setSubPage('Company 03 | 1차 실무진 면접', 'interview.comp03.first', C03First);
 
 export default {
     pagination: true,
